@@ -4,6 +4,7 @@ import Providers from "@/components/Providers";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: { default: "Atlas do Aprender", template: "%s · Atlas do Aprender" },
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           <Analytics />
         </Providers>
+        <VercelAnalytics />
       </body>
     </html>
   );

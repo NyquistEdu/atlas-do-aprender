@@ -39,6 +39,10 @@ Sem o `.env.local`, o site funciona só para leitura (sem login nem diário).
 
 O e-mail padrão do Supabase tem limite baixo de envios por hora. Para muitos usuários, configure um SMTP próprio (Authentication > SMTP Settings), por exemplo com Resend ou Brevo. Consulte o manual completo em [`CONFIGURACOES_E_SEGURANCA.md`](./CONFIGURACOES_E_SEGURANCA.md).
 
+## Vercel Analytics
+
+Já está no código (`@vercel/analytics` em `app/layout.tsx`). Para ativar: no projeto na Vercel, abra a aba **Analytics** e clique em **Enable**; depois faça um novo deploy. Não usa cookies, por isso funciona sem o aviso de cookies.
+
 ## Google Analytics
 
 1. Em https://analytics.google.com, crie uma propriedade GA4 e um fluxo de dados **Web** com o endereço do site.

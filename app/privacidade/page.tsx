@@ -12,6 +12,12 @@ export default function Privacidade() {
       <h3 className="ini-h">O que é aberto, sem cadastro</h3>
       <p>Trilhas, livros, jogos, experimentos e o guia podem ser consultados sem criar conta e sem informar nenhum dado.</p>
 
+      <h3 className="ini-h">Contagem básica de visitas (Vercel Analytics)</h3>
+      <p>
+        A Vercel, empresa que hospeda o site, faz uma contagem básica de visitas: páginas vistas, país, tipo de aparelho e
+        de onde a pessoa veio. Ela não usa cookies, não guarda o endereço IP e não identifica quem visitou.
+      </p>
+
       <h3 className="ini-h">Estatísticas de visita (Google Analytics)</h3>
       <p>
         Se você aceitar no aviso de cookies, usamos o Google Analytics para contar visitas e entender quais páginas são
