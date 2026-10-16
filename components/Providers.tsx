@@ -105,6 +105,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     const n = nome.trim();
     if (!supabase || !user) return "Entre na sua conta para cadastrar crianças.";
     if (!n) return "Escreva o nome.";
+    if (n.length > 50) return "O nome deve ter no máximo 50 caracteres.";
     if (criancas.includes(n)) return "Esse nome já está cadastrado.";
     const r = await supabase.from("criancas").insert({ nome: n });
     if (r.error) return "Não consegui salvar. Tente de novo.";
@@ -139,6 +140,11 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
   const addEntrada = async (e: NovaEntrada) => {
     if (!supabase || !user) return "Entre na sua conta para registrar.";
+    if (!e.titulo.trim()) return "Escreva um título.";
+    if (e.titulo.length > 150) return "O título deve ter no máximo 150 caracteres.";
+    if ((e.o_que || "").length > 2000) return "O campo 'O que fizemos' deve ter no máximo 2000 caracteres.";
+    if ((e.descobertas || "").length > 2000) return "O campo 'Descobertas' deve ter no máximo 2000 caracteres.";
+    if ((e.proximo || "").length > 300) return "O campo 'Próximo passo' deve ter no máximo 300 caracteres.";
     const r = await supabase.from("diario").insert(e).select().single();
     if (r.error) return "Não consegui salvar o registro. Tente de novo.";
     setEntradas((x) => [r.data as Entrada, ...x].sort((a, b) => (b.data + (b.criado_em || "")).localeCompare(a.data + (a.criado_em || ""))));

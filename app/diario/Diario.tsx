@@ -66,15 +66,15 @@ export default function Diario() {
             {Object.entries(AREAS).map(([v, l]) => <option key={v} value={v}>{l}</option>)}</select></label>
           <label className="f">Tipo<select id="dTipo" value={f.tipo} onChange={(e) => set("tipo", e.target.value)}>
             {TIPOS.map((t) => <option key={t}>{t}</option>)}</select></label>
-          <label className="f">Minutos<input id="dMin" type="number" min={0} step={5} value={f.minutos} onChange={(e) => set("minutos", +e.target.value || 0)} /></label>
+          <label className="f">Minutos<input id="dMin" type="number" min={0} max={1440} step={5} value={f.minutos} onChange={(e) => set("minutos", Math.min(1440, Math.max(0, +e.target.value || 0)))} /></label>
         </div>
-        <label className="f">Título<input id="dTitulo" value={f.titulo} onChange={(e) => set("titulo", e.target.value)} placeholder="Ex.: Flor que muda de cor" required /></label>
-        <label className="f">O que fizemos<textarea id="dOque" value={f.o_que} onChange={(e) => set("o_que", e.target.value)} placeholder="Passos, material usado, como foi" /></label>
-        <label className="f">O que a criança descobriu ou disse<textarea id="dDesc" value={f.descobertas} onChange={(e) => set("descobertas", e.target.value)} placeholder="Frases dela, perguntas que surgiram, dificuldades" /></label>
+        <label className="f">Título<input id="dTitulo" maxLength={150} value={f.titulo} onChange={(e) => set("titulo", e.target.value)} placeholder="Ex.: Flor que muda de cor" required /></label>
+        <label className="f">O que fizemos<textarea id="dOque" maxLength={2000} value={f.o_que} onChange={(e) => set("o_que", e.target.value)} placeholder="Passos, material usado, como foi" /></label>
+        <label className="f">O que a criança descobriu ou disse<textarea id="dDesc" maxLength={2000} value={f.descobertas} onChange={(e) => set("descobertas", e.target.value)} placeholder="Frases dela, perguntas que surgiram, dificuldades" /></label>
         <div className="row"><span className="meta">Envolvimento</span><div className="stars">
           {[1, 2, 3, 4, 5].map((n) => <button key={n} type="button" aria-pressed={n <= f.envolvimento} onClick={() => set("envolvimento", n)}>{n}</button>)}
         </div></div>
-        <label className="f">Próximo passo<input id="dProx" value={f.proximo} onChange={(e) => set("proximo", e.target.value)} placeholder="Ex.: ler mais fábulas de Esopo" /></label>
+        <label className="f">Próximo passo<input id="dProx" maxLength={300} value={f.proximo} onChange={(e) => set("proximo", e.target.value)} placeholder="Ex.: ler mais fábulas de Esopo" /></label>
         <div className="row"><button className="btn" type="submit">Salvar no diário</button>{msg && <span className="meta" role="status">{msg}</span>}</div>
       </form>
       <div className="row"><span className="meta">Ver registros de</span><div className="seg">
@@ -104,7 +104,7 @@ export default function Diario() {
       </div>
       <details className="card"><summary><b>Gerenciar crianças</b></summary>
         <div className="row" style={{ marginTop: 10 }}>
-          <input id="novaCrianca" value={nova} onChange={(e) => setNova(e.target.value)} placeholder="Nome" />
+          <input id="novaCrianca" maxLength={50} value={nova} onChange={(e) => setNova(e.target.value)} placeholder="Nome" />
           <button className="btn small" type="button" onClick={async () => { const r = await a.addCrianca(nova); setMsg(r || ""); if (!r) setNova(""); }}>Adicionar</button>
         </div>
         <div className="tags">{a.criancas.map((n) => (
