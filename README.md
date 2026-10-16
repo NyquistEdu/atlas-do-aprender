@@ -64,6 +64,7 @@ O e-mail padrão do Supabase tem limite baixo de envios por hora. Para muitos us
 | `components/Providers.tsx` | Sessão, crianças, progresso e diário (Supabase) |
 | `app/globals.css` | Cores, tipografia e tema claro/escuro |
 | `public/guia.pdf` | Guia de uso em PDF |
+| `lib/contato.ts` | E-mail, WhatsApp e Instagram para sugestões, mostrados no rodapé (os vazios não aparecem) |
 | `supabase/schema.sql` | Tabelas, regras de acesso (RLS) e restrições de integridade do banco |
 | `CONFIGURACOES_E_SEGURANCA.md` | Manual de implantação, Vercel, Supabase, SMTP e segurança |
 
