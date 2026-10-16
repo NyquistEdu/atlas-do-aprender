@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useAtlas } from "./Providers";
 
 const ABAS: [string, string][] = [
+  ["/", "Início"],
   ["/trilhas/portugues/1-ano", "Trilhas"],
   ["/livros", "Livros"],
   ["/jogos", "Jogos"],
@@ -42,6 +43,7 @@ export default function Header() {
   const path = usePathname() || "/";
   const { configurado, user, criancas, crianca, setCrianca } = useAtlas();
   const ativa = (href: string) => {
+    if (href === "/") return path === "/";
     const base = "/" + href.split("/")[1];
     return path === href || path.startsWith(base + "/") || path === base;
   };

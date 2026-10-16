@@ -140,3 +140,7 @@ a.btn{display:inline-block;text-decoration:none}
 .hero h2{font-size:1.9rem}
 .login-hint{background:var(--jog-bg);border-radius:10px;padding:12px 14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
 .user-chip{font-size:.82rem;color:var(--soft)}
+.eyebrow-i{margin:0;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);font-weight:700}
+.hero-t{font-size:2.2rem;line-height:1.1}
+.ini-h{font-family:var(--f-disp);font-weight:400;font-size:1.2rem;margin:4px 0 0}
+.ini-steps{margin:0;padding-left:22px;display:grid;gap:8px;max-width:65ch}
