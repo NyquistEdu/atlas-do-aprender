@@ -39,6 +39,14 @@ Sem o `.env.local`, o site funciona só para leitura (sem login nem diário).
 
 O e-mail padrão do Supabase tem limite baixo de envios por hora. Para muitos usuários, configure um SMTP próprio (Authentication > SMTP Settings), por exemplo com Resend ou Brevo. Consulte o manual completo em [`CONFIGURACOES_E_SEGURANCA.md`](./CONFIGURACOES_E_SEGURANCA.md).
 
+## Google Analytics
+
+1. Em https://analytics.google.com, crie uma propriedade GA4 e um fluxo de dados **Web** com o endereço do site.
+2. Copie o **ID da métrica** (começa com `G-`).
+3. Na Vercel, em **Settings > Environment Variables**, cadastre `NEXT_PUBLIC_GA_ID` com esse ID e faça um novo deploy.
+
+O Analytics só é carregado depois que a pessoa clica em **Aceitar** no aviso de cookies (LGPD). Quem recusa não é rastreado. A política fica em `/privacidade`, e o rodapé tem o link “Preferências de cookies” para mudar a escolha. Os dados do diário nunca vão para o Analytics.
+
 ## Publicar na Vercel
 
 1. Em https://vercel.com, **Add New > Project** e importe este repositório do GitHub.
@@ -64,6 +72,7 @@ O e-mail padrão do Supabase tem limite baixo de envios por hora. Para muitos us
 | `components/Providers.tsx` | Sessão, crianças, progresso e diário (Supabase) |
 | `app/globals.css` | Cores, tipografia e tema claro/escuro |
 | `public/guia.pdf` | Guia de uso em PDF |
+| `components/Analytics.tsx`, `app/privacidade` | Google Analytics com aviso de cookies e página de privacidade |
 | `lib/contato.ts` | E-mail, WhatsApp e Instagram para sugestões, mostrados no rodapé (os vazios não aparecem) |
 | `supabase/schema.sql` | Tabelas, regras de acesso (RLS) e restrições de integridade do banco |
 | `CONFIGURACOES_E_SEGURANCA.md` | Manual de implantação, Vercel, Supabase, SMTP e segurança |

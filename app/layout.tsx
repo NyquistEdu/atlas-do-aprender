@@ -3,6 +3,7 @@ import "./globals.css";
 import Providers from "@/components/Providers";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Analytics from "@/components/Analytics";
 
 export const metadata: Metadata = {
   title: { default: "Atlas do Aprender", template: "%s · Atlas do Aprender" },
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main>{children}</main>
           <Footer />
+          <Analytics />
         </Providers>
       </body>
     </html>
