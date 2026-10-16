@@ -1,0 +1,3880 @@
+{
+ "YEARS": [
+  [
+   "1",
+   "Alfabetização · 1º ano"
+  ],
+  [
+   "2",
+   "2º ano"
+  ],
+  [
+   "3",
+   "3º ano"
+  ],
+  [
+   "4",
+   "4º ano"
+  ],
+  [
+   "5",
+   "5º ano"
+  ]
+ ],
+ "SUBJ": {
+  "por": "Português",
+  "mat": "Matemática",
+  "cie": "Ciências"
+ },
+ "T": {
+  "por": {
+   "1": [
+    {
+     "t": "Consciência fonológica: rimas e sílabas",
+     "o": "Perceber que as palavras têm sons, partes e rimas antes de ler.",
+     "m": [
+      "“Bruxa, Bruxa, venha à minha festa” (Arden Druce)",
+      "“A Casa Sonolenta” (Audrey Wood) — repetição e ritmo",
+      "Parlendas e trava-línguas da tradição oral (“Hoje é domingo, pé de cachimbo”)",
+      "App GraphoGame Brasil (gratuito, do MEC)"
+     ],
+     "e": [
+      "Bater palmas a cada sílaba do nome de cada pessoa da família",
+      "Achar a palavra que não rima: gato, pato, bola",
+      "Trocar o primeiro som: bola → cola → mola → sola"
+     ],
+     "f": [
+      "“Cocoricó” (TV Cultura) — canções e rimas",
+      "“Mundo Bita” — clipes musicais com vocabulário"
+     ],
+     "a": [
+      "Palavra Cantada — álbum “Canções de Brincar”",
+      "“A Arca de Noé” (Vinicius de Moraes) — poemas musicados"
+     ],
+     "j": [
+      "Bingo de rimas",
+      "Jogo da memória de figuras que rimam",
+      "Batata-quente das sílabas"
+     ],
+     "p": [
+      "Caixa de rimas: objetos da casa que rimam guardados juntos",
+      "Inventar uma parlenda nova da família e gravar em áudio"
+     ],
+     "l": [
+      [
+       "“Poemas para Brincar” — José Paulo Paes",
+       "Palavra como brinquedo"
+      ],
+      [
+       "“Lé com Cré” — José Paulo Paes",
+       "Poemas curtos com rima e jogo de sons"
+      ]
+     ]
+    },
+    {
+     "t": "Letras e seus sons",
+     "o": "Reconhecer as letras do alfabeto e associar cada uma ao som que representa.",
+     "m": [
+      "“ABC do Ziraldo” / “Flicts” (Ziraldo) para conversar sobre cores e letras",
+      "Alfabeto móvel (letras de EVA ou madeira)",
+      "Cartaz do alfabeto com fotos da família"
+     ],
+     "e": [
+      "Caça-letra em embalagens do supermercado",
+      "Qual som começa? Mostrar figura e escolher a letra",
+      "Traçar letras em bandeja com areia ou farinha"
+     ],
+     "f": [
+      "“Vila Sésamo” (versão brasileira)",
+      "“Pergunte aos StoryBots” — episódios curtos de curiosidades"
+     ],
+     "a": [
+      "Músicas do alfabeto do Mundo Bita"
+     ],
+     "j": [
+      "Bingo de letras",
+      "Adedonha simplificada (só a letra inicial)",
+      "Pescaria de letras com ímã"
+     ],
+     "p": [
+      "Livro do alfabeto da família: uma página por letra com desenho e foto",
+      "Letras com massinha"
+     ],
+     "l": [
+      [
+       "“Alfabeto Escalafobético” — Claudio Fragata",
+       "Um poema para cada letra"
+      ],
+      [
+       "“ABC Doido” — Angela Lago",
+       "Adivinhas que brincam com a letra inicial"
+      ]
+     ]
+    },
+    {
+     "t": "Escrita do nome e primeiras palavras",
+     "o": "Escrever o próprio nome e palavras estáveis, pensando em quantas e quais letras usar.",
+     "m": [
+      "Fichas com nomes da família e dos colegas",
+      "“Menina bonita do laço de fita” (Ana Maria Machado)"
+     ],
+     "e": [
+      "Montar o nome com alfabeto móvel e depois sem modelo",
+      "Escrever a lista de compras do dia (escrita espontânea, sem corrigir tudo)",
+      "Completar letras que faltam: G_TO, B_LA"
+     ],
+     "f": [
+      "“O Show da Luna!” — para depois escrever o nome dos experimentos"
+     ],
+     "a": [
+      "“Histórias de Ninar para Garotas Rebeldes” (podcast) — para ouvir e depois escrever um nome marcante"
+     ],
+     "j": [
+      "Forca com figuras",
+      "Stop com nomes de pessoas e frutas"
+     ],
+     "p": [
+      "Etiquetar objetos da casa com cartões escritos pela criança",
+      "Correio da família: bilhetes curtos deixados em uma caixa"
+     ],
+     "l": [
+      [
+       "“Bom Dia, Todas as Cores!” — Ruth Rocha",
+       "Texto curto e repetitivo para as primeiras palavras"
+      ]
+     ]
+    },
+    {
+     "t": "Primeiras leituras: parlendas, cantigas e listas",
+     "o": "Ler textos que já sabe de memória, ajustando o falado ao escrito.",
+     "m": [
+      "Cantigas de roda escritas em cartaz (“Ciranda, cirandinha”)",
+      "“Quem soltou o pum?” (Blandina Franco e José Carlos Lollo)",
+      "Coleção “Gato e Rato” (Mary e Eliardo França) — leitura inicial"
+     ],
+     "e": [
+      "Apontar com o dedo cada palavra ao cantar",
+      "Achar onde está escrito “ciranda” no cartaz",
+      "Ordenar tiras com versos embaralhados"
+     ],
+     "f": [
+      "“Castelo Rá-Tim-Bum” (TV Cultura) — leitura com o personagem do livro"
+     ],
+     "a": [
+      "Cantigas de roda gravadas (Palavra Cantada, Mundo Bita)"
+     ],
+     "j": [
+      "Dominó de palavra e figura",
+      "Memória palavra–imagem"
+     ],
+     "p": [
+      "Varal de poesias na sala",
+      "Fazer um livrinho dobrado com uma cantiga ilustrada"
+     ],
+     "l": [
+      [
+       "“Salada, Saladinha: parlendas” — Maria José Nóbrega e Rosane Pamplona",
+       "Parlendas que a criança já sabe de cor, agora escritas"
+      ],
+      [
+       "“Quem Soltou o Pum?” — Blandina Franco e José Carlos Lollo",
+       "Frases curtas e humor, ótimo para a leitura autônoma"
+      ]
+     ]
+    }
+   ],
+   "2": [
+    {
+     "t": "Sílabas complexas e ortografia inicial",
+     "o": "Ler e escrever palavras com sílabas além de consoante + vogal (BR, PL, NH, LH, CH).",
+     "m": [
+      "“Marcelo, marmelo, martelo” (Ruth Rocha)",
+      "“O Menino Maluquinho” (Ziraldo)",
+      "Fichas de famílias silábicas"
+     ],
+     "e": [
+      "Ditado de palavras com NH/LH/CH em pares (ninho/linho)",
+      "Separar palavras em sílabas e contar",
+      "Formar palavras novas trocando uma sílaba"
+     ],
+     "f": [
+      "“O Menino Maluquinho” (filme, 1995)"
+     ],
+     "a": [
+      "Audiolivros de Ruth Rocha"
+     ],
+     "j": [
+      "Palavras cruzadas infantis",
+      "Bingo de sílabas",
+      "Scrabble/Palavras com peças adaptadas"
+     ],
+     "p": [
+      "Fábrica de palavras: dados com sílabas coladas",
+      "Caça-palavras feito pela criança para o irmão resolver"
+     ],
+     "l": [
+      [
+       "“Trava-língua, Quebra-queixo, Rema-rema, Remelexo” — Almir Correia",
+       "Sons difíceis e sílabas complexas"
+      ],
+      [
+       "“O Reizinho Mandão” — Ruth Rocha",
+       "Leitura com palavras de sílabas variadas"
+      ]
+     ]
+    },
+    {
+     "t": "Leitura fluente de frases e pequenos textos",
+     "o": "Ler com ritmo e entonação, entendendo o que leu.",
+     "m": [
+      "Coleção “Elefante Letrado” (plataforma de leitura com níveis)",
+      "“Bisa Bia, Bisa Bel” trechos lidos juntos",
+      "Gibis da Turma da Mônica"
+     ],
+     "e": [
+      "Leitura em eco: o adulto lê uma frase, a criança repete",
+      "Ler a mesma página três dias seguidos e notar a melhora",
+      "Responder: quem, onde, o que aconteceu"
+     ],
+     "f": [
+      "“Turma da Mônica: Laços” (2019)"
+     ],
+     "a": [
+      "Ouvir uma história e recontar com as próprias palavras"
+     ],
+     "j": [
+      "Pictureka / caça-figuras",
+      "Imagem & Ação Júnior"
+     ],
+     "p": [
+      "Teatro de leitura: cada um lê a fala de um personagem do gibi",
+      "Gravar a leitura em vídeo e assistir junto"
+     ],
+     "l": [
+      [
+       "“O Muro no Meio do Livro” — Jon Agee",
+       "Texto curto e humor visual para leitura autônoma"
+      ],
+      [
+       "“O Caso do Bolinho” — Tatiana Belinky",
+       "Conto acumulativo, bom para ler em voz alta com ritmo"
+      ],
+      [
+       "“Felpo Filva” — Eva Furnari",
+       "Cartas, bilhetes e poemas dentro da mesma história"
+      ]
+     ]
+    },
+    {
+     "t": "Contos de fadas e reconto",
+     "o": "Reconhecer começo, meio e fim e recontar histórias com sequência.",
+     "m": [
+      "Contos dos Irmãos Grimm e de Perrault em edição infantil",
+      "“Chapeuzinho Amarelo” (Chico Buarque)",
+      "“Fita Verde no Cabelo” (Guimarães Rosa) — releitura de Chapeuzinho"
+     ],
+     "e": [
+      "Ordenar cenas desenhadas da história",
+      "Mudar o final do conto",
+      "Comparar duas versões de Chapeuzinho"
+     ],
+     "f": [
+      "“Shrek” (2001) — brincando com os contos clássicos",
+      "“A Bela e a Fera” (1991)"
+     ],
+     "a": [
+      "Audiolivros de contos clássicos"
+     ],
+     "j": [
+      "Story Cubes (dados de contar histórias)",
+      "Dixit (associação de imagens e frases)"
+     ],
+     "p": [
+      "Teatro de fantoches com meias",
+      "Mapa da história desenhado no papel pardo"
+     ],
+     "l": [
+      [
+       "“Contos de Grimm” — Jacob e Wilhelm Grimm",
+       "Um conto por noite, depois recontar"
+      ],
+      [
+       "“Contos de Andersen” — Hans Christian Andersen",
+       "Comparar com os contos de Grimm"
+      ],
+      [
+       "“Onde Vivem os Monstros” — Maurice Sendak",
+       "História curta com começo, meio e fim muito claros"
+      ],
+      [
+       "“A Verdadeira História dos Três Porquinhos” — Jon Scieszka",
+       "O conto contado pelo lobo: comparar versões"
+      ]
+     ]
+    },
+    {
+     "t": "Escrita com função: bilhetes, listas e convites",
+     "o": "Escrever textos curtos com um propósito real e para um leitor.",
+     "m": [
+      "Modelos de convites e bilhetes reais da família"
+     ],
+     "e": [
+      "Escrever o convite para um aniversário de brinquedo",
+      "Fazer lista de materiais para um experimento",
+      "Bilhete para a professora"
+     ],
+     "f": [
+      "“Pergunte aos StoryBots” — episódio sobre como as coisas são feitas, depois escrever uma lista"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Stop/Adedonha"
+     ],
+     "p": [
+      "Caixa de correio da família com envelopes",
+      "Cardápio do jantar escrito pela criança"
+     ],
+     "l": [
+      [
+       "“O Carteiro Chegou” — Janet e Allan Ahlberg",
+       "Cartas e bilhetes de personagens dos contos de fadas"
+      ]
+     ]
+    }
+   ],
+   "3": [
+    {
+     "t": "Ortografia: R/RR, S/SS, M antes de P e B",
+     "o": "Escrever palavras usando regras de ortografia frequentes.",
+     "m": [
+      "“O Gato Malhado e a Andorinha Sinhá” (Jorge Amado)",
+      "Caderno de regras feito pela criança"
+     ],
+     "e": [
+      "Ditado de pares: caro/carro, casa/cassa",
+      "Completar com M ou N: ca_po, li_do, bo_ba",
+      "Revisar um texto próprio caçando uma regra só"
+     ],
+     "f": [
+      "“Sítio do Picapau Amarelo” (série)"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Forca com regras",
+      "Boggle (formar palavras com dados)",
+      "Palavras cruzadas temáticas"
+     ],
+     "p": [
+      "Detetive da ortografia: achar erros em placas e cartazes da rua",
+      "Dicionário ilustrado da família"
+     ],
+     "l": [
+      [
+       "“Palavras, Muitas Palavras” — Ruth Rocha",
+       "Brincadeiras com palavras e sua escrita"
+      ]
+     ]
+    },
+    {
+     "t": "Pontuação e parágrafo",
+     "o": "Usar ponto final, interrogação, exclamação, vírgula e travessão no diálogo.",
+     "m": [
+      "Tirinhas de Armandinho e Turma da Mônica (balões e pontuação)",
+      "“Ou Isto ou Aquilo” (Cecília Meireles)"
+     ],
+     "e": [
+      "Ler a mesma frase com pontuações diferentes e notar a mudança de sentido",
+      "Pontuar um texto sem pontuação",
+      "Transformar tirinha em texto com travessão"
+     ],
+     "f": [
+      "“Uma Professora Muito Maluquinha” (2010)"
+     ],
+     "a": [
+      "Poemas de Cecília Meireles declamados"
+     ],
+     "j": [
+      "Dixit",
+      "Story Cubes com regra de diálogo"
+     ],
+     "p": [
+      "Criar uma história em quadrinhos de 4 quadros",
+      "Gravar uma leitura dramática respeitando a pontuação"
+     ],
+     "l": [
+      [
+       "“O Pequeno Nicolau” — René Goscinny e Sempé",
+       "Diálogos e humor para observar a pontuação"
+      ],
+      [
+       "“Bisa Bia, Bisa Bel” — Ana Maria Machado",
+       "Diálogos para observar travessão e pontuação"
+      ]
+     ]
+    },
+    {
+     "t": "Fábulas e moral da história",
+     "o": "Ler fábulas, identificar personagens, conflito e a moral.",
+     "m": [
+      "Fábulas de Esopo e La Fontaine em edição infantil",
+      "“Fábulas” de Monteiro Lobato",
+      "“O Leão e o Rato”"
+     ],
+     "e": [
+      "Escrever a moral com as próprias palavras",
+      "Trocar os animais da fábula por outros e reescrever",
+      "Debater: você concorda com a moral?"
+     ],
+     "f": [
+      "“Vida de Inseto” (1998) — releitura de A Cigarra e a Formiga"
+     ],
+     "a": [
+      "Fábulas narradas em audiolivro"
+     ],
+     "j": [
+      "Super Trunfo de animais (para criar personagens)"
+     ],
+     "p": [
+      "Escrever e ilustrar uma fábula da família",
+      "Máscaras de animais para encenar"
+     ],
+     "l": [
+      [
+       "“Fábulas” — Monteiro Lobato",
+       "Fábulas clássicas comentadas pelos personagens do Sítio"
+      ],
+      [
+       "“Fábulas de Esopo” — edição ilustrada",
+       "As fábulas originais, curtas e com moral"
+      ]
+     ]
+    },
+    {
+     "t": "Poesia e jogo com as palavras",
+     "o": "Ler e criar poemas, percebendo rima, ritmo e imagem.",
+     "m": [
+      "“Ou Isto ou Aquilo” (Cecília Meireles)",
+      "“A Arca de Noé” (Vinicius de Moraes)",
+      "“Classificados Poéticos” (Roseana Murray)"
+     ],
+     "e": [
+      "Escrever um classificado poético",
+      "Achar comparações nos poemas (“como”)",
+      "Acróstico com o nome"
+     ],
+     "f": [
+      "“Divertida Mente” (2015) — vocabulário de emoções para poemas"
+     ],
+     "a": [
+      "Álbum “A Arca de Noé” (1980)"
+     ],
+     "j": [
+      "Rimas em roda (cada um continua)"
+     ],
+     "p": [
+      "Varal de poesia na janela",
+      "Sarau em casa com chá e leitura"
+     ],
+     "l": [
+      [
+       "“Exercícios de Ser Criança” — Manoel de Barros",
+       "Poesia que brinca com o sentido das palavras"
+      ],
+      [
+       "“A Arca de Noé” — Vinicius de Moraes",
+       "Poemas de bichos para ler e cantar"
+      ],
+      [
+       "“Poemas para Brincar” — José Paulo Paes",
+       "Poesia com humor e jogos de linguagem"
+      ],
+      [
+       "“Classificados Poéticos” — Roseana Murray",
+       "Modelo para a criança escrever seus próprios classificados"
+      ]
+     ]
+    },
+    {
+     "t": "Substantivos e adjetivos",
+     "o": "Nomear e qualificar seres e coisas para descrever melhor.",
+     "m": [
+      "“Menina bonita do laço de fita” (Ana Maria Machado) — descrições"
+     ],
+     "e": [
+      "Descrever um objeto escondido só com adjetivos",
+      "Trocar adjetivos de um texto para mudar o clima",
+      "Classificar palavras em fichas"
+     ],
+     "f": [
+      "“Procurando Nemo” (2003) — descrever o fundo do mar"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Perfil Júnior",
+      "Cara a Cara (Quem é?) com adjetivos"
+     ],
+     "p": [
+      "Caixa misteriosa: tocar sem ver e descrever",
+      "Cartaz de adjetivos para flores (cor, cheiro, textura)"
+     ],
+     "l": [
+      [
+       "“Bichos que Existem e Bichos que Não Existem” — Arthur Nestrovski",
+       "Descrições cheias de adjetivos"
+      ]
+     ]
+    }
+   ],
+   "4": [
+    {
+     "t": "Gêneros do cotidiano: notícia, carta e receita",
+     "o": "Reconhecer a função e a estrutura de diferentes gêneros.",
+     "m": [
+      "Jornal Joca (jornal para crianças)",
+      "Revista Ciência Hoje das Crianças",
+      "Receitas de família"
+     ],
+     "e": [
+      "Escrever uma notícia sobre um fato da casa (manchete, lide)",
+      "Carta para um parente distante",
+      "Reescrever receita com modo de preparo numerado"
+     ],
+     "f": [
+      "“O Menino e o Mundo” (2013) — animação brasileira para conversar sem palavras"
+     ],
+     "a": [
+      "Podcasts de notícias para crianças, ouvidos juntos"
+     ],
+     "j": [
+      "Imagem & Ação",
+      "Perfil"
+     ],
+     "p": [
+      "Jornal mensal da família (uma página)",
+      "Cozinhar seguindo receita escrita pela criança"
+     ],
+     "l": [
+      [
+       "“O Pavão Misterioso” — José Camelo de Melo Resende",
+       "Cordel: um gênero brasileiro com rima e métrica"
+      ],
+      [
+       "“Diário de Biloca” — Edson Gabriel Garcia",
+       "Gênero diário e escrita pessoal"
+      ]
+     ]
+    },
+    {
+     "t": "Verbos e tempos verbais",
+     "o": "Usar passado, presente e futuro com coerência no texto.",
+     "m": [
+      "“Reinações de Narizinho” (Monteiro Lobato), capítulos curtos"
+     ],
+     "e": [
+      "Contar o dia de ontem, hoje e amanhã",
+      "Reescrever um parágrafo mudando o tempo",
+      "Caça aos verbos em uma página"
+     ],
+     "f": [
+      "“A Família do Futuro” (2007) — passado e futuro"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Imagem & Ação (ações viram verbos)",
+      "Mímica"
+     ],
+     "p": [
+      "Linha do tempo da vida da criança com frases",
+      "Cápsula do tempo: carta para si daqui a um ano"
+     ],
+     "l": [
+      [
+       "“A Ilha Perdida” — Maria José Dupré",
+       "Aventura em capítulos narrada no passado"
+      ]
+     ]
+    },
+    {
+     "t": "Acentuação e sinais gráficos",
+     "o": "Usar acento agudo, circunflexo e til em palavras frequentes.",
+     "m": [
+      "Lista de palavras do cotidiano com acento"
+     ],
+     "e": [
+      "Ler palavras com e sem acento: sabia/sábia/sabiá",
+      "Classificar palavras pela sílaba tônica",
+      "Corrigir acentos do próprio texto"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "Leitura em voz alta enfatizando a sílaba forte"
+     ],
+     "j": [
+      "Bingo de sílaba tônica",
+      "Palavras cruzadas"
+     ],
+     "p": [
+      "Batida da sílaba forte com tambor ou palmas"
+     ],
+     "l": [
+      [
+       "“O Caderno de Rimas do João” — Lázaro Ramos",
+       "Palavras explicadas em versos, bom para sílaba tônica e ritmo"
+      ]
+     ]
+    },
+    {
+     "t": "Livros com capítulos e leitura inferencial",
+     "o": "Ler livros mais longos e deduzir o que não está escrito.",
+     "m": [
+      "“A Bolsa Amarela” (Lygia Bojunga)",
+      "“O Pequeno Príncipe” (Saint-Exupéry)",
+      "“A Fada que Tinha Ideias” (Fernanda Lopes de Almeida)"
+     ],
+     "e": [
+      "Diário de leitura: uma frase por capítulo",
+      "Prever o que acontece no próximo capítulo",
+      "Perguntas do tipo: por que ela fez isso?"
+     ],
+     "f": [
+      "“O Pequeno Príncipe” (animação, 2015)"
+     ],
+     "a": [
+      "Audiolivro de “O Pequeno Príncipe”"
+     ],
+     "j": [
+      "Detetive (dedução)",
+      "Dixit"
+     ],
+     "p": [
+      "Clube do livro em família com lanche temático",
+      "Caixa de objetos que representam a história"
+     ],
+     "l": [
+      [
+       "“A Teia de Charlotte” — E. B. White",
+       "Romance em capítulos com amizade e perda"
+      ],
+      [
+       "“As Aventuras de Pinóquio” — Carlo Collodi",
+       "Capítulos curtos, ótimos para prever o próximo"
+      ],
+      [
+       "“O Leão, a Feiticeira e o Guarda-Roupa” — C. S. Lewis",
+       "Primeira grande saga de fantasia"
+      ],
+      [
+       "“As Mil e Uma Noites” (adaptação infantil)",
+       "Histórias dentro de histórias"
+      ],
+      [
+       "“A Bolsa Amarela” — Lygia Bojunga",
+       "Romance em capítulos para inferência e diário de leitura"
+      ],
+      [
+       "“A Fada que Tinha Ideias” — Fernanda Lopes de Almeida",
+       "Leitura longa com humor e crítica"
+      ]
+     ]
+    }
+   ],
+   "5": [
+    {
+     "t": "Texto de opinião e argumentação",
+     "o": "Defender uma opinião com razões e exemplos, respeitando outras.",
+     "m": [
+      "Jornal Joca — seção de opinião",
+      "Cartas de leitor em revistas infantis"
+     ],
+     "e": [
+      "Debate em família: celular no jantar?",
+      "Escrever: eu acho que… porque… por exemplo…",
+      "Ler dois textos com opiniões opostas e comparar"
+     ],
+     "f": [
+      "“WALL-E” (2008) — base para debate sobre consumo"
+     ],
+     "a": [
+      "Ouvir um debate curto e anotar argumentos"
+     ],
+     "j": [
+      "Codenames (associação e justificativa)",
+      "Dixit"
+     ],
+     "p": [
+      "Campanha da família: cartaz para economizar água",
+      "Assembleia mensal da casa com pauta escrita"
+     ],
+     "l": [
+      [
+       "“Extraordinário” — R. J. Palacio",
+       "A mesma história por vários pontos de vista"
+      ],
+      [
+       "“Malala, a Menina que Queria Ir para a Escola” — Adriana Carranca",
+       "Reportagem para crianças: base para debate e opinião"
+      ]
+     ]
+    },
+    {
+     "t": "Concordância e revisão do texto",
+     "o": "Revisar o próprio texto cuidando de concordância, repetições e clareza.",
+     "m": [
+      "Textos antigos da própria criança para reescrever"
+     ],
+     "e": [
+      "Trocar palavras repetidas por pronomes ou sinônimos",
+      "Achar erros de concordância propositais",
+      "Revisão em dupla com lista de checagem"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Scrabble",
+      "Boggle"
+     ],
+     "p": [
+      "Editora da família: revisar e “publicar” um livrinho"
+     ],
+     "l": [
+      [
+       "“O Menino Maluquinho” — Ziraldo",
+       "Releitura para revisar e reescrever trechos"
+      ]
+     ]
+    },
+    {
+     "t": "Crônica e literatura brasileira",
+     "o": "Ler crônicas e clássicos infantis brasileiros, reconhecendo humor e crítica.",
+     "m": [
+      "Crônicas de Rubem Braga e Fernando Sabino (seleções para jovens)",
+      "“Reinações de Narizinho” e “Memórias da Emília” (Lobato)",
+      "“Pinóquio às Avessas” (Rubem Alves)"
+     ],
+     "e": [
+      "Escrever uma crônica sobre algo comum do dia",
+      "Identificar o narrador e o tom",
+      "Comparar Emília com uma personagem moderna"
+     ],
+     "f": [
+      "“Tito e os Pássaros” (2018) — animação brasileira"
+     ],
+     "a": [
+      "Crônicas lidas em audiolivro"
+     ],
+     "j": [
+      "Perfil"
+     ],
+     "p": [
+      "Caderno de crônicas da família",
+      "Visita a uma biblioteca pública ou sebo"
+     ],
+     "l": [
+      [
+       "“Reinações de Narizinho” — Monteiro Lobato",
+       "O Sítio por inteiro"
+      ],
+      [
+       "“Dom Quixote das Crianças” — Monteiro Lobato",
+       "Porta de entrada para o clássico"
+      ],
+      [
+       "“O Saci” — Monteiro Lobato",
+       "Folclore brasileiro em aventura"
+      ],
+      [
+       "“O Meu Pé de Laranja Lima” — José Mauro de Vasconcelos",
+       "Leia antes: tem perda e violência em casa"
+      ],
+      [
+       "“Ruth Rocha Conta a Odisseia”",
+       "Mito grego recontado por uma autora brasileira"
+      ],
+      [
+       "“O Hobbit” — J. R. R. Tolkien",
+       "Aventura longa para ler em voz alta"
+      ],
+      [
+       "“A Ilha do Tesouro” — Robert Louis Stevenson",
+       "Clássico de aventura"
+      ],
+      [
+       "“Para Gostar de Ler — Crônicas” (vol. 1) — Drummond, Braga, Sabino e Paulo Mendes Campos",
+       "A coletânea clássica de crônicas para jovens leitores"
+      ],
+      [
+       "“Comédias para se Ler na Escola” — Luis Fernando Verissimo",
+       "Crônicas de humor"
+      ],
+      [
+       "“Memórias da Emília” — Monteiro Lobato",
+       "Literatura brasileira clássica"
+      ]
+     ]
+    },
+    {
+     "t": "Pesquisa, resumo e apresentação oral",
+     "o": "Buscar informação em fontes, resumir e apresentar para um público.",
+     "m": [
+      "Revista Ciência Hoje das Crianças",
+      "Enciclopédias e sites de museus"
+     ],
+     "e": [
+      "Escolher um tema (ex.: flores do Nordeste), achar 3 fontes e resumir",
+      "Fazer fichas com palavras-chave",
+      "Apresentação de 3 minutos para a família"
+     ],
+     "f": [
+      "Documentários curtos sobre o tema pesquisado"
+     ],
+     "a": [
+      "Gravar um minipodcast sobre a pesquisa"
+     ],
+     "j": [
+      "Perfil",
+      "Quiz em família"
+     ],
+     "p": [
+      "Cartaz ou slide feito à mão",
+      "Gravar um episódio de podcast da criança"
+     ],
+     "l": [
+      [
+       "“Histórias de Ninar para Garotas Rebeldes” — Elena Favilli e Francesca Cavallo",
+       "Biografias curtas para inspirar pesquisa e apresentação"
+      ]
+     ]
+    }
+   ]
+  },
+  "mat": {
+   "1": [
+    {
+     "t": "Contagem e números até 100",
+     "o": "Contar objetos, ler e escrever números e perceber a sequência numérica.",
+     "m": [
+      "“Dez Sacizinhos” (Tatiana Belinky)",
+      "Material dourado",
+      "Quadro numérico de 1 a 100"
+     ],
+     "e": [
+      "Contar objetos de 2 em 2 e de 5 em 5",
+      "Completar números que faltam no quadro",
+      "Ligar quantidade ao número"
+     ],
+     "f": [
+      "“Numberblocks” (BBC, em inglês; o visual funciona sem idioma)",
+      "“Sid, o Cientista” — episódios de medir e contar"
+     ],
+     "a": [
+      "Músicas de contar da Palavra Cantada"
+     ],
+     "j": [
+      "Dominó",
+      "UNO",
+      "Pega-varetas (contar pontos)",
+      "Halli Galli (somar até 5)"
+     ],
+     "p": [
+      "Mercadinho com tampinhas",
+      "Caça ao número na rua: placas e casas"
+     ],
+     "l": [
+      [
+       "“Dez Sacizinhos” — Tatiana Belinky",
+       "Contagem regressiva em versos"
+      ],
+      [
+       "“Uma Lagarta Muito Comilona” — Eric Carle",
+       "Contagem, quantidades e dias da semana"
+      ]
+     ]
+    },
+    {
+     "t": "Comparar, classificar e ordenar",
+     "o": "Agrupar por critérios, comparar quantidades (mais, menos, igual).",
+     "m": [
+      "“Clact... Clact... Clact...” (Liliana e Michele Iacocca)",
+      "Botões, tampas e blocos lógicos"
+     ],
+     "e": [
+      "Separar botões por cor, tamanho e furos",
+      "Ordenar lápis do menor ao maior",
+      "Qual grupo tem mais?"
+     ],
+     "f": [
+      "“O Show da Luna!” — episódios de classificação de seres"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Lince",
+      "Blocos lógicos",
+      "Jogo da memória"
+     ],
+     "p": [
+      "Arrumar a gaveta de meias por critério escolhido pela criança"
+     ],
+     "l": [
+      [
+       "“Clact... Clact... Clact...” — Liliana e Michele Iacocca",
+       "Uma tesoura organiza papéis por cor e forma"
+      ],
+      [
+       "“Quem Vai Ficar com o Pêssego?” — Yoon-ah Hae",
+       "Animais comparam tamanho, altura e peso"
+      ]
+     ]
+    },
+    {
+     "t": "Adição e subtração com material",
+     "o": "Juntar, acrescentar, tirar e comparar usando objetos e desenhos.",
+     "m": [
+      "Material dourado e palitos",
+      "Reta numérica no chão com fita crepe"
+     ],
+     "e": [
+      "Problemas da vida real: tinha 5 biscoitos, comi 2",
+      "Pular na reta numérica para somar",
+      "Fatos do 10: quanto falta para 10?"
+     ],
+     "f": [
+      "“Numberblocks” — episódios de soma"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Halli Galli",
+      "Dados com soma",
+      "Batalha de cartas (soma)"
+     ],
+     "p": [
+      "Boliche de garrafas PET: somar pinos derrubados"
+     ],
+     "l": [
+      [
+       "“Os Dez Amigos” — Ziraldo",
+       "Os dedos das mãos e o número 10"
+      ]
+     ]
+    },
+    {
+     "t": "Formas geométricas e padrões",
+     "o": "Reconhecer círculo, quadrado, triângulo e retângulo e continuar sequências.",
+     "m": [
+      "Tangram",
+      "Blocos de madeira",
+      "“As Três Partes” (Edson Luiz Kozminski)"
+     ],
+     "e": [
+      "Achar formas na casa",
+      "Continuar sequências de cor e forma",
+      "Montar figuras do Tangram com modelo"
+     ],
+     "f": [
+      "“Donald no País da Matemágica” (1959), trechos"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Tangram",
+      "Blokus",
+      "Quebra-cabeça"
+     ],
+     "p": [
+      "Colagem de formas com papel colorido",
+      "Colares com padrão de contas"
+     ],
+     "l": [
+      [
+       "“As Três Partes” — Edson Luiz Kozminski",
+       "Uma casinha se desmonta em formas geométricas"
+      ]
+     ]
+    }
+   ],
+   "2": [
+    {
+     "t": "Sistema de numeração decimal",
+     "o": "Entender unidades, dezenas e centenas e o valor posicional.",
+     "m": [
+      "Material dourado",
+      "Fichas sobrepostas (100 + 20 + 3)",
+      "Ábaco"
+     ],
+     "e": [
+      "Representar 243 com material dourado",
+      "Decompor números de várias formas",
+      "Comparar 132 e 123"
+     ],
+     "f": [
+      "“Numberblocks” — dezenas"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Super Trunfo (comparar números)",
+      "Bingo de números"
+     ],
+     "p": [
+      "Banco da família: trocar 10 moedas por 1 nota de brinquedo"
+     ],
+     "l": [
+      [
+       "“Aritmética da Emília” — Monteiro Lobato (trechos lidos pelo adulto)",
+       "Os números ganham vida no Sítio"
+      ]
+     ]
+    },
+    {
+     "t": "Adição e subtração com reagrupamento",
+     "o": "Calcular com estratégias próprias e com algoritmo, entendendo o “vai um”.",
+     "m": [
+      "Material dourado",
+      "Ábaco"
+     ],
+     "e": [
+      "Cálculo mental: 38 + 25 por partes",
+      "Problemas de comparar e completar",
+      "Conferir resultado com a operação inversa"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Rummikub",
+      "Banco Imobiliário Júnior"
+     ],
+     "p": [
+      "Planejar o lanche com orçamento"
+     ],
+     "l": [
+      [
+       "“Os Problemas da Família Gorgonzola” — Eva Furnari",
+       "Problemas divertidos de adição e subtração"
+      ]
+     ]
+    },
+    {
+     "t": "Dinheiro e trocas",
+     "o": "Reconhecer cédulas e moedas e fazer trocas e trocos simples.",
+     "m": [
+      "Cédulas e moedas de brinquedo do Real"
+     ],
+     "e": [
+      "Quantas formas de fazer R$ 10?",
+      "Calcular troco em compras simuladas"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Banco Imobiliário Júnior",
+      "Jogo da Vida"
+     ],
+     "p": [
+      "Feira em casa com etiquetas de preço",
+      "Cofrinho com registro mensal"
+     ],
+     "l": [
+      [
+       "“O Menino do Dinheiro” — Reinaldo Domingos",
+       "Primeira conversa sobre dinheiro e poupança"
+      ],
+      [
+       "“Dinheiro Compra Tudo?” — Cássia D’Aquino",
+       "Valores, trocas e consumo"
+      ]
+     ]
+    },
+    {
+     "t": "Tempo: calendário e relógio",
+     "o": "Ler datas, dias da semana, meses e horas cheias e meias.",
+     "m": [
+      "Calendário de parede",
+      "Relógio de ponteiros de papelão"
+     ],
+     "e": [
+      "Marcar aniversários no calendário",
+      "Quantos dias faltam para as férias?",
+      "Ler horas no relógio de ponteiros"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Jogo da memória de horas"
+     ],
+     "p": [
+      "Rotina ilustrada do dia com horários",
+      "Ampulheta de garrafa PET"
+     ],
+     "l": [
+      [
+       "“Uma Lagarta Muito Comilona” — Eric Carle",
+       "Dias da semana e passagem do tempo"
+      ]
+     ]
+    },
+    {
+     "t": "Figuras espaciais",
+     "o": "Reconhecer cubo, esfera, cilindro, cone e pirâmide em objetos.",
+     "m": [
+      "Embalagens de casa",
+      "Planificações impressas"
+     ],
+     "e": [
+      "Classificar embalagens por forma",
+      "Rola ou não rola?",
+      "Contar faces e vértices"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Cilada",
+      "Jenga"
+     ],
+     "p": [
+      "Construir sólidos com palito e massinha",
+      "Cidade de sucata com caixas"
+     ],
+     "l": [
+      [
+       "“Paulo Roberto, Arquiteto” — Andrea Beaty",
+       "Construir com formas e sólidos"
+      ],
+      [
+       "“As Três Partes” — Edson Luiz Kozminski",
+       "Depois de ler, montar a casinha com caixas e embalagens (sólidos)"
+      ]
+     ]
+    }
+   ],
+   "3": [
+    {
+     "t": "Multiplicação e tabuada",
+     "o": "Compreender multiplicação como soma de parcelas iguais e disposição em linhas e colunas.",
+     "m": [
+      "Papel quadriculado",
+      "“Os Problemas da Família Gorgonzola” (Eva Furnari)"
+     ],
+     "e": [
+      "Desenhar 3 × 4 como grade",
+      "Tabuada do 2, 5 e 10 por padrões",
+      "Problemas com grupos iguais"
+     ],
+     "f": [
+      "“Donald no País da Matemágica”"
+     ],
+     "a": [
+      "Músicas de tabuada"
+     ],
+     "j": [
+      "Kingdomino (multiplicar pontos)",
+      "Tabuada no dado"
+     ],
+     "p": [
+      "Caixa de ovos para multiplicação",
+      "Plantar mudas em fileiras e contar"
+     ],
+     "l": [
+      [
+       "“Os Problemas da Família Gorgonzola” — Eva Furnari",
+       "Problemas de multiplicação e divisão em contexto"
+      ],
+      [
+       "“Aritmética da Emília” — Monteiro Lobato",
+       "Tabuada e operações explicadas pelos personagens"
+      ]
+     ]
+    },
+    {
+     "t": "Divisão como repartir e agrupar",
+     "o": "Dividir em partes iguais e descobrir quantos grupos cabem.",
+     "m": [
+      "Objetos para repartir (biscoitos, tampinhas)"
+     ],
+     "e": [
+      "Repartir 12 balas entre 3 pessoas",
+      "Quantos grupos de 4 cabem em 20?",
+      "Divisão com resto: o que sobra?"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Mancala"
+     ],
+     "p": [
+      "Dividir a pizza em partes iguais",
+      "Organizar figurinhas em pacotes"
+     ],
+     "l": [
+      [
+       "“O Pirulito do Pato” — Nilson José Machado",
+       "Repartir de forma justa: divisão e frações"
+      ]
+     ]
+    },
+    {
+     "t": "Medidas: comprimento, massa e capacidade",
+     "o": "Medir com metro, balança e copos medidores e estimar antes.",
+     "m": [
+      "Fita métrica, balança de cozinha, copo medidor"
+     ],
+     "e": [
+      "Estimar e medir a altura de cada pessoa",
+      "Comparar massa de frutas",
+      "Quantos copos enchem uma garrafa?"
+     ],
+     "f": [
+      "“O Ônibus Mágico Voltou” — episódios de medidas"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "—"
+     ],
+     "p": [
+      "Receita de bolo medindo ingredientes",
+      "Régua de crescimento na parede"
+     ],
+     "l": [
+      [
+       "“Quem Vai Ficar com o Pêssego?” — Yoon-ah Hae",
+       "Comparar e medir"
+      ]
+     ]
+    },
+    {
+     "t": "Tabelas e gráficos",
+     "o": "Coletar dados, organizar em tabela e fazer gráfico de barras.",
+     "m": [
+      "Papel quadriculado"
+     ],
+     "e": [
+      "Pesquisa: fruta preferida da família",
+      "Ler gráfico de jornal infantil",
+      "Fazer perguntas a partir do gráfico"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "—"
+     ],
+     "p": [
+      "Gráfico de chuva da semana",
+      "Contar flores do jardim por cor e fazer gráfico"
+     ],
+     "l": [
+      [
+       "Revista “Ciência Hoje das Crianças” — infográficos",
+       "Ler e discutir gráficos e tabelas reais"
+      ]
+     ]
+    },
+    {
+     "t": "Frações do dia a dia",
+     "o": "Reconhecer metade, terço e quarto em objetos e quantidades.",
+     "m": [
+      "Discos de frações de papel",
+      "“As Três Partes” (Edson Luiz Kozminski)"
+     ],
+     "e": [
+      "Dobrar papel em metades e quartos",
+      "Metade de 10 balas",
+      "Qual pedaço é maior: 1/2 ou 1/4?"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Dominó de frações"
+     ],
+     "p": [
+      "Dividir sanduíche e fruta em partes iguais"
+     ],
+     "l": [
+      [
+       "“As Três Partes” — Edson Luiz Kozminski",
+       "Partes de um todo"
+      ]
+     ]
+    }
+   ],
+   "4": [
+    {
+     "t": "Multiplicação e divisão com números maiores",
+     "o": "Calcular com dois algarismos usando decomposição e algoritmo.",
+     "m": [
+      "Papel quadriculado",
+      "Khan Academy em português (gratuito)"
+     ],
+     "e": [
+      "23 × 4 = 20 × 4 + 3 × 4",
+      "Divisão por estimativa",
+      "Problemas de proporção: 1 caixa tem 12, 5 caixas têm?"
+     ],
+     "f": [
+      "“Matemática em Toda Parte” (TV Escola)"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Rummikub",
+      "Kingdomino"
+     ],
+     "p": [
+      "Planejar compras do mês com encarte"
+     ],
+     "l": [
+      [
+       "“O Homem que Calculava” — Malba Tahan (capítulos selecionados)",
+       "Problemas clássicos de cálculo e divisão"
+      ],
+      [
+       "“Aritmética da Emília” — Monteiro Lobato",
+       "Revisão das operações"
+      ]
+     ]
+    },
+    {
+     "t": "Frações equivalentes e comparação",
+     "o": "Perceber que 1/2 = 2/4 e comparar frações.",
+     "m": [
+      "Tiras de frações",
+      "Escala Cuisenaire"
+     ],
+     "e": [
+      "Achar frações equivalentes com tiras",
+      "Ordenar 1/3, 1/2, 1/4",
+      "Fração de quantidade: 2/3 de 12"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Dominó de frações"
+     ],
+     "p": [
+      "Pizza de papel com sabores em frações"
+     ],
+     "l": [
+      [
+       "“O Pirulito do Pato” — Nilson José Machado",
+       "Frações e partilha"
+      ]
+     ]
+    },
+    {
+     "t": "Números decimais e dinheiro",
+     "o": "Ler e escrever decimais relacionando com centavos e medidas.",
+     "m": [
+      "Encartes de supermercado"
+     ],
+     "e": [
+      "Somar preços com centavos",
+      "R$ 2,50 é quanto em centavos?",
+      "Medidas: 1,5 m"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Banco Imobiliário"
+     ],
+     "p": [
+      "Comparar preço por quilo no mercado"
+     ],
+     "l": [
+      [
+       "“O Menino do Dinheiro” — Reinaldo Domingos",
+       "Dinheiro, decimais e poupança"
+      ]
+     ]
+    },
+    {
+     "t": "Área, perímetro e malha",
+     "o": "Calcular contorno e superfície de figuras em malha quadriculada.",
+     "m": [
+      "Geoplano",
+      "Papel quadriculado"
+     ],
+     "e": [
+      "Desenhar figuras com mesma área e perímetros diferentes",
+      "Medir o perímetro do quarto",
+      "Contar quadradinhos"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Blokus",
+      "Ubongo"
+     ],
+     "p": [
+      "Planta baixa do quarto em escala",
+      "Horta em canteiro: calcular área"
+     ],
+     "l": [
+      [
+       "“Paulo Roberto, Arquiteto” — Andrea Beaty",
+       "Planta baixa, medidas e projeto de uma construção"
+      ],
+      [
+       "“Geografia de Dona Benta” — Monteiro Lobato",
+       "Mapas, escala e direções para área e localização"
+      ]
+     ]
+    },
+    {
+     "t": "Ângulos, simetria e localização",
+     "o": "Identificar ângulos retos, eixos de simetria e usar direções.",
+     "m": [
+      "Espelho, papel e tesoura"
+     ],
+     "e": [
+      "Dobrar e recortar figuras simétricas",
+      "Achar ângulos retos na casa",
+      "Seguir instruções: 3 passos à direita"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Batalha Naval",
+      "Hora do Rush",
+      "Xadrez"
+     ],
+     "p": [
+      "Borboletas de tinta (simetria)",
+      "Caça ao tesouro com mapa"
+     ],
+     "l": [
+      [
+       "“Geografia de Dona Benta” — Monteiro Lobato",
+       "Mapas, escala e direções para área e localização"
+      ]
+     ]
+    }
+   ],
+   "5": [
+    {
+     "t": "Frações, decimais e porcentagem",
+     "o": "Relacionar 1/2, 0,5 e 50% e usar em situações reais.",
+     "m": [
+      "Khan Academy em português",
+      "Encartes com descontos"
+     ],
+     "e": [
+      "10% de 50",
+      "Comparar desconto de 20% e R$ 10",
+      "Converter frações em decimais"
+     ],
+     "f": [
+      "“Estrelas Além do Tempo” (2016) — mulheres na matemática"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Banco Imobiliário",
+      "Super Trunfo"
+     ],
+     "p": [
+      "Pesquisa de preços com desconto",
+      "Gráfico de setores das atividades do dia"
+     ],
+     "l": [
+      [
+       "“O Menino do Dinheiro” — Reinaldo Domingos",
+       "Porcentagem e decisões com dinheiro"
+      ]
+     ]
+    },
+    {
+     "t": "Números grandes e estimativa",
+     "o": "Ler números até milhões e fazer arredondamentos.",
+     "m": [
+      "Dados de população do IBGE (cidades e estados)",
+      "“O Diabo dos Números” (Hans Magnus Enzensberger), com mediação"
+     ],
+     "e": [
+      "Ordenar a população de capitais do Nordeste",
+      "Arredondar para a centena mais próxima",
+      "Estimar quantos grãos de arroz há em um copo"
+     ],
+     "f": [
+      "“Donald no País da Matemágica”"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Super Trunfo de países",
+      "GeoMundo"
+     ],
+     "p": [
+      "Contar e estimar grãos em um pote"
+     ],
+     "l": [
+      [
+       "“O Diabo dos Números” — Hans Magnus Enzensberger",
+       "Números grandes, potências e padrões, um capítulo por noite"
+      ]
+     ]
+    },
+    {
+     "t": "Volume e capacidade",
+     "o": "Medir volume com cubinhos e relacionar litro e centímetro cúbico.",
+     "m": [
+      "Cubos de encaixe",
+      "Caixas de leite"
+     ],
+     "e": [
+      "Quantos cubinhos cabem na caixa?",
+      "Calcular volume = comprimento × largura × altura",
+      "1 litro cabe em quantos copos de 200 ml?"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "—"
+     ],
+     "p": [
+      "Construir uma caixa de 1 litro (10 × 10 × 10 cm) de papelão"
+     ]
+    },
+    {
+     "t": "Probabilidade e chance",
+     "o": "Perceber eventos certos, prováveis e impossíveis e registrar resultados.",
+     "m": [
+      "Dados, moedas, bolinhas coloridas"
+     ],
+     "e": [
+      "Lançar moeda 20 vezes e registrar",
+      "Qual soma de dois dados sai mais?",
+      "Sorteio de bolinhas com e sem reposição"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Banco Imobiliário",
+      "Lig 4",
+      "Senha (Mastermind)"
+     ],
+     "p": [
+      "Experimento das somas com dois dados e gráfico"
+     ],
+     "l": [
+      [
+       "“O Diabo dos Números” — Hans Magnus Enzensberger",
+       "Números grandes, potências e padrões, um capítulo por noite"
+      ]
+     ]
+    },
+    {
+     "t": "Plano cartesiano e problemas de lógica",
+     "o": "Localizar pontos por coordenadas e resolver problemas de várias etapas.",
+     "m": [
+      "“O Homem que Calculava” (Malba Tahan), com mediação",
+      "Papel quadriculado"
+     ],
+     "e": [
+      "Desenhar figura ligando pares ordenados",
+      "Problemas de lógica com tabela",
+      "Resolver problemas com várias operações"
+     ],
+     "f": [
+      "“Estrelas Além do Tempo” (2016)"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Batalha Naval",
+      "Xadrez",
+      "Torre de Hanói",
+      "Hora do Rush"
+     ],
+     "p": [
+      "Mapa do bairro em malha",
+      "Desafio dos 35 camelos (Malba Tahan) com objetos"
+     ],
+     "l": [
+      [
+       "“A Volta ao Mundo em 80 Dias” — Júlio Verne",
+       "Rotas, fusos e localização no mapa"
+      ],
+      [
+       "“O Homem que Calculava” — Malba Tahan",
+       "Lógica e problemas de várias etapas"
+      ],
+      [
+       "“Alice no País das Maravilhas” — Lewis Carroll (edição adaptada)",
+       "Lógica e absurdo, escrito por um matemático"
+      ]
+     ]
+    }
+   ]
+  },
+  "cie": {
+   "1": [
+    {
+     "t": "Corpo humano e os sentidos",
+     "o": "Conhecer partes do corpo e os cinco sentidos.",
+     "m": [
+      "“Era Uma Vez... A Vida” (série animada)",
+      "Espelho e lupa"
+     ],
+     "e": [
+      "Nomear partes do corpo em um desenho do próprio contorno",
+      "Adivinhar alimentos de olhos vendados",
+      "Qual sentido usamos em cada situação?"
+     ],
+     "f": [
+      "“Era Uma Vez... A Vida”",
+      "“O Show da Luna!” — episódios do corpo"
+     ],
+     "a": [
+      "Músicas sobre o corpo (Palavra Cantada: “Ciranda dos Bichos”, “Pé com Pé”)"
+     ],
+     "j": [
+      "Memória de sons",
+      "Caixa tátil"
+     ],
+     "p": [
+      "Desenho do corpo em tamanho real no papel pardo",
+      "Passeio dos sentidos no quintal"
+     ],
+     "l": [
+      [
+       "“Sinto o que Sinto com Cinco Sentidos”",
+       "Os cinco sentidos explorados um a um"
+      ],
+      [
+       "“Aprendendo Brincando: Corpo Humano”",
+       "Partes do corpo para identificar e nomear"
+      ],
+      [
+       "“Tudo Bem Ser Diferente” — Todd Parr",
+       "Corpo, diferenças e respeito"
+      ]
+     ]
+    },
+    {
+     "t": "Higiene e saúde",
+     "o": "Entender por que lavamos as mãos, escovamos os dentes e dormimos bem.",
+     "m": [
+      "Livros sobre germes e dentes"
+     ],
+     "e": [
+      "Ordenar as etapas da lavagem das mãos",
+      "Tabela de escovação da semana"
+     ],
+     "f": [
+      "“Castelo Rá-Tim-Bum” — Tíbio e Perônio",
+      "“Pergunte aos StoryBots” — dentes"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Jogo da memória de hábitos"
+     ],
+     "p": [
+      "Experimento do pimenta e sabão",
+      "Tinta reveladora de placa (de farmácia)"
+     ],
+     "l": [
+      [
+       "“Meu Corpo, Meu Corpinho”",
+       "Cuidado com o próprio corpo e limites; leia antes e converse junto"
+      ],
+      [
+       "“Pipi e Fifi”",
+       "Para conversar sobre o corpo; leia antes para escolher o momento"
+      ],
+      [
+       "“Até as Princesas Soltam Pum” — Ilan Brenman",
+       "Corpo humano com humor"
+      ]
+     ]
+    },
+    {
+     "t": "Materiais do dia a dia",
+     "o": "Observar de que são feitos os objetos e suas propriedades.",
+     "m": [
+      "Objetos de madeira, metal, plástico, vidro e tecido"
+     ],
+     "e": [
+      "Classificar objetos por material",
+      "Flutua ou afunda? Prever e testar",
+      "O que o ímã atrai?"
+     ],
+     "f": [
+      "“Sid, o Cientista”"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Lince"
+     ],
+     "p": [
+      "Flutua ou afunda na bacia",
+      "Caça ao metal com ímã"
+     ],
+     "l": [
+      [
+       "“Os Três Porquinhos” — conto popular",
+       "Palha, madeira ou tijolo: materiais e suas propriedades"
+      ]
+     ]
+    },
+    {
+     "t": "Dia, noite e o céu",
+     "o": "Perceber a passagem do dia e o que vemos no céu de dia e de noite.",
+     "m": [
+      "“Viagem ao Céu” (Monteiro Lobato), lido em voz alta"
+     ],
+     "e": [
+      "Desenhar o céu de manhã e à noite",
+      "O que fazemos de dia e de noite?"
+     ],
+     "f": [
+      "“O Show da Luna!” — episódios do céu"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "—"
+     ],
+     "p": [
+      "Lanterna e bola: por que existe noite?",
+      "Observar a Lua da janela"
+     ],
+     "l": [
+      [
+       "“Boa Noite, Lua” — Margaret Wise Brown",
+       "Rotina, noite e o céu"
+      ],
+      [
+       "“Viagem ao Céu” — Monteiro Lobato (lido pelo adulto)",
+       "Lua, estrelas e planetas"
+      ]
+     ]
+    }
+   ],
+   "2": [
+    {
+     "t": "Seres vivos e seus ambientes",
+     "o": "Diferenciar seres vivos e não vivos e observar onde vivem.",
+     "m": [
+      "Lupa",
+      "Guia de bichos do quintal"
+     ],
+     "e": [
+      "Lista: vivo ou não vivo?",
+      "Onde vive cada animal?"
+     ],
+     "f": [
+      "“Peixonauta” (animação brasileira)",
+      "“Planeta Terra” (BBC), trechos"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Super Trunfo de animais",
+      "Memória de animais e habitats"
+     ],
+     "p": [
+      "Safári no quintal com lupa",
+      "Hotel de insetos com garrafa e galhos"
+     ],
+     "l": [
+      [
+       "“O Grúfalo” — Julia Donaldson",
+       "Animais da floresta e suas características"
+      ]
+     ]
+    },
+    {
+     "t": "Plantas: partes e necessidades",
+     "o": "Conhecer raiz, caule, folha, flor, fruto e semente e o que a planta precisa.",
+     "m": [
+      "Sementes, terra, algodão",
+      "Revista Ciência Hoje das Crianças"
+     ],
+     "e": [
+      "Desenhar a planta com nomes das partes",
+      "Comparar planta com e sem luz",
+      "Diário de crescimento"
+     ],
+     "f": [
+      "“De Onde Vem?” (TV Escola)",
+      "“Meu Amigo Totoro” (1988)"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Memória de flores e frutos"
+     ],
+     "p": [
+      "Feijão no algodão",
+      "Flor que muda de cor",
+      "Herbário de flores prensadas"
+     ],
+     "l": [
+      [
+       "“O Grande Rabanete” — Tatiana Belinky",
+       "Plantio e crescimento de uma planta"
+      ],
+      [
+       "“A Árvore Generosa” — Shel Silverstein",
+       "A árvore e o que ela oferece"
+      ],
+      [
+       "“João e o Pé de Feijão” — conto popular",
+       "Ligar com o experimento do feijão"
+      ]
+     ]
+    },
+    {
+     "t": "Luz, sombra e o Sol",
+     "o": "Perceber que a luz forma sombras e que o Sol aquece.",
+     "m": [
+      "Lanterna, bonecos"
+     ],
+     "e": [
+      "A sombra muda de tamanho?",
+      "O que esquenta mais ao Sol: papel preto ou branco?"
+     ],
+     "f": [
+      "“O Show da Luna!” — episódios de sombra"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "—"
+     ],
+     "p": [
+      "Teatro de sombras",
+      "Marcar a sombra de um objeto ao longo do dia"
+     ],
+     "l": [
+      [
+       "“Sombra” — Suzy Lee",
+       "Livro de imagens sobre luz e sombra"
+      ]
+     ]
+    },
+    {
+     "t": "Animais: grupos e características",
+     "o": "Classificar animais pelo corpo, alimentação e locomoção.",
+     "m": [
+      "Guias ilustrados de animais brasileiros"
+     ],
+     "e": [
+      "Tabela: tem pelo, pena, escama?",
+      "O que cada animal come?"
+     ],
+     "f": [
+      "“Rio” (2011) — fauna brasileira",
+      "“Nosso Planeta” (Netflix), trechos"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Super Trunfo de animais",
+      "Perfil Júnior"
+     ],
+     "p": [
+      "Visita ao zoológico ou parque com ficha de observação"
+     ],
+     "l": [
+      [
+       "“O Magnífico Livro das Baleias”",
+       "Baleias em detalhe: corpo, alimentação e onde vivem"
+      ],
+      [
+       "“Lanterna Procure e Encontre: Tubarões”",
+       "Busca com lanterna de papel: observar e classificar"
+      ],
+      [
+       "“O Grúfalo” — Julia Donaldson",
+       "Animais da floresta e suas características"
+      ],
+      [
+       "“A Arca de Noé” — Vinicius de Moraes",
+       "Poemas de bichos"
+      ]
+     ]
+    }
+   ],
+   "3": [
+    {
+     "t": "Ciclos de vida dos animais",
+     "o": "Acompanhar nascimento, crescimento e reprodução.",
+     "m": [
+      "“O Ônibus Mágico” — livros e série"
+     ],
+     "e": [
+      "Ordenar ciclo da borboleta e do sapo",
+      "Comparar ovíparos e vivíparos"
+     ],
+     "f": [
+      "“Microcosmos” (1996)",
+      "“O Ônibus Mágico Voltou”"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Memória de ciclos"
+     ],
+     "p": [
+      "Criar lagartas em pote (com folhas da planta onde foram achadas)",
+      "Fazendinha de formigas"
+     ],
+     "l": [
+      [
+       "“A Teia de Charlotte” — E. B. White",
+       "A aranha, o porco e o ciclo da vida, com mediação no final"
+      ],
+      [
+       "“Uma Lagarta Muito Comilona” — Eric Carle",
+       "Ciclo de vida da borboleta"
+      ]
+     ]
+    },
+    {
+     "t": "Som e vibração",
+     "o": "Entender que o som é produzido por vibração e se propaga.",
+     "m": [
+      "Copos, elásticos, latas, barbante"
+     ],
+     "e": [
+      "Por que o copo com mais água tem som diferente?",
+      "Sentir a garganta vibrar ao falar"
+     ],
+     "f": [
+      "“Sid, o Cientista” — som"
+     ],
+     "a": [
+      "Ouvir instrumentos e adivinhar"
+     ],
+     "j": [
+      "Memória de sons"
+     ],
+     "p": [
+      "Telefone de lata",
+      "Xilofone de copos com água"
+     ],
+     "l": [
+      [
+       "“Vamos Montar uma Banda”",
+       "Instrumentos e sons, para ligar ao xilofone de copos"
+      ],
+      [
+       "“Telefone sem Fio” — Ilan Brenman",
+       "Som e mensagens que se transformam"
+      ]
+     ]
+    },
+    {
+     "t": "Solo, água e ar",
+     "o": "Observar tipos de solo e a presença de ar e água.",
+     "m": [
+      "Amostras de areia, argila e terra preta"
+     ],
+     "e": [
+      "Qual solo segura mais água?",
+      "O ar ocupa espaço? Copo virado na água"
+     ],
+     "f": [
+      "“De Onde Vem?” — a chuva, a terra"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "—"
+     ],
+     "p": [
+      "Teste de permeabilidade com garrafas",
+      "Terrário em pote"
+     ],
+     "l": [
+      [
+       "“Abra e Descubra: Vulcões e Terremotos”",
+       "Por dentro da Terra, com abas para descobrir"
+      ],
+      [
+       "“Serões de Dona Benta” — Monteiro Lobato",
+       "Ciências explicadas em conversas no Sítio"
+      ]
+     ]
+    },
+    {
+     "t": "O céu e as estrelas",
+     "o": "Observar Sol, Lua e estrelas e registrar mudanças.",
+     "m": [
+      "App de mapa do céu (Stellarium tem versão gratuita)"
+     ],
+     "e": [
+      "Desenhar a Lua por 15 noites",
+      "Achar o Cruzeiro do Sul"
+     ],
+     "f": [
+      "“Era Uma Vez... O Espaço”"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "—"
+     ],
+     "p": [
+      "Fases da Lua com biscoito recheado",
+      "Visita a um planetário"
+     ],
+     "l": [
+      [
+       "“O Grande Universo de Oliver”",
+       "Planetas, estrelas e escala do universo"
+      ],
+      [
+       "“Viagem ao Céu” — Monteiro Lobato",
+       "Os personagens viajam pela Lua e pelo espaço"
+      ],
+      [
+       "“O Pequeno Príncipe” — Antoine de Saint-Exupéry",
+       "Asteroides, planetas e o olhar curioso"
+      ]
+     ]
+    }
+   ],
+   "4": [
+    {
+     "t": "Cadeias alimentares",
+     "o": "Entender produtores, consumidores e decompositores.",
+     "m": [
+      "Guias de biomas brasileiros (Caatinga, Mata Atlântica)"
+     ],
+     "e": [
+      "Montar cadeia com cartões",
+      "O que acontece se tirarmos um elo?"
+     ],
+     "f": [
+      "“O Rei Leão” (1994) — conversar sobre o ciclo da vida",
+      "“Nosso Planeta”"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Super Trunfo de animais"
+     ],
+     "p": [
+      "Composteira em garrafa PET",
+      "Teia alimentar com barbante"
+     ],
+     "l": [
+      [
+       "“O Magnífico Livro das Baleias”",
+       "Cadeia alimentar no oceano: do krill à baleia"
+      ],
+      [
+       "“O Grúfalo” — Julia Donaldson",
+       "Quem come quem na floresta"
+      ],
+      [
+       "“O Leão e o Rato” — fábula de Esopo",
+       "Relações entre animais"
+      ]
+     ]
+    },
+    {
+     "t": "Microrganismos",
+     "o": "Saber que existem seres que não vemos, úteis e prejudiciais.",
+     "m": [
+      "Fermento biológico, pão, iogurte"
+     ],
+     "e": [
+      "Onde há microrganismos úteis?",
+      "Por que guardamos comida na geladeira?"
+     ],
+     "f": [
+      "“Era Uma Vez... A Vida” — defesas do corpo"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "—"
+     ],
+     "p": [
+      "Balão que enche com fermento",
+      "Pão mofando: com e sem umidade (sem abrir o saco)"
+     ],
+     "l": [
+      [
+       "Revista “Ciência Hoje das Crianças” — reportagens sobre micróbios",
+       "Textos curtos de divulgação científica"
+      ]
+     ]
+    },
+    {
+     "t": "Misturas e transformações",
+     "o": "Diferenciar misturas e transformações reversíveis e irreversíveis.",
+     "m": [
+      "Água, sal, açúcar, óleo, areia"
+     ],
+     "e": [
+      "O que se dissolve na água?",
+      "Gelo derretido volta a ser gelo? E o bolo assado?"
+     ],
+     "f": [
+      "“O Mundo de Beakman” (série)"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "—"
+     ],
+     "p": [
+      "Torre de densidade",
+      "Cristais de açúcar",
+      "Cromatografia com canetinha"
+     ],
+     "l": [
+      [
+       "“Sopa de Pedra” — conto popular",
+       "Misturas na panela"
+      ],
+      [
+       "“Serões de Dona Benta” — Monteiro Lobato",
+       "Matéria e transformações"
+      ]
+     ]
+    },
+    {
+     "t": "Pontos cardeais e movimento do Sol",
+     "o": "Usar a sombra para achar norte, sul, leste e oeste.",
+     "m": [
+      "Bússola, vareta (gnômon)"
+     ],
+     "e": [
+      "Onde o Sol nasce em casa?",
+      "Comparar sombra ao meio-dia e às 16h"
+     ],
+     "f": [
+      "—"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Caça ao tesouro com bússola"
+     ],
+     "p": [
+      "Relógio de sol no quintal",
+      "Bússola com agulha e rolha"
+     ],
+     "l": [
+      [
+       "“Robinson Crusoé” — Daniel Defoe (adaptação)",
+       "Sobreviver usando o Sol, a sombra e a natureza"
+      ]
+     ]
+    }
+   ],
+   "5": [
+    {
+     "t": "Corpo humano: digestão, respiração e circulação",
+     "o": "Entender como os sistemas do corpo trabalham juntos.",
+     "m": [
+      "“Era Uma Vez... A Vida”",
+      "Atlas do corpo humano infantil"
+     ],
+     "e": [
+      "Percurso do alimento no corpo",
+      "Medir batimentos antes e depois de correr",
+      "Por que respiramos mais rápido ao correr?"
+     ],
+     "f": [
+      "“Era Uma Vez... A Vida”",
+      "“Divertida Mente” (2015) — cérebro e emoções"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Quebra-cabeça do corpo humano"
+     ],
+     "p": [
+      "Pulmão de garrafa com balões",
+      "Estetoscópio caseiro"
+     ],
+     "l": [
+      [
+       "“Como Eu Cheguei Até Aqui?”",
+       "De onde viemos: reprodução e nascimento, para ler junto"
+      ],
+      [
+       "“Aprendendo Brincando: Corpo Humano”",
+       "Revisão dos sistemas do corpo"
+      ],
+      [
+       "“Serões de Dona Benta” — Monteiro Lobato",
+       "Corpo humano, água e energia em conversas"
+      ]
+     ]
+    },
+    {
+     "t": "Ciclo da água e conservação",
+     "o": "Explicar evaporação, condensação e precipitação e o uso consciente.",
+     "m": [
+      "Mapas de bacias hidrográficas (rio São Francisco)"
+     ],
+     "e": [
+      "Desenhar o ciclo com setas",
+      "Calcular água gasta no banho"
+     ],
+     "f": [
+      "“De Onde Vem?” — a chuva",
+      "“WALL-E” (2008)"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "—"
+     ],
+     "p": [
+      "Ciclo da água em saco plástico na janela",
+      "Filtro de água com areia e carvão (não beber)"
+     ],
+     "l": [
+      [
+       "“O Ciclo da Água”",
+       "Evaporação, condensação e chuva explicadas passo a passo"
+      ],
+      [
+       "“Vinte Mil Léguas Submarinas” — Júlio Verne (adaptação)",
+       "O oceano como aventura científica"
+      ],
+      [
+       "“Serões de Dona Benta” — Monteiro Lobato",
+       "Corpo humano, água e energia em conversas"
+      ]
+     ]
+    },
+    {
+     "t": "Sistema solar e constelações",
+     "o": "Conhecer planetas, distâncias relativas e constelações.",
+     "m": [
+      "“Viagem ao Céu” (Monteiro Lobato)",
+      "Stellarium"
+     ],
+     "e": [
+      "Ordenar planetas",
+      "Modelo em escala de distância com papel higiênico"
+     ],
+     "f": [
+      "“Era Uma Vez... O Espaço”",
+      "“Cosmos: Uma Odisseia do Espaço-Tempo” (2014), trechos com mediação"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Quiz do sistema solar"
+     ],
+     "p": [
+      "Maquete do sistema solar",
+      "Constelação em lata com furos e lanterna"
+     ],
+     "l": [
+      [
+       "“O Grande Universo de Oliver”",
+       "Releitura para comparar tamanhos e distâncias"
+      ],
+      [
+       "“George e o Segredo do Universo” — Lucy e Stephen Hawking",
+       "Aventura com o sistema solar"
+      ],
+      [
+       "“Viagem ao Céu” — Monteiro Lobato",
+       "Releitura para comparar com o que aprendeu"
+      ]
+     ]
+    },
+    {
+     "t": "Energia, eletricidade e materiais",
+     "o": "Entender condutores, isolantes e circuito simples.",
+     "m": [
+      "Pilhas, fios, LEDs, clipes"
+     ],
+     "e": [
+      "Quais objetos conduzem eletricidade?",
+      "Desenhar o caminho da corrente"
+     ],
+     "f": [
+      "“O Menino que Descobriu o Vento” (2019), com mediação",
+      "“Operação Big Hero” (2014)"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "Jogos de circuito (Snap Circuits ou similares)"
+     ],
+     "p": [
+      "Circuito com pilha e LED",
+      "Catavento e energia do vento"
+     ],
+     "l": [
+      [
+       "“Rita Bandeira, Engenheira” — Andrea Beaty",
+       "Inventar, errar e tentar de novo"
+      ],
+      [
+       "“O Novo Livro das Coisas que Funcionam” — David Macaulay",
+       "Alavancas, engrenagens e motores, uma máquina por vez"
+      ],
+      [
+       "“O Menino que Descobriu o Vento” — William Kamkwamba (edição juvenil)",
+       "Energia e engenhosidade"
+      ]
+     ]
+    },
+    {
+     "t": "Sustentabilidade e resíduos",
+     "o": "Relacionar consumo, lixo, reciclagem e impacto no ambiente.",
+     "m": [
+      "Jornal Joca — temas de meio ambiente"
+     ],
+     "e": [
+      "Pesar o lixo da casa por uma semana",
+      "Classificar resíduos por tipo"
+     ],
+     "f": [
+      "“WALL-E” (2008)",
+      "“Nosso Planeta”"
+     ],
+     "a": [
+      "—"
+     ],
+     "j": [
+      "—"
+     ],
+     "p": [
+      "Composteira",
+      "Brinquedo com sucata"
+     ],
+     "l": [
+      [
+       "“O Lorax” — Dr. Seuss",
+       "Natureza, consumo e preservação"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "SK": {
+  "mem": "Memória",
+  "ate": "Atenção",
+  "lin": "Linguagem",
+  "num": "Número",
+  "log": "Lógica",
+  "esp": "Espacial",
+  "est": "Estratégia",
+  "soc": "Social e emocional",
+  "coo": "Coordenação",
+  "geo": "Geografia",
+  "cri": "Criatividade",
+  "nat": "Natureza"
+ },
+ "STAGES": [
+  [
+   "base",
+   "Bases",
+   "a partir de 3–5 anos"
+  ],
+  [
+   "alfa",
+   "Alfabetização",
+   "6–7 anos"
+  ],
+  [
+   "inter",
+   "Intermediários",
+   "7–9 anos"
+  ],
+  [
+   "avan",
+   "Avançados",
+   "9–11 anos"
+  ]
+ ],
+ "G": [
+  {
+   "n": "Jogo da memória",
+   "s": "base",
+   "i": "3+",
+   "k": [
+    "mem",
+    "ate"
+   ],
+   "w": "Memória de trabalho e atenção sustentada: guardar a posição das cartas enquanto o jogo avança.",
+   "y": "A memória de trabalho sustenta a leitura (lembrar o começo da frase) e o cálculo mental.",
+   "h": "Comece com 6 pares e aumente. Faça versões caseiras: letra–figura, rima, número–quantidade."
+  },
+  {
+   "n": "Quebra-cabeça",
+   "s": "base",
+   "i": "3+",
+   "k": [
+    "esp",
+    "ate",
+    "coo"
+   ],
+   "w": "Percepção visual, relação parte–todo, persistência.",
+   "y": "Base para geometria, leitura de mapas e para a tolerância à frustração.",
+   "h": "Comece pelas bordas. Suba de 12 para 24, 48, 100 peças. Conversem sobre a estratégia usada."
+  },
+  {
+   "n": "Dominó",
+   "s": "base",
+   "i": "4+",
+   "k": [
+    "num",
+    "log"
+   ],
+   "w": "Reconhecimento de quantidades por padrão e correspondência.",
+   "y": "Ler quantidade sem contar um a um (subitização) acelera a matemática inicial.",
+   "h": "Depois, jogue somando as pontas. Versões caseiras de sílaba e figura servem à alfabetização."
+  },
+  {
+   "n": "Lince",
+   "s": "base",
+   "i": "4+",
+   "k": [
+    "ate",
+    "lin"
+   ],
+   "w": "Atenção visual seletiva e velocidade de busca.",
+   "y": "Treina o olhar que localiza letras e detalhes na página.",
+   "h": "Peça para nomear cada figura achada: amplia o vocabulário."
+  },
+  {
+   "n": "Pega-varetas",
+   "s": "base",
+   "i": "4+",
+   "k": [
+    "coo",
+    "num",
+    "soc"
+   ],
+   "w": "Coordenação fina, controle do impulso e contagem de pontos.",
+   "y": "Controle motor fino ajuda a escrita; contar pontos por cor introduz soma.",
+   "h": "Atribua valores às cores e some no final."
+  },
+  {
+   "n": "Caixa tátil / adivinhe pelo toque",
+   "s": "base",
+   "i": "3+",
+   "k": [
+    "lin",
+    "ate"
+   ],
+   "w": "Percepção tátil e vocabulário descritivo.",
+   "y": "Descrever sem ver obriga a usar adjetivos precisos.",
+   "h": "Use objetos com texturas contrastantes; a criança descreve antes de adivinhar."
+  },
+  {
+   "n": "Bingo de letras e sílabas",
+   "s": "alfa",
+   "i": "5+",
+   "k": [
+    "lin",
+    "ate"
+   ],
+   "w": "Associação som–letra e escuta atenta.",
+   "y": "É o núcleo da alfabetização: ouvir o som e encontrar a grafia.",
+   "h": "Fale a palavra; a criança marca a letra ou sílaba inicial."
+  },
+  {
+   "n": "Stop / Adedonha",
+   "s": "alfa",
+   "i": "6+",
+   "k": [
+    "lin",
+    "mem"
+   ],
+   "w": "Acesso rápido ao vocabulário e escrita sob categorias.",
+   "y": "Amplia vocabulário e automatiza a escrita de palavras.",
+   "h": "Para quem está começando, aceite apenas a letra inicial correta. Inclua categorias de ciências (animal, flor)."
+  },
+  {
+   "n": "Forca",
+   "s": "alfa",
+   "i": "6+",
+   "k": [
+    "lin",
+    "log"
+   ],
+   "w": "Composição das palavras, frequência das letras e dedução.",
+   "y": "Faz pensar na estrutura da palavra, não só no som.",
+   "h": "Use palavras do tema que estão estudando."
+  },
+  {
+   "n": "UNO",
+   "s": "alfa",
+   "i": "6+",
+   "k": [
+    "num",
+    "ate",
+    "soc"
+   ],
+   "w": "Correspondência de cor e número, troca de regras, esperar a vez.",
+   "y": "Flexibilidade cognitiva: mudar de critério rapidamente é uma função executiva chave.",
+   "h": "Peça para dizer em voz alta por que pode jogar aquela carta."
+  },
+  {
+   "n": "Halli Galli",
+   "s": "alfa",
+   "i": "6+",
+   "k": [
+    "num",
+    "ate"
+   ],
+   "w": "Somar até 5 rapidamente e reagir na hora certa.",
+   "y": "Automatiza fatos básicos da adição e treina controle inibitório.",
+   "h": "Varie: tocar quando somar 7 ou 10."
+  },
+  {
+   "n": "Tangram",
+   "s": "alfa",
+   "i": "5+",
+   "k": [
+    "esp",
+    "log",
+    "cri"
+   ],
+   "w": "Rotação mental, composição de figuras, geometria.",
+   "y": "Raciocínio espacial prevê bom desempenho em matemática e ciências.",
+   "h": "Comece com silhuetas que mostram as divisões, depois só o contorno. Crie figuras próprias."
+  },
+  {
+   "n": "Story Cubes",
+   "s": "alfa",
+   "i": "6+",
+   "k": [
+    "lin",
+    "cri"
+   ],
+   "w": "Narrativa oral com começo, meio e fim.",
+   "y": "Contar histórias bem organizadas é a base da produção de texto.",
+   "h": "Depois de contar, escreva a história em 3 frases."
+  },
+  {
+   "n": "Cara a Cara",
+   "s": "alfa",
+   "i": "6+",
+   "k": [
+    "log",
+    "lin"
+   ],
+   "w": "Perguntas de sim/não, eliminação e atributos.",
+   "y": "Ensina a classificar e a formular boas perguntas, o começo do método científico.",
+   "h": "Crie tabuleiros caseiros com animais ou flores."
+  },
+  {
+   "n": "Imagem & Ação Júnior",
+   "s": "alfa",
+   "i": "7+",
+   "k": [
+    "lin",
+    "cri",
+    "soc"
+   ],
+   "w": "Representar ideias com desenho e mímica.",
+   "y": "Traduzir palavra em imagem fortalece compreensão e vocabulário.",
+   "h": "Jogue em times misturando idades."
+  },
+  {
+   "n": "Dama",
+   "s": "inter",
+   "i": "7+",
+   "k": [
+    "est",
+    "log"
+   ],
+   "w": "Planejamento de jogadas e antecipação.",
+   "y": "Introdução simples ao pensamento estratégico.",
+   "h": "Depois de cada partida, pergunte qual foi a jogada decisiva."
+  },
+  {
+   "n": "Lig 4",
+   "s": "inter",
+   "i": "6+",
+   "k": [
+    "est",
+    "esp"
+   ],
+   "w": "Padrões em linha e antecipação da jogada do outro.",
+   "y": "Pensar no movimento do adversário desenvolve perspectiva.",
+   "h": "Peça para mostrar uma ameaça antes de jogar."
+  },
+  {
+   "n": "Batalha Naval",
+   "s": "inter",
+   "i": "7+",
+   "k": [
+    "esp",
+    "log",
+    "num"
+   ],
+   "w": "Coordenadas e dedução.",
+   "y": "Prepara diretamente o plano cartesiano do 5º ano.",
+   "h": "Desenhe o tabuleiro com números e letras e depois com pares de números."
+  },
+  {
+   "n": "Super Trunfo",
+   "s": "inter",
+   "i": "7+",
+   "k": [
+    "num",
+    "lin"
+   ],
+   "w": "Comparação de números grandes e decimais e leitura de dados.",
+   "y": "Comparar valores sem perceber é treino de valor posicional.",
+   "h": "Escolha temas de ciências (animais, dinossauros) ou de países."
+  },
+  {
+   "n": "Rummikub",
+   "s": "inter",
+   "i": "8+",
+   "k": [
+    "num",
+    "log"
+   ],
+   "w": "Sequências, grupos e reorganização de combinações.",
+   "y": "Trabalha flexibilidade com números e planejamento.",
+   "h": "Jogue com as peças abertas no início para ensinar estratégias."
+  },
+  {
+   "n": "Banco Imobiliário",
+   "s": "inter",
+   "i": "8+",
+   "k": [
+    "num",
+    "est",
+    "soc"
+   ],
+   "w": "Dinheiro, troco, negociação e planejamento.",
+   "y": "Educação financeira e cálculo mental em contexto real.",
+   "h": "Deixe a criança ser o banqueiro."
+  },
+  {
+   "n": "Blokus",
+   "s": "inter",
+   "i": "7+",
+   "k": [
+    "esp",
+    "est"
+   ],
+   "w": "Encaixe e ocupação do espaço com peças geométricas.",
+   "y": "Raciocínio espacial e planejamento de território.",
+   "h": "Conversem sobre área: quantos quadradinhos ocupou?"
+  },
+  {
+   "n": "Hora do Rush (Rush Hour)",
+   "s": "inter",
+   "i": "8+",
+   "k": [
+    "log",
+    "esp"
+   ],
+   "w": "Resolução de problemas sequenciais com desafios graduados.",
+   "y": "Ensina a planejar vários passos à frente e testar hipóteses.",
+   "h": "Registre no diário até qual nível chegou."
+  },
+  {
+   "n": "Cilada",
+   "s": "inter",
+   "i": "7+",
+   "k": [
+    "esp",
+    "log"
+   ],
+   "w": "Encaixe de peças em labirinto com visão espacial.",
+   "y": "Visualização espacial e persistência.",
+   "h": "Peça para prever antes de encaixar."
+  },
+  {
+   "n": "Dixit",
+   "s": "inter",
+   "i": "8+",
+   "k": [
+    "lin",
+    "cri",
+    "soc"
+   ],
+   "w": "Metáfora, interpretação de imagens e teoria da mente.",
+   "y": "Compreender o que o outro pensa é central para leitura inferencial.",
+   "h": "Peça para explicar a escolha de cada carta."
+  },
+  {
+   "n": "Perfil Júnior",
+   "s": "inter",
+   "i": "8+",
+   "k": [
+    "lin",
+    "mem",
+    "geo"
+   ],
+   "w": "Inferência a partir de pistas e conhecimento geral.",
+   "y": "Treina formular hipóteses e ampliar repertório cultural.",
+   "h": "Crie cartas próprias com os temas das trilhas."
+  },
+  {
+   "n": "Mancala",
+   "s": "inter",
+   "i": "7+",
+   "k": [
+    "num",
+    "est"
+   ],
+   "w": "Contagem, distribuição e cálculo antecipado.",
+   "y": "Jogo africano milenar: aproxima matemática e cultura.",
+   "h": "Conte a origem do jogo e faça um tabuleiro com caixa de ovos."
+  },
+  {
+   "n": "Jogo da Vida",
+   "s": "inter",
+   "i": "8+",
+   "k": [
+    "num",
+    "soc"
+   ],
+   "w": "Escolhas, dinheiro e consequências.",
+   "y": "Abre conversas sobre trabalho, estudo e decisões.",
+   "h": "Discuta as escolhas no final da partida."
+  },
+  {
+   "n": "Xadrez",
+   "s": "avan",
+   "i": "6+",
+   "k": [
+    "est",
+    "log",
+    "ate"
+   ],
+   "w": "Planejamento, cálculo de variantes, concentração.",
+   "y": "Desenvolve atenção prolongada, paciência e raciocínio abstrato.",
+   "h": "Comece com variantes de poucas peças (só peões, depois torres). Use o Lichess para problemas infantis."
+  },
+  {
+   "n": "Senha (Mastermind)",
+   "s": "avan",
+   "i": "8+",
+   "k": [
+    "log"
+   ],
+   "w": "Dedução sistemática a partir de pistas.",
+   "y": "É literalmente formular e testar hipóteses.",
+   "h": "Peça para anotar o raciocínio de cada tentativa."
+  },
+  {
+   "n": "Torre de Hanói",
+   "s": "avan",
+   "i": "8+",
+   "k": [
+    "log",
+    "num"
+   ],
+   "w": "Recursão, sequência e planejamento.",
+   "y": "Introduz pensamento algorítmico, ponte para a computação.",
+   "h": "Comece com 3 discos e registre o número mínimo de movimentos (7, 15, 31…)."
+  },
+  {
+   "n": "Ubongo",
+   "s": "avan",
+   "i": "8+",
+   "k": [
+    "esp",
+    "ate"
+   ],
+   "w": "Encaixe rápido de poliminós.",
+   "y": "Rotação mental sob tempo, base para geometria.",
+   "h": "Jogue primeiro sem ampulheta."
+  },
+  {
+   "n": "Kingdomino",
+   "s": "avan",
+   "i": "8+",
+   "k": [
+    "num",
+    "est",
+    "esp"
+   ],
+   "w": "Planejamento de território e multiplicação na contagem de pontos.",
+   "y": "Usa a multiplicação de forma natural.",
+   "h": "Peça para a criança calcular a pontuação de todos."
+  },
+  {
+   "n": "Scrabble / Palavras cruzadas",
+   "s": "avan",
+   "i": "8+",
+   "k": [
+    "lin",
+    "num"
+   ],
+   "w": "Ortografia, vocabulário e soma de pontos.",
+   "y": "Ortografia correta passa a valer pontos.",
+   "h": "Permita o dicionário no começo."
+  },
+  {
+   "n": "Boggle",
+   "s": "avan",
+   "i": "8+",
+   "k": [
+    "lin",
+    "ate"
+   ],
+   "w": "Formar palavras rapidamente com letras vizinhas.",
+   "y": "Treina ortografia e varredura visual.",
+   "h": "Conte palavras de 3, 4 e 5 letras separadamente."
+  },
+  {
+   "n": "Codenames",
+   "s": "avan",
+   "i": "10+",
+   "k": [
+    "lin",
+    "soc",
+    "log"
+   ],
+   "w": "Associação de ideias e precisão do vocabulário.",
+   "y": "Exige pensar em como o outro vai interpretar uma palavra.",
+   "h": "Comece com a versão Imagens."
+  },
+  {
+   "n": "GeoMundo e jogos de geografia",
+   "s": "avan",
+   "i": "8+",
+   "k": [
+    "geo",
+    "mem",
+    "lin"
+   ],
+   "w": "Países, capitais, bandeiras, continentes e localização no mapa.",
+   "y": "Situa a criança no mundo, dá sentido a notícias e aproxima matemática (números grandes) e ciências (biomas, clima).",
+   "h": "Tenha um mapa-múndi na parede e marque os países que aparecem no jogo."
+  },
+  {
+   "n": "Ticket to Ride",
+   "s": "avan",
+   "i": "8+",
+   "k": [
+    "geo",
+    "est",
+    "num"
+   ],
+   "w": "Rotas entre cidades, planejamento e contagem.",
+   "y": "Leitura de mapa e estratégia de longo prazo.",
+   "h": "Procure no atlas as cidades das rotas."
+  },
+  {
+   "n": "War",
+   "s": "avan",
+   "i": "10+",
+   "k": [
+    "geo",
+    "est"
+   ],
+   "w": "Territórios, continentes e probabilidade com dados.",
+   "y": "Leitura de mapa e decisões com risco.",
+   "h": "Bom para o final do 5º ano, com partidas mais curtas."
+  },
+  {
+   "n": "Detetive",
+   "s": "avan",
+   "i": "9+",
+   "k": [
+    "log",
+    "lin"
+   ],
+   "w": "Dedução por eliminação e registro organizado.",
+   "y": "Ensina a cruzar informações em tabela.",
+   "h": "Mostre como usar a ficha de anotação."
+  },
+  {
+   "n": "Ímãs e blocos magnéticos",
+   "s": "base",
+   "i": "3+",
+   "k": [
+    "esp",
+    "cri",
+    "coo"
+   ],
+   "w": "Construção livre em 2D e 3D, simetria e equilíbrio, além do contato com o magnetismo.",
+   "y": "Montar e desmontar formas é a base concreta da geometria e da engenharia; e ainda abre a conversa sobre por que os ímãs se atraem.",
+   "h": "Proponha desafios: uma torre mais alta que a cadeira, um cubo, uma casa com janela. Depois, planifique o cubo."
+  },
+  {
+   "n": "Quebra-cabeça do oceano",
+   "s": "base",
+   "i": "4+",
+   "k": [
+    "esp",
+    "nat",
+    "ate"
+   ],
+   "w": "Percepção visual e vocabulário dos seres marinhos.",
+   "y": "Une a persistência do quebra-cabeça ao conteúdo de seres vivos e ambientes de Ciências.",
+   "h": "Ao terminar, nomeiem cada animal e procurem-no no “Magnífico Livro das Baleias” ou em “Lanterna Procure e Encontre: Tubarões”."
+  },
+  {
+   "n": "Quebra-cabeça do mapa-múndi",
+   "s": "base",
+   "i": "5+",
+   "k": [
+    "geo",
+    "esp"
+   ],
+   "w": "Forma e posição dos continentes, oceanos e países.",
+   "y": "Montar o mapa com as mãos fixa a imagem do mundo, que depois sustenta GeoMundo, notícias e documentários.",
+   "h": "Antes de montar, encontrem o Brasil e o seu estado. Depois, marquem com um adesivo os lugares que aparecem em filmes e livros."
+  },
+  {
+   "n": "Sílaba Bichos",
+   "s": "alfa",
+   "i": "5+",
+   "k": [
+    "lin",
+    "ate"
+   ],
+   "w": "Formar nomes de animais juntando sílabas.",
+   "y": "Juntar sílabas para formar palavras é o passo central da alfabetização, e o tema de bichos mantém o interesse.",
+   "h": "Peça para ler cada sílaba em voz alta antes de juntar. Depois, escrevam o nome no caderno e inventem um bicho novo misturando sílabas."
+  },
+  {
+   "n": "Genius",
+   "s": "inter",
+   "i": "6+",
+   "k": [
+    "mem",
+    "ate"
+   ],
+   "w": "Memória de sequência de luzes e sons que vai ficando maior.",
+   "y": "Treina memória de trabalho auditiva e visual, a mesma usada para seguir instruções e guardar números no cálculo mental.",
+   "h": "Anote no diário o maior número de passos alcançado e tente bater o recorde na semana seguinte."
+  },
+  {
+   "n": "Jogo da memória dos estados e capitais",
+   "s": "inter",
+   "i": "7+",
+   "k": [
+    "geo",
+    "mem"
+   ],
+   "w": "Associação entre estado, capital e região do Brasil.",
+   "y": "Conhecer o próprio país é base para História e Geografia e dá sentido às notícias e às viagens.",
+   "h": "Jogue com o mapa do Brasil aberto ao lado. Comece só pelo Nordeste e vá acrescentando regiões."
+  },
+  {
+   "n": "Explorando o Brasil e seus vizinhos",
+   "s": "avan",
+   "i": "8+",
+   "k": [
+    "geo",
+    "mem",
+    "lin"
+   ],
+   "w": "Estados brasileiros e países da América do Sul: localização, fronteiras e características.",
+   "y": "Situa o Brasil no continente antes de partir para o mundo inteiro com o GeoMundo.",
+   "h": "Use antes do GeoMundo. Peça para a criança traçar no mapa uma viagem da sua cidade até um país vizinho."
+  },
+  {
+   "n": "Cubo mágico",
+   "s": "avan",
+   "i": "8+",
+   "k": [
+    "esp",
+    "log",
+    "ate"
+   ],
+   "w": "Algoritmos, memória de sequência e persistência.",
+   "y": "Aprender um método passo a passo é pensamento algorítmico.",
+   "h": "Aprendam juntos o método de camadas."
+  }
+ ],
+ "X": [
+  {
+   "n": "Flor que muda de cor",
+   "a": "cie",
+   "y": "2",
+   "tm": "2 dias",
+   "mat": [
+    "Flores brancas (cravo, crisântemo) ou aipo",
+    "Copos com água",
+    "Corante alimentício"
+   ],
+   "st": [
+    "Corte a ponta do caule na diagonal",
+    "Coloque cada flor em um copo com corante diferente",
+    "Peça para a criança prever o que vai acontecer",
+    "Observe após 2, 6 e 24 horas e desenhe"
+   ],
+   "l": "A água sobe pelo caule por pequenos tubos e chega às pétalas.",
+   "c": ""
+  },
+  {
+   "n": "Feijão no algodão",
+   "a": "cie",
+   "y": "2",
+   "tm": "2 semanas",
+   "mat": [
+    "Grãos de feijão",
+    "Algodão",
+    "Copo transparente"
+   ],
+   "st": [
+    "Umedeça o algodão e coloque os grãos",
+    "Deixe um copo no claro e outro no escuro",
+    "Meça a planta todo dia e registre em tabela"
+   ],
+   "l": "Germinação e necessidade de luz; também treina medida e gráfico.",
+   "c": ""
+  },
+  {
+   "n": "Herbário de flores prensadas",
+   "a": "cie",
+   "y": "2",
+   "tm": "1 semana",
+   "mat": [
+    "Flores e folhas",
+    "Jornal",
+    "Livros pesados",
+    "Cartolina e cola"
+   ],
+   "st": [
+    "Colham flores e anotem o local",
+    "Prense entre folhas de jornal sob livros",
+    "Depois de secas, cole e escreva nome, cor e onde achou",
+    "Pesquisem o nome científico"
+   ],
+   "l": "Observação, classificação e registro de campo.",
+   "c": "Não colher plantas desconhecidas com seiva; lavar as mãos."
+  },
+  {
+   "n": "Indicador de repolho roxo",
+   "a": "cie",
+   "y": "4",
+   "tm": "40 min",
+   "mat": [
+    "Repolho roxo",
+    "Água quente (adulto)",
+    "Copos",
+    "Limão, vinagre, bicarbonato, sabão"
+   ],
+   "st": [
+    "Adulto bate o repolho com água quente e coa",
+    "Distribua o caldo roxo em copos",
+    "Acrescente uma substância em cada copo",
+    "Organize os copos do mais vermelho ao mais verde"
+   ],
+   "l": "Ácidos e bases mudam a cor do indicador.",
+   "c": "Adulto manipula água quente."
+  },
+  {
+   "n": "Vulcão de bicarbonato",
+   "a": "cie",
+   "y": "3",
+   "tm": "30 min",
+   "mat": [
+    "Garrafa pequena",
+    "Massinha ou argila",
+    "Bicarbonato",
+    "Vinagre",
+    "Detergente e corante"
+   ],
+   "st": [
+    "Modele o vulcão em volta da garrafa",
+    "Coloque bicarbonato, detergente e corante",
+    "Despeje o vinagre e observe"
+   ],
+   "l": "Reação química que produz gás carbônico.",
+   "c": "Fazer ao ar livre ou na bacia."
+  },
+  {
+   "n": "Leite mágico",
+   "a": "cie",
+   "y": "1",
+   "tm": "15 min",
+   "mat": [
+    "Prato com leite integral",
+    "Corantes",
+    "Cotonete",
+    "Detergente"
+   ],
+   "st": [
+    "Pingue gotas de corante no leite",
+    "Molhe o cotonete no detergente",
+    "Toque o centro e observe"
+   ],
+   "l": "O detergente rompe a gordura e movimenta as cores.",
+   "c": ""
+  },
+  {
+   "n": "Flutua ou afunda",
+   "a": "cie",
+   "y": "1",
+   "tm": "20 min",
+   "mat": [
+    "Bacia com água",
+    "Objetos variados",
+    "Tabela de previsão"
+   ],
+   "st": [
+    "Antes, a criança prevê para cada objeto",
+    "Teste um por um",
+    "Compare previsão e resultado"
+   ],
+   "l": "Previsão, teste e registro: o método científico em miniatura.",
+   "c": "Supervisão com água."
+  },
+  {
+   "n": "Ovo que flutua",
+   "a": "cie",
+   "y": "3",
+   "tm": "20 min",
+   "mat": [
+    "Ovo cru",
+    "2 copos de água",
+    "Sal"
+   ],
+   "st": [
+    "Coloque o ovo na água comum",
+    "Em outro copo, dissolva bastante sal",
+    "Coloque o ovo e compare"
+   ],
+   "l": "Densidade: água salgada empurra mais para cima.",
+   "c": ""
+  },
+  {
+   "n": "Torre de densidade",
+   "a": "cie",
+   "y": "4",
+   "tm": "20 min",
+   "mat": [
+    "Copo alto",
+    "Mel, detergente, água com corante, óleo, álcool (adulto)"
+   ],
+   "st": [
+    "Despeje devagar, do mais denso ao menos",
+    "Coloque pequenos objetos e veja onde param"
+   ],
+   "l": "Líquidos têm densidades diferentes.",
+   "c": "Álcool só com adulto, longe do fogo."
+  },
+  {
+   "n": "Cristais de açúcar",
+   "a": "cie",
+   "y": "4",
+   "tm": "1 semana",
+   "mat": [
+    "Açúcar",
+    "Água quente (adulto)",
+    "Barbante",
+    "Pote de vidro"
+   ],
+   "st": [
+    "Adulto dissolve bastante açúcar em água quente",
+    "Pendure o barbante no pote",
+    "Observe a cada dia com lupa"
+   ],
+   "l": "Solução saturada e formação de cristais.",
+   "c": "Água quente só com adulto."
+  },
+  {
+   "n": "Cromatografia com canetinha",
+   "a": "cie",
+   "y": "4",
+   "tm": "30 min",
+   "mat": [
+    "Filtro de café",
+    "Canetinhas",
+    "Copo com pouca água"
+   ],
+   "st": [
+    "Faça um ponto de canetinha a 2 cm da borda",
+    "Encoste a borda na água sem molhar o ponto",
+    "Observe as cores se separarem"
+   ],
+   "l": "Uma cor pode ser mistura de várias tintas.",
+   "c": ""
+  },
+  {
+   "n": "Balão que enche com fermento",
+   "a": "cie",
+   "y": "4",
+   "tm": "1 hora",
+   "mat": [
+    "Garrafa",
+    "Fermento biológico",
+    "Açúcar",
+    "Água morna",
+    "Balão"
+   ],
+   "st": [
+    "Misture fermento, açúcar e água morna na garrafa",
+    "Prenda o balão na boca",
+    "Observe a cada 15 minutos"
+   ],
+   "l": "Leveduras são seres vivos que liberam gás.",
+   "c": ""
+  },
+  {
+   "n": "Ciclo da água no saco",
+   "a": "cie",
+   "y": "5",
+   "tm": "2 dias",
+   "mat": [
+    "Saco plástico com fecho",
+    "Água com corante azul",
+    "Fita adesiva",
+    "Canetinha"
+   ],
+   "st": [
+    "Desenhe sol, nuvem e mar no saco",
+    "Coloque um pouco de água e feche",
+    "Cole na janela ensolarada",
+    "Observe gotas no alto e a chuva escorrendo"
+   ],
+   "l": "Evaporação, condensação e precipitação.",
+   "c": ""
+  },
+  {
+   "n": "Filtro de água",
+   "a": "cie",
+   "y": "5",
+   "tm": "40 min",
+   "mat": [
+    "Garrafa PET cortada",
+    "Algodão, carvão, areia, cascalho",
+    "Água com terra"
+   ],
+   "st": [
+    "Monte as camadas de baixo para cima",
+    "Despeje a água suja",
+    "Compare antes e depois"
+   ],
+   "l": "Filtração e por que a água ainda precisa de tratamento.",
+   "c": "A água filtrada não deve ser bebida."
+  },
+  {
+   "n": "Pulmão de garrafa",
+   "a": "cie",
+   "y": "5",
+   "tm": "40 min",
+   "mat": [
+    "Garrafa PET cortada",
+    "2 balões",
+    "Canudo",
+    "Massinha"
+   ],
+   "st": [
+    "Prenda um balão no canudo dentro da garrafa",
+    "Corte o outro balão e feche a base",
+    "Puxe a base e veja o balão interno encher"
+   ],
+   "l": "O diafragma muda a pressão e o ar entra.",
+   "c": "Adulto corta a garrafa."
+  },
+  {
+   "n": "Estetoscópio caseiro",
+   "a": "cie",
+   "y": "5",
+   "tm": "20 min",
+   "mat": [
+    "Funil",
+    "Mangueira fina de 50 cm"
+   ],
+   "st": [
+    "Encaixe o funil na mangueira",
+    "Encoste no peito e ouça",
+    "Compare antes e depois de pular 1 minuto"
+   ],
+   "l": "Coração e esforço físico; registrar batimentos é matemática.",
+   "c": "Não colocar a mangueira dentro do ouvido."
+  },
+  {
+   "n": "Circuito com pilha e LED",
+   "a": "cie",
+   "y": "5",
+   "tm": "30 min",
+   "mat": [
+    "Pilha de 3 V (moeda) ou 2 pilhas AA",
+    "LED",
+    "Fios e fita",
+    "Clipes, papel alumínio, borracha"
+   ],
+   "st": [
+    "Encoste as pernas do LED na pilha e veja acender",
+    "Inverta e note que não acende",
+    "Abra o circuito e teste objetos no meio"
+   ],
+   "l": "Circuito fechado, polaridade, condutores e isolantes.",
+   "c": "Nunca use tomada. Pilhas de moeda fora do alcance de crianças pequenas."
+  },
+  {
+   "n": "Catavento",
+   "a": "cie",
+   "y": "5",
+   "tm": "30 min",
+   "mat": [
+    "Papel firme",
+    "Palito de churrasco",
+    "Alfinete com cabeça",
+    "Canudo"
+   ],
+   "st": [
+    "Dobre e recorte o quadrado em cata-vento",
+    "Prenda no palito",
+    "Teste com sopro, ventilador e vento"
+   ],
+   "l": "O vento é energia em movimento.",
+   "c": "Adulto manuseia o alfinete."
+  },
+  {
+   "n": "Telefone de lata",
+   "a": "cie",
+   "y": "3",
+   "tm": "20 min",
+   "mat": [
+    "2 copos ou latas",
+    "Barbante de 5 m"
+   ],
+   "st": [
+    "Fure o fundo dos copos",
+    "Passe e amarre o barbante",
+    "Fale com o fio esticado e depois frouxo"
+   ],
+   "l": "O som viaja pela vibração do fio.",
+   "c": ""
+  },
+  {
+   "n": "Xilofone de copos",
+   "a": "cie",
+   "y": "3",
+   "tm": "20 min",
+   "mat": [
+    "6 copos de vidro iguais",
+    "Água",
+    "Colher"
+   ],
+   "st": [
+    "Encha os copos com quantidades diferentes",
+    "Bata de leve com a colher",
+    "Ordene do mais grave ao mais agudo"
+   ],
+   "l": "A altura do som depende da vibração.",
+   "c": "Bater com cuidado no vidro."
+  },
+  {
+   "n": "Terrário em pote",
+   "a": "cie",
+   "y": "3",
+   "tm": "1 hora",
+   "mat": [
+    "Pote de vidro com tampa",
+    "Pedrinhas, carvão, terra",
+    "Mudas pequenas e musgo"
+   ],
+   "st": [
+    "Monte as camadas",
+    "Plante as mudas",
+    "Borrife água e feche",
+    "Observe a água condensar e voltar"
+   ],
+   "l": "Um ecossistema fechado e o ciclo da água.",
+   "c": ""
+  },
+  {
+   "n": "Composteira em garrafa",
+   "a": "cie",
+   "y": "4",
+   "tm": "4 semanas",
+   "mat": [
+    "Garrafa PET grande",
+    "Terra",
+    "Cascas de frutas e folhas secas"
+   ],
+   "st": [
+    "Alterne camadas de terra, cascas e folhas",
+    "Faça furinhos e mantenha úmido",
+    "Observe semanalmente e anote"
+   ],
+   "l": "Decompositores transformam restos em adubo.",
+   "c": "Não colocar carne nem laticínios."
+  },
+  {
+   "n": "Relógio de sol",
+   "a": "cie",
+   "y": "4",
+   "tm": "Um dia",
+   "mat": [
+    "Vareta",
+    "Pedras",
+    "Lugar ao sol"
+   ],
+   "st": [
+    "Finque a vareta no chão",
+    "A cada hora, marque a ponta da sombra com uma pedra",
+    "Escreva a hora em cada pedra"
+   ],
+   "l": "Movimento aparente do Sol e medida do tempo.",
+   "c": "Não olhar diretamente para o Sol."
+  },
+  {
+   "n": "Fases da Lua com biscoito",
+   "a": "cie",
+   "y": "3",
+   "tm": "20 min",
+   "mat": [
+    "8 biscoitos recheados",
+    "Palito",
+    "Desenho da Terra no centro"
+   ],
+   "st": [
+    "Raspe o recheio para formar cada fase",
+    "Organize em círculo",
+    "Compare com a Lua observada da janela"
+   ],
+   "l": "As fases dependem da parte iluminada que vemos.",
+   "c": ""
+  },
+  {
+   "n": "Sistema solar em escala com papel higiênico",
+   "a": "cie",
+   "y": "5",
+   "tm": "40 min",
+   "mat": [
+    "Rolo de papel higiênico",
+    "Canetinhas"
+   ],
+   "st": [
+    "Use a tabela: Mercúrio 1 folha, Vênus 2, Terra 2,5, Marte 4, Júpiter 13, Saturno 24, Urano 49, Netuno 76",
+    "Desenrole no corredor marcando cada planeta",
+    "Conversem sobre o tamanho do espaço"
+   ],
+   "l": "Distâncias relativas e proporção.",
+   "c": ""
+  },
+  {
+   "n": "Mercadinho em casa",
+   "a": "mat",
+   "y": "2",
+   "tm": "1 hora",
+   "mat": [
+    "Embalagens vazias",
+    "Etiquetas",
+    "Dinheiro de brincadeira"
+   ],
+   "st": [
+    "A criança escreve os preços",
+    "Um compra e outro vende",
+    "Calculem total e troco"
+   ],
+   "l": "Dinheiro, adição, subtração e escrita de números.",
+   "c": ""
+  },
+  {
+   "n": "Receita medida",
+   "a": "mat",
+   "y": "3",
+   "tm": "1 hora",
+   "mat": [
+    "Receita simples de bolo",
+    "Copo medidor, colheres, balança"
+   ],
+   "st": [
+    "Leiam a receita juntos",
+    "A criança mede tudo",
+    "Dobre ou divida a receita pela metade"
+   ],
+   "l": "Medidas, frações e leitura de instruções.",
+   "c": "Forno com adulto."
+  },
+  {
+   "n": "Geoplano caseiro",
+   "a": "mat",
+   "y": "4",
+   "tm": "40 min",
+   "mat": [
+    "Tábua ou isopor",
+    "Pregos ou percevejos em grade",
+    "Elásticos"
+   ],
+   "st": [
+    "Monte uma grade 5 × 5",
+    "Formem figuras com elásticos",
+    "Contem área e perímetro"
+   ],
+   "l": "Área, perímetro e formas.",
+   "c": "Adulto fixa os pregos."
+  },
+  {
+   "n": "Pesquisa e gráfico da família",
+   "a": "mat",
+   "y": "3",
+   "tm": "40 min",
+   "mat": [
+    "Papel quadriculado",
+    "Lápis de cor"
+   ],
+   "st": [
+    "Escolham uma pergunta (fruta favorita)",
+    "Entrevistem a família",
+    "Façam tabela e gráfico de barras",
+    "Escrevam 2 conclusões"
+   ],
+   "l": "Coleta e organização de dados.",
+   "c": ""
+  },
+  {
+   "n": "Somas com dois dados",
+   "a": "mat",
+   "y": "5",
+   "tm": "30 min",
+   "mat": [
+    "2 dados",
+    "Tabela de 2 a 12"
+   ],
+   "st": [
+    "Lancem 50 vezes e marquem a soma",
+    "Façam o gráfico",
+    "Por que o 7 aparece mais?"
+   ],
+   "l": "Probabilidade e combinações.",
+   "c": ""
+  },
+  {
+   "n": "Sólidos com palito e massinha",
+   "a": "mat",
+   "y": "2",
+   "tm": "30 min",
+   "mat": [
+    "Palitos",
+    "Massinha"
+   ],
+   "st": [
+    "Montem cubo, pirâmide e prisma",
+    "Contem vértices e arestas",
+    "Comparem as formas"
+   ],
+   "l": "Figuras espaciais e seus elementos.",
+   "c": ""
+  },
+  {
+   "n": "Caça ao tesouro com mapa",
+   "a": "mat",
+   "y": "4",
+   "tm": "1 hora",
+   "mat": [
+    "Papel",
+    "Objeto-tesouro"
+   ],
+   "st": [
+    "A criança desenha o mapa da casa",
+    "Esconda o tesouro e escreva pistas com direções e passos",
+    "Troquem os papéis"
+   ],
+   "l": "Localização, lateralidade e escala.",
+   "c": ""
+  },
+  {
+   "n": "Livro do alfabeto da família",
+   "a": "por",
+   "y": "1",
+   "tm": "Várias sessões",
+   "mat": [
+    "Folhas grampeadas",
+    "Fotos e revistas",
+    "Cola"
+   ],
+   "st": [
+    "Uma página por letra",
+    "Desenho ou foto de algo com aquela letra",
+    "A criança escreve a palavra"
+   ],
+   "l": "Relação letra–som e escrita de palavras.",
+   "c": ""
+  },
+  {
+   "n": "Teatro de fantoches",
+   "a": "por",
+   "y": "2",
+   "tm": "1 hora",
+   "mat": [
+    "Meias velhas",
+    "Botões, lã, cola"
+   ],
+   "st": [
+    "Criem os personagens",
+    "Escrevam um roteiro curto",
+    "Apresentem para a família"
+   ],
+   "l": "Narrativa, diálogo e oralidade.",
+   "c": ""
+  },
+  {
+   "n": "Correio da família",
+   "a": "por",
+   "y": "2",
+   "tm": "Contínuo",
+   "mat": [
+    "Caixa de sapato",
+    "Envelopes",
+    "Papel"
+   ],
+   "st": [
+    "Montem a caixa de correio",
+    "Escrevam bilhetes e cartas durante a semana",
+    "Leiam e respondam"
+   ],
+   "l": "Escrita com destinatário real.",
+   "c": ""
+  },
+  {
+   "n": "Jornal da família",
+   "a": "por",
+   "y": "4",
+   "tm": "Mensal",
+   "mat": [
+    "Folha A3",
+    "Fotos"
+   ],
+   "st": [
+    "Escolham 3 notícias do mês",
+    "Escrevam manchete e texto curto",
+    "Montem a página"
+   ],
+   "l": "Gênero notícia e revisão.",
+   "c": ""
+  },
+  {
+   "n": "Minipodcast",
+   "a": "por",
+   "y": "5",
+   "tm": "1 hora",
+   "mat": [
+    "Celular para gravar"
+   ],
+   "st": [
+    "Escolham um tema da trilha",
+    "Escrevam o roteiro",
+    "Gravem um episódio de 3 minutos"
+   ],
+   "l": "Pesquisa, roteiro e fala em público.",
+   "c": ""
+  },
+  {
+   "n": "Caça às letras na rua",
+   "a": "por",
+   "y": "1",
+   "tm": "Passeio",
+   "mat": [
+    "Prancheta e lápis"
+   ],
+   "st": [
+    "Durante um passeio, procurem letras em placas",
+    "Anotem palavras que conseguirem ler",
+    "Contem quantas letras acharam"
+   ],
+   "l": "Leitura do ambiente e reconhecimento de letras.",
+   "c": ""
+  }
+ ],
+ "SHELF": [
+  [
+   "Sentimentos, família e convivência",
+   [
+    [
+     "“Ele É Meu Irmão”",
+     "Irmãos, diferenças e afeto"
+    ],
+    [
+     "“Somos Um do Outro — um livro sobre adoção e família”",
+     "As muitas formas de ser família"
+    ],
+    [
+     "“Quem Tem Medo do Novo?”",
+     "Mudanças, primeiras vezes e coragem"
+    ],
+    [
+     "“O Que Dani Deve Fazer?”",
+     "Escolhas e suas consequências; a criança decide o caminho"
+    ],
+    [
+     "“O Muro no Meio do Livro” — Jon Agee",
+     "Medo, segurança e pontos de vista"
+    ],
+    [
+     "“O Monstro das Cores” — Anna Llenas",
+     "Dar nome às emoções"
+    ],
+    [
+     "“Onde Vivem os Monstros” — Maurice Sendak",
+     "A raiva que passa"
+    ],
+    [
+     "“Flicts” — Ziraldo",
+     "Ser diferente e achar seu lugar"
+    ],
+    [
+     "“A Árvore Generosa” — Shel Silverstein",
+     "Dar e receber"
+    ],
+    [
+     "“Um Conto de Natal” — Charles Dickens",
+     "Mudar é possível"
+    ]
+   ]
+  ],
+  [
+   "Brasil e o mundo",
+   [
+    [
+     "“Histórias de Índio” — Daniel Munduruku",
+     "Infância e mitos do povo munduruku"
+    ],
+    [
+     "“Histórias da Preta” — Heloisa Pires Lima",
+     "África e ancestralidade no Brasil"
+    ],
+    [
+     "“Histórias de Tia Nastácia” — Monteiro Lobato",
+     "Contos populares brasileiros, com conversa sobre trechos datados"
+    ],
+    [
+     "“Crianças como Você” — Barnabas e Anabel Kindersley",
+     "Como vivem crianças de dezenas de países"
+    ],
+    [
+     "“Breve História do Mundo” — E. H. Gombrich",
+     "Um capítulo por noite, para o 5º ano em diante"
+    ],
+    [
+     "“Os Doze Trabalhos de Hércules” — Monteiro Lobato",
+     "Mitologia grega com a turma do Sítio"
+    ],
+    [
+     "“Rei Artur e os Cavaleiros da Távola Redonda” (adaptação)",
+     "Lendas medievais"
+    ]
+   ]
+  ],
+  [
+   "Arte e criação",
+   [
+    [
+     "“O Ponto” — Peter H. Reynolds",
+     "Coragem de começar a desenhar"
+    ],
+    [
+     "“Linéia no Jardim de Monet” — Christina Björk",
+     "Ver um quadro de perto e de longe"
+    ],
+    [
+     "“Rita Bandeira, Engenheira” — Andrea Beaty",
+     "Inventar e persistir"
+    ],
+    [
+     "“Paulo Roberto, Arquiteto” — Andrea Beaty",
+     "Construir e imaginar espaços"
+    ],
+    [
+     "“Vamos Montar uma Banda”",
+     "Música feita em grupo"
+    ]
+   ]
+  ]
+ ]
+}
