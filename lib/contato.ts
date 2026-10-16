@@ -5,7 +5,7 @@
  * instagram: o usuário sem @ (ex.: "atlasdoaprender").
  */
 export const CONTATO = {
-  email: "",
+  email: "stephaniekamarryas@gmail.com",
   whatsapp: "",
-  instagram: "",
+  instagram: "stephaniekamarry",
 };
