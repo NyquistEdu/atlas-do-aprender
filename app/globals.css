@@ -151,3 +151,6 @@ a.btn{display:inline-block;text-decoration:none}
 .cookies p{margin:0;max-width:65ch;font-size:.92rem}
 .footer-links{display:flex;gap:16px;flex-wrap:wrap;font-size:.88rem}
 .link-btn{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}
+.books li .amz{margin-top:4px;justify-self:start}
+.books li{display:grid;gap:2px}
+.afiliado{font-size:.82rem;color:var(--soft)}

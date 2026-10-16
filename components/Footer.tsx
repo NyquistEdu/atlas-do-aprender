@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CONTATO } from "@/lib/contato";
 import PreferenciasCookies from "./PreferenciasCookies";
+import { AMAZON_TAG, AVISO_AFILIADO } from "@/lib/afiliados";
 
 export default function Footer() {
   const { email, whatsapp, instagram } = CONTATO;
@@ -31,6 +32,7 @@ export default function Footer() {
           <b>Atlas do Aprender</b> foi criado por <b>Stephanie Kamarry</b>, com base na experiência de acompanhar a
           formação dos próprios filhos e em anos de estudo sobre educação e aprendizagem.
         </p>
+        {AMAZON_TAG && <p className="afiliado">{AVISO_AFILIADO}</p>}
         <p className="footer-links"><Link href="/privacidade">Privacidade</Link> <PreferenciasCookies /></p>
       </div>
     </footer>

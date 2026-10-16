@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { ANOS, CATEGORIAS, DE_SLUG, MATERIAS, SLUG, TRILHAS, anoDeSlug, anoSlug, temaId, type Materia } from "@/lib/data";
 import { Feito, Marcar, ParaDiario } from "@/components/Registrar";
 import Progresso from "./Progresso";
+import { AmazonLivro } from "@/components/Amazon";
 
 type P = { params: { materia: string; ano: string } };
 
@@ -53,7 +54,7 @@ export default function Trilha({ params }: P) {
                 <section className="books">
                   <h4>Livros paradidáticos</h4>
                   {th.l?.length ? (
-                    <ul>{th.l.map(([b, w]) => <li key={b}><b>{b}</b><span>{w}</span></li>)}</ul>
+                    <ul>{th.l.map(([b, w]) => <li key={b}><b>{b}</b><span>{w}</span><AmazonLivro livro={b} /></li>)}</ul>
                   ) : (
                     <p className="meta">Ainda sem livro específico para este tema; use as revistas e o material indicados.</p>
                   )}

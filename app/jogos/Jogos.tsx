@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ESTAGIOS, HABILIDADES, JOGOS } from "@/lib/data";
 import { ParaDiario } from "@/components/Registrar";
+import { AmazonJogo } from "@/components/Amazon";
 
 export default function Jogos() {
   const [k, setK] = useState("all");
@@ -32,7 +33,7 @@ export default function Jogos() {
                       <dt>Por que importa</dt><dd>{g.y}</dd>
                       <dt>Como aproveitar</dt><dd>{g.h}</dd>
                     </dl>
-                    <div><ParaDiario area="jog" tipo="Jogo" titulo={g.n} texto="Registrar partida" /></div>
+                    <div className="row"><ParaDiario area="jog" tipo="Jogo" titulo={g.n} texto="Registrar partida" /><AmazonJogo nome={g.n} /></div>
                   </article>
                 ))}
               </div>

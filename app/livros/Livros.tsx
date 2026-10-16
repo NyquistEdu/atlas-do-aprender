@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import { ANOS, ESTANTE, MATERIAS, TRILHAS, anoCurto, type Materia } from "@/lib/data";
 import { Feito, Marcar, ParaDiario } from "@/components/Registrar";
 import { useAtlas } from "@/components/Providers";
+import { AmazonLivro } from "@/components/Amazon";
+import { AVISO_AFILIADO, AMAZON_TAG } from "@/lib/afiliados";
 
 type Grupo = { titulo: string; cor: string; area: string; livros: { b: string; w: string; temas: string[] }[] };
 
@@ -54,13 +56,14 @@ export default function Livros() {
                 <div className="row">
                   <Marcar chave={"livro|" + l.b} rotulo={["Já lemos", "Desmarcar"]} />
                   <ParaDiario area={g.area} tipo="Leitura" titulo={l.b} texto="Registrar leitura" />
+                  <AmazonLivro livro={l.b} />
                 </div>
               </article>
             ))}
           </div>
         )) : <div className="empty">Nenhum livro com esse filtro.</div>}
       </div>
-      <p className="note">Edições e editoras variam; procure na biblioteca da escola, em bibliotecas públicas e sebos. Os títulos indicados “com mediação” ficam melhores lidos junto com um adulto.</p>
+      <p className="note">Edições e editoras variam; procure na biblioteca da escola, em bibliotecas públicas e sebos.{AMAZON_TAG ? ` Os botões “Ver na Amazon” abrem uma busca pelo título. ${AVISO_AFILIADO}` : ""} Os títulos indicados “com mediação” ficam melhores lidos junto com um adulto.</p>
     </div>
   );
 }

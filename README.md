@@ -43,6 +43,10 @@ O e-mail padrão do Supabase tem limite baixo de envios por hora. Para muitos us
 
 Já está no código (`@vercel/analytics` em `app/layout.tsx`). Para ativar: no projeto na Vercel, abra a aba **Analytics** e clique em **Enable**; depois faça um novo deploy. Não usa cookies, por isso funciona sem o aviso de cookies.
 
+## Links de afiliado da Amazon
+
+A etiqueta fica em `lib/afiliados.ts` (`AMAZON_TAG`). Os botões “Ver na Amazon” aparecem nos livros das trilhas, na aba Livros e nos jogos que são vendidos. Eles abrem uma **busca** na Amazon com título e autor, para não quebrarem. Para tirar todos os botões, deixe `AMAZON_TAG` vazio. O aviso obrigatório do programa aparece no rodapé e na página de privacidade.
+
 ## Google Analytics
 
 1. Em https://analytics.google.com, crie uma propriedade GA4 e um fluxo de dados **Web** com o endereço do site.
@@ -77,6 +81,7 @@ O Analytics só é carregado depois que a pessoa clica em **Aceitar** no aviso d
 | `app/globals.css` | Cores, tipografia e tema claro/escuro |
 | `public/guia.pdf` | Guia de uso em PDF |
 | `components/Analytics.tsx`, `app/privacidade` | Google Analytics com aviso de cookies e página de privacidade |
+| `lib/afiliados.ts`, `components/Amazon.tsx` | Links de afiliado da Amazon |
 | `lib/contato.ts` | E-mail, WhatsApp e Instagram para sugestões, mostrados no rodapé (os vazios não aparecem) |
 | `supabase/schema.sql` | Tabelas, regras de acesso (RLS) e restrições de integridade do banco |
 | `CONFIGURACOES_E_SEGURANCA.md` | Manual de implantação, Vercel, Supabase, SMTP e segurança |

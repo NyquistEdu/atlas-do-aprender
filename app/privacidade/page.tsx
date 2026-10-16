@@ -26,6 +26,13 @@ export default function Privacidade() {
         Analytics não é carregado. Você pode mudar sua escolha a qualquer momento em “Preferências de cookies”, no rodapé.
       </p>
 
+      <h3 className="ini-h">Links para a Amazon</h3>
+      <p>
+        Os botões “Ver na Amazon” levam a uma busca pelo livro ou jogo. Como associada da Amazon, eu ganho com compras
+        qualificadas, sem nenhum custo a mais para você. A Amazon pode usar os próprios cookies quando você abre o site
+        dela; isso segue a política de privacidade da Amazon. O Atlas é e continua gratuito.
+      </p>
+
       <h3 className="ini-h">Cadastro e diário</h3>
       <p>
         Para marcar temas, livros e usar o diário, você entra com seu e-mail. Guardamos o e-mail, os nomes que você der
