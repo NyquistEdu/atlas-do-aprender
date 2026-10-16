@@ -37,14 +37,19 @@ Sem o `.env.local`, o site funciona só para leitura (sem login nem diário).
    - **Redirect URLs**: acrescente `https://atlasdoaprender.com.br/**` e `http://localhost:3000/**`.
 5. Opcional: em **Authentication > Email Templates**, traduza o e-mail do link de acesso para português.
 
-O e-mail padrão do Supabase tem limite baixo de envios por hora. Para muitos usuários, configure um SMTP próprio (Authentication > SMTP Settings), por exemplo com Resend ou Brevo.
+O e-mail padrão do Supabase tem limite baixo de envios por hora. Para muitos usuários, configure um SMTP próprio (Authentication > SMTP Settings), por exemplo com Resend ou Brevo. Consulte o manual completo em [`CONFIGURACOES_E_SEGURANCA.md`](./CONFIGURACOES_E_SEGURANCA.md).
 
 ## Publicar na Vercel
 
 1. Em https://vercel.com, **Add New > Project** e importe este repositório do GitHub.
-2. Em **Environment Variables**, cadastre as mesmas duas variáveis do `.env.local`.
+2. Em **Environment Variables**, cadastre:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - `CRON_SECRET` (gerado aleatoriamente para proteger a rota keep-alive)
 3. Clique em **Deploy**.
-4. Para usar um domínio próprio: **Settings > Domains** e siga as instruções de DNS.
+4. O Cron diário (`vercel.json`) executará automaticamente a cada 24h para impedir a suspensão por inatividade do Supabase gratuito.
+5. Para usar um domínio próprio: **Settings > Domains** e siga as instruções de DNS.
+6. Detalhes completos de segurança e deploy no guia [`CONFIGURACOES_E_SEGURANCA.md`](./CONFIGURACOES_E_SEGURANCA.md).
 
 ## Onde fica cada coisa
 
@@ -54,10 +59,13 @@ O e-mail padrão do Supabase tem limite baixo de envios por hora. Para muitos us
 | `app/trilhas/[materia]/[ano]` | Páginas das trilhas (ex.: `/trilhas/matematica/3-ano`) |
 | `app/livros`, `app/jogos`, `app/mao-na-massa` | Abas de consulta |
 | `app/diario`, `app/entrar` | Diário e login |
+| `app/api/keep-alive/route.ts` | Rota de ping para manter o Supabase ativo |
+| `vercel.json` | Agendamento do Cron Job diário da Vercel |
 | `components/Providers.tsx` | Sessão, crianças, progresso e diário (Supabase) |
 | `app/globals.css` | Cores, tipografia e tema claro/escuro |
 | `public/guia.pdf` | Guia de uso em PDF |
-| `supabase/schema.sql` | Tabelas e regras de acesso do banco |
+| `supabase/schema.sql` | Tabelas, regras de acesso (RLS) e restrições de integridade do banco |
+| `CONFIGURACOES_E_SEGURANCA.md` | Manual de implantação, Vercel, Supabase, SMTP e segurança |
 
 ### Editar o conteúdo
 
