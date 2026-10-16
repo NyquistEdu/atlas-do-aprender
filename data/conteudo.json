@@ -3774,8 +3774,80 @@
  ],
  "SHELF": [
   [
-   "Sentimentos, família e convivência",
+   "Histórias e imaginação",
    [
+    [
+     "“Chapeuzinho Amarelo” — Chico Buarque",
+     "4 e 5 anos · Uma menina com medo de tudo perde o medo do lobo brincando com a palavra."
+    ],
+    [
+     "“Marcelo, Marmelo, Martelo” — Ruth Rocha",
+     "6 e 7 anos · Um menino quer saber por que as coisas têm o nome que têm e inventa nomes melhores."
+    ]
+   ]
+  ],
+  [
+   "Literatura",
+   [
+    [
+     "“A Revolução dos Bichos” — George Orwell",
+     "12 anos em diante · Os porcos tomam a fazenda e acabam iguais aos donos."
+    ],
+    [
+     "“O Diário de Anne Frank” — Anne Frank",
+     "12 anos em diante · Dois anos escondida, contados por uma menina de treze anos que queria ser escritora."
+    ],
+    [
+     "“O Mundo de Sofia” — Jostein Gaarder",
+     "12 anos em diante · A história da filosofia dentro de um romance de mistério."
+    ]
+   ]
+  ],
+  [
+   "Poesia e palavra",
+   [
+    [
+     "“Ou Isto ou Aquilo” — Cecília Meireles",
+     "6 e 7 anos · A poesia infantil mais musical da língua. Bom para decorar."
+    ],
+    [
+     "“Morte e Vida Severina” — João Cabral de Melo Neto",
+     "12 anos em diante · Um retirante desce do sertão ao Recife seguindo o rio. Um auto de Natal pernambucano."
+    ]
+   ]
+  ],
+  [
+   "Mitos, fé e grandes histórias",
+   [
+    [
+     "“Bíblia ilustrada para crianças” — Histórias do Antigo e do Novo Testamento",
+     "4 e 5 anos · A Criação, Noé, Davi e Golias, o Natal, as parábolas. Sem essas histórias, metade da arte ocidental fica muda."
+    ],
+    [
+     "“Os Doze Trabalhos de Hércules” — Monteiro Lobato",
+     "8 e 9 anos · A turma do Sítio acompanha Hércules pela Grécia antiga. Mitologia grega em tom de aventura."
+    ],
+    [
+     "“Rei Artur e os Cavaleiros da Távola Redonda” — Tradição medieval, em adaptação",
+     "10 e 11 anos · A espada na pedra, Merlin, Lancelote e a busca do Graal."
+    ],
+    [
+     "“Um Conto de Natal” — Charles Dickens",
+     "10 e 11 anos · Um avarento recebe a visita de três fantasmas e muda de vida numa noite."
+    ]
+   ]
+  ],
+  [
+   "Caráter e sentimentos",
+   [
+    [
+     "“O Monstro das Cores” — Anna Llenas",
+     "4 e 5 anos · Um monstro separa as emoções por cor: alegria, tristeza, raiva, medo e calma."
+    ],
+    [
+     "“Flicts” — Ziraldo",
+     "6 e 7 anos · Uma cor que não tem lugar no arco-íris nem nas bandeiras descobre onde mora."
+    ],
     [
      "“Ele É Meu Irmão”",
      "Irmãos, diferenças e afeto"
@@ -3795,84 +3867,70 @@
     [
      "“O Muro no Meio do Livro” — Jon Agee",
      "Medo, segurança e pontos de vista"
-    ],
-    [
-     "“O Monstro das Cores” — Anna Llenas",
-     "Dar nome às emoções"
-    ],
-    [
-     "“Onde Vivem os Monstros” — Maurice Sendak",
-     "A raiva que passa"
-    ],
-    [
-     "“Flicts” — Ziraldo",
-     "Ser diferente e achar seu lugar"
-    ],
-    [
-     "“A Árvore Generosa” — Shel Silverstein",
-     "Dar e receber"
-    ],
-    [
-     "“Um Conto de Natal” — Charles Dickens",
-     "Mudar é possível"
     ]
    ]
   ],
   [
-   "Brasil e o mundo",
+   "Brasil",
    [
     [
+     "“Histórias de Tia Nastácia” — Monteiro Lobato",
+     "6 e 7 anos · Contos populares brasileiros, de origem portuguesa, africana e indígena, comentados pela turma do Sítio."
+    ],
+    [
      "“Histórias de Índio” — Daniel Munduruku",
-     "Infância e mitos do povo munduruku"
+     "8 e 9 anos · Um autor do povo munduruku conta um mito, a própria infância e como é viver entre dois mundos."
     ],
     [
      "“Histórias da Preta” — Heloisa Pires Lima",
-     "África e ancestralidade no Brasil"
+     "8 e 9 anos · Uma menina negra conta histórias da África e de seus antepassados no Brasil."
     ],
     [
-     "“Histórias de Tia Nastácia” — Monteiro Lobato",
-     "Contos populares brasileiros, com conversa sobre trechos datados"
+     "“1808 (edição juvenil ilustrada)” — Laurentino Gomes",
+     "12 anos em diante · A fuga da corte portuguesa para o Brasil, contada como reportagem."
     ],
     [
-     "“Crianças como Você” — Barnabas e Anabel Kindersley",
-     "Como vivem crianças de dezenas de países"
-    ],
-    [
-     "“Breve História do Mundo” — E. H. Gombrich",
-     "Um capítulo por noite, para o 5º ano em diante"
-    ],
-    [
-     "“Os Doze Trabalhos de Hércules” — Monteiro Lobato",
-     "Mitologia grega com a turma do Sítio"
-    ],
-    [
-     "“Rei Artur e os Cavaleiros da Távola Redonda” (adaptação)",
-     "Lendas medievais"
+     "“Capitães da Areia” — Jorge Amado",
+     "12 anos em diante · Meninos de rua em Salvador, vistos por dentro, sem sermão."
     ]
    ]
   ],
   [
-   "Arte e criação",
+   "História e mundo",
+   [
+    [
+     "“Crianças como Você” — Barnabas e Anabel Kindersley",
+     "6 e 7 anos · Fotos e relatos de crianças de dezenas de países: o que comem, onde dormem, do que brincam."
+    ],
+    [
+     "“Breve História do Mundo” — E. H. Gombrich",
+     "10 e 11 anos · Da pré-história ao século XX, contada como a uma criança inteligente. Capítulos curtos."
+    ]
+   ]
+  ],
+  [
+   "Matemática e engenharia",
+   [
+    [
+     "“Eu, Robô” — Isaac Asimov",
+     "12 anos em diante · Nove contos que testam as Três Leis da Robótica até elas falharem."
+    ]
+   ]
+  ],
+  [
+   "Arte e olhar",
    [
     [
      "“O Ponto” — Peter H. Reynolds",
-     "Coragem de começar a desenhar"
+     "4 e 5 anos · Uma menina que acha que não sabe desenhar faz um ponto, e a professora pede que assine."
     ],
     [
-     "“Linéia no Jardim de Monet” — Christina Björk",
-     "Ver um quadro de perto e de longe"
+     "“Linéia no Jardim de Monet” — Christina Björk e Lena Anderson",
+     "6 e 7 anos · Uma menina viaja a Paris e a Giverny para ver de perto os quadros e o jardim de Monet."
     ],
     [
-     "“Rita Bandeira, Engenheira” — Andrea Beaty",
-     "Inventar e persistir"
-    ],
-    [
-     "“Paulo Roberto, Arquiteto” — Andrea Beaty",
-     "Construir e imaginar espaços"
-    ],
-    [
-     "“Vamos Montar uma Banda”",
-     "Música feita em grupo"
+     "“A História da Arte” — E. H. Gombrich",
+     "12 anos em diante · A arte como uma tradição contínua de problemas e soluções, em linguagem simples."
     ]
    ]
   ]
