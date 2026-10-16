@@ -25,7 +25,7 @@ export default function Diario() {
   useEffect(() => { if (a.crianca) setF((x) => ({ ...x, crianca: x.crianca || a.crianca })); }, [a.crianca]);
 
   if (!a.configurado)
-    return <div className="wrap"><h2>Diário de aprendizagem</h2><div className="empty">O diário ainda não está ligado a um banco de dados. Veja o arquivo LEIAME.md do projeto para configurar o Supabase.</div></div>;
+    return <div className="wrap"><h2>Diário de aprendizagem</h2><div className="empty">O diário ainda não está ligado a um banco de dados. Veja o arquivo README.md do projeto para configurar o Supabase.</div></div>;
   if (a.carregando) return <div className="wrap"><p className="status">Carregando…</p></div>;
   if (!a.user)
     return (
