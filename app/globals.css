@@ -176,3 +176,6 @@ a.btn{display:inline-block;text-decoration:none}
 .apostila-tema img{width:56px;height:auto;border-radius:3px;box-shadow:0 2px 8px rgba(29,36,51,.18)}
 .apostila-tema div{display:grid;gap:2px;min-width:0}
 .apostila-tema span{font-size:.82rem;color:var(--soft)}
+.seg button:disabled{opacity:.4;cursor:default}
+.seg .conta{display:inline-block;margin-left:6px;font-size:.75rem;font-weight:700;opacity:.7}
+.seg button:not([data-s])[aria-pressed="true"]{background:var(--acc);color:var(--paper);border-color:var(--acc)}
