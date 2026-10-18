@@ -44,6 +44,8 @@ function PaginaGratuito({ g }: { g: Gratuito }) {
       <section className="card">
         <h3>O que tem dentro</h3>
         <ul className="dentro">{g.dentro.map((d) => <li key={d}>{d}</li>)}</ul>
+        <h3>Como usar</h3>
+        <p style={{ margin: 0 }}>Terminou um livro com seu filho e não sabe por onde puxar a conversa? Leiam juntos, abram a página do livro no caderno e escolham duas ou três perguntas. Dez minutos de conversa já valem.</p>
         <p className="meta">Os livros também estão na aba <Link href="/livros">Livros</Link>, onde dá para marcar os que cada criança já leu.</p>
       </section>
       <h3 className="ini-h">Veja algumas páginas</h3>
