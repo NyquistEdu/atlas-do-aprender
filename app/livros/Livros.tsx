@@ -38,14 +38,6 @@ export default function Livros() {
     <div className="wrap">
       <h2>Estante de paradidáticos</h2>
       <p className="lead">Todos os livros das trilhas, por matéria e ano, com o tema que cada um ajuda a trabalhar, e a estante de Formação com livros sobre sentimentos, Brasil, mundo e arte.</p>
-      <article className="card">
-        <h3>Caderno de Conversa</h3>
-        <p className="meta">PDF gratuito · 137 páginas · A4 · por Stephanie Kamarry</p>
-        <p style={{ margin: 0 }}>Os 129 livros desta estante, cada um com a lição, um resumo, dez perguntas com respostas para conversar em família, uma atividade e uma sugestão do que ler depois.</p>
-        <div className="row">
-          <a className="btn" href="/caderno-de-conversa.pdf" download="Caderno-de-Conversa-Atlas-do-Aprender.pdf">Baixar o caderno em PDF</a>
-        </div>
-      </article>
       <div className="seg subj">{segM.map(([v, l]) => <button key={v} type="button" data-s={v} aria-pressed={m === v} onClick={() => setM(v as typeof m)}>{l}</button>)}</div>
       <div className="seg yr">{[["all", "Todos os anos"], ...ANOS.map(([a, l]) => [a, anoCurto(l)])].map(([v, l]) => <button key={v} type="button" aria-pressed={y === v} onClick={() => setY(v)}>{l}</button>)}</div>
       {user && <div className="prog"><span>{crianca}: {lidos} de {total} livros lidos neste filtro</span></div>}
