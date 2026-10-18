@@ -4,5 +4,13 @@
       "path": "/api/keep-alive",
       "schedule": "0 12 * * *"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "atlas-do-aprender.vercel.app" }],
+      "destination": "https://www.atlasdoaprender.com.br/:path*",
+      "permanent": true
+    }
   ]
 }
