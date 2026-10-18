@@ -7,7 +7,8 @@ import { useEffect, useRef, useState } from "react";
 import { rastrear } from "@/lib/rastreio";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+// O ID do Pixel é público (aparece no código de qualquer site que o usa); a variável de ambiente permite trocar sem mexer no código.
+const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || "1646910313688718";
 /** Há alguma ferramenta que depende de consentimento? */
 export const TEM_RASTREIO = Boolean(GA_ID || PIXEL_ID);
 const CHAVE = "atlas-consentimento-analytics";
