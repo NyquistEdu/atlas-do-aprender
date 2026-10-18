@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { APOSTILAS, anoNome } from "@/lib/apostilas";
+import { APOSTILAS, GRATUITOS, anoNome } from "@/lib/apostilas";
 import { ANOS, DE_SLUG, MATERIAS, SLUG, anoDeSlug, anoSlug, type Materia } from "@/lib/data";
 import Comprar from "@/components/Comprar";
 
@@ -37,6 +37,25 @@ export default function Vitrine() {
 
   return (
     <>
+      <div className="vitrine">
+        {GRATUITOS.map((g) => (
+          <article className="produto" key={g.slug} style={{ ["--sc" as string]: "var(--cie)" }}>
+            <Link href={`/apostilas/${g.slug}`} className="produto-capa" aria-label={`Ver detalhes de ${g.titulo}`}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/apostilas/${g.slug}/capa.webp`} alt={`Capa do ${g.titulo}`} width={566} height={800} loading="lazy" />
+            </Link>
+            <div className="produto-info">
+              <div className="tags"><span className="tag cie">Gratuito</span><span className="tag">Todas as séries</span></div>
+              <h3><Link href={`/apostilas/${g.slug}`}>{g.titulo}</Link></h3>
+              <p className="meta">{g.subtitulo} · {g.paginas} páginas</p>
+              <div className="row">
+                <a className="btn small" href={g.arquivo} download={g.nomeArquivo}>Baixar grátis</a>
+                <Link className="btn small ghost" href={`/apostilas/${g.slug}`}>Ver páginas</Link>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
       <div className="filters">
         <div className="seg subj" role="group" aria-label="Matéria">
           <button type="button" aria-pressed={!f.m} onClick={() => mudar({ ...f, m: null })}>Todas</button>

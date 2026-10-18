@@ -79,3 +79,30 @@ export const APOSTILAS: Apostila[] = [
 
 export const apostilaDoTema = (m: Materia, ano: string, tema: number) => APOSTILAS.find((a) => a.materia === m && a.ano === ano && a.tema === tema);
 export const anoNome = (ano: string) => (ano === "1" ? "Alfabetização" : `${ano}º ano`);
+
+/** Materiais gratuitos que aparecem na vitrine, antes das apostilas pagas. */
+export type Gratuito = {
+  slug: string;
+  titulo: string;
+  subtitulo: string;
+  paginas: number;
+  arquivo: string; // caminho do PDF em /public
+  nomeArquivo: string;
+  resumo: string;
+  dentro: string[];
+  amostras: string[];
+};
+
+export const GRATUITOS: Gratuito[] = [
+  {
+    slug: "caderno-de-conversa",
+    titulo: "Caderno de Conversa",
+    subtitulo: "Perguntas e respostas para conversar sobre os livros do Atlas",
+    paginas: 137,
+    arquivo: "/caderno-de-conversa.pdf",
+    nomeArquivo: "Caderno-de-Conversa-Atlas-do-Aprender.pdf",
+    resumo: "Os 129 livros das trilhas e da Estante de Formação, um por página: a lição do livro, um resumo para refrescar a memória do adulto, o que a criança aprende, dez perguntas com respostas e uma atividade para fazer junto.",
+    dentro: ["129 livros de Português, Matemática, Ciências e da Estante de Formação", "1.290 perguntas de compreensão, interpretação e pessoais, com respostas", "A lição e um resumo de cada livro", "Uma atividade para fazer em família e o que ler depois", "Dicas para conversar com mais de uma criança"],
+    amostras: ["Como usar o caderno", "Poemas para Brincar", "As Aventuras de Pinóquio", "Chapeuzinho Amarelo"],
+  },
+];
