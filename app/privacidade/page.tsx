@@ -33,6 +33,14 @@ export default function Privacidade() {
         dela; isso segue a política de privacidade da Amazon. O Atlas é e continua gratuito.
       </p>
 
+      <h3 className="ini-h">Compra de apostilas</h3>
+      <p>
+        As apostilas em PDF são vendidas por uma plataforma de pagamento externa. Ao clicar em “Comprar”, você vai para
+        a página dela, que recebe seus dados de pagamento e de entrega e segue a própria política de privacidade. O
+        Atlas não vê nem guarda dados de cartão ou de Pix. O site só conta, sem identificar você, quantas vezes cada
+        botão de compra foi clicado.
+      </p>
+
       <h3 className="ini-h">Cadastro e diário</h3>
       <p>
         Para marcar temas, livros e usar o diário, você entra com seu e-mail. Guardamos o e-mail, os nomes que você der

@@ -154,3 +154,25 @@ a.btn{display:inline-block;text-decoration:none}
 .books li .amz{margin-top:4px;justify-self:start}
 .books li{display:grid;gap:2px}
 .afiliado{font-size:.82rem;color:var(--soft)}
+
+/* Apostilas: vitrine e página de produto */
+.vitrine{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.produto{background:var(--card);border:1px solid var(--line);border-top:5px solid var(--sc);border-radius:12px;overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+.produto-capa{display:block;background:var(--paper);padding:16px 16px 0}
+.produto-capa img,.produto-capa-g,.amostras img{display:block;width:100%;height:auto;border-radius:4px;box-shadow:0 6px 18px rgba(29,36,51,.18)}
+.produto-info{padding:14px 16px 16px;display:grid;gap:8px;align-content:start}
+.produto-info h3{font-family:var(--f-disp);font-weight:400;font-size:1.2rem;margin:0}
+.produto-info h3 a{text-decoration:none}
+.produto-topo{display:grid;grid-template-columns:minmax(0,260px) 1fr;gap:24px;align-items:start}
+.produto-txt{display:grid;gap:10px;min-width:0}
+.produto-txt p{margin:0;max-width:65ch}
+@media (max-width:620px){.produto-topo{grid-template-columns:1fr}.produto-capa-g{max-width:240px}}
+.dentro{margin:0;padding-left:20px;display:grid;gap:4px}
+.amostras{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.amostras figure{margin:0;display:grid;gap:6px}
+.amostras figcaption{font-size:.85rem;color:var(--soft)}
+.em-breve{cursor:default;opacity:.7}
+.apostila-tema{display:flex;gap:12px;align-items:center;background:var(--card);border:1px dashed var(--sc);border-radius:10px;padding:10px 12px}
+.apostila-tema img{width:56px;height:auto;border-radius:3px;box-shadow:0 2px 8px rgba(29,36,51,.18)}
+.apostila-tema div{display:grid;gap:2px;min-width:0}
+.apostila-tema span{font-size:.82rem;color:var(--soft)}

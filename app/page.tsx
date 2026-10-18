@@ -11,6 +11,7 @@ export default function Inicio() {
     ["/livros", "Livros", "Paradidáticos e a estante de Formação", "var(--jog)"],
     ["/jogos", "Jogos", "Do jogo da memória ao GeoMundo", "var(--jog)"],
     ["/mao-na-massa", "Mão na massa", "Experimentos com material de casa", "var(--cie)"],
+    ["/apostilas", "Apostilas", "PDFs para imprimir, com exercícios e gabarito", "var(--por)"],
     ["/diario", "Diário", "O que cada criança fez e descobriu", "var(--mat)"],
     ["/guia", "Guia de uso", "Como usar o Atlas, em PDF", "var(--line)"],
   ];

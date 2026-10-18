@@ -11,6 +11,7 @@ const ABAS: [string, string][] = [
   ["/livros", "Livros"],
   ["/jogos", "Jogos"],
   ["/mao-na-massa", "Mão na massa"],
+  ["/apostilas", "Apostilas"],
   ["/diario", "Diário"],
   ["/guia", "Guia"],
 ];

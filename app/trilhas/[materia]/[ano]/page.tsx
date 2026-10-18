@@ -5,6 +5,7 @@ import { ANOS, CATEGORIAS, DE_SLUG, MATERIAS, SLUG, TRILHAS, anoDeSlug, anoSlug,
 import { Feito, Marcar, ParaDiario } from "@/components/Registrar";
 import Progresso from "./Progresso";
 import { AmazonLivro } from "@/components/Amazon";
+import { apostilaDoTema } from "@/lib/apostilas";
 
 type P = { params: { materia: string; ano: string } };
 
@@ -42,6 +43,7 @@ export default function Trilha({ params }: P) {
       <div className="list">
         {lista.map((th, i) => {
           const id = temaId(s, y, i);
+          const ap = apostilaDoTema(s, y, i + 1);
           return (
             <details className="theme" key={id} id={`tema-${i + 1}`} style={{ ["--sc" as string]: cor }}>
               <summary>
@@ -51,6 +53,13 @@ export default function Trilha({ params }: P) {
                 <span className="tobj">{th.o}</span>
               </summary>
               <div className="tbody">
+                {ap && (
+                  <Link className="apostila-tema" href={`/apostilas/${ap.slug}`} style={{ textDecoration: "none" }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={`/apostilas/${ap.slug}/capa.webp`} alt="" width={56} height={79} loading="lazy" />
+                    <div><b>Apostila deste tema: {ap.titulo}</b><span>{ap.paginas} páginas para imprimir, com exercícios, jogos e gabarito</span></div>
+                  </Link>
+                )}
                 <section className="books">
                   <h4>Livros paradidáticos</h4>
                   {th.l?.length ? (
