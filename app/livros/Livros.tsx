@@ -38,6 +38,23 @@ export default function Livros() {
     <div className="wrap">
       <h2>Estante de paradidáticos</h2>
       <p className="lead">Todos os livros das trilhas, por matéria e ano, com o tema que cada um ajuda a trabalhar, e a estante de Formação com livros sobre sentimentos, Brasil, mundo e arte.</p>
+      <article className="card" style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
+        <img src="/apostilas/caderno-de-conversa/capa.webp" alt="Capa do Caderno de Conversa" width={96} height={136} style={{ borderRadius: 6, flex: "0 0 auto" }} />
+        <div style={{ flex: "1 1 260px" }}>
+          <p className="meta" style={{ margin: 0 }}>Companheiro desta estante · PDF gratuito</p>
+          <h3 style={{ marginTop: 4 }}>Caderno de Conversa: o que perguntar depois da leitura</h3>
+          <p style={{ margin: "0 0 8px" }}>
+            Terminou um livro com seu filho e não sabe por onde puxar a conversa? O caderno tem uma página para cada um dos
+            129 livros desta estante: a lição da história, um resumo curto, dez perguntas já com respostas, uma atividade e
+            uma sugestão do que ler depois.
+          </p>
+          <p className="meta" style={{ margin: 0 }}>Como usar: leiam o livro juntos, abram a página dele no caderno e escolham duas ou três perguntas. Dez minutos de conversa já valem.</p>
+          <div className="row">
+            <a className="btn" href="/caderno-de-conversa.pdf" download="Caderno-de-Conversa-Atlas-do-Aprender.pdf">Baixar grátis (PDF, 137 páginas)</a>
+            <a className="btn ghost" href="/apostilas/caderno-de-conversa">Ver páginas de exemplo</a>
+          </div>
+        </div>
+      </article>
       <div className="seg subj">{segM.map(([v, l]) => <button key={v} type="button" data-s={v} aria-pressed={m === v} onClick={() => setM(v as typeof m)}>{l}</button>)}</div>
       <div className="seg yr">{[["all", "Todos os anos"], ...ANOS.map(([a, l]) => [a, anoCurto(l)])].map(([v, l]) => <button key={v} type="button" aria-pressed={y === v} onClick={() => setY(v)}>{l}</button>)}</div>
       {user && <div className="prog"><span>{crianca}: {lidos} de {total} livros lidos neste filtro</span></div>}
