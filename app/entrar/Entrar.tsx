@@ -1,59 +1,36 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { supabase } from "@/lib/supabase";
 import { useAtlas } from "@/components/Providers";
+import { FormAcesso, SELO_CONTA } from "@/components/Acesso";
+
+/** O que a pessoa estava tentando fazer, para a tela de acesso falar disso. */
+const MOTIVOS: Record<string, string> = {
+  livros: "Você vai poder marcar os livros que já leram e ver quantos faltam, separado para cada criança.",
+  trilhas: "Você vai poder marcar os temas concluídos e ver o progresso de cada criança em cada matéria.",
+  "mao-na-massa": "Você vai poder guardar o que a criança descobriu em cada experimento e reler quando quiser.",
+  diario: "Você vai poder guardar o que cada criança fez e descobriu, e consultar depois em qualquer aparelho.",
+};
 
 export default function Entrar() {
   const q = useSearchParams();
   const router = useRouter();
   const { user } = useAtlas();
   const volta = q.get("volta") && q.get("volta")!.startsWith("/") ? q.get("volta")! : "/diario";
-  const [email, setEmail] = useState("");
-  const [estado, setEstado] = useState<"" | "enviando" | "enviado" | "erro">("");
-  const [msgErro, setMsgErro] = useState("");
+  const origem = q.get("origem") || "entrar";
+  const motivo = MOTIVOS[origem];
 
   useEffect(() => { if (user) router.replace(volta); }, [user, volta, router]);
 
-  if (!supabase) return <div className="wrap"><h2>Entrar</h2><div className="empty">O login ainda não foi configurado neste site.</div></div>;
-
-  const enviar = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setEstado("enviando");
-    setMsgErro("");
-    const { error } = await supabase!.auth.signInWithOtp({
-      email: email.trim(),
-      options: { emailRedirectTo: `${window.location.origin}${volta}` },
-    });
-    if (error) {
-      console.error("Erro Supabase signInWithOtp:", error);
-      setEstado("erro");
-      setMsgErro(error.message);
-    } else {
-      setEstado("enviado");
-    }
-  };
-
   return (
-    <div className="wrap">
-      <h2>Entrar</h2>
-      <p className="lead">Tudo no Atlas está aberto para consulta. O login serve só para registrar: marcar temas e livros e usar o diário. Não precisa de senha: enviamos um link de acesso para o seu e-mail.</p>
-      {estado === "enviado" ? (
-        <div className="card"><h3>Confira seu e-mail</h3><p>Enviamos um link para <b>{email}</b>. Abra no mesmo aparelho e navegador para entrar. Se não chegar em alguns minutos, olhe a caixa de spam.</p></div>
-      ) : (
-        <form className="diary" onSubmit={enviar}>
-          <label className="f">Seu e-mail<input id="email" type="email" maxLength={100} required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="voce@exemplo.com" autoComplete="email" /></label>
-          <div className="row">
-            <button className="btn" type="submit" disabled={estado === "enviando"}>{estado === "enviando" ? "Enviando…" : "Enviar link de acesso"}</button>
-            {estado === "erro" && (
-              <span className="meta" role="status" style={{ color: "var(--mat, #dc2626)" }}>
-                {msgErro ? `Erro: ${msgErro}` : "Não consegui enviar. Confira o e-mail e tente de novo em alguns minutos."}
-              </span>
-            )}
-          </div>
-        </form>
-      )}
+    <div className="wrap" style={{ maxWidth: 640 }}>
+      <h2>Entrar ou criar conta</h2>
+      <p className="lead">
+        {motivo ? `${motivo} ` : ""}Tudo no Atlas continua aberto sem conta; ela serve para guardar o que vocês fazem.
+      </p>
+      <p className="meta" style={{ margin: 0 }}><b>{SELO_CONTA}.</b> Enviamos um link para o seu e-mail; ao abrir, você entra e volta para onde estava.</p>
+      <FormAcesso volta={volta} origem={origem} />
     </div>
   );
 }

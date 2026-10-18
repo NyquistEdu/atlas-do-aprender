@@ -1,10 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useAtlas } from "@/components/Providers";
 import { AREAS } from "@/lib/data";
+import { FormAcesso, PreviaDiario, SELO_CONTA } from "@/components/Acesso";
 
 const TIPOS = ["Estudo da trilha", "Leitura", "Exercício", "Jogo", "Experimento", "Filme ou documentário", "Podcast ou áudio", "Passeio ou visita", "Conversa"];
 const hoje = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); };
@@ -27,14 +27,30 @@ export default function Diario() {
   if (!a.configurado)
     return <div className="wrap"><h2>Diário de aprendizagem</h2><div className="empty">O diário ainda não está ligado a um banco de dados. Veja o arquivo README.md do projeto para configurar o Supabase.</div></div>;
   if (a.carregando) return <div className="wrap"><p className="status">Carregando…</p></div>;
-  if (!a.user)
+  if (!a.user) {
+    const titulo = q.get("titulo");
+    const volta = `/diario${q.toString() ? `?${q.toString()}` : ""}`;
     return (
       <div className="wrap">
         <h2>Diário de aprendizagem</h2>
-        <p className="lead">O diário guarda o que cada criança fez, o que descobriu e como se envolveu. Para manter seus registros privados e salvos em qualquer aparelho, entre com seu e-mail. Não precisa de senha.</p>
-        <div><Link className="btn" href="/entrar?volta=/diario">Entrar para usar o diário</Link></div>
+        <p className="lead">Um caderno para guardar o que cada criança fez, o que descobriu e o que disse. Com o tempo, você vê o caminho de cada uma e lembra do que funcionou.</p>
+        {titulo && <p className="pendente">Você vai guardar: <b>{titulo}</b>. Depois de entrar, o registro já abre preenchido com essa atividade.</p>}
+        <div className="acesso-diario">
+          <div>
+            <h3 style={{ marginTop: 0 }}>Comece em 1 minuto</h3>
+            <ul className="ganhos">
+              <li>Registros privados: só você vê.</li>
+              <li>Salvos na sua conta, em qualquer aparelho.</li>
+              <li>Separados por criança, com o resumo do mês.</li>
+            </ul>
+            <p className="meta" style={{ margin: "0 0 8px" }}><b>{SELO_CONTA}.</b></p>
+            <FormAcesso volta={volta} origem="diario" botao="Receber link e começar" />
+          </div>
+          <PreviaDiario />
+        </div>
       </div>
     );
+  }
 
   const set = (k: string, v: string | number) => setF((x) => ({ ...x, [k]: v }));
   const salvar = async (e: React.FormEvent) => {
@@ -100,7 +116,7 @@ export default function Diario() {
                 {apagar === e.id ? "Confirmar exclusão" : "Excluir"}</button></div>
             </article>
           );
-        }) : <div className="empty">Nenhum registro ainda. Escreva o primeiro acima ou use “Registrar no diário” em qualquer tema, jogo ou experimento.</div>}
+        }) : <div className="empty">Nenhum registro ainda. Escreva o primeiro acima ou use “Guardar no diário” em qualquer tema, jogo ou experimento.</div>}
       </div>
       <details className="card"><summary><b>Gerenciar crianças</b></summary>
         <div className="row" style={{ marginTop: 10 }}>

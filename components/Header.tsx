@@ -62,7 +62,7 @@ export default function Header() {
                 ))}
               </div>
             )}
-            {configurado && !user && <Link className="btn small" href={`/entrar?volta=${encodeURIComponent(path)}`}>Entrar</Link>}
+            {configurado && !user && <Link className="btn small" href={`/entrar?volta=${encodeURIComponent(path)}&origem=header`}>Entrar</Link>}
             <Tema />
           </div>
         </div>

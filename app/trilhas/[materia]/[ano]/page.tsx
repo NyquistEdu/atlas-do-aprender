@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { ANOS, CATEGORIAS, DE_SLUG, MATERIAS, SLUG, TRILHAS, anoDeSlug, anoSlug, temaId, type Materia } from "@/lib/data";
 import { Feito, Marcar, ParaDiario } from "@/components/Registrar";
 import Progresso from "./Progresso";
+import { ConviteConta } from "@/components/Acesso";
 import { AmazonLivro } from "@/components/Amazon";
 import { apostilaDoTema } from "@/lib/apostilas";
 
@@ -27,8 +28,14 @@ export default function Trilha({ params }: P) {
   const cor = `var(--${s})`;
   return (
     <div className="wrap">
-      <h2>Trilhas formativas</h2>
-      <p className="lead">Cada matéria segue uma sequência por ano, alinhada à BNCC. Abra um tema para ver livros, material, exercícios, filmes, áudios, jogos e atividade prática.</p>
+      <h2>O que estudar em casa, ano a ano</h2>
+      <p className="lead">
+        Uma sequência pronta para ajudar a criança em casa. Cada tema traz livros para ler juntos, exercícios, jogos, vídeos
+        e uma atividade prática. Os temas acompanham o que a escola ensina em cada ano (a BNCC, base nacional curricular).
+      </p>
+      <ConviteConta origem="trilhas" titulo="Acompanhe o progresso de cada criança"
+        texto="Com uma conta, você marca os temas concluídos e vê quanto falta em cada matéria, separado por criança." />
+      <p className="passo">1. Escolha a matéria e o ano da criança</p>
       <div className="seg subj">
         {(Object.keys(MATERIAS) as Materia[]).map((m) => (
           <Link key={m} data-s={m} href={`/trilhas/${SLUG[m]}/${params.ano}`} aria-current={m === s ? "true" : undefined}>{MATERIAS[m]}</Link>
@@ -39,18 +46,20 @@ export default function Trilha({ params }: P) {
           <Link key={a} href={`/trilhas/${params.materia}/${anoSlug(a)}`} aria-current={a === y ? "true" : undefined}>{l}</Link>
         ))}
       </div>
+      <p className="passo">2. Toque em um tema para ver as atividades</p>
       <Progresso chaves={lista.map((_, i) => temaId(s, y, i))} cor={cor} />
       <div className="list">
         {lista.map((th, i) => {
           const id = temaId(s, y, i);
           const ap = apostilaDoTema(s, y, i + 1);
           return (
-            <details className="theme" key={id} id={`tema-${i + 1}`} style={{ ["--sc" as string]: cor }}>
+            <details className="theme" key={id} id={`tema-${i + 1}`} open={i === 0} style={{ ["--sc" as string]: cor }}>
               <summary>
                 <span className="tnum">Tema {i + 1}</span>
                 <span className="tt">{th.t}</span>
                 <Feito chave={id} />
                 <span className="tobj">{th.o}</span>
+                <span className="ver">Ver atividades ▾</span>
               </summary>
               <div className="tbody">
                 {ap && (
@@ -77,7 +86,7 @@ export default function Trilha({ params }: P) {
                   })}
                 </div>
                 <div className="row">
-                  <Marcar chave={id} />
+                  <Marcar chave={id} rotulo={["Marcar tema como concluído", "Desmarcar tema"]} origem="trilhas" />
                   <ParaDiario area={s} tipo="Estudo da trilha" titulo={th.t} />
                 </div>
               </div>

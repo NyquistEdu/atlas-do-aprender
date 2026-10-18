@@ -59,6 +59,13 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!supabase) return;
+    // Chegou pelo link do e-mail? (token no endereço) Conta como "Entrou" no funil de cadastro.
+    const veioDoLink = /access_token=|type=magiclink/.test(window.location.hash) || new URLSearchParams(window.location.search).has("code");
+    if (veioDoLink) {
+      const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => {
+        if (s?.user) { rastrear("Entrou", { origem: "link_email" }); sub.subscription.unsubscribe(); }
+      });
+    }
     supabase.auth.getSession().then(({ data }) => {
       setUser(data.session?.user ?? null);
       setCarregando(false);

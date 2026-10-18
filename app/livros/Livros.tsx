@@ -6,6 +6,7 @@ import { Feito, Marcar, ParaDiario } from "@/components/Registrar";
 import { useAtlas } from "@/components/Providers";
 import { AmazonLivro } from "@/components/Amazon";
 import { AVISO_AFILIADO, AMAZON_TAG } from "@/lib/afiliados";
+import { ConviteConta } from "@/components/Acesso";
 
 type Grupo = { titulo: string; cor: string; area: string; livros: { b: string; w: string; temas: string[] }[] };
 
@@ -26,22 +27,28 @@ export default function Livros() {
         if (mapa.size) g.push({ titulo: `${MATERIAS[s]} · ${l}`, cor: `var(--${s})`, area: s, livros: [...mapa].map(([b, v]) => ({ b, ...v })) });
       }));
     if (m === "all" || m === "for")
-      ESTANTE.forEach(([nome, itens]) => g.push({ titulo: `Formação · ${nome}`, cor: "var(--jog)", area: "out", livros: itens.map(([b, w]) => ({ b, w, temas: [] })) }));
+      ESTANTE.forEach(([nome, itens]) => g.push({ titulo: `Além da escola · ${nome}`, cor: "var(--jog)", area: "out", livros: itens.map(([b, w]) => ({ b, w, temas: [] })) }));
     return g;
   }, [m, y]);
 
   const total = grupos.reduce((a, g) => a + g.livros.length, 0);
   const lidos = user ? grupos.reduce((a, g) => a + g.livros.filter((l) => feito("livro|" + l.b)).length, 0) : 0;
 
-  const segM: [string, string][] = [["all", "Todas"], ...Object.entries(MATERIAS), ["for", "Formação"]];
+  const segM: [string, string][] = [["all", "Todas"], ...Object.entries(MATERIAS), ["for", "Além da escola"]];
   return (
     <div className="wrap">
-      <h2>Estante de paradidáticos</h2>
-      <p className="lead">Todos os livros das trilhas, por matéria e ano, com o tema que cada um ajuda a trabalhar, e a estante de Formação com livros sobre sentimentos, Brasil, mundo e arte.</p>
+      <h2>Livros para ler com a criança</h2>
+      <p className="lead">
+        Indicações de livros infantis para ler junto, separadas por matéria e ano escolar, e uma estante extra sobre
+        sentimentos, Brasil, mundo e arte. Em cada livro dizemos o que a história ajuda a trabalhar. Os livros não ficam
+        aqui no site: você encontra na biblioteca da escola, em bibliotecas públicas, em sebos ou nas lojas.
+      </p>
+      <ConviteConta origem="livros" titulo="Marque os livros que vocês já leram"
+        texto="Com uma conta, o Atlas guarda as leituras de cada criança e mostra quantos livros faltam em cada ano." />
       <article className="card" style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
         <img src="/apostilas/caderno-de-conversa/capa.webp" alt="Capa do Caderno de Conversa" width={96} height={136} style={{ borderRadius: 6, flex: "0 0 auto" }} />
         <div style={{ flex: "1 1 260px" }}>
-          <p className="meta" style={{ margin: 0 }}>Companheiro desta estante · PDF gratuito</p>
+          <p className="meta" style={{ margin: 0 }}>Para usar junto com estes livros · PDF gratuito</p>
           <h3 style={{ marginTop: 4 }}>Caderno de Conversa: o que perguntar depois da leitura</h3>
           <p style={{ margin: "0 0 8px" }}>
             Terminou um livro com seu filho e não sabe por onde puxar a conversa? O caderno tem uma página para cada um dos
@@ -71,8 +78,8 @@ export default function Livros() {
                 </div>
                 <Feito chave={"livro|" + l.b} texto="✓ lido" />
                 <div className="row">
-                  <Marcar chave={"livro|" + l.b} rotulo={["Já lemos", "Desmarcar"]} />
-                  <ParaDiario area={g.area} tipo="Leitura" titulo={l.b} texto="Registrar leitura" />
+                  <Marcar chave={"livro|" + l.b} rotulo={["Marcar como lido", "Desmarcar lido"]} origem="livros" />
+                  <ParaDiario area={g.area} tipo="Leitura" titulo={l.b} texto="Anotar no diário" />
                   <AmazonLivro livro={l.b} />
                 </div>
               </article>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ANOS, EXPERIMENTOS, MATERIAS, anoCurto } from "@/lib/data";
 import { ParaDiario } from "@/components/Registrar";
+import { ConviteConta } from "@/components/Acesso";
 
 export default function Mao() {
   const [a, setA] = useState("all");
@@ -12,6 +13,9 @@ export default function Mao() {
     <div className="wrap">
       <h2>Mão na massa</h2>
       <p className="lead">Experimentos e atividades práticas com material de casa. Primeiro a criança prevê o que vai acontecer, depois testa, observa e explica com as próprias palavras.</p>
+      <ConviteConta origem="mao-na-massa" titulo="Guarde o que a criança descobriu"
+        texto="As frases e perguntas que surgem no experimento se perdem rápido. No diário, você anota em um minuto e relê quando quiser, separado por criança."
+        acao="Ver como funciona o diário" href="/diario" />
       <div className="seg subj">
         {[["all", "Todas"], ...Object.entries(MATERIAS)].map(([v, l]) => <button key={v} type="button" data-s={v} aria-pressed={a === v} onClick={() => setA(v)}>{l}</button>)}
       </div>
@@ -29,7 +33,7 @@ export default function Mao() {
               <dt>O que aprende</dt><dd>{x.l}</dd>
             </dl>
             {x.c && <p className="warn"><b>Cuidado:</b> {x.c}</p>}
-            <div><ParaDiario area={x.a} tipo="Experimento" titulo={x.n} /></div>
+            <div><ParaDiario area={x.a} tipo="Experimento" titulo={x.n} texto="Guardar a descoberta no diário" /></div>
           </article>
         )) : <div className="empty">Nenhuma atividade com esse filtro.</div>}
       </div>

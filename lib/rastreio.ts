@@ -8,9 +8,14 @@ type Gtag = (...a: unknown[]) => void;
 
 const PADRAO = new Set(["PageView", "ViewContent", "CompleteRegistration", "InitiateCheckout", "Lead", "Search"]);
 
-export function rastrear(evento: string, params: Record<string, unknown> = {}) {
+export function rastrear(evento: string, params: Record<string, unknown> = {}, tentativa = 0) {
   if (typeof window === "undefined") return;
   const w = window as unknown as { fbq?: Fbq; gtag?: Gtag };
+  // Logo após carregar a página (ex.: volta do link do e-mail) os scripts podem ainda não estar prontos.
+  if (!w.fbq && !w.gtag) {
+    if (tentativa < 4) setTimeout(() => rastrear(evento, params, tentativa + 1), 1500);
+    return;
+  }
   try { w.fbq?.(PADRAO.has(evento) ? "track" : "trackCustom", evento, params); } catch {}
   try { w.gtag?.("event", evento, params); } catch {}
 }
