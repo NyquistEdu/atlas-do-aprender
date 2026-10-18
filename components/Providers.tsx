@@ -1,5 +1,6 @@
 "use client";
 
+import { rastrear } from "@/lib/rastreio";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabase";
@@ -83,7 +84,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     let nomes = (c.data ?? []).map((r) => r.nome as string);
     if (!nomes.length) {
       const ins = await supabase.from("criancas").insert({ nome: "Criança 1" });
-      if (!ins.error) nomes = ["Criança 1"];
+      if (!ins.error) { nomes = ["Criança 1"]; rastrear("CompleteRegistration", { content_name: "conta" }); }
     }
     setCriancas(nomes);
     let salvo = "";
@@ -135,6 +136,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     if (r.error) {
       setProgresso((p) => { const n = new Set(p); tinha ? n.add(k) : n.delete(k); return n; });
       setErro("Não consegui salvar a marcação. Tente de novo.");
+    } else if (!tinha) {
+      rastrear("AtividadeRegistrada", { tipo: chave.split("|")[0] || "marcacao" });
     }
   };
 
@@ -147,6 +150,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     if ((e.proximo || "").length > 300) return "O campo 'Próximo passo' deve ter no máximo 300 caracteres.";
     const r = await supabase.from("diario").insert(e).select().single();
     if (r.error) return "Não consegui salvar o registro. Tente de novo.";
+    rastrear("AtividadeRegistrada", { tipo: "diario" });
     setEntradas((x) => [r.data as Entrada, ...x].sort((a, b) => (b.data + (b.criado_em || "")).localeCompare(a.data + (a.criado_em || ""))));
     return null;
   };

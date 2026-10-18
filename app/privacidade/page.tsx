@@ -22,8 +22,17 @@ export default function Privacidade() {
       <p>
         Se você aceitar no aviso de cookies, usamos o Google Analytics para contar visitas e entender quais páginas são
         mais usadas: por exemplo, quantas pessoas abriram as trilhas de Matemática ou de onde vieram (Instagram,
-        WhatsApp, buscas). O endereço IP é anonimizado e não usamos esses dados para anúncios. Se você recusar, o Google
+        WhatsApp, buscas). O endereço IP é anonimizado. Se você recusar, o Google
         Analytics não é carregado. Você pode mudar sua escolha a qualquer momento em “Preferências de cookies”, no rodapé.
+      </p>
+
+      <h3 className="ini-h">Medição de anúncios (Pixel da Meta)</h3>
+      <p>
+        O Atlas é divulgado com anúncios no Instagram e no Facebook. Se você aceitar no aviso de cookies, o Pixel da Meta
+        registra ações gerais no site, como abrir uma página, criar a conta, marcar uma atividade, clicar em “Ver na
+        Amazon” ou em “Comprar”, para medir se os anúncios funcionam e mostrá-los a famílias com interesse parecido. Não
+        enviamos nome, e-mail, nome das crianças nem nada do que você escreve no diário. Se você recusar, o Pixel não é
+        carregado, e você pode mudar a escolha em “Preferências de cookies”, no rodapé.
       </p>
 
       <h3 className="ini-h">Links para a Amazon</h3>

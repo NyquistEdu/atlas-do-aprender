@@ -1,6 +1,7 @@
 "use client";
 
 import { track } from "@vercel/analytics";
+import { rastrear } from "@/lib/rastreio";
 
 type Gtag = (...a: unknown[]) => void;
 
@@ -12,6 +13,8 @@ export default function Comprar({ slug, titulo, checkout, preco, grande = false 
   const clicar = () => {
     try { track("comprar_apostila", { apostila: slug }); } catch {}
     try { (window as unknown as { gtag?: Gtag }).gtag?.("event", "begin_checkout", { items: [{ item_id: slug, item_name: titulo }] }); } catch {}
+    const valor = Number((preco.match(/[\d.,]+/)?.[0] || "0").replace(/\./g, "").replace(",", "."));
+    try { (window as unknown as { fbq?: (...a: unknown[]) => void }).fbq?.("track", "InitiateCheckout", { content_ids: [slug], content_type: "product", value: valor, currency: "BRL" }); } catch {}
   };
   return (
     <a className={`btn ${grande ? "" : "small"}`} href={checkout} target="_blank" rel="noopener" onClick={clicar}>
