@@ -42,11 +42,7 @@ export function ConviteConta({ origem, titulo, texto, acao = "Criar conta gráti
   if (!configurado || carregando || user) return null;
   return (
     <div className="convite" ref={ref}>
-      <div>
-        <b>{titulo}</b>
-        <span>{texto}</span>
-        <small>{SELO_CONTA}</small>
-      </div>
+      <p><b>{titulo}.</b> {texto} <small>{SELO_CONTA}.</small></p>
       <Link className="btn small" href={href || linkAcesso(path, origem)}>{acao}</Link>
     </div>
   );

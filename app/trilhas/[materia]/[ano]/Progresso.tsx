@@ -9,7 +9,7 @@ export default function Progresso({ chaves, cor }: { chaves: string[]; cor: stri
   const n = chaves.filter(feito).length;
   return (
     <div className="prog">
-      <span>{crianca}: {n} de {chaves.length} temas</span>
+      <span>{n ? `${crianca} já explorou ${n} ${n === 1 ? "tema" : "temas"} deste ano` : `Marque os temas que ${crianca} explorar para continuar de onde parou`}</span>
       <div className="bar"><i style={{ width: `${chaves.length ? (n / chaves.length) * 100 : 0}%`, ["--sc" as string]: cor }}></i></div>
     </div>
   );

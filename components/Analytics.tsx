@@ -96,7 +96,7 @@ export default function Analytics() {
         <div className="cookies" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
           <p>
             {PIXEL_ID
-              ? "Usamos cookies de medição (Google Analytics e Pixel da Meta) para saber quais páginas são úteis e se os anúncios do Atlas funcionam. Eles só são ativados se você aceitar. "
+              ? "Cookies de medição (Google Analytics e Pixel da Meta) mostram o que é útil e se os anúncios funcionam. Só ativamos se você aceitar. "
               : "Usamos o Google Analytics para saber quantas pessoas visitam o Atlas e quais páginas são mais úteis. Ele só é ativado se você aceitar. "}
             <Link href="/privacidade">Saiba mais</Link>.
           </p>

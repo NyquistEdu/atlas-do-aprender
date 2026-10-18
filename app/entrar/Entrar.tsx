@@ -7,8 +7,8 @@ import { FormAcesso, SELO_CONTA } from "@/components/Acesso";
 
 /** O que a pessoa estava tentando fazer, para a tela de acesso falar disso. */
 const MOTIVOS: Record<string, string> = {
-  livros: "Você vai poder marcar os livros que já leram e ver quantos faltam, separado para cada criança.",
-  trilhas: "Você vai poder marcar os temas concluídos e ver o progresso de cada criança em cada matéria.",
+  livros: "Você vai poder guardar as leituras de cada criança, lembrar das histórias e escolher a próxima.",
+  trilhas: "Você vai poder ver os temas que cada criança já explorou e continuar de onde parou.",
   "mao-na-massa": "Você vai poder guardar o que a criança descobriu em cada experimento e reler quando quiser.",
   diario: "Você vai poder guardar o que cada criança fez e descobriu, e consultar depois em qualquer aparelho.",
 };

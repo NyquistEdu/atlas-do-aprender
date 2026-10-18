@@ -29,12 +29,9 @@ export default function Trilha({ params }: P) {
   return (
     <div className="wrap">
       <h2>O que estudar em casa, ano a ano</h2>
-      <p className="lead">
-        Uma sequência pronta para ajudar a criança em casa. Cada tema traz livros para ler juntos, exercícios, jogos, vídeos
-        e uma atividade prática. Os temas acompanham o que a escola ensina em cada ano (a BNCC, base nacional curricular).
-      </p>
-      <ConviteConta origem="trilhas" titulo="Acompanhe o progresso de cada criança"
-        texto="Com uma conta, você marca os temas concluídos e vê quanto falta em cada matéria, separado por criança." />
+      <p className="lead">Uma sequência pronta para ajudar a criança em casa: cada tema traz livros, exercícios, jogos, vídeos e uma atividade prática, seguindo o que a escola ensina em cada ano (BNCC).</p>
+      <ConviteConta origem="trilhas" titulo="Acompanhe cada criança"
+        texto="Veja os temas que ela já explorou e continue de onde parou." />
       <p className="passo">1. Escolha a matéria e o ano da criança</p>
       <div className="seg subj">
         {(Object.keys(MATERIAS) as Materia[]).map((m) => (

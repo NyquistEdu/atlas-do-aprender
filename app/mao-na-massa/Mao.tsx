@@ -14,7 +14,7 @@ export default function Mao() {
       <h2>Mão na massa</h2>
       <p className="lead">Experimentos e atividades práticas com material de casa. Primeiro a criança prevê o que vai acontecer, depois testa, observa e explica com as próprias palavras.</p>
       <ConviteConta origem="mao-na-massa" titulo="Guarde o que a criança descobriu"
-        texto="As frases e perguntas que surgem no experimento se perdem rápido. No diário, você anota em um minuto e relê quando quiser, separado por criança."
+        texto="Anote as frases e perguntas dela em um minuto e releia quando quiser."
         acao="Ver como funciona o diário" href="/diario" />
       <div className="seg subj">
         {[["all", "Todas"], ...Object.entries(MATERIAS)].map(([v, l]) => <button key={v} type="button" data-s={v} aria-pressed={a === v} onClick={() => setA(v)}>{l}</button>)}
@@ -22,6 +22,7 @@ export default function Mao() {
       <div className="seg yr">
         {[["all", "Todos os anos"], ...ANOS.map(([v, l]) => [v, anoCurto(l)])].map(([v, l]) => <button key={v} type="button" aria-pressed={y === v} onClick={() => setY(v)}>{l}</button>)}
       </div>
+      {a === "all" && y === "all" && <p className="dica">Para começar nesta semana: o Leite mágico, logo abaixo, leva 15 minutos e usa o que tem na cozinha.</p>}
       <div className="grid2">
         {xs.length ? xs.map((x) => (
           <article className="card" key={x.n}>

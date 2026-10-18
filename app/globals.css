@@ -180,11 +180,14 @@ a.btn{display:inline-block;text-decoration:none}
 .seg .conta{display:inline-block;margin-left:6px;font-size:.75rem;font-weight:700;opacity:.7}
 .seg button:not([data-s])[aria-pressed="true"]{background:var(--acc);color:var(--paper);border-color:var(--acc)}
 /* Convite de conta e acesso */
-.convite{background:var(--jog-bg);border-radius:12px;padding:12px 14px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
-.convite>div{display:grid;gap:2px;flex:1 1 260px}
-.convite b{font-size:.98rem}
-.convite span{font-size:.92rem}
-.convite small{font-size:.8rem;color:var(--soft);font-weight:600}
+.convite{background:var(--jog-bg);border-radius:10px;padding:8px 12px;display:flex;gap:6px 12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.convite p{margin:0;flex:1 1 240px;font-size:.9rem;line-height:1.4}
+.convite small{font-size:.78rem;color:var(--soft);font-weight:600;white-space:nowrap}
+.dica{margin:0;font-size:.92rem;font-weight:600}
+.caderno-mini{display:flex;align-items:center;gap:10px;padding:6px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);text-decoration:none;font-size:.9rem;line-height:1.35}
+.caderno-mini img{border-radius:3px;flex:0 0 auto}
+.caderno-mini span{flex:1}
+.caderno-mini .caderno-ir{flex:0 0 auto;font-weight:700;color:var(--acc)}
 .pendente{background:var(--card);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;margin:0}
 .acesso-diario{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:start}
 .ganhos{margin:0 0 10px;padding-left:18px;display:grid;gap:4px}
@@ -194,3 +197,5 @@ a.btn{display:inline-block;text-decoration:none}
 .ver{grid-column:1/-1;font-size:.82rem;font-weight:700;color:var(--sc)}
 details[open]>summary .ver{display:none}
 .passo{font-weight:700;margin:0}
+@media (max-width:600px){.cookies{padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));gap:8px 12px;justify-content:space-between}.cookies p{font-size:.82rem;line-height:1.35}}
+@media (max-width:600px){header.top .wrap{padding-block:8px 0;gap:4px}h1{font-size:1.3rem}h1 small{display:none}.brand{flex-wrap:nowrap;align-items:center}.tema span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}main .wrap{gap:14px;padding-top:14px}}

@@ -38,36 +38,21 @@ export default function Livros() {
   return (
     <div className="wrap">
       <h2>Livros para ler com a criança</h2>
-      <p className="lead">
-        Indicações de livros infantis para ler junto, separadas por matéria e ano escolar, e uma estante extra sobre
-        sentimentos, Brasil, mundo e arte. Em cada livro dizemos o que a história ajuda a trabalhar. Os livros não ficam
-        aqui no site: você encontra na biblioteca da escola, em bibliotecas públicas, em sebos ou nas lojas.
-      </p>
-      <ConviteConta origem="livros" titulo="Marque os livros que vocês já leram"
-        texto="Com uma conta, o Atlas guarda as leituras de cada criança e mostra quantos livros faltam em cada ano." />
-      <article className="card" style={{ display: "flex", gap: 16, alignItems: "flex-start", flexWrap: "wrap" }}>
-        <img src="/apostilas/caderno-de-conversa/capa.webp" alt="Capa do Caderno de Conversa" width={96} height={136} style={{ borderRadius: 6, flex: "0 0 auto" }} />
-        <div style={{ flex: "1 1 260px" }}>
-          <p className="meta" style={{ margin: 0 }}>Para usar junto com estes livros · PDF gratuito</p>
-          <h3 style={{ marginTop: 4 }}>Caderno de Conversa: o que perguntar depois da leitura</h3>
-          <p style={{ margin: "0 0 8px" }}>
-            Terminou um livro com seu filho e não sabe por onde puxar a conversa? O caderno tem uma página para cada um dos
-            129 livros desta estante: a lição da história, um resumo curto, dez perguntas já com respostas, uma atividade e
-            uma sugestão do que ler depois.
-          </p>
-          <p className="meta" style={{ margin: 0 }}>Como usar: leiam o livro juntos, abram a página dele no caderno e escolham duas ou três perguntas. Dez minutos de conversa já valem.</p>
-          <div className="row">
-            <a className="btn" href="/caderno-de-conversa.pdf" download="Caderno-de-Conversa-Atlas-do-Aprender.pdf">Baixar grátis (PDF, 137 páginas)</a>
-            <a className="btn ghost" href="/apostilas/caderno-de-conversa">Ver páginas de exemplo</a>
-          </div>
-        </div>
-      </article>
+      <p className="lead">Livros infantis para ler junto, por matéria e ano, com o que cada história ajuda a trabalhar. Os livros não ficam no site: procure na biblioteca, em sebos ou nas lojas.</p>
       <div className="seg subj">{segM.map(([v, l]) => <button key={v} type="button" data-s={v} aria-pressed={m === v} onClick={() => setM(v as typeof m)}>{l}</button>)}</div>
       <div className="seg yr">{[["all", "Todos os anos"], ...ANOS.map(([a, l]) => [a, anoCurto(l)])].map(([v, l]) => <button key={v} type="button" aria-pressed={y === v} onClick={() => setY(v)}>{l}</button>)}</div>
-      {user && <div className="prog"><span>{crianca}: {lidos} de {total} livros lidos neste filtro</span></div>}
+      {y === "all" && m !== "for" && <p className="dica">Comece tocando no ano da criança e escolha um livro para esta semana.</p>}
+      <a className="caderno-mini" href="/apostilas/caderno-de-conversa">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/apostilas/caderno-de-conversa/capa.webp" alt="" width={34} height={48} />
+        <span><b>Caderno de Conversa grátis:</b> perguntas para depois de cada um destes livros.</span>
+        <span className="caderno-ir">Ver ›</span>
+      </a>
+      {user && <div className="prog"><span>{lidos ? `${crianca} já leu ${lidos} ${lidos === 1 ? "livro" : "livros"} desta lista.` : `Marque os livros que ${crianca} já leu para lembrar das histórias e escolher a próxima.`}</span></div>}
       <div className="list">
-        {grupos.length ? grupos.map((g) => (
+        {grupos.length ? grupos.map((g, gi) => (
           <div key={g.titulo} className="list">
+            {gi === 1 && <ConviteConta origem="livros" titulo="Guarde as leituras de cada criança" texto="Veja o que ela já leu e escolha a próxima história." />}
             <p className="ybook">{g.titulo}</p>
             {g.livros.map((l) => (
               <article key={g.titulo + l.b} className="book" style={{ ["--sc" as string]: g.cor }}>
