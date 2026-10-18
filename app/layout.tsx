@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   description:
     "Trilhas de Português, Matemática e Ciências da alfabetização ao 5º ano, com livros, jogos, experimentos e diário de aprendizagem. Criado por Stephanie Kamarry.",
   authors: [{ name: "Stephanie Kamarry" }],
+  // Verificação do domínio no Gerenciador de Negócios da Meta (portfólio Ada).
+  other: { "facebook-domain-verification": "zcgy8bgim3uv2f5aqv35e08jxqy3r9" },
 };
 export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };
 
