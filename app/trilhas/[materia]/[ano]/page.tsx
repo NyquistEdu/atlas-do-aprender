@@ -50,7 +50,7 @@ export default function Trilha({ params }: P) {
           const id = temaId(s, y, i);
           const ap = apostilaDoTema(s, y, i + 1);
           return (
-            <details className="theme" key={id} id={`tema-${i + 1}`} open={i === 0} style={{ ["--sc" as string]: cor }}>
+            <details className="theme" key={id} id={`tema-${i + 1}`} style={{ ["--sc" as string]: cor }}>
               <summary>
                 <span className="tnum">Tema {i + 1}</span>
                 <span className="tt">{th.t}</span>
