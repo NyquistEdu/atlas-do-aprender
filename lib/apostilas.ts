@@ -85,6 +85,16 @@ export const APOSTILAS: Apostila[] = [
     dentro: ["6 partes com explicação e exercícios", "Erros comuns e exercícios guiados", "Treino diário de 5 dias", "Jogo “Quem sou eu?”, fichas para classificar e mão na massa", "Certificado e gabarito"],
     amostras: ["Tudo tem um nome", "O adjetivo", "Treino diário", "Jogo Quem sou eu?"],
   },
+  {
+    slug: "pedaco-por-pedaco",
+    titulo: "Pedaço por Pedaço",
+    subtitulo: "Metade, terço, quarto e as frações do dia a dia",
+    materia: "mat", ano: "3", tema: 5, nomeTema: "Frações do dia a dia",
+    paginas: 32, preco: "R$ 15,90", checkout: "",
+    resumo: "Repartir de um jeito justo é o começo das frações. A criança descobre as partes iguais, a metade, o terço, o quarto, o quinto e o décimo, compara pedaços e reparte quantidades, até usar meia dúzia, meio litro e meia hora no dia a dia. Com barra de frações para recortar, dominó e receitas pela metade.",
+    dentro: ["6 partes com explicação e exercícios", "Frações no dia a dia, erros comuns e exercícios guiados", "Treino diário de 5 dias", "Barra e discos de frações para recortar, dominó de frações e mão na massa", "Certificado e gabarito"],
+    amostras: ["A metade", "Qual pedaço é maior?", "Treino diário", "Dominó de frações"],
+  },
 ];
 
 export const apostilaDoTema = (m: Materia, ano: string, tema: number) => APOSTILAS.find((a) => a.materia === m && a.ano === ano && a.tema === tema);
