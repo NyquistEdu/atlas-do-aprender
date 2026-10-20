@@ -75,6 +75,16 @@ export const APOSTILAS: Apostila[] = [
     dentro: ["6 partes com observação, explicação e experimentos", "Diário da Lua para 15 noites", "5 revisões diárias", "Caça-palavras, jogo da memória e constelação na lata", "Certificado e gabarito"],
     amostras: ["As fases da Lua", "Estrelas", "Revisão diária", "Jogo da memória do céu"],
   },
+  {
+    slug: "nomear-e-descrever",
+    titulo: "Nomear e Descrever",
+    subtitulo: "Substantivos e adjetivos para dar nome e cor às coisas",
+    materia: "por", ano: "3", tema: 5, nomeTema: "Substantivos e adjetivos",
+    paginas: 32, preco: "R$ 15,90", checkout: "",
+    resumo: "Tudo tem um nome, e cada coisa tem um jeito. A criança descobre o substantivo (comum, próprio, singular, plural, masculino e feminino), o adjetivo e a concordância entre os dois, e termina usando tudo para descrever um personagem. Com leitura original, jogo de adivinhação e caixa misteriosa.",
+    dentro: ["6 partes com explicação e exercícios", "Erros comuns e exercícios guiados", "Treino diário de 5 dias", "Jogo “Quem sou eu?”, fichas para classificar e mão na massa", "Certificado e gabarito"],
+    amostras: ["Tudo tem um nome", "O adjetivo", "Treino diário", "Jogo Quem sou eu?"],
+  },
 ];
 
 export const apostilaDoTema = (m: Materia, ano: string, tema: number) => APOSTILAS.find((a) => a.materia === m && a.ano === ano && a.tema === tema);
