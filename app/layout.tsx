@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: "Atlas do Aprender", description: DESC, images: ["/og.png"] },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   category: "education",
+  verification: { google: "ZS7mXHNp0CLZ-B_OHIzd_YjPMHhrHnpK5899w4tuslQ" },
   // Verificação do domínio no Gerenciador de Negócios da Meta (portfólio Ada).
   other: { "facebook-domain-verification": "zcgy8bgim3uv2f5aqv35e08jxqy3r9" },
 };
