@@ -101,8 +101,26 @@ as $$
   insert into public.contagens (dia, evento, detalhe, origem, total)
   select (now() at time zone 'America/Fortaleza')::date, p_evento, left(coalesce(p_detalhe, ''), 80), left(coalesce(p_origem, ''), 80), 1
   where p_evento in ('visita','cadastro','pedido_planejamento','viu_apostila','comprar','afiliado','baixou',
-                     'convite_visto','abriu_entrar','pediu_link','entrou','registrou_atividade')
+                     'convite_visto','abriu_entrar','pediu_link','entrou','registrou_atividade','pedido_apostila')
   on conflict (dia, evento, detalhe, origem) do update set total = public.contagens.total + 1;
 $$;
 revoke all on function public.contar(text, text, text) from public;
 grant execute on function public.contar(text, text, text) to anon, authenticated;
+
+-- Pedidos de apostila sob medida (formulário em /apostilas). Também chegam por e-mail.
+create table if not exists public.pedidos_apostila (
+  id uuid primary key default gen_random_uuid(),
+  criado_em timestamptz not null default now(),
+  nome text not null check (char_length(trim(nome)) > 0 and char_length(nome) <= 120),
+  email text not null check (char_length(email) <= 200 and email like '%@%'),
+  materia text not null check (char_length(materia) <= 40),
+  serie text not null check (char_length(serie) <= 40),
+  tema text not null check (char_length(trim(tema)) > 0 and char_length(tema) <= 160),
+  detalhes text not null default '' check (char_length(detalhes) <= 1000),
+  status text not null default 'novo' check (status in ('novo', 'em_preparo', 'entregue', 'arquivado'))
+);
+alter table public.pedidos_apostila enable row level security;
+create policy "qualquer pessoa pede apostila" on public.pedidos_apostila
+  for insert to anon, authenticated with check (status = 'novo');
+create policy "administradora le pedidos de apostila" on public.pedidos_apostila
+  for select to authenticated using ((auth.jwt() ->> 'email') = 'stephaniekamarryas@gmail.com');

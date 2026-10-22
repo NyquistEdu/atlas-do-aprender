@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Vitrine from "./Vitrine";
+import PedirApostila from "./PedirApostila";
 
 export const metadata: Metadata = {
   title: "Apostilas para imprimir: Português, Matemática e Ciências",
@@ -14,6 +15,7 @@ export default function Apostilas() {
       <h1 className="hero-t">Apostilas do Atlas</h1>
       <p className="lead">Cada apostila aprofunda um tema das trilhas: explicação para a família, exercícios de entendimento, cinco revisões diárias em que a ajuda vai diminuindo, jogos para recortar, atividades mão na massa e gabarito.</p>
       <Vitrine />
+      <PedirApostila />
       <div className="feedback">
         <p className="feedback-t">Como funciona</p>
         <p>O pagamento é feito por Pix, cartão ou boleto numa plataforma segura. Assim que o pagamento é confirmado, o PDF chega no seu e-mail. Você imprime quantas cópias precisar para as crianças da sua casa.</p>

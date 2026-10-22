@@ -18,6 +18,7 @@ const VALIDADE = 30 * 24 * 60 * 60 * 1000;
 const MAPA: Record<string, string> = {
   CompleteRegistration: "cadastro",
   Lead: "pedido_planejamento",
+  PedidoApostila: "pedido_apostila",
   ViewContent: "viu_apostila",
   InitiateCheckout: "comprar",
   CliqueAfiliado: "afiliado",
