@@ -8,6 +8,21 @@ import { FormAcesso, PreviaDiario, SELO_CONTA } from "@/components/Acesso";
 
 const TIPOS = ["Estudo da trilha", "Leitura", "Exercício", "Jogo", "Experimento", "Filme ou documentário", "Podcast ou áudio", "Passeio ou visita", "Conversa"];
 const hoje = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); };
+const iso = (d: Date) => { const x = new Date(d); x.setMinutes(x.getMinutes() - x.getTimezoneOffset()); return x.toISOString().slice(0, 10); };
+
+/** Períodos prontos para filtrar o diário. "livre" usa as datas escolhidas pela pessoa. */
+const PERIODOS: [string, string][] = [["semana", "Esta semana"], ["mes", "Este mês"], ["mes-passado", "Mês passado"], ["3meses", "Últimos 3 meses"], ["ano", "Este ano"], ["tudo", "Tudo"], ["livre", "Escolher datas"]];
+const ROTULO: Record<string, string> = { semana: "na semana", mes: "no mês", "mes-passado": "no mês passado", "3meses": "nos últimos 3 meses", ano: "no ano", tudo: "no total", livre: "no período" };
+function intervalo(p: string, de: string, ate: string): [string, string] {
+  const h = new Date();
+  if (p === "semana") { const ini = new Date(h); ini.setDate(h.getDate() - ((h.getDay() + 6) % 7)); return [iso(ini), "9999-12-31"]; }
+  if (p === "mes") return [iso(new Date(h.getFullYear(), h.getMonth(), 1)), "9999-12-31"];
+  if (p === "mes-passado") return [iso(new Date(h.getFullYear(), h.getMonth() - 1, 1)), iso(new Date(h.getFullYear(), h.getMonth(), 0))];
+  if (p === "3meses") { const ini = new Date(h); ini.setMonth(h.getMonth() - 3); return [iso(ini), "9999-12-31"]; }
+  if (p === "ano") return [`${h.getFullYear()}-01-01`, "9999-12-31"];
+  if (p === "livre") return [de || "0000-01-01", ate || "9999-12-31"];
+  return ["0000-01-01", "9999-12-31"];
+}
 
 export default function Diario() {
   const a = useAtlas();
@@ -15,6 +30,9 @@ export default function Diario() {
   const [f, setF] = useState({ data: hoje(), crianca: "", area: "por", tipo: TIPOS[0], minutos: 30, titulo: "", o_que: "", descobertas: "", envolvimento: 4, proximo: "" });
   const [msg, setMsg] = useState("");
   const [filtro, setFiltro] = useState("all");
+  const [periodo, setPeriodo] = useState("mes");
+  const [de, setDe] = useState("");
+  const [ate, setAte] = useState("");
   const [apagar, setApagar] = useState<string | null>(null);
   const [nova, setNova] = useState("");
 
@@ -41,7 +59,7 @@ export default function Diario() {
             <ul className="ganhos">
               <li>Registros privados: só você vê.</li>
               <li>Salvos na sua conta, em qualquer aparelho.</li>
-              <li>Separados por criança, com o resumo do mês.</li>
+              <li>Separados por criança, com o resumo da semana, do mês ou do período que você escolher.</li>
             </ul>
             <p className="meta" style={{ margin: "0 0 8px" }}><b>{SELO_CONTA}.</b></p>
             <FormAcesso volta={volta} origem="diario" botao="Receber link e começar" />
@@ -61,9 +79,10 @@ export default function Diario() {
     setMsg("Registro salvo.");
     setF((x) => ({ ...x, titulo: "", o_que: "", descobertas: "", proximo: "", minutos: 30, envolvimento: 4, data: hoje() }));
   };
-  const lista = a.entradas.filter((e) => filtro === "all" || e.crianca === filtro || e.crianca === "Todos juntos");
-  const mes = hoje().slice(0, 7);
-  const doMes = lista.filter((e) => (e.data || "").startsWith(mes));
+  const [ini, fim] = intervalo(periodo, de, ate);
+  const lista = a.entradas.filter((e) => (filtro === "all" || e.crianca === filtro || e.crianca === "Todos juntos") && (e.data || "") >= ini && (e.data || "") <= fim);
+  const doMes = lista; // os números acompanham o período escolhido
+  const rot = ROTULO[periodo];
   const por = (x: string) => doMes.filter((e) => e.area === x).length;
   const horas = Math.round(doMes.reduce((s, e) => s + (e.minutos || 0), 0) / 6) / 10;
 
@@ -96,8 +115,17 @@ export default function Diario() {
       <div className="row"><span className="meta">Ver registros de</span><div className="seg">
         {[["all", "Todos"], ...a.criancas.map((k) => [k, k])].map(([v, l]) => <button key={v} type="button" aria-pressed={filtro === v} onClick={() => setFiltro(v)}>{l}</button>)}
       </div></div>
+      <div className="row"><span className="meta">Período</span><div className="seg">
+        {PERIODOS.map(([v, l]) => <button key={v} type="button" aria-pressed={periodo === v} onClick={() => setPeriodo(v)}>{l}</button>)}
+      </div></div>
+      {periodo === "livre" && (
+        <div className="row">
+          <label className="f">De<input type="date" value={de} max={ate || undefined} onChange={(e) => setDe(e.target.value)} /></label>
+          <label className="f">Até<input type="date" value={ate} min={de || undefined} onChange={(e) => setAte(e.target.value)} /></label>
+        </div>
+      )}
       <div className="stats">
-        {([[doMes.length, "registros neste mês"], [`${horas} h`, "de atividades no mês"], [por("por"), "Português"], [por("mat"), "Matemática"], [por("cie"), "Ciências"], [por("jog"), "Jogos"]] as [string | number, string][]).map(([b, s]) => (
+        {([[doMes.length, `registros ${rot}`], [`${horas} h`, `de atividades ${rot}`], [por("por"), "Português"], [por("mat"), "Matemática"], [por("cie"), "Ciências"], [por("jog"), "Jogos"]] as [string | number, string][]).map(([b, s]) => (
           <div className="stat" key={s}><b>{b}</b><span>{s}</span></div>
         ))}
       </div>
@@ -116,7 +144,7 @@ export default function Diario() {
                 {apagar === e.id ? "Confirmar exclusão" : "Excluir"}</button></div>
             </article>
           );
-        }) : <div className="empty">Nenhum registro ainda. Escreva o primeiro acima ou use “Guardar no diário” em qualquer tema, jogo ou experimento.</div>}
+        }) : <div className="empty">{a.entradas.length ? "Nenhum registro neste período. Escolha outro período acima." : "Nenhum registro ainda. Escreva o primeiro acima ou use “Guardar no diário” em qualquer tema, jogo ou experimento."}</div>}
       </div>
       <details className="card"><summary><b>Gerenciar crianças</b></summary>
         <div className="row" style={{ marginTop: 10 }}>
