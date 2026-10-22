@@ -9,7 +9,7 @@ export default function Jogos() {
   const [k, setK] = useState("all");
   return (
     <div className="wrap">
-      <h2>Jogos que formam</h2>
+      <h1>Jogos que formam</h1>
       <p className="lead">Do jogo da memória aos jogos de estratégia e geografia. Cada um traz o que desenvolve, por que isso importa e como tirar mais proveito dele.</p>
       <div className="seg">
         {[["all", "Todas as habilidades"], ...Object.entries(HABILIDADES)].map(([v, l]) => (

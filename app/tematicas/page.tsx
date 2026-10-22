@@ -3,7 +3,8 @@ import Link from "next/link";
 import { TEMATICAS } from "@/lib/tematicas";
 
 export const metadata: Metadata = {
-  title: "Temáticas",
+  title: "Atividades temáticas para crianças: Halloween, Natal e mais",
+  alternates: { canonical: "/tematicas" },
   description: "Datas especiais do ano com livros, filmes, experimentos, jogos e atividades para viver o tema em família.",
 };
 
@@ -11,7 +12,7 @@ export default function Tematicas() {
   return (
     <div className="wrap">
       <p className="eyebrow-i">Datas especiais</p>
-      <h2 className="hero-t">Temáticas</h2>
+      <h1 className="hero-t">Temáticas</h1>
       <p className="lead">Algumas datas do ano rendem um tema inteiro: livros para ler junto, filmes, experimentos, jogos e atividades de Português e Matemática ligadas à festa.</p>
       <div className="vitrine">
         {TEMATICAS.map((t) => (

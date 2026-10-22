@@ -3,7 +3,8 @@ import { INDIVIDUAIS, MATERIAIS, PELA_ESCOLA } from "@/lib/olimpiadas";
 import { CONTATO } from "@/lib/contato";
 
 export const metadata: Metadata = {
-  title: "Olimpíadas para crianças",
+  title: "Olimpíadas para crianças com inscrição individual",
+  alternates: { canonical: "/olimpiadas" },
   description: "Olimpíadas em que a criança pode se inscrever sem depender da escola, como a Olimpíada de Literatura, e materiais gratuitos do Atlas para se preparar.",
 };
 
@@ -11,7 +12,7 @@ export default function Olimpiadas() {
   return (
     <div className="wrap">
       <p className="eyebrow-i">Para ir além</p>
-      <h2 className="hero-t">Olimpíadas para crianças</h2>
+      <h1 className="hero-t">Olimpíadas para crianças</h1>
       <p className="lead">Olimpíadas dão um objetivo para estudar, ensinam a lidar com prova e tempo e celebram o esforço. Aqui estão as que aceitam crianças dos anos iniciais e em que a família pode fazer a inscrição sozinha, além dos materiais que preparamos para elas.</p>
 
       <h3 className="sec-t">Inscrição individual, sem depender da escola</h3>

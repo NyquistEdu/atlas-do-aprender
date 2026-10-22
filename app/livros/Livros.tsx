@@ -37,7 +37,7 @@ export default function Livros() {
   const segM: [string, string][] = [["all", "Todas"], ...Object.entries(MATERIAS), ["for", "Além da escola"]];
   return (
     <div className="wrap">
-      <h2>Livros para ler com a criança</h2>
+      <h1>Livros para ler com a criança</h1>
       <p className="lead">Livros infantis para ler junto, por matéria e ano, com o que cada história ajuda a trabalhar. Os livros não ficam no site: procure na biblioteca, em sebos ou nas lojas.</p>
       <div className="seg subj">{segM.map(([v, l]) => <button key={v} type="button" data-s={v} aria-pressed={m === v} onClick={() => setM(v as typeof m)}>{l}</button>)}</div>
       <div className="seg yr">{[["all", "Todos os anos"], ...ANOS.map(([a, l]) => [a, anoCurto(l)])].map(([v, l]) => <button key={v} type="button" aria-pressed={y === v} onClick={() => setY(v)}>{l}</button>)}</div>

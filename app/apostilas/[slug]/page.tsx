@@ -5,6 +5,7 @@ import { APOSTILAS, GRATUITOS, anoNome, type Gratuito } from "@/lib/apostilas";
 import { MATERIAS, SLUG, anoSlug } from "@/lib/data";
 import { CONTATO } from "@/lib/contato";
 import Comprar from "@/components/Comprar";
+import { url, jsonLd } from "@/lib/seo";
 
 type P = { params: { slug: string } };
 
@@ -14,12 +15,13 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: P): Metadata {
   const g = GRATUITOS.find((x) => x.slug === params.slug);
-  if (g) return { title: `${g.titulo} · PDF gratuito`, description: `${g.subtitulo}. ${g.paginas} páginas, gratuito.`, openGraph: { images: [`/apostilas/${g.slug}/capa.webp`] } };
+  if (g) return { title: `${g.titulo} · PDF gratuito`, description: `${g.subtitulo}. ${g.paginas} páginas, gratuito.`, alternates: { canonical: `/apostilas/${g.slug}` }, openGraph: { images: [`/apostilas/${g.slug}/capa.webp`] } };
   const a = APOSTILAS.find((x) => x.slug === params.slug);
   if (!a) return {};
   return {
     title: `${a.titulo} · apostila para imprimir`,
     description: `${a.subtitulo}. ${MATERIAS[a.materia]}, ${anoNome(a.ano)}. ${a.paginas} páginas com explicação, exercícios, jogos e gabarito.`,
+    alternates: { canonical: `/apostilas/${a.slug}` },
     openGraph: { images: [`/apostilas/${a.slug}/capa.webp`] },
   };
 }
@@ -28,13 +30,17 @@ function PaginaGratuito({ g }: { g: Gratuito }) {
   const baixar = <a className="btn" href={g.arquivo} download={g.nomeArquivo}>Baixar grátis</a>;
   return (
     <div className="wrap">
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd({
+        "@context": "https://schema.org", "@type": "Book", name: g.titulo, description: g.resumo, author: { "@type": "Person", name: "Stephanie Kamarry" },
+        image: url(`/apostilas/${g.slug}/capa.webp`), numberOfPages: g.paginas, inLanguage: "pt-BR", isAccessibleForFree: true, bookFormat: "https://schema.org/EBook",
+      })} />
       <p className="meta"><Link href="/apostilas">Apostilas</Link> › {g.titulo}</p>
       <div className="produto-topo" style={{ ["--sc" as string]: "var(--cie)" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="produto-capa-g" src={`/apostilas/${g.slug}/capa.webp`} alt={`Capa do ${g.titulo}`} width={566} height={800} />
         <div className="produto-txt">
           <div className="tags"><span className="tag cie">Gratuito</span><span className="tag">Todas as séries</span><span className="tag">{g.paginas} páginas</span></div>
-          <h2 className="hero-t">{g.titulo}</h2>
+          <h1 className="hero-t">{g.titulo}</h1>
           <p className="lead">{g.subtitulo}</p>
           <p>{g.resumo}</p>
           <div className="row">{baixar}</div>
@@ -76,13 +82,19 @@ export default function Apostila({ params }: P) {
   const trilha = `/trilhas/${SLUG[a.materia]}/${anoSlug(a.ano)}#tema-${a.tema}`;
   return (
     <div className="wrap">
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd({
+        "@context": "https://schema.org", "@type": "Product", name: `Apostila ${a.titulo}`, description: a.resumo,
+        image: url(`/apostilas/${a.slug}/capa.webp`), brand: { "@type": "Brand", name: "Atlas do Aprender" },
+        category: `${MATERIAS[a.materia]} · ${anoNome(a.ano)}`, audience: { "@type": "PeopleAudience", suggestedMinAge: 6, suggestedMaxAge: 11 },
+        ...(a.checkout ? { offers: { "@type": "Offer", price: a.preco.replace(/[^0-9,]/g, "").replace(",", "."), priceCurrency: "BRL", availability: "https://schema.org/InStock", url: url(`/apostilas/${a.slug}`) } } : {}),
+      })} />
       <p className="meta"><Link href="/apostilas">Apostilas</Link> › {a.titulo}</p>
       <div className="produto-topo" style={{ ["--sc" as string]: `var(--${a.materia})` }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="produto-capa-g" src={`/apostilas/${a.slug}/capa.webp`} alt={`Capa da apostila ${a.titulo}`} width={566} height={800} />
         <div className="produto-txt">
           <div className="tags"><span className={`tag ${a.materia}`}>{MATERIAS[a.materia]}</span><span className="tag">{anoNome(a.ano)}</span><span className="tag">{a.paginas} páginas</span></div>
-          <h2 className="hero-t">{a.titulo}</h2>
+          <h1 className="hero-t">{a.titulo}</h1>
           <p className="lead">{a.subtitulo}</p>
           <p>{a.resumo}</p>
           <div className="row">

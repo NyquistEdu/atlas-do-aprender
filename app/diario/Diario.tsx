@@ -25,14 +25,14 @@ export default function Diario() {
   useEffect(() => { if (a.crianca) setF((x) => ({ ...x, crianca: x.crianca || a.crianca })); }, [a.crianca]);
 
   if (!a.configurado)
-    return <div className="wrap"><h2>Diário de aprendizagem</h2><div className="empty">O diário ainda não está ligado a um banco de dados. Veja o arquivo README.md do projeto para configurar o Supabase.</div></div>;
+    return <div className="wrap"><h1>Diário de aprendizagem</h1><div className="empty">O diário ainda não está ligado a um banco de dados. Veja o arquivo README.md do projeto para configurar o Supabase.</div></div>;
   if (a.carregando) return <div className="wrap"><p className="status">Carregando…</p></div>;
   if (!a.user) {
     const titulo = q.get("titulo");
     const volta = `/diario${q.toString() ? `?${q.toString()}` : ""}`;
     return (
       <div className="wrap">
-        <h2>Diário de aprendizagem</h2>
+        <h1>Diário de aprendizagem</h1>
         <p className="lead">Um caderno para guardar o que cada criança fez, o que descobriu e o que disse. Com o tempo, você vê o caminho de cada uma e lembra do que funcionou.</p>
         {titulo && <p className="pendente">Você vai guardar: <b>{titulo}</b>. Depois de entrar, o registro já abre preenchido com essa atividade.</p>}
         <div className="acesso-diario">
@@ -69,7 +69,7 @@ export default function Diario() {
 
   return (
     <div className="wrap">
-      <h2>Diário de aprendizagem</h2>
+      <h1>Diário de aprendizagem</h1>
       <p className="lead">Registre o que fizeram, o que a criança descobriu e como ela se envolveu. Com o tempo, o diário mostra o caminho de cada um.</p>
       <p className="status">Conectado como {a.user.email}. <button className="btn small ghost" type="button" onClick={a.sair}>Sair</button></p>
       {a.erro && <p className="warn">{a.erro}</p>}

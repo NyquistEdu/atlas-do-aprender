@@ -11,7 +11,7 @@ export default function Mao() {
   const xs = EXPERIMENTOS.filter((x) => (a === "all" || x.a === a) && (y === "all" || x.y === y)).sort((p, q) => +p.y - +q.y);
   return (
     <div className="wrap">
-      <h2>Mão na massa</h2>
+      <h1>Mão na massa</h1>
       <p className="lead">Experimentos e atividades práticas com material de casa. Primeiro a criança prevê o que vai acontecer, depois testa, observa e explica com as próprias palavras.</p>
       <ConviteConta origem="mao-na-massa" titulo="Guarde o que a criança descobriu"
         texto="Anote as frases e perguntas dela em um minuto e releia quando quiser."

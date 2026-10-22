@@ -1,4 +1,7 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 import { ESTANTE, EXPERIMENTOS, JOGOS, TRILHAS } from "@/lib/data";
 
 export default function Inicio() {
@@ -20,7 +23,7 @@ export default function Inicio() {
   return (
     <div className="wrap">
       <p className="eyebrow-i">Bem-vindo ao</p>
-      <h2 className="hero-t">Atlas do Aprender</h2>
+      <h1 className="hero-t">Atlas do Aprender</h1>
       <p className="lead">Um sistema para acompanhar a formação de crianças da alfabetização ao 5º ano, em casa, junto com a escola.</p>
       <div className="stats">{numeros.map(([b, s]) => <div className="stat" key={s}><b>{b}</b><span>{s}</span></div>)}</div>
       <div className="grid2">

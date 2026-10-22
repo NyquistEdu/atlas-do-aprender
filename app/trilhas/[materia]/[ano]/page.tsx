@@ -7,6 +7,7 @@ import Progresso from "./Progresso";
 import { ConviteConta } from "@/components/Acesso";
 import { AmazonLivro } from "@/components/Amazon";
 import { apostilaDoTema } from "@/lib/apostilas";
+import { url, jsonLd } from "@/lib/seo";
 
 type P = { params: { materia: string; ano: string } };
 
@@ -17,7 +18,14 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: P): Metadata {
   const s = DE_SLUG[params.materia];
   const ano = ANOS.find(([y]) => y === anoDeSlug(params.ano));
-  return s && ano ? { title: `${MATERIAS[s]} · ${ano[1]}` } : {};
+  if (!s || !ano) return {};
+  const temas = (TRILHAS[s][ano[0]] || []).map((t) => t.t);
+  const nome = `${MATERIAS[s]} do ${ano[1].replace("Alfabetização · ", "")}`;
+  return {
+    title: `${nome}: atividades, livros e jogos para estudar em casa`,
+    description: `Trilha de ${MATERIAS[s]} ${ano[0] === "1" ? "da alfabetização (1º ano)" : `do ${ano[1]}`} alinhada à BNCC: ${temas.slice(0, 4).join(", ")} e mais. Livros paradidáticos, exercícios, filmes, jogos e mão na massa para cada tema.`,
+    alternates: { canonical: `/trilhas/${params.materia}/${params.ano}` },
+  };
 }
 
 export default function Trilha({ params }: P) {
@@ -28,7 +36,11 @@ export default function Trilha({ params }: P) {
   const cor = `var(--${s})`;
   return (
     <div className="wrap">
-      <h2>O que estudar em casa, ano a ano</h2>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd({
+        "@context": "https://schema.org", "@type": "ItemList", name: `${MATERIAS[s]} · ${ANOS.find(([a]) => a === y)?.[1]}`,
+        itemListElement: lista.map((th, i) => ({ "@type": "ListItem", position: i + 1, name: th.t, description: th.o, url: url(`/trilhas/${params.materia}/${params.ano}#tema-${i + 1}`) })),
+      })} />
+      <h1>{MATERIAS[s]} · {ANOS.find(([a]) => a === y)?.[1]}: o que estudar em casa</h1>
       <p className="lead">Uma sequência pronta para ajudar a criança em casa: cada tema traz livros, exercícios, jogos, vídeos e uma atividade prática, seguindo o que a escola ensina em cada ano (BNCC).</p>
       <ConviteConta origem="trilhas" titulo="Acompanhe cada criança"
         texto="Veja os temas que ela já explorou e continue de onde parou." />

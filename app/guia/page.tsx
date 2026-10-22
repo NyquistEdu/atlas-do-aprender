@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { GUIA_DRIVE } from "@/lib/data";
-export const metadata: Metadata = { title: "Guia de uso" };
+export const metadata: Metadata = {
+  title: "Guia de uso",
+  description: "Guia gratuito em PDF: como começar no Atlas do Aprender, como usar trilhas, livros, jogos e diário, uma semana possível de atividades e perguntas frequentes.",
+  alternates: { canonical: "/guia" },
+};
 export default function Guia() {
   return (
     <div className="wrap">
-      <h2>Guia de uso</h2>
+      <h1>Guia de uso</h1>
       <p className="lead">Um PDF de 6 páginas que explica como começar, para que serve cada aba, como usar o diário, uma semana possível de atividades, cuidados e perguntas frequentes.</p>
       <article className="card">
         <h3>Atlas do Aprender: guia de uso</h3>

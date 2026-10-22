@@ -25,7 +25,7 @@ export default function Entrar() {
 
   return (
     <div className="wrap" style={{ maxWidth: 640 }}>
-      <h2>Entrar ou criar conta</h2>
+      <h1>Entrar ou criar conta</h1>
       <p className="lead">
         {motivo ? `${motivo} ` : ""}Tudo no Atlas continua aberto sem conta; ela serve para guardar o que vocês fazem.
       </p>

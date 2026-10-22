@@ -1,0 +1,20 @@
+import type { MetadataRoute } from "next";
+import { ANOS, SLUG, anoSlug, type Materia } from "@/lib/data";
+import { APOSTILAS, GRATUITOS } from "@/lib/apostilas";
+import { TEMATICAS } from "@/lib/tematicas";
+import { url } from "@/lib/seo";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const agora = new Date();
+  const fixo: [string, number, MetadataRoute.Sitemap[number]["changeFrequency"]][] = [
+    ["/", 1, "weekly"], ["/livros", 0.9, "monthly"], ["/jogos", 0.8, "monthly"], ["/mao-na-massa", 0.8, "monthly"],
+    ["/apostilas", 0.9, "weekly"], ["/olimpiadas", 0.8, "monthly"], ["/tematicas", 0.8, "monthly"], ["/guia", 0.5, "yearly"], ["/privacidade", 0.2, "yearly"],
+  ];
+  const trilhas = (Object.keys(SLUG) as Materia[]).flatMap((s) => ANOS.map(([y]) => `/trilhas/${SLUG[s]}/${anoSlug(y)}`));
+  return [
+    ...fixo.map(([p, priority, changeFrequency]) => ({ url: url(p), lastModified: agora, changeFrequency, priority })),
+    ...trilhas.map((p) => ({ url: url(p), lastModified: agora, changeFrequency: "monthly" as const, priority: 0.9 })),
+    ...[...GRATUITOS, ...APOSTILAS].map((a) => ({ url: url(`/apostilas/${a.slug}`), lastModified: agora, changeFrequency: "monthly" as const, priority: 0.8 })),
+    ...TEMATICAS.map((t) => ({ url: url(`/tematicas/${t.slug}`), lastModified: agora, changeFrequency: "yearly" as const, priority: 0.7 })),
+  ];
+}

@@ -3,12 +3,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { TEMATICAS, tematica } from "@/lib/tematicas";
 import { AmazonLivro } from "@/components/Amazon";
+import { url, jsonLd } from "@/lib/seo";
 
 export const generateStaticParams = () => TEMATICAS.map((t) => ({ slug: t.slug }));
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const t = tematica(params.slug);
-  return t ? { title: t.titulo, description: t.resumo } : {};
+  return t ? { title: `${t.titulo}: livros, filmes e atividades para crianças`, description: t.resumo, alternates: { canonical: `/tematicas/${t.slug}` }, openGraph: { title: t.titulo, description: t.resumo } } : {};
 }
 
 export default function Tema({ params }: { params: { slug: string } }) {
@@ -16,8 +17,12 @@ export default function Tema({ params }: { params: { slug: string } }) {
   if (!t) notFound();
   return (
     <div className="wrap">
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd({
+        "@context": "https://schema.org", "@type": "Article", headline: t.titulo, description: t.resumo, inLanguage: "pt-BR",
+        author: { "@type": "Person", name: "Stephanie Kamarry" }, publisher: { "@type": "Organization", name: "Atlas do Aprender" }, mainEntityOfPage: url(`/tematicas/${t.slug}`),
+      })} />
       <p className="eyebrow-i"><Link href="/tematicas">Temáticas</Link> · {t.quando}</p>
-      <h2 className="hero-t">{t.emoji} {t.titulo}</h2>
+      <h1 className="hero-t">{t.emoji} {t.titulo}</h1>
       {t.intro.map((p) => <p className="lead" key={p.slice(0, 20)}>{p}</p>)}
       <section className="books">
         <h4>Livros para ler junto</h4>

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { CONTATO } from "@/lib/contato";
 
-export const metadata: Metadata = { title: "Privacidade" };
+export const metadata: Metadata = { title: "Privacidade", description: "Como o Atlas do Aprender trata dados, cookies, links de afiliado e compras de apostilas.", alternates: { canonical: "/privacidade" } };
 
 export default function Privacidade() {
   return (
     <div className="wrap" style={{ maxWidth: 760 }}>
-      <h2>Privacidade</h2>
+      <h1>Privacidade</h1>
       <p className="lead">Como o Atlas do Aprender trata as informações de quem usa o site.</p>
 
       <h3 className="ini-h">O que é aberto, sem cadastro</h3>

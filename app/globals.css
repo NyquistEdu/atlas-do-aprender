@@ -25,8 +25,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
 header.top .wrap{padding-block:12px 0;display:grid;gap:10px}
 .brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-h1{font-family:var(--f-disp);font-weight:400;font-size:1.6rem;margin:0;letter-spacing:-.01em}
-h1 small{font-family:var(--f-body);font-size:.78rem;color:var(--soft);letter-spacing:.06em;text-transform:uppercase;margin-left:6px}
+h1,.logo{font-family:var(--f-disp);font-weight:400;font-size:1.6rem;margin:0;letter-spacing:-.01em}
+main h1{font-size:1.35rem;text-wrap:balance}
+h1 small,.logo small{font-family:var(--f-body);font-size:.78rem;color:var(--soft);letter-spacing:.06em;text-transform:uppercase;margin-left:6px}
 .kids{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .kids span.lbl{font-size:.75rem;color:var(--soft);text-transform:uppercase;letter-spacing:.06em}
 .chip{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:5px 12px;font:inherit;font-size:.9rem;cursor:pointer}
@@ -198,7 +199,7 @@ a.btn{display:inline-block;text-decoration:none}
 details[open]>summary .ver{display:none}
 .passo{font-weight:700;margin:0}
 @media (max-width:600px){.cookies{padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));gap:8px 12px;justify-content:space-between}.cookies p{font-size:.82rem;line-height:1.35}}
-@media (max-width:600px){header.top .wrap{padding-block:8px 0;gap:4px}h1{font-size:1.3rem}h1 small{display:none}.brand{flex-wrap:nowrap;align-items:center}.tema span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}main .wrap{gap:14px;padding-top:14px}}
+@media (max-width:600px){header.top .wrap{padding-block:8px 0;gap:4px}.logo{font-size:1.3rem}.logo small{display:none}main h1{font-size:1.3rem}.brand{flex-wrap:nowrap;align-items:center}.tema span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}main .wrap{gap:14px;padding-top:14px}}
 
 /* Olimpíadas e Temáticas */
 .sec-t{font-family:var(--f-disp);font-weight:400;font-size:1.25rem;margin:18px 0 0}

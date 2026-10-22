@@ -54,7 +54,7 @@ export default function Header() {
     <header className="top">
       <div className="wrap">
         <div className="brand">
-          <h1><Link href="/" style={{ textDecoration: "none" }}>Atlas do Aprender</Link> <small>alfabetização ao 5º ano</small></h1>
+          <p className="logo"><Link href="/" style={{ textDecoration: "none" }}>Atlas do Aprender</Link> <small>alfabetização ao 5º ano</small></p>
           <div className="brand-r">
             {user && criancas.length > 0 && (
               <div className="kids" aria-label="Criança">
