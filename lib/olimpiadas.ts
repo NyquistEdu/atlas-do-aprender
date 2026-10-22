@@ -31,6 +31,26 @@ export const INDIVIDUAIS: Olimpiada[] = [
     como: "Bom par para a trilha de Ciências do 3º ano (O céu e as estrelas) e a apostila Olhar o Céu.",
     site: "https://onaolimpiada.netlify.app",
   },
+  {
+    nome: "Torneio Nacional de Astronomia (TNA), da EOBA",
+    area: "cie",
+    quem: "Do 1º ano do fundamental ao ensino médio. Nível 1: 1º ao 3º ano (o céu, o Sol, a Lua e os planetas). Nível 2: 4º e 5º ano (Sistema Solar, eclipses, estações e galáxias).",
+    inscricao: "Individual, pelo site do Clube de Ciências EOBA, com autorização do responsável.",
+    custo: "R$ 14,99 por inscrição (2026). Medalhas físicas são vendidas à parte.",
+    quando: "Em 2026: inscrições de 01/09 a 09/10 e provas em 10 e 11/10. A edição 2026 já passou; fique de olho no site para a próxima.",
+    como: "Prova online, em fase única: 20 questões objetivas e 2 horas nos níveis 1 e 2, sem consulta. As provas e gabaritos anteriores ficam no site e são um ótimo treino. Combina com a apostila Olhar o Céu.",
+    site: "https://www.eoba.site/tna-2026",
+  },
+  {
+    nome: "Torneio Nacional de Matemática (TNM), da EOBA",
+    area: "mat",
+    quem: "Estudantes do ensino fundamental e médio, divididos em níveis por ano escolar (confira o nível de cada ano no regulamento da edição).",
+    inscricao: "Individual, online, pelo Clube de Ciências EOBA, sem precisar da escola.",
+    custo: "Inscrição paga; o valor sai no regulamento de cada edição.",
+    quando: "As datas da próxima edição são divulgadas no site e no Instagram @eoba_.",
+    como: "Prova online com questões originais e desafiadoras, pensada para treinar para outras olimpíadas de matemática.",
+    site: "https://www.eoba.site",
+  },
 ];
 
 export const PELA_ESCOLA: [string, string, string][] = [
