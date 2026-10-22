@@ -77,3 +77,32 @@ create policy "administradora le pedidos" on public.pedidos_planejamento
 create policy "administradora atualiza pedidos" on public.pedidos_planejamento
   for update to authenticated using ((auth.jwt() ->> 'email') = 'stephaniekamarryas@gmail.com')
   with check ((auth.jwt() ->> 'email') = 'stephaniekamarryas@gmail.com');
+
+-- ============================================================
+-- Contagem anônima (sem cookies): totais por dia, sem identificar ninguém.
+-- O site chama public.contar(evento, detalhe, origem); ninguém lê a tabela pela API.
+-- ============================================================
+create table if not exists public.contagens (
+  dia date not null,
+  evento text not null,
+  detalhe text not null default '',
+  origem text not null default '',
+  total integer not null default 0,
+  primary key (dia, evento, detalhe, origem)
+);
+alter table public.contagens enable row level security;
+
+create or replace function public.contar(p_evento text, p_detalhe text default '', p_origem text default '')
+returns void
+language sql
+security definer
+set search_path = public
+as $$
+  insert into public.contagens (dia, evento, detalhe, origem, total)
+  select (now() at time zone 'America/Fortaleza')::date, p_evento, left(coalesce(p_detalhe, ''), 80), left(coalesce(p_origem, ''), 80), 1
+  where p_evento in ('visita','cadastro','pedido_planejamento','viu_apostila','comprar','afiliado','baixou',
+                     'convite_visto','abriu_entrar','pediu_link','entrou','registrou_atividade')
+  on conflict (dia, evento, detalhe, origem) do update set total = public.contagens.total + 1;
+$$;
+revoke all on function public.contar(text, text, text) from public;
+grant execute on function public.contar(text, text, text) to anon, authenticated;

@@ -1,7 +1,7 @@
 "use client";
 
 import { track } from "@vercel/analytics";
-import { rastrear } from "@/lib/rastreio";
+import { contar } from "@/lib/contagem";
 
 type Gtag = (...a: unknown[]) => void;
 
@@ -11,6 +11,7 @@ export default function Comprar({ slug, titulo, checkout, preco, grande = false 
     return <span className={`btn ${grande ? "" : "small "}ghost em-breve`} aria-disabled="true">Em breve</span>;
   }
   const clicar = () => {
+    contar("comprar", slug);
     try { track("comprar_apostila", { apostila: slug }); } catch {}
     try { (window as unknown as { gtag?: Gtag }).gtag?.("event", "begin_checkout", { items: [{ item_id: slug, item_name: titulo }] }); } catch {}
     const valor = Number((preco.match(/[\d.,]+/)?.[0] || "0").replace(/\./g, "").replace(",", "."));

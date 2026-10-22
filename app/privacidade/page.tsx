@@ -18,6 +18,14 @@ export default function Privacidade() {
         de onde a pessoa veio. Ela não usa cookies, não guarda o endereço IP e não identifica quem visitou.
       </p>
 
+      <h3 className="ini-h">Totais anônimos do próprio site</h3>
+      <p>
+        O Atlas soma, por dia, quantas vezes algumas ações acontecem: visitas de entrada, cliques em “Comprar”, downloads,
+        apostilas vistas e contas criadas, junto com a origem da visita (por exemplo, “anúncio” ou “Instagram”). São só
+        totais: não há cookie, endereço IP, e-mail nem qualquer identificação de quem fez a ação. Para lembrar a origem
+        quando você volta pelo link do e-mail, o navegador guarda esse rótulo de origem por até 30 dias.
+      </p>
+
       <h3 className="ini-h">Estatísticas de visita (Google Analytics)</h3>
       <p>
         Se você aceitar no aviso de cookies, usamos o Google Analytics para contar visitas e entender quais páginas são

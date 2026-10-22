@@ -5,6 +5,7 @@ import Script from "next/script";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { rastrear } from "@/lib/rastreio";
+import { contar } from "@/lib/contagem";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 // O ID do Pixel é público (aparece no código de qualquer site que o usa); a variável de ambiente permite trocar sem mexer no código.
@@ -19,18 +20,37 @@ export function abrirPreferencias() {
   window.dispatchEvent(new Event("atlas-preferencias-cookies"));
 }
 
-/** Uma visita de página a cada troca de rota, mais o ViewContent das páginas de apostila. */
+/** Uma visita de página a cada troca de rota (só com consentimento: é o PageView do Pixel/GA). */
 function Rotas() {
   const path = usePathname();
   const primeira = useRef(true);
   useEffect(() => {
     if (primeira.current) primeira.current = false; // o PageView da primeira página sai junto com o init do pixel
     else rastrear("PageView");
+  }, [path]);
+  return null;
+}
+
+/**
+ * Sempre ativo, com ou sem consentimento: conta a visita de entrada, as apostilas vistas,
+ * downloads e cliques de afiliado. Cada evento vai para a contagem anônima (lib/contagem)
+ * e, se a pessoa aceitou os cookies, também para o Pixel e o GA (via rastrear).
+ */
+function Medicao() {
+  const path = usePathname();
+  useEffect(() => {
+    try {
+      if (!sessionStorage.getItem("atlas-visita")) {
+        sessionStorage.setItem("atlas-visita", "1");
+        contar("visita", location.pathname);
+      }
+    } catch {}
+  }, []);
+  useEffect(() => {
     const m = path?.match(/^\/apostilas\/([^/]+)/);
     if (m) rastrear("ViewContent", { content_ids: [m[1]], content_type: "product" });
   }, [path]);
   useEffect(() => {
-    // Cliques em links de afiliado e downloads de PDF, em qualquer página.
     const ouvir = (e: MouseEvent) => {
       const a = (e.target as HTMLElement | null)?.closest?.("a") as HTMLAnchorElement | null;
       if (!a) return;
@@ -63,7 +83,8 @@ export default function Analytics() {
     return () => window.removeEventListener("atlas-preferencias-cookies", abrir);
   }, []);
 
-  if (!TEM_RASTREIO || !pronto) return null;
+  // <Medicao /> fica sempre na mesma posição para não ser remontada quando o resto aparece.
+  if (!TEM_RASTREIO || !pronto) return <><Medicao /></>;
 
   const decidir = (v: "sim" | "nao") => {
     try { localStorage.setItem(CHAVE, v); } catch {}
@@ -78,6 +99,7 @@ export default function Analytics() {
 
   return (
     <>
+      <Medicao />
       {escolha === "sim" && GA_ID && (
         <>
           <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
