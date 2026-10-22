@@ -91,6 +91,89 @@ export const TEMATICAS: Tematica[] = [
     ],
     cuidado: "Confira a classificação indicativa antes de assistir e respeite o limite da criança: se o susto passar do ponto, pare e troque por algo mais leve. O experimento da poção usa só ingredientes de cozinha, mas não é para beber.",
   },
+  {
+    slug: "natal",
+    titulo: "Natal",
+    quando: "25 de dezembro",
+    emoji: "🎄",
+    resumo: "O nascimento de Jesus, o presépio, a Folia de Reis e o Papai Noel: livros, filmes, música, receitas e atividades para o mês de dezembro.",
+    intro: [
+      "O Natal celebra o nascimento de Jesus, contado na Bíblia nos evangelhos de Lucas e de Mateus: a viagem de Maria e José a Belém, a manjedoura, os pastores e os magos que seguiram a estrela.",
+      "Muitas tradições vieram depois. O presépio foi montado pela primeira vez por São Francisco de Assis, em 1223. O Papai Noel nasceu da história de São Nicolau, um bispo que ajudava em segredo as crianças pobres. No Brasil, a Folia de Reis sai às ruas até 6 de janeiro, com música, bandeiras e visitas às casas.",
+      "E uma curiosidade para explorar com as crianças: aqui o Natal é no verão, enquanto no hemisfério norte é inverno, com neve. Por que será?",
+    ],
+    livros: [
+      ["A história do Natal, em Lucas 2 e Mateus 2", "Leia numa Bíblia infantil ilustrada e depois montem juntos o presépio."],
+      ["“Como o Grinch Roubou o Natal!” — Dr. Seuss", "Em rima: o Natal não está nos presentes nem nos enfeites."],
+      ["“O Expresso Polar” — Chris Van Allsburg", "Um trem misterioso na noite de Natal e o som de um sininho que só alguns conseguem ouvir."],
+      ["“O Pinheiro” — Hans Christian Andersen", "O pinheirinho que vivia com pressa de crescer; boa conversa sobre aproveitar o presente."],
+      ["“O Quebra-Nozes” — E. T. A. Hoffmann (adaptação)", "O boneco que ganha vida na noite de Natal; ótimo para ouvir a música de Tchaikovsky depois."],
+      ["“Um Conto de Natal” — Charles Dickens (adaptação)", "Scrooge e os três fantasmas do Natal; melhor a partir de 8 anos, lido junto."],
+    ],
+    blocos: [
+      {
+        nome: "Filmes",
+        itens: [
+          ["O Expresso Polar (2004)", "a viagem do livro, em animação"],
+          ["O Grinch (2018)", "a versão animada da história do Dr. Seuss"],
+          ["Klaus (2019)", "uma origem inventada e muito bonita do Papai Noel"],
+          ["Operação Presente (2011)", "a família Noel e um presente que ficou para trás"],
+          ["O Quebra-Nozes", "uma gravação do balé, para assistir em família"],
+        ],
+      },
+      {
+        nome: "Música",
+        itens: [
+          ["Suíte O Quebra-Nozes, de Tchaikovsky", "a Dança da Fada Açucarada e a Valsa das Flores; adivinhar qual instrumento está tocando"],
+          ["Noite Feliz", "composta na Áustria em 1818; cantar junto e conhecer a história da canção"],
+          ["Folia de Reis", "procurar vídeos de grupos brasileiros e reparar nos instrumentos e nas roupas"],
+        ],
+      },
+      {
+        nome: "Mão na massa e ciência",
+        itens: [
+          ["Presépio de sucata ou de argila", "cada personagem feito pela criança, contando quem é"],
+          ["Floco de neve de papel", "dobrar e recortar: os seis lados iguais mostram a simetria"],
+          ["Por que aqui é verão no Natal?", "com uma lanterna e uma bola inclinada, mostrar o Sol iluminando mais o sul em dezembro (combina com a apostila Olhar o Céu)"],
+          ["Cristais de açúcar", "barbante numa calda bem doce; observar os cristais crescendo por uma semana"],
+          ["Biscoitos de Natal", "medir os ingredientes e cortar formas; dá para fazer meia receita"],
+        ],
+      },
+      {
+        nome: "Português",
+        itens: [
+          ["Carta ou cartão de Natal", "para um avô, uma madrinha, a professora: quem a criança quiser agradecer"],
+          ["Acróstico NATAL", "uma palavra ou frase para cada letra"],
+          ["Recontar o Natal", "a criança conta a história com os bonecos do presépio"],
+        ],
+      },
+      {
+        nome: "Matemática",
+        itens: [
+          ["Calendário do Advento", "contagem regressiva até 25/12, com uma pequena tarefa ou gentileza por dia"],
+          ["Padrões na árvore", "montar sequências de enfeites: vermelho, dourado, vermelho…"],
+          ["Receita dobrada ou pela metade", "recalcular os ingredientes dos biscoitos"],
+        ],
+      },
+      {
+        nome: "Jogos e brincadeiras",
+        itens: [
+          ["Amigo secreto da família", "sortear, guardar segredo e pensar num presente feito à mão"],
+          ["Bingo de Natal", "cartelas com desenhos: estrela, sino, presépio, pinheiro"],
+          ["Jogo da memória natalino", "versão caseira, com os pares desenhados pela criança"],
+        ],
+      },
+      {
+        nome: "Para conversar",
+        itens: [
+          ["O que o Natal significa para a nossa família?"],
+          ["Que presente a gente pode dar que não se compra?"],
+          ["Como será o Natal em um país onde é inverno e neva?"],
+        ],
+      },
+    ],
+    cuidado: "Forno, fogão e calda quente ficam sempre com um adulto. Confira a classificação indicativa dos filmes antes de assistir.",
+  },
 ];
 
 export const tematica = (slug: string) => TEMATICAS.find((t) => t.slug === slug);

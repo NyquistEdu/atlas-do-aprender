@@ -13,7 +13,7 @@ export default function Inicio() {
     ["/mao-na-massa", "Mão na massa", "Experimentos com material de casa", "var(--cie)"],
     ["/apostilas", "Apostilas", "PDFs para imprimir, com exercícios e gabarito", "var(--por)"],
     ["/olimpiadas", "Olimpíadas", "Competições abertas a crianças e materiais para se preparar", "var(--por)"],
-    ["/tematicas", "Temáticas", "Datas especiais: Halloween, Dia do Saci e mais", "var(--jog)"],
+    ["/tematicas", "Temáticas", "Datas especiais: Halloween, Dia do Saci, Natal e mais", "var(--jog)"],
     ["/diario", "Diário", "O que cada criança fez e descobriu", "var(--mat)"],
     ["/guia", "Guia de uso", "Como usar o Atlas, em PDF", "var(--line)"],
   ];
