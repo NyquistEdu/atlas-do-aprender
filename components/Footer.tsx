@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CONTATO } from "@/lib/contato";
 import PreferenciasCookies from "./PreferenciasCookies";
+import { PEDIR_CONSENTIMENTO } from "@/lib/consentimento";
 import { AMAZON_TAG, AVISO_AFILIADO } from "@/lib/afiliados";
 
 export default function Footer() {
@@ -33,7 +34,7 @@ export default function Footer() {
           formação dos próprios filhos e em anos de estudo sobre educação e aprendizagem.
         </p>
         {AMAZON_TAG && <p className="afiliado">{AVISO_AFILIADO}</p>}
-        <p className="footer-links"><Link href="/privacidade">Privacidade</Link> <PreferenciasCookies /></p>
+        {PEDIR_CONSENTIMENTO && <p className="footer-links"><Link href="/privacidade">Privacidade</Link> <PreferenciasCookies /></p>}
       </div>
     </footer>
   );

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PEDIR_CONSENTIMENTO } from "@/lib/consentimento";
 import FormPlanejamento from "./FormPlanejamento";
 
 export const metadata: Metadata = {
@@ -36,7 +37,7 @@ export default function Planejamento() {
 
       <h2 className="sec-t" id="formulario">Formulário</h2>
       <FormPlanejamento />
-      <p className="note">Seus dados são usados apenas para entrar em contato e preparar o planejamento, e não são compartilhados com ninguém. Veja a <Link href="/privacidade">política de privacidade</Link>.</p>
+      <p className="note">Seus dados são usados apenas para entrar em contato e preparar o planejamento, e não são compartilhados com ninguém.{PEDIR_CONSENTIMENTO && <> Veja a <Link href="/privacidade">política de privacidade</Link>.</>}</p>
     </div>
   );
 }

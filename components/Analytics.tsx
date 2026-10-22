@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { rastrear } from "@/lib/rastreio";
 import { contar } from "@/lib/contagem";
+import { PEDIR_CONSENTIMENTO } from "@/lib/consentimento";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 // O ID do Pixel é público (aparece no código de qualquer site que o usa); a variável de ambiente permite trocar sem mexer no código.
@@ -75,8 +76,9 @@ export default function Analytics() {
   useEffect(() => {
     let v: Escolha = null;
     try { v = (localStorage.getItem(CHAVE) as Escolha) || null; } catch {}
+    if (!PEDIR_CONSENTIMENTO) v = "sim"; // fase de medição: carrega para todos, sem aviso
     setEscolha(v);
-    setAberto(v === null);
+    setAberto(PEDIR_CONSENTIMENTO && v === null);
     setPronto(true);
     const abrir = () => setAberto(true);
     window.addEventListener("atlas-preferencias-cookies", abrir);

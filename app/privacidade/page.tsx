@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { CONTATO } from "@/lib/contato";
+import { PEDIR_CONSENTIMENTO } from "@/lib/consentimento";
 
 export const metadata: Metadata = { title: "Privacidade", description: "Como o Atlas do Aprender trata dados, cookies, links de afiliado e compras de apostilas.", alternates: { canonical: "/privacidade" } };
 
 export default function Privacidade() {
+  if (!PEDIR_CONSENTIMENTO) notFound(); // fora do ar durante a fase de medição (lib/consentimento.ts)
   return (
     <div className="wrap" style={{ maxWidth: 760 }}>
       <h1>Privacidade</h1>
