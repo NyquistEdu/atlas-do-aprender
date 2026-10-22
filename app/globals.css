@@ -214,3 +214,12 @@ details[open]>summary .ver{display:none}
 .tema-em{font-size:2.4rem;line-height:1}
 .tema-card .tag{justify-self:start}
 @media (max-width:560px){.olimp dl{grid-template-columns:1fr}.olimp dt{padding-top:6px}}
+.duv-anos{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.duv{text-decoration:none;color:var(--ink);border-top:4px solid var(--mat);gap:6px}
+.duv b{font-family:var(--f-disp);font-weight:400;font-size:1.15rem}
+.duv span{color:var(--soft);font-size:.92rem}
+.artigo>section{display:grid;gap:8px}
+.artigo>section>h2{font-size:1.3rem}
+.artigo>section>p{margin:0}
+.artigo p,.artigo li{max-width:70ch}
+.artigo ul{margin:0;padding-left:20px;display:grid;gap:4px}
