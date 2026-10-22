@@ -224,7 +224,7 @@ details[open]>summary .ver{display:none}
 .artigo p,.artigo li{max-width:70ch}
 .artigo ul{margin:0;padding-left:20px;display:grid;gap:4px}
 /* Planejamento gratuito */
-.passos-plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.passos-plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
 .passos-plan>div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:6px}
 .passos-plan b{width:30px;height:30px;border-radius:50%;background:var(--mat);color:#fff;display:grid;place-items:center}
 .plan-form fieldset{border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:10px;margin:0;min-width:0}
