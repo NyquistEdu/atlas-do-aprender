@@ -45,6 +45,7 @@ h2{font-family:var(--f-disp);font-weight:400;font-size:1.35rem;margin:0;text-wra
 .seg.subj button[data-s="por"][aria-pressed="true"]{background:var(--por-bg);color:var(--por)}
 .seg.subj button[data-s="mat"][aria-pressed="true"]{background:var(--mat-bg);color:var(--mat)}
 .seg.subj button[data-s="cie"][aria-pressed="true"]{background:var(--cie-bg);color:var(--cie)}
+.seg.subj button[data-s="gerais"][aria-pressed="true"]{background:var(--jog-bg);color:var(--ink)}
 .seg.yr button[aria-pressed="true"]{background:var(--acc);color:var(--paper);border-color:var(--acc)}
 .prog{display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--soft)}
 .bar{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
