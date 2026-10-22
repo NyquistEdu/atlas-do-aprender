@@ -16,6 +16,18 @@ export type Olimpiada = {
 
 export const INDIVIDUAIS: Olimpiada[] = [
   {
+    nome: "Torneio Individual da Olimpíada de Português (TOP)",
+    area: "por",
+    series: "1º ao 5º ano",
+    inscricoesAte: "2026-10-23",
+    quem: "A partir de 6 anos, sem precisar estar matriculado em escola. Uma categoria por ano: H (1º ano), G (2º), F (3º), E (4º) e D (5º), além de categorias para os anos seguintes e uma aberta. A criança pode fazer a categoria do seu ano e também a seguinte.",
+    inscricao: "Individual, pelo site da Olimpíada de Português, com o CPF da criança e o nome e CPF do responsável. É a versão individual da OP bê-á-bá, que só a escola inscreve.",
+    custo: "Em 2026: R$ 38 por categoria até 08/09 e R$ 50 de 09/09 a 23/10. Medalha física à parte (R$ 50 + frete).",
+    quando: "Em 2026: inscrições até 23/10, prova em 29/10 (das 6h30 às 23h59), resultado em 10/11.",
+    como: "Prova online de 1 hora, com questões objetivas. Pode consultar livros e anotações, mas não sites nem IA; o responsável só pode ajudar com as instruções. Entre 20% e 40% de cada categoria recebem premiação.",
+    site: "https://olimpiadadeportugues.org/torneio-individual",
+  },
+  {
     nome: "Olimpíada de Literatura",
     series: "até 12 anos",
     inscricoesAte: "2026-10-30",
@@ -255,7 +267,7 @@ export const INDIVIDUAIS: Olimpiada[] = [
 
 export const PELA_ESCOLA: [string, string, string][] = [
   ["Canguru de Matemática", "a partir do 3º ano", "Prova em março; inscrições até o meio de março, só pela escola."],
-  ["OP Bê-á-bá (Olimpíada de Português)", "1º ao 5º ano", "Duas fases de múltipla escolha no 2º semestre; inscrição só pela escola."],
+  ["OP Bê-á-bá (Olimpíada de Português)", "1º ao 5º ano", "Duas fases de múltipla escolha no 2º semestre; inscrição só pela escola. Para inscrever a criança sem a escola, use o Torneio Individual (TOP), na lista acima."],
   ["OBMEP Mirim", "2º ao 5º ano", "A versão da OBMEP para os anos iniciais; inscrição pela escola."],
   ["OBA (Astronomia e Astronáutica)", "do 1º ano ao ensino médio", "Prova em maio; inscrição pela escola."],
 ];
