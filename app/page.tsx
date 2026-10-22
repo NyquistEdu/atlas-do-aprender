@@ -17,6 +17,7 @@ export default function Inicio() {
     ["/apostilas", "Apostilas", "PDFs para imprimir, com exercícios e gabarito", "var(--por)"],
     ["/olimpiadas", "Olimpíadas", "Competições abertas a crianças e materiais para se preparar", "var(--por)"],
     ["/tematicas", "Temáticas", "Datas especiais: Halloween, Dia do Saci, Natal e mais", "var(--jog)"],
+    ["/planejamento", "Planejamento gratuito", "Uma conversa por vídeo e um plano de estudos feito para a sua criança", "var(--cie)"],
     ["/duvidas", "Dúvidas comuns", "O que se aprende em cada ano, leitura, rotina de estudo e mais", "var(--mat)"],
     ["/diario", "Diário", "O que cada criança fez e descobriu", "var(--mat)"],
     ["/guia", "Guia de uso", "Como usar o Atlas, em PDF", "var(--line)"],

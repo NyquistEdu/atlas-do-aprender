@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const agora = new Date();
   const fixo: [string, number, MetadataRoute.Sitemap[number]["changeFrequency"]][] = [
     ["/", 1, "weekly"], ["/livros", 0.9, "monthly"], ["/jogos", 0.8, "monthly"], ["/mao-na-massa", 0.8, "monthly"],
-    ["/apostilas", 0.9, "weekly"], ["/olimpiadas", 0.8, "monthly"], ["/tematicas", 0.8, "monthly"], ["/duvidas", 0.8, "monthly"], ["/guia", 0.5, "yearly"], ["/privacidade", 0.2, "yearly"],
+    ["/apostilas", 0.9, "weekly"], ["/olimpiadas", 0.8, "monthly"], ["/tematicas", 0.8, "monthly"], ["/duvidas", 0.8, "monthly"], ["/planejamento", 0.9, "monthly"], ["/guia", 0.5, "yearly"], ["/privacidade", 0.2, "yearly"],
   ];
   const trilhas = (Object.keys(SLUG) as Materia[]).flatMap((s) => ANOS.map(([y]) => `/trilhas/${SLUG[s]}/${anoSlug(y)}`));
   return [

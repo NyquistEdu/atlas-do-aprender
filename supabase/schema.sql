@@ -48,3 +48,32 @@ create policy "progresso do proprio usuario" on public.progresso
 
 create policy "diario do proprio usuario" on public.diario
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+-- Pedidos de planejamento gratuito (formulário público em /planejamento).
+-- Qualquer visitante pode enviar; só a administradora lê e atualiza.
+create table if not exists public.pedidos_planejamento (
+  id uuid primary key default gen_random_uuid(),
+  criado_em timestamptz not null default now(),
+  nome text not null check (char_length(trim(nome)) > 0 and char_length(nome) <= 120),
+  email text not null check (char_length(email) <= 200 and email like '%@%'),
+  whatsapp text not null default '' check (char_length(whatsapp) <= 40),
+  cidade text not null default '' check (char_length(cidade) <= 120),
+  familia jsonb not null default '{}'::jsonb check (pg_column_size(familia) <= 8000),
+  criancas jsonb not null default '[]'::jsonb check (jsonb_typeof(criancas) = 'array' and pg_column_size(criancas) <= 16000),
+  disponibilidade jsonb not null default '{}'::jsonb check (pg_column_size(disponibilidade) <= 4000),
+  observacoes text not null default '' check (char_length(observacoes) <= 2000),
+  consentimento boolean not null check (consentimento),
+  status text not null default 'novo' check (status in ('novo', 'contatado', 'agendado', 'concluido', 'arquivado'))
+);
+
+alter table public.pedidos_planejamento enable row level security;
+
+create policy "qualquer pessoa envia pedido" on public.pedidos_planejamento
+  for insert to anon, authenticated with check (status = 'novo');
+
+create policy "administradora le pedidos" on public.pedidos_planejamento
+  for select to authenticated using ((auth.jwt() ->> 'email') = 'stephaniekamarryas@gmail.com');
+
+create policy "administradora atualiza pedidos" on public.pedidos_planejamento
+  for update to authenticated using ((auth.jwt() ->> 'email') = 'stephaniekamarryas@gmail.com')
+  with check ((auth.jwt() ->> 'email') = 'stephaniekamarryas@gmail.com');

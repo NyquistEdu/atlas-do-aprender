@@ -58,6 +58,14 @@ export default function Privacidade() {
         Para proteger as crianças, sugerimos usar só o primeiro nome ou um apelido.
       </p>
 
+      <h3 className="ini-h">Pedido de planejamento gratuito</h3>
+      <p>
+        Quem pede um planejamento informa nome, e-mail, WhatsApp, cidade, dados sobre a rotina da família, sobre a criança
+        (primeiro nome, idade, ano escolar, como está na leitura e na matemática) e os horários disponíveis. Esses dados
+        ficam no Supabase, só Stephanie Kamarry tem acesso, e são usados apenas para entrar em contato e preparar o
+        planejamento. Não são vendidos nem compartilhados. Para apagar o seu pedido, basta escrever para o e-mail abaixo.
+      </p>
+
       <h3 className="ini-h">Apagar seus dados</h3>
       <p>
         Você pode excluir registros do diário e crianças cadastradas a qualquer momento no próprio site. Para apagar a
