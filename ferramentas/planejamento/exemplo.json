@@ -1,0 +1,42 @@
+{
+  "familia": "Família Exemplo",
+  "inicio": "2026-11-02",
+  "dias": 30,
+  "objetivo": "Que a Lia termine a alfabetização com segurança e que o Theo ganhe confiança em matemática, com uma rotina leve depois da escola.",
+  "como": "Encontros de 15 a 20 minutos depois do lanche, de segunda a sexta. A Lia faz a apostila com a mãe; o Theo começa sozinho e chama quando precisar. Nos fins de semana, só atividades práticas e jogos.",
+  "criancas": [
+    {
+      "nome": "Lia", "idade": 7, "ano": "2º ano",
+      "diagnostico": {
+        "leitura": "Conhece as letras e lê sílabas simples; ainda trava nas sílabas com duas consoantes.",
+        "matematica": "Conta até 100 com apoio; soma com os dedos.",
+        "pontos_fortes": "Muito curiosa, adora histórias e desenhar.",
+        "reforcar": "Relação letra e som e leitura de palavras; contagem e dezenas.",
+        "interesses": "Bichos, princesas, massinha."
+      },
+      "temas": [
+        {"materia": "por", "ano": "1", "tema": 2},
+        {"materia": "mat", "ano": "1", "tema": 1}
+      ]
+    },
+    {
+      "nome": "Theo", "idade": 9, "ano": "4º ano",
+      "diagnostico": {
+        "leitura": "Lê com fluência; precisa de ajuda para entender textos maiores.",
+        "matematica": "Sabe a tabuada até o 5; trava em divisão e frações.",
+        "pontos_fortes": "Raciocínio rápido, gosta de desafios e de jogos.",
+        "reforcar": "Frações e medidas; vocabulário e descrição na escrita.",
+        "interesses": "Futebol, dinossauros, videogame."
+      },
+      "temas": [
+        {"materia": "por", "ano": "3", "tema": 5},
+        {"materia": "mat", "ano": "3", "tema": 5}
+      ]
+    }
+  ],
+  "juntos": [
+    {"materia": "cie", "ano": "3", "tema": 4},
+    {"materia": "mat", "ano": "3", "tema": 3}
+  ],
+  "extras": []
+}
