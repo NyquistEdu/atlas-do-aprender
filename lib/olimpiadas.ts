@@ -69,7 +69,7 @@ export const INDIVIDUAIS: Olimpiada[] = [
     inscricao: "Individual, pelo site, ou pela escola.",
     custo: "Inscrição paga; o valor de cada período está no site.",
     quando: "2ª edição de 2026: inscrições até 23/10, prova online em 05/11, resultado em 24/11.",
-    como: "Prova online de leitura em inglês. É da mesma organização da Olimpíada de Literatura (Instituto Philotimia), com apoio da Embaixada dos EUA.",
+    como: "Prova online de leitura em inglês. Organizada pelo Instituto Philotimia, com apoio da Embaixada dos EUA.",
     site: "https://oingles.com",
   },
   {
@@ -81,7 +81,7 @@ export const INDIVIDUAIS: Olimpiada[] = [
     inscricao: "Individual, pela Área do Participante, ou pela escola.",
     custo: "Inscrição paga; o valor está no site.",
     quando: "Edição 2026: inscrições até 23/10, prova online em 04/11, premiados de 17/11 a 04/12.",
-    como: "Prova online de leitura em espanhol, da mesma organização da Olimpíada de Literatura (Instituto Philotimia), com apoio da Embaixada da Espanha.",
+    como: "Prova online de leitura em espanhol, organizada pelo Instituto Philotimia, com apoio da Embaixada da Espanha.",
     site: "https://olimpiadadeespanhol.com",
   },
   {
