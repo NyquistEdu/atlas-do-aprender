@@ -262,3 +262,9 @@ details[open]>summary .ver{display:none}
 .pl-tema h4{margin:0;font-size:1.05rem;font-family:inherit;font-weight:700;color:var(--ink)}
 .pl-tema .k{margin:0;font-size:.78rem;color:var(--soft);font-weight:700}
 .pl-portas{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:.9rem;color:var(--soft)}
+.pl-check{flex:none;width:22px;height:22px;border-radius:6px;border:2px solid var(--cc,var(--sc));background:var(--card);color:#fff;font:inherit;font-weight:700;font-size:.8rem;line-height:1;display:inline-grid;place-items:center;cursor:pointer;padding:0;position:relative}
+.pl-check.ok{background:var(--cc,var(--sc))}
+.pl-check span{font-size:.68rem;color:var(--cc);font-weight:700}
+.pl-check.ok span{color:#fff}
+.pl-caixas{display:inline-flex;gap:4px;flex:none}
+.pl-conta{margin-left:auto;font-size:.8rem;color:var(--soft);font-family:inherit;font-weight:700}

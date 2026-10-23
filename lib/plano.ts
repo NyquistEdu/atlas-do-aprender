@@ -21,7 +21,27 @@ export type Plano = {
   eventos?: EventoPlano[];
 };
 
-export type Item = { quem: string; icone: string; texto: string; link?: string; destaque?: boolean };
+/** Uma tarefa do dia. area/tipo/minutos são usados para registrar no diário quando a tarefa é marcada. */
+export type Item = { id: string; quem: string; icone: string; texto: string; link?: string; destaque?: boolean; area: string; tipo: string; minutos: number };
+
+/** Identificador estável da tarefa dentro do dia (o mesmo texto no mesmo dia é a mesma tarefa). */
+const idDe = (texto: string) => texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
+/** Área e tipo do diário a partir do ícone, para extras e eventos. */
+function classifica(icone: string, texto: string): [string, string, number] {
+  if (icone === "📚") return ["por", "Leitura", 15];
+  if (icone === "🏅" || icone === "🏆") return ["por", /prova/i.test(texto) ? "Exercício" : "Exercício", 20];
+  if (icone === "🧪") return ["cie", "Experimento", 30];
+  if (icone === "🎲") return ["jog", "Jogo", 30];
+  if (icone === "📺" || icone === "🎬") return ["out", "Filme ou documentário", icone === "🎬" ? 90 : 20];
+  if (icone === "🔤") return ["por", "Exercício", 20];
+  if (icone === "🔢") return ["mat", "Exercício", 20];
+  if (icone === "🔭") return ["cie", "Exercício", 20];
+  return ["out", "Estudo da trilha", 20];
+}
+const item = (quem: string, icone: string, texto: string, extra: Partial<Item> = {}): Item => {
+  const [area, tipo, minutos] = classifica(icone, texto);
+  return { id: idDe(texto), quem, icone, texto, area, tipo, minutos, ...extra };
+};
 
 export const DS = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
 export const DIAS_NOME = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
@@ -53,14 +73,14 @@ export function infoTema(t: TemaPlano): { tema: Tema | undefined; apostila: Apos
 
 const itemTema = (quem: string, t: TemaPlano): Item => {
   const i = infoTema(t);
-  return { quem, icone: MAT_INFO[t.materia][1], texto: i.nome, link: i.apostila ? `/apostilas/${i.apostila.slug}` : i.link };
+  return item(quem, MAT_INFO[t.materia][1], i.nome, { link: i.apostila ? `/apostilas/${i.apostila.slug}` : i.link, area: t.materia, tipo: i.apostila ? "Exercício" : "Estudo da trilha" });
 };
 
 /** O que fazer num dia: apostilas do padrão da semana, extras, eventos com data e as atividades de fim de semana. */
 export function itensDoDia(p: Plano, data: string): Item[] {
   const wd = diaSemana(data);
   const out: Item[] = [];
-  for (const e of p.eventos || []) if (e.data === data) out.push({ quem: e.quem, icone: e.icone || "📌", texto: e.texto, link: e.link, destaque: true });
+  for (const e of p.eventos || []) if (e.data === data) out.push(item(e.quem, e.icone || "📌", e.texto, { link: e.link, destaque: true }));
   for (const m of DIA_MATERIA[wd] || []) {
     for (const c of p.criancas) for (const t of c.temas) if (t.materia === m) out.push(itemTema(c.nome, t));
     for (const t of p.juntos || []) if (t.materia === m) out.push(itemTema(JUNTOS, t));
@@ -69,11 +89,11 @@ export function itensDoDia(p: Plano, data: string): Item[] {
     if (!e.dias.includes(DS[wd])) continue;
     if (e.de && data < e.de) continue;
     if (e.ate && data > e.ate) continue;
-    out.push({ quem: e.quem, icone: e.icone || "⭐", texto: e.texto, link: e.link });
+    out.push(item(e.quem, e.icone || "⭐", e.texto, { link: e.link }));
   }
-  if (NOITE[wd]) out.push({ quem: JUNTOS, icone: NOITE[wd][0], texto: NOITE[wd][1] });
-  if (wd === 5) out.push({ quem: JUNTOS, icone: "🧪", texto: "Mão na massa" , link: "/mao-na-massa" });
-  if (wd === 6) out.push({ quem: JUNTOS, icone: "🎲", texto: "Jogo em família", link: "/jogos" });
+  if (NOITE[wd]) out.push(item(JUNTOS, NOITE[wd][0], NOITE[wd][1]));
+  if (wd === 5) out.push(item(JUNTOS, "🧪", "Mão na massa", { link: "/mao-na-massa" }));
+  if (wd === 6) out.push(item(JUNTOS, "🎲", "Jogo em família", { link: "/jogos" }));
   return out;
 }
 
@@ -82,3 +102,8 @@ export const temasDe = (p: Plano, nome: string) => [
   ...(p.criancas.find((c) => c.nome === nome)?.temas || []).map((t) => ({ t, juntos: false })),
   ...(p.juntos || []).map((t) => ({ t, juntos: true })),
 ];
+
+/** Chave da marcação de uma tarefa (tabela progresso, por criança). */
+export const chaveTarefa = (data: string, it: Item) => `plano|${data}|${it.id}`.slice(0, 100);
+/** Texto usado no diário para saber que o registro veio do plano (e poder desfazer ao desmarcar). */
+export const MARCA_PLANO = "Feito pelo plano de estudos.";

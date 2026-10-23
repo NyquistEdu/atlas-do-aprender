@@ -6,7 +6,7 @@ import { supabase } from "@/lib/supabase";
 import { useAtlas } from "@/components/Providers";
 import { FormAcesso, SELO_CONTA } from "@/components/Acesso";
 import {
-  DIAS_NOME, JUNTOS, MAT_INFO, ddmm, diaSemana, fimDoPlano, infoTema, iso, itensDoDia, somaDias, temasDe,
+  DIAS_NOME, JUNTOS, MAT_INFO, MARCA_PLANO, chaveTarefa, ddmm, diaSemana, fimDoPlano, infoTema, iso, itensDoDia, somaDias, temasDe,
   type Item, type Plano,
 } from "@/lib/plano";
 import { anoNome } from "@/lib/apostilas";
@@ -78,13 +78,40 @@ export default function MeuPlano() {
   const de = (quem: string) => itens.filter((i) => i.quem === quem);
   const proximos = (p.eventos || []).filter((e) => e.data >= hoje).sort((x, y) => x.data.localeCompare(y.data)).slice(0, 4);
   const nomeQuem = (q: string) => (q === JUNTOS ? "Juntos" : q);
+  const nomes = p.criancas.map((c) => c.nome);
 
-  const Linha = ({ i }: { i: Item }) => (
-    <li className={i.destaque ? "pl-destaque" : undefined}>
-      <span className="em" aria-hidden="true">{i.icone}</span>
-      {i.link ? (i.link.endsWith(".pdf") ? <a href={i.link} download>{i.texto}</a> : i.link.startsWith("http") ? <a href={i.link} target="_blank" rel="noopener noreferrer">{i.texto}</a> : <Link href={i.link}>{i.texto}</Link>) : <span>{i.texto}</span>}
-    </li>
-  );
+  /** Marca ou desmarca a tarefa para uma criança; ao marcar, já cria o registro no diário; ao desmarcar, apaga esse registro. */
+  const marcar = async (it: Item, crianca: string) => {
+    const chave = chaveTarefa(dia, it);
+    const estava = a.feito(chave, crianca);
+    await a.alternar(chave, crianca);
+    if (estava) {
+      const e = a.entradas.find((x) => x.crianca === crianca && x.data === dia && x.titulo === it.texto && x.o_que.startsWith(MARCA_PLANO));
+      if (e) await a.removeEntrada(e.id);
+    } else {
+      await a.addEntrada({ data: dia, crianca, area: it.area, tipo: it.tipo, minutos: it.minutos, titulo: it.texto, o_que: MARCA_PLANO, descobertas: "", envolvimento: 4, proximo: "" });
+    }
+  };
+
+  const Texto = ({ i }: { i: Item }) =>
+    i.link ? (i.link.endsWith(".pdf") ? <a href={i.link} download>{i.texto}</a> : i.link.startsWith("http") ? <a href={i.link} target="_blank" rel="noopener noreferrer">{i.texto}</a> : <Link href={i.link}>{i.texto}</Link>) : <span>{i.texto}</span>;
+
+  const Caixa = ({ i, crianca, rotulo }: { i: Item; crianca: string; rotulo?: string }) => {
+    const ok = a.feito(chaveTarefa(dia, i), crianca);
+    return (
+      <button type="button" className={`pl-check${ok ? " ok" : ""}`} aria-pressed={ok} onClick={() => marcar(i, crianca)}
+        aria-label={`${ok ? "Desmarcar" : "Marcar"} ${i.texto}${rotulo ? ` para ${crianca}` : ""}`} title={ok ? "Feito (registrado no diário). Clique para desmarcar." : "Marcar como feito e registrar no diário"}
+        style={rotulo ? { ["--cc" as string]: cores[crianca] } : undefined}>
+        {rotulo ? <span>{rotulo}</span> : ok ? "✓" : ""}
+      </button>
+    );
+  };
+
+  /** Quantas tarefas cada criança fez no dia (as dela + as de todos juntos). */
+  const feitas = (c: string) => {
+    const t = [...de(c), ...de(JUNTOS)];
+    return [t.filter((i) => a.feito(chaveTarefa(dia, i), c)).length, t.length];
+  };
 
   return (
     <div className="wrap">
@@ -108,22 +135,29 @@ export default function MeuPlano() {
         {[...p.criancas.map((c) => c.nome), JUNTOS].map((q) => {
           const lista = de(q);
           if (q === JUNTOS && !lista.length) return null;
-          const chave = `plano|${dia}`;
-          const marcado = q !== JUNTOS && a.feito(chave, q);
+          const [f, t] = q === JUNTOS ? [0, 0] : feitas(q);
           return (
             <section className="card pl-col" key={q} style={{ ["--sc" as string]: cores[q] }}>
-              <h3><b className="pl-letra" style={{ background: cores[q] }}>{q === JUNTOS ? "★" : q[0]}</b>{nomeQuem(q)}</h3>
-              {lista.length ? <ul className="pl-itens">{lista.map((i, k) => <Linha key={k} i={i} />)}</ul> : <p className="meta" style={{ margin: 0 }}>Dia livre.</p>}
-              {q !== JUNTOS && (
-                <button type="button" className={`btn small ${marcado ? "" : "ghost"}`} aria-pressed={marcado} onClick={() => a.alternar(chave, q)}>
-                  {marcado ? "✓ Dia feito" : "Marcar dia feito"}
-                </button>
-              )}
+              <h3><b className="pl-letra" style={{ background: cores[q] }}>{q === JUNTOS ? "★" : q[0]}</b>{nomeQuem(q)}
+                {q !== JUNTOS && t > 0 && <span className="pl-conta">{f} de {t}</span>}</h3>
+              {lista.length ? (
+                <ul className="pl-itens">
+                  {lista.map((i) => (
+                    <li key={i.id} className={i.destaque ? "pl-destaque" : undefined}>
+                      {q === JUNTOS
+                        ? <span className="pl-caixas">{nomes.map((n) => <Caixa key={n} i={i} crianca={n} rotulo={n[0]} />)}</span>
+                        : <Caixa i={i} crianca={q} />}
+                      <span className="em" aria-hidden="true">{i.icone}</span>
+                      <Texto i={i} />
+                    </li>
+                  ))}
+                </ul>
+              ) : <p className="meta" style={{ margin: 0 }}>Dia livre.</p>}
             </section>
           );
         })}
       </div>
-      <p className="meta" style={{ margin: 0 }}>Pouco e todo dia: pare antes do cansaço. O que não der hoje fica para amanhã. <Link href="/diario">Registrar no diário</Link></p>
+      <p className="meta" style={{ margin: 0 }}>Marque cada tarefa feita: ela entra sozinha no <Link href="/diario">diário</Link>, onde você pode anotar o que a criança descobriu. Em “Juntos”, marque a letra de quem fez. Pouco e todo dia: o que não der hoje fica para amanhã.</p>
 
       {proximos.length > 0 && (
         <>
