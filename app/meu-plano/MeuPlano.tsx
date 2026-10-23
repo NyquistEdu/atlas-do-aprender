@@ -82,7 +82,7 @@ export default function MeuPlano() {
   const Linha = ({ i }: { i: Item }) => (
     <li className={i.destaque ? "pl-destaque" : undefined}>
       <span className="em" aria-hidden="true">{i.icone}</span>
-      {i.link ? (i.link.endsWith(".pdf") ? <a href={i.link} download>{i.texto}</a> : <Link href={i.link}>{i.texto}</Link>) : <span>{i.texto}</span>}
+      {i.link ? (i.link.endsWith(".pdf") ? <a href={i.link} download>{i.texto}</a> : i.link.startsWith("http") ? <a href={i.link} target="_blank" rel="noopener noreferrer">{i.texto}</a> : <Link href={i.link}>{i.texto}</Link>) : <span>{i.texto}</span>}
     </li>
   );
 
