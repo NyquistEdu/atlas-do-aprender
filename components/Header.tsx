@@ -71,7 +71,7 @@ export default function Header() {
           </div>
         </div>
         <nav className="tabs" aria-label="Seções">
-          {ABAS.map(([href, nome]) => (
+          {(user ? [ABAS[0], ["/meu-plano", "Meu plano"] as [string, string], ...ABAS.slice(1)] : ABAS).map(([href, nome]) => (
             <Link key={href} href={href} aria-current={ativa(href) ? "page" : undefined}>{nome}</Link>
           ))}
         </nav>

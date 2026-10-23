@@ -124,3 +124,20 @@ create policy "qualquer pessoa pede apostila" on public.pedidos_apostila
   for insert to anon, authenticated with check (status = 'novo');
 create policy "administradora le pedidos de apostila" on public.pedidos_apostila
   for select to authenticated using ((auth.jwt() ->> 'email') = 'stephaniekamarryas@gmail.com');
+
+-- Plano de estudos de cada família (página /meu-plano). A família lê o próprio plano pelo e-mail da conta; só a administradora cria e altera.
+create table if not exists public.planos (
+  id uuid primary key default gen_random_uuid(),
+  criado_em timestamptz not null default now(),
+  email text not null check (char_length(email) <= 200 and email like '%@%'),
+  dados jsonb not null check (pg_column_size(dados) <= 60000),
+  ativo boolean not null default true
+);
+alter table public.planos enable row level security;
+create policy "familia le o proprio plano" on public.planos for select to authenticated
+  using (lower(email) = lower(auth.jwt() ->> 'email') or (auth.jwt() ->> 'email') = 'stephaniekamarryas@gmail.com');
+create policy "administradora cria planos" on public.planos for insert to authenticated
+  with check ((auth.jwt() ->> 'email') = 'stephaniekamarryas@gmail.com');
+create policy "administradora altera planos" on public.planos for update to authenticated
+  using ((auth.jwt() ->> 'email') = 'stephaniekamarryas@gmail.com') with check ((auth.jwt() ->> 'email') = 'stephaniekamarryas@gmail.com');
+grant select, insert, update on public.planos to authenticated;

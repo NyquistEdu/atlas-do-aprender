@@ -30,8 +30,9 @@ type Atlas = {
   setCrianca: (n: string) => void;
   addCrianca: (n: string) => Promise<string | null>;
   removeCrianca: (n: string) => Promise<void>;
-  feito: (chave: string) => boolean;
-  alternar: (chave: string) => Promise<void>;
+  /** c: nome da criança; sem c, usa a criança escolhida no topo. */
+  feito: (chave: string, c?: string) => boolean;
+  alternar: (chave: string, c?: string) => Promise<void>;
   entradas: Entrada[];
   addEntrada: (e: NovaEntrada) => Promise<string | null>;
   removeEntrada: (id: string) => Promise<void>;
@@ -130,16 +131,17 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     if (crianca === nome) setCrianca(resto[0]);
   };
 
-  const feito = (chave: string) => progresso.has(`${crianca}|${chave}`);
+  const feito = (chave: string, c?: string) => progresso.has(`${c || crianca}|${chave}`);
 
-  const alternar = async (chave: string) => {
-    if (!supabase || !user || !crianca) return;
-    const k = `${crianca}|${chave}`;
+  const alternar = async (chave: string, c?: string) => {
+    const quem = c || crianca;
+    if (!supabase || !user || !quem) return;
+    const k = `${quem}|${chave}`;
     const tinha = progresso.has(k);
     setProgresso((p) => { const n = new Set(p); tinha ? n.delete(k) : n.add(k); return n; });
     const r = tinha
-      ? await supabase.from("progresso").delete().match({ crianca, chave })
-      : await supabase.from("progresso").insert({ crianca, chave });
+      ? await supabase.from("progresso").delete().match({ crianca: quem, chave })
+      : await supabase.from("progresso").insert({ crianca: quem, chave });
     if (r.error) {
       setProgresso((p) => { const n = new Set(p); tinha ? n.add(k) : n.delete(k); return n; });
       setErro("Não consegui salvar a marcação. Tente de novo.");

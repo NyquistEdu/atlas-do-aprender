@@ -1,0 +1,169 @@
+{
+ "familia": "Yuri e Arthur",
+ "inicio": "2026-10-20",
+ "dias": 30,
+ "como": "Cada um faz a apostila do dia no seu ritmo, em blocos de 15 a 20 minutos. Pouco e todo dia; pare antes do cansaço. Até 11/11, a leitura da noite é o livro da prova de cada um.",
+ "criancas": [
+  {
+   "nome": "Yuri",
+   "temas": [
+    {
+     "materia": "por",
+     "ano": "1",
+     "tema": 1
+    },
+    {
+     "materia": "mat",
+     "ano": "1",
+     "tema": 1
+    }
+   ]
+  },
+  {
+   "nome": "Arthur",
+   "ano": "3º ano",
+   "temas": [
+    {
+     "materia": "por",
+     "ano": "3",
+     "tema": 5
+    },
+    {
+     "materia": "mat",
+     "ano": "3",
+     "tema": 5
+    }
+   ]
+  }
+ ],
+ "juntos": [
+  {
+   "materia": "cie",
+   "ano": "3",
+   "tema": 4
+  },
+  {
+   "materia": "mat",
+   "ano": "3",
+   "tema": 3
+  }
+ ],
+ "extras": [
+  {
+   "quem": "Yuri",
+   "icone": "🏅",
+   "texto": "Olimpíada: apostila O Gato de Botas",
+   "dias": [
+    "Seg",
+    "Ter",
+    "Qua",
+    "Qui",
+    "Sex"
+   ],
+   "ate": "2026-11-11",
+   "link": "/olimpiadas/gato-de-botas.pdf"
+  },
+  {
+   "quem": "Arthur",
+   "icone": "🏅",
+   "texto": "Olimpíada: apostila Enquanto Ana Espera",
+   "dias": [
+    "Seg",
+    "Ter",
+    "Qua",
+    "Qui",
+    "Sex"
+   ],
+   "ate": "2026-11-11",
+   "link": "/olimpiadas/enquanto-ana-espera.pdf"
+  },
+  {
+   "quem": "Yuri",
+   "icone": "📚",
+   "texto": "Leitura da noite: O Gato de Botas",
+   "dias": [
+    "Seg",
+    "Ter",
+    "Qua",
+    "Qui",
+    "Sex",
+    "Sáb",
+    "Dom"
+   ],
+   "ate": "2026-11-11"
+  },
+  {
+   "quem": "Arthur",
+   "icone": "📚",
+   "texto": "Leitura da noite: Enquanto Ana Espera",
+   "dias": [
+    "Seg",
+    "Ter",
+    "Qua",
+    "Qui",
+    "Sex",
+    "Sáb",
+    "Dom"
+   ],
+   "ate": "2026-11-11"
+  },
+  {
+   "quem": "Yuri",
+   "icone": "📚",
+   "texto": "Leitura da noite",
+   "dias": [
+    "Seg",
+    "Ter",
+    "Qua",
+    "Qui",
+    "Sex",
+    "Sáb",
+    "Dom"
+   ],
+   "de": "2026-11-12"
+  },
+  {
+   "quem": "Arthur",
+   "icone": "📚",
+   "texto": "Leitura da noite",
+   "dias": [
+    "Seg",
+    "Ter",
+    "Qua",
+    "Qui",
+    "Sex",
+    "Sáb",
+    "Dom"
+   ],
+   "de": "2026-11-12"
+  }
+ ],
+ "eventos": [
+  {
+   "data": "2026-11-11",
+   "quem": "juntos",
+   "icone": "🏅",
+   "texto": "Véspera da prova: releitura leve, sem estudar coisa nova"
+  },
+  {
+   "data": "2026-11-12",
+   "quem": "Yuri",
+   "icone": "🏆",
+   "texto": "Prova da Olimpíada de Literatura (Candura), das 7h às 23h59",
+   "link": "https://www.olimpiadadeliteratura.com.br"
+  },
+  {
+   "data": "2026-11-13",
+   "quem": "Arthur",
+   "icone": "🏆",
+   "texto": "Prova da Olimpíada de Literatura (Mirim), das 7h às 23h59",
+   "link": "https://www.olimpiadadeliteratura.com.br"
+  },
+  {
+   "data": "2026-11-19",
+   "quem": "juntos",
+   "icone": "🏅",
+   "texto": "Resultado da Olimpíada de Literatura"
+  }
+ ]
+}

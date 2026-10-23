@@ -6,7 +6,7 @@ export default function Progresso({ chaves, cor }: { chaves: string[]; cor: stri
   const { configurado, user, crianca, feito } = useAtlas();
   if (!configurado) return null;
   if (!user) return null;
-  const n = chaves.filter(feito).length;
+  const n = chaves.filter((k) => feito(k)).length;
   return (
     <div className="prog">
       <span>{n ? `${crianca} já explorou ${n} ${n === 1 ? "tema" : "temas"} deste ano` : `Marque os temas que ${crianca} explorar para continuar de onde parou`}</span>
