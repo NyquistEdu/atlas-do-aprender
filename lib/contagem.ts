@@ -22,6 +22,7 @@ const MAPA: Record<string, string> = {
   ViewContent: "viu_apostila",
   InitiateCheckout: "comprar",
   CliqueAfiliado: "afiliado",
+  CliqueLoja: "loja",
   BaixouMaterial: "baixou",
   ConviteVisto: "convite_visto",
   AcessoAberto: "abriu_entrar",

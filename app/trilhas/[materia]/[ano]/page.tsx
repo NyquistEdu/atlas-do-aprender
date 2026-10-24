@@ -7,6 +7,7 @@ import Progresso from "./Progresso";
 import { ConviteConta } from "@/components/Acesso";
 import { AmazonLivro } from "@/components/Amazon";
 import { apostilaDoTema } from "@/lib/apostilas";
+import { jogosDoTema } from "@/lib/loja";
 import { url, jsonLd } from "@/lib/seo";
 
 type P = { params: { materia: string; ano: string } };
@@ -61,6 +62,7 @@ export default function Trilha({ params }: P) {
         {lista.map((th, i) => {
           const id = temaId(s, y, i);
           const ap = apostilaDoTema(s, y, i + 1);
+          const jgs = jogosDoTema(s, y, i + 1);
           return (
             <details className="theme" key={id} id={`tema-${i + 1}`} style={{ ["--sc" as string]: cor }}>
               <summary>
@@ -78,6 +80,12 @@ export default function Trilha({ params }: P) {
                     <div><b>Apostila deste tema: {ap.titulo}</b><span>{ap.paginas} páginas para imprimir, com exercícios, jogos e gabarito</span></div>
                   </Link>
                 )}
+                {jgs.map((j) => (
+                  <Link className="jogo-tema" key={j.slug} href={`/loja#${j.slug}`}>
+                    <i aria-hidden="true">{j.emoji}</i>
+                    <div><b>Jogo para este tema: {j.nome}</b><span>Feito pelo Atlas, à venda no Mercado Livre · ver como usar</span></div>
+                  </Link>
+                ))}
                 <section className="books">
                   <h4>Livros paradidáticos</h4>
                   {th.l?.length ? (
