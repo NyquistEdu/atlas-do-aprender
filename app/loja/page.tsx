@@ -24,13 +24,18 @@ export default function Loja() {
         {LOJA.map((p) => (
           <article className="produto" id={p.slug} key={p.slug} style={{ ["--sc" as string]: `var(--${p.area})` }}>
             <div className="produto-capa">
-              {p.foto ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={`/loja/${p.slug}.webp`} alt={p.nome} width={800} height={800} loading="lazy" />
+              {p.fotos ? (
+                <div className="loja-fotos" tabIndex={p.fotos > 1 ? 0 : undefined} aria-label={p.fotos > 1 ? `${p.fotos} fotos, role para o lado` : undefined}>
+                  {Array.from({ length: p.fotos }, (_, i) => (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img key={i} src={`/loja/${p.slug}${i ? `-${i + 1}` : ""}.webp`} alt={i ? `${p.nome}, foto ${i + 1}` : p.nome} width={800} height={800} loading="lazy" />
+                  ))}
+                </div>
               ) : (
                 <div className="loja-capa" aria-hidden="true">{p.emoji}</div>
               )}
             </div>
+            {(p.fotos || 0) > 1 && <p className="meta loja-dica">Arraste a foto para o lado: são {p.fotos} fotos →</p>}
             <div className="produto-info">
               <span className="meta">{MATERIAS[p.area]} · {p.idade}</span>
               <h3>{p.nome}</h3>

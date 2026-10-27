@@ -271,6 +271,10 @@ details[open]>summary .ver{display:none}
 .loja-capa{aspect-ratio:1;display:grid;place-items:center;font-size:5.5rem;border-radius:8px 8px 0 0;background:radial-gradient(circle at 30% 25%,color-mix(in srgb,var(--sc) 22%,var(--card)),color-mix(in srgb,var(--sc) 8%,var(--paper)))}
 .loja .produto-capa{padding:16px 16px 0}
 .loja .produto-capa img{aspect-ratio:1;object-fit:cover;box-shadow:none}
+.loja-fotos{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;border-radius:8px 8px 0 0}
+.loja-fotos img{flex:0 0 100%;scroll-snap-align:start}
+.loja-fotos:has(img+img){padding-bottom:6px}
+.loja-dica{margin:6px 16px 0;font-size:.8rem}
 .jogo-tema{display:flex;gap:12px;align-items:center;background:var(--card);border:1px dashed var(--sc);border-radius:10px;padding:10px 12px;text-decoration:none}
 .jogo-tema i{font-style:normal;font-size:2rem;width:56px;text-align:center}
 .jogo-tema div{display:grid;gap:2px;min-width:0}

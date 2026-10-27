@@ -3,7 +3,7 @@ import type { Materia } from "@/lib/data";
 /**
  * Jogos educativos vendidos pela Stephanie no Mercado Livre e na Shopee.
  * O site só mostra e explica; a compra (pagamento, frete, troca) acontece na plataforma.
- * Para pôr foto: salve public/loja/<slug>.webp (quadrada, 800×800) e preencha `foto: true`.
+ * Fotos: public/loja/<slug>.webp, <slug>-2.webp, <slug>-3.webp… (quadradas, 800×800); `fotos` diz quantas há.
  */
 export type ProdutoLoja = {
   slug: string;
@@ -18,7 +18,7 @@ export type ProdutoLoja = {
   temas: [Materia, string, number][];
   mercadoLivre?: string;
   shopee?: string;
-  foto?: boolean;
+  fotos?: number;
 };
 
 const ML = "?pdp_filters=seller_id%3A214831539";
@@ -30,9 +30,10 @@ export const LOJA: ProdutoLoja[] = [
     emoji: "🍕",
     area: "mat",
     idade: "a partir de 7 anos",
-    resumo: "Peças que representam o inteiro e suas partes para montar, comparar e trocar: metade, terço, quarto e outras frações viram algo que se pega com a mão.",
-    trabalha: ["Ideia de partes iguais", "Comparar frações", "Frações equivalentes", "Raciocínio lógico"],
-    comoUsar: "Comece montando o inteiro com peças iguais e contando quantas foram precisas. Depois pergunte: quantos quartos cabem numa metade? Qual pedaço é maior, um terço ou um quarto? Combina com a apostila Pedaço por Pedaço.",
+    resumo: "Um tabuleiro com seis círculos de encaixe: o inteiro e o mesmo círculo cortado em metades, terços, quartos, quintos e sextos. Cada cor é uma fração e cada peça traz o número escrito, então a criança vê, pega e compara o tamanho de cada pedaço.",
+    trabalha: ["Ideia de inteiro e partes iguais", "Comparar frações (1/3 ou 1/4?)", "Frações equivalentes", "Coordenação motora fina"],
+    comoUsar: "Tire as peças e peça para a criança remontar cada círculo, contando quantas peças formam um inteiro. Depois ponha peças lado a lado: quantos quartos cobrem uma metade? Quantos sextos cobrem um terço? Qual pedaço é maior, um terço ou um quinto? Combina com a apostila Pedaço por Pedaço.",
+    fotos: 1,
     temas: [["mat", "3", 5], ["mat", "4", 2], ["mat", "5", 1]],
     mercadoLivre: `https://www.mercadolivre.com.br/jogo-educativo-de-fracoes--estimula-raciocinio-logico/up/MLBU5372493260${ML}`,
   },
@@ -42,9 +43,10 @@ export const LOJA: ProdutoLoja[] = [
     emoji: "🎲",
     area: "mat",
     idade: "a partir de 6 anos",
-    resumo: "Um dominó em que as peças se encaixam pela conta e pelo resultado: para jogar, a criança precisa calcular, e calcula sem perceber que está treinando.",
-    trabalha: ["Cálculo mental", "Fatos básicos das operações", "Atenção", "Esperar a vez e seguir regras"],
+    resumo: "Um dominó em que cada lado da peça é uma conta de somar ou subtrair (3+1, 9-4, 6+3…). Encaixa quem tem o mesmo resultado: para jogar, a criança precisa calcular, e calcula sem perceber que está treinando. Vem numa caixa com tampa de correr para guardar as peças; a cor varia conforme a opção escolhida.",
+    trabalha: ["Adição e subtração até 10", "Cálculo mental", "Atenção", "Esperar a vez e seguir regras"],
     comoUsar: "Jogue em dupla ou em família, com as peças viradas. No começo vale contar nos dedos ou usar tampinhas; com o tempo, desafie a responder de cabeça. Uma partida por dia rende mais que uma lista de contas.",
+    fotos: 3,
     temas: [["mat", "1", 3], ["mat", "2", 2], ["mat", "3", 1]],
     mercadoLivre: `https://www.mercadolivre.com.br/domino-matematico-math-match-educativo/up/MLBU5331165987${ML}`,
   },
@@ -54,9 +56,10 @@ export const LOJA: ProdutoLoja[] = [
     emoji: "🌀",
     area: "mat",
     idade: "a partir de 6 anos",
-    resumo: "Um spinner para girar e calcular: junta o gosto das crianças pelo fidget spinner com o treino das contas, em rodadas rápidas que cabem em qualquer intervalo.",
-    trabalha: ["Fatos básicos e tabuada", "Rapidez no cálculo", "Concentração", "Coordenação fina"],
-    comoUsar: "Use em rodadas curtas, de 3 a 5 minutos: gire, resolva a conta que aparecer e marque um ponto a cada acerto. Bom para o treino diário e para os dias em que a criança está agitada.",
+    resumo: "Discos de engrenagens para girar e calcular: cada disco tem uma operação no centro (2×, ×5, ÷3, ÷8…) e, ao girar as engrenagens, a seta aponta um número e a criança diz o resultado. Junta o gosto pelo brinquedo de mexer nas mãos com o treino da tabuada, em rodadas rápidas.",
+    trabalha: ["Tabuada de multiplicar e dividir", "Rapidez no cálculo", "Concentração", "Coordenação fina"],
+    comoUsar: "Use em rodadas curtas, de 3 a 5 minutos, com um disco por vez: gire, diga o resultado da conta que a seta mostrar e marque um ponto a cada acerto. Comece pelo 2× e pelo ×5 e deixe as divisões para depois. Bom para o treino diário e para os dias em que a criança está agitada.",
+    fotos: 1,
     temas: [["mat", "1", 3], ["mat", "2", 2], ["mat", "3", 1]],
     mercadoLivre: `https://www.mercadolivre.com.br/giragenio-spinner-matematico-para-criancas--fidget-spinner/up/MLBU5331645429${ML}`,
   },
