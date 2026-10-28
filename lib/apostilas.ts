@@ -111,9 +111,27 @@ export type Gratuito = {
   resumo: string;
   dentro: string[];
   amostras: string[];
+  publico?: string; // etiqueta de público (padrão: "Todas as séries")
+  comoUsar?: string[]; // parágrafos de "Como usar" (padrão: texto do Caderno de Conversa)
 };
 
 export const GRATUITOS: Gratuito[] = [
+  {
+    slug: "bruxa-matilda",
+    titulo: "O Feitiço da Bruxa Matilda",
+    subtitulo: "Caça ao tesouro de Halloween para fazer em casa",
+    paginas: 22,
+    arquivo: "/bruxa-matilda.pdf",
+    nomeArquivo: "O-Feitico-da-Bruxa-Matilda-Atlas-do-Aprender.pdf",
+    resumo: "A Bruxa Matilda espirrou no meio de um feitiço e trancou os doces da festa num baú. Para abrir, as crianças seguem pistas pela casa e pelo quintal, juntam os 4 ingredientes da Poção do Desencanto e descobrem o código do cadeado. Elas leem, contam, decifram símbolos e trabalham juntas, sem sustos e sem ninguém ser eliminado.",
+    dentro: ["Guia da mediadora com materiais, cronograma e 7 estações passo a passo", "Carta da Bruxa e 8 cartões de pista com 1 ou 2 palavras e desenho, para quem está começando a ler", "Morcegos, quebra-cabeça, código de símbolos e molde da mensagem invisível", "Rótulos da poção, ossos, crachás dos papéis e faixa do feitiço", "Grande final com poção que espuma, certificados e bilhete da bruxa"],
+    amostras: ["As estações passo a passo", "A carta da Bruxa Matilda", "Cartões de pista", "O código dos símbolos"],
+    publico: "6 a 10 anos",
+    comoUsar: [
+      "Imprima na véspera, recorte e esconda as pistas da última para a primeira. A brincadeira dura cerca de 1 hora, para 3 a 6 crianças, e quase tudo sai de casa: o único item que talvez precise comprar é um cadeado de 3 números.",
+      "Sem quintal, dá para montar a teia num corredor e o cemitério de ossos numa bacia.",
+    ],
+  },
   {
     slug: "caderno-de-conversa",
     titulo: "Caderno de Conversa",

@@ -76,7 +76,7 @@ export default function Vitrine() {
               <img src={`/apostilas/${g.slug}/capa.webp`} alt={`Capa do ${g.titulo}`} width={566} height={800} loading="lazy" />
             </Link>
             <div className="produto-info">
-              <div className="tags"><span className="tag cie">Gratuito</span><span className="tag">Geral</span><span className="tag">Todas as séries</span></div>
+              <div className="tags"><span className="tag cie">Gratuito</span><span className="tag">Geral</span><span className="tag">{g.publico ?? "Todas as séries"}</span></div>
               <h3><Link href={`/apostilas/${g.slug}`}>{g.titulo}</Link></h3>
               <p className="meta">{g.subtitulo} · {g.paginas} páginas</p>
               <div className="row">

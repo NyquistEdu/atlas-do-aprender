@@ -10,6 +10,7 @@ export type Tematica = {
   livros: [string, string][];
   blocos: Bloco[];
   cuidado?: string;
+  material?: { href: string; titulo: string; texto: string }; // material gratuito do Atlas em destaque
 };
 
 export const TEMATICAS: Tematica[] = [
@@ -18,6 +19,7 @@ export const TEMATICAS: Tematica[] = [
     titulo: "Halloween e Dia do Saci",
     quando: "31 de outubro",
     emoji: "🎃",
+    material: { href: "/apostilas/bruxa-matilda", titulo: "O Feitiço da Bruxa Matilda", texto: "Caça ao tesouro de Halloween pronta para imprimir: pistas pela casa, código secreto e uma poção que espuma no final. Gratuita." },
     resumo: "Bruxas, monstros, assombrações e o nosso Saci: livros, filmes, experimentos e brincadeiras para falar de medo, imaginação e folclore.",
     intro: [
       "O Halloween nasceu de festas antigas dos povos celtas, que marcavam o fim da colheita e o começo do inverno. A tradição chegou aos Estados Unidos com imigrantes irlandeses e de lá se espalhou pelo mundo, com fantasias, abóboras e “gostosuras ou travessuras”.",

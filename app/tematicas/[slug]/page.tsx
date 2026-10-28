@@ -24,6 +24,14 @@ export default function Tema({ params }: { params: { slug: string } }) {
       <p className="eyebrow-i"><Link href="/tematicas">Temáticas</Link> · {t.quando}</p>
       <h1 className="hero-t">{t.emoji} {t.titulo}</h1>
       {t.intro.map((p) => <p className="lead" key={p.slice(0, 20)}>{p}</p>)}
+      {t.material && (
+        <section className="card">
+          <p className="eyebrow-i" style={{ margin: 0 }}>Gratuito para imprimir</p>
+          <h3 style={{ marginTop: 4 }}>{t.material.titulo}</h3>
+          <p>{t.material.texto}</p>
+          <div className="row"><Link className="btn" href={t.material.href}>Ver e baixar</Link></div>
+        </section>
+      )}
       <section className="books">
         <h4>Livros para ler junto</h4>
         <ul>{t.livros.map(([b, w]) => <li key={b}><b>{b}</b><span>{w}</span><AmazonLivro livro={b} /></li>)}</ul>
