@@ -26,10 +26,10 @@ export default function Tema({ params }: { params: { slug: string } }) {
       {t.intro.map((p) => <p className="lead" key={p.slice(0, 20)}>{p}</p>)}
       {t.material && (
         <section className="card">
-          <p className="eyebrow-i" style={{ margin: 0 }}>Gratuito para imprimir</p>
+          <p className="eyebrow-i" style={{ margin: 0 }}>{t.material.pago ? "Kit do Atlas para imprimir" : "Gratuito para imprimir"}</p>
           <h3 style={{ marginTop: 4 }}>{t.material.titulo}</h3>
           <p>{t.material.texto}</p>
-          <div className="row"><Link className="btn" href={t.material.href}>Ver e baixar</Link></div>
+          <div className="row"><Link className="btn" href={t.material.href}>{t.material.pago ? "Ver o kit" : "Ver e baixar"}</Link></div>
         </section>
       )}
       <section className="books">

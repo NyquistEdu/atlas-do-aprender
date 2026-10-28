@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { APOSTILAS, GRATUITOS, anoNome, type Gratuito } from "@/lib/apostilas";
+import { APOSTILAS, GRATUITOS, KITS, anoNome, type Gratuito, type Kit } from "@/lib/apostilas";
 import { MATERIAS, SLUG, anoSlug } from "@/lib/data";
 import { CONTATO } from "@/lib/contato";
 import Comprar from "@/components/Comprar";
@@ -10,10 +10,12 @@ import { url, jsonLd } from "@/lib/seo";
 type P = { params: { slug: string } };
 
 export function generateStaticParams() {
-  return [...APOSTILAS, ...GRATUITOS].map((a) => ({ slug: a.slug }));
+  return [...APOSTILAS, ...GRATUITOS, ...KITS].map((a) => ({ slug: a.slug }));
 }
 
 export function generateMetadata({ params }: P): Metadata {
+  const k = KITS.find((x) => x.slug === params.slug);
+  if (k) return { title: `${k.titulo} · kit de ${k.selo} para imprimir`, description: `${k.subtitulo}. ${k.publico}, ${k.paginas} páginas para imprimir em casa.`, alternates: { canonical: `/apostilas/${k.slug}` }, openGraph: { images: [`/apostilas/${k.slug}/capa.webp`] } };
   const g = GRATUITOS.find((x) => x.slug === params.slug);
   if (g) return { title: `${g.titulo} · PDF gratuito`, description: `${g.subtitulo}. ${g.paginas} páginas, gratuito.`, alternates: { canonical: `/apostilas/${g.slug}` }, openGraph: { images: [`/apostilas/${g.slug}/capa.webp`] } };
   const a = APOSTILAS.find((x) => x.slug === params.slug);
@@ -80,7 +82,71 @@ function PaginaGratuito({ g }: { g: Gratuito }) {
   );
 }
 
+function PaginaKit({ k }: { k: Kit }) {
+  const comprar = <Comprar slug={k.slug} titulo={k.titulo} checkout={k.checkout} preco={k.preco} grande />;
+  return (
+    <div className="wrap">
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd({
+        "@context": "https://schema.org", "@type": "Product", name: k.titulo, description: k.resumo,
+        image: url(`/apostilas/${k.slug}/capa.webp`), brand: { "@type": "Brand", name: "Atlas do Aprender" },
+        audience: { "@type": "PeopleAudience", suggestedMinAge: 6, suggestedMaxAge: 10 },
+        ...(k.checkout ? { offers: { "@type": "Offer", price: k.preco.replace(/[^0-9,]/g, "").replace(",", "."), priceCurrency: "BRL", availability: "https://schema.org/InStock", url: url(`/apostilas/${k.slug}`) } } : {}),
+      })} />
+      <p className="meta"><Link href="/apostilas">Apostilas</Link> › {k.titulo}</p>
+      <div className="produto-topo" style={{ ["--sc" as string]: "var(--por)" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="produto-capa-g" src={`/apostilas/${k.slug}/capa.webp`} alt={`Capa do kit ${k.titulo}`} width={566} height={800} />
+        <div className="produto-txt">
+          <div className="tags"><span className="tag por">{k.selo}</span><span className="tag">{k.publico}</span><span className="tag">{k.paginas} páginas</span></div>
+          <h1 className="hero-t">{k.titulo}</h1>
+          <p className="lead">{k.subtitulo}</p>
+          <p>{k.resumo}</p>
+          <div className="row">{comprar}</div>
+          <p className="note">PDF em tamanho A4, para imprimir em casa. Pix, cartão ou boleto; o arquivo chega no seu e-mail.</p>
+        </div>
+      </div>
+      <section className="card">
+        <h3>O que tem dentro</h3>
+        <ul className="dentro">{k.dentro.map((d) => <li key={d}>{d}</li>)}</ul>
+        <h3>Como usar</h3>
+        {k.comoUsar.map((p, i) => <p key={i} style={i === 0 ? { marginTop: 0 } : undefined}>{p}</p>)}
+      </section>
+      <h3 className="ini-h">Veja algumas páginas</h3>
+      <div className="amostras">
+        {k.amostras.map((leg, i) => (
+          <figure key={leg}>
+            <a href={`/apostilas/${k.slug}/pagina-${i + 1}.webp`} target="_blank" rel="noopener">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/apostilas/${k.slug}/pagina-${i + 1}.webp`} alt={`Página de amostra: ${leg}`} width={566} height={800} loading="lazy" />
+            </a>
+            <figcaption>{leg}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <section className="card">
+        <h3>Perguntas frequentes</h3>
+        <dl>
+          <dt>Como recebo o kit?</dt>
+          <dd>Depois que o pagamento é confirmado, a plataforma envia o link do PDF para o seu e-mail. No Pix, costuma ser em poucos minutos.</dd>
+          <dt>Posso imprimir mais de uma vez?</dt>
+          <dd>Pode. A licença permite imprimir quantas cópias precisar para as crianças da sua casa, inclusive para repetir no ano que vem.</dd>
+          <dt>Comecei depois do dia 1º. E agora?</dt>
+          <dd>Sem problema: faça dois ou três cartões por dia até alcançar a data. O importante é todas as letras chegarem ao painel até o dia 24.</dd>
+          <dt>Sou professora. Posso usar com a turma?</dt>
+          <dd>A licença comum é só para uso familiar. Para turmas, escreva para {CONTATO.email ? <a href={`mailto:${CONTATO.email}`}>{CONTATO.email}</a> : "o e-mail do rodapé"} e combinamos uma licença.</dd>
+        </dl>
+      </section>
+      <div className="row">
+        {comprar}
+        <Link className="btn ghost" href="/apostilas">Ver todas as apostilas</Link>
+      </div>
+    </div>
+  );
+}
+
 export default function Apostila({ params }: P) {
+  const k = KITS.find((x) => x.slug === params.slug);
+  if (k) return <PaginaKit k={k} />;
   const g = GRATUITOS.find((x) => x.slug === params.slug);
   if (g) return <PaginaGratuito g={g} />;
   const a = APOSTILAS.find((x) => x.slug === params.slug);

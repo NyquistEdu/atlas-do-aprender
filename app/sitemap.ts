@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { ANOS, SLUG, anoSlug, type Materia } from "@/lib/data";
-import { APOSTILAS, GRATUITOS } from "@/lib/apostilas";
+import { APOSTILAS, GRATUITOS, KITS } from "@/lib/apostilas";
 import { TEMATICAS } from "@/lib/tematicas";
 import { url } from "@/lib/seo";
 import { DUVIDAS } from "@/lib/duvidas";
@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...fixo.map(([p, priority, changeFrequency]) => ({ url: url(p), lastModified: agora, changeFrequency, priority })),
     ...trilhas.map((p) => ({ url: url(p), lastModified: agora, changeFrequency: "monthly" as const, priority: 0.9 })),
-    ...[...GRATUITOS, ...APOSTILAS].map((a) => ({ url: url(`/apostilas/${a.slug}`), lastModified: agora, changeFrequency: "monthly" as const, priority: 0.8 })),
+    ...[...KITS, ...GRATUITOS, ...APOSTILAS].map((a) => ({ url: url(`/apostilas/${a.slug}`), lastModified: agora, changeFrequency: "monthly" as const, priority: 0.8 })),
     ...DUVIDAS.map((d) => ({ url: url(`/duvidas/${d.slug}`), lastModified: agora, changeFrequency: "monthly" as const, priority: 0.8 })),
     ...TEMATICAS.map((t) => ({ url: url(`/tematicas/${t.slug}`), lastModified: agora, changeFrequency: "yearly" as const, priority: 0.7 })),
   ];

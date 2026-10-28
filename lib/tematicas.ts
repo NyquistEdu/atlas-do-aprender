@@ -10,7 +10,7 @@ export type Tematica = {
   livros: [string, string][];
   blocos: Bloco[];
   cuidado?: string;
-  material?: { href: string; titulo: string; texto: string }; // material gratuito do Atlas em destaque
+  material?: { href: string; titulo: string; texto: string; pago?: boolean }; // material do Atlas em destaque (gratuito, ou pago se pago=true)
 };
 
 export const TEMATICAS: Tematica[] = [
@@ -98,6 +98,7 @@ export const TEMATICAS: Tematica[] = [
     titulo: "Natal",
     quando: "25 de dezembro",
     emoji: "🎄",
+    material: { href: "/apostilas/duende-tico", titulo: "A Grande Missão do Duende Tico", texto: "Calendário do Advento com 24 atividades curtas, de 1º a 24 de dezembro, que termina numa caça ao presente na noite de Natal. Pronto para imprimir.", pago: true },
     resumo: "O nascimento de Jesus, o presépio, a Folia de Reis e o Papai Noel: livros, filmes, música, receitas e atividades para o mês de dezembro.",
     intro: [
       "O Natal celebra o nascimento de Jesus, contado na Bíblia nos evangelhos de Lucas e de Mateus: a viagem de Maria e José a Belém, a manjedoura, os pastores e os magos que seguiram a estrela.",

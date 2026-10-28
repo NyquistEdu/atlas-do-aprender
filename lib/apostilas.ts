@@ -100,6 +100,48 @@ export const APOSTILAS: Apostila[] = [
 export const apostilaDoTema = (m: Materia, ano: string, tema: number) => APOSTILAS.find((a) => a.materia === m && a.ano === ano && a.tema === tema);
 export const anoNome = (ano: string) => (ano === "1" ? "Alfabetização" : `${ano}º ano`);
 
+/** Kits temáticos pagos (datas especiais), sem ligação com um tema das trilhas. Aparecem em "Gerais". */
+export type Kit = {
+  slug: string;
+  titulo: string;
+  subtitulo: string;
+  paginas: number;
+  preco: string;
+  checkout: string; // vazio = "Em breve"
+  resumo: string;
+  dentro: string[];
+  amostras: string[];
+  publico: string;
+  selo: string; // ex.: "Natal"
+  comoUsar: string[];
+};
+
+export const KITS: Kit[] = [
+  {
+    slug: "duende-tico",
+    titulo: "A Grande Missão do Duende Tico",
+    subtitulo: "Calendário do Advento e caça ao presente de Natal",
+    paginas: 31,
+    preco: "R$ 19,90",
+    checkout: "",
+    resumo: "De 1º a 24 de dezembro, o Duende Tico deixa um cartão por dia com uma atividade curta e uma letra. As letras formam a Frase Secreta. Na noite de Natal, ele esconde um presente pela casa e esquece onde: as crianças seguem 6 pistas, juntam os 4 números do cadeado e dizem a frase para abrir a caixa. No caminho, leem, contam, fazem experimentos, criam e praticam gentileza.",
+    dentro: [
+      "24 cartões do Advento, com atividades de 10 a 20 minutos de Português, Matemática, Ciências, arte, jogo e gentileza",
+      "Guia dos 24 dias para a família, com o que fazer, o que precisa e a letra de cada dia",
+      "Painel da Frase Secreta e folhas dos dias (corrente do Natal, problemas, rimas e entrevista)",
+      "Caça ao presente com 6 estações passo a passo: biscoitos, gelo, sinos, equilíbrio, código e pegadas de rena",
+      "Cartas do Tico, 6 pistas, tabela secreta, código do cadeado, faixa, certificados e bilhete final",
+    ],
+    amostras: ["Os 24 dias numa página", "Cartões do Advento", "O painel da Frase Secreta", "Cartões de pista da caça"],
+    publico: "6 a 10 anos",
+    selo: "Natal",
+    comoUsar: [
+      "Imprima no fim de novembro, recorte os cartões e esconda um por dia (varal de envelopes, saquinhos ou uma caixa). Cada atividade leva de 10 a 20 minutos e usa coisas de casa.",
+      "Na véspera de Natal, siga o guia da caça: em cerca de 1 hora, as crianças encontram o presente. O único item que talvez precise comprar é um cadeado de números.",
+    ],
+  },
+];
+
 /** Materiais gratuitos que aparecem na vitrine, antes das apostilas pagas. */
 export type Gratuito = {
   slug: string;

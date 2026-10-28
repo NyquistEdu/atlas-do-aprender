@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { APOSTILAS, GRATUITOS, anoNome } from "@/lib/apostilas";
+import { APOSTILAS, GRATUITOS, KITS, anoNome } from "@/lib/apostilas";
 import { ANOS, DE_SLUG, MATERIAS, SLUG, anoDeSlug, anoSlug, type Materia } from "@/lib/data";
 import Comprar from "@/components/Comprar";
 
@@ -36,10 +36,11 @@ export default function Vitrine() {
 
   // Os materiais gerais (gratuitos) valem para todas as séries: aparecem em "Todas" e em "Gerais", com qualquer série.
   const conta = (m: Cat | null, y: string | null) =>
-    (m === "gerais" ? 0 : APOSTILAS.filter((a) => (!m || a.materia === m) && (!y || a.ano === y)).length) + (!m || m === "gerais" ? GRATUITOS.length : 0);
+    (m === "gerais" ? 0 : APOSTILAS.filter((a) => (!m || a.materia === m) && (!y || a.ano === y)).length) + (!m || m === "gerais" ? GRATUITOS.length + KITS.length : 0);
   const gratis = !f.m || f.m === "gerais" ? GRATUITOS : [];
+  const kits = !f.m || f.m === "gerais" ? KITS : [];
   const lista = f.m === "gerais" ? [] : APOSTILAS.filter((a) => (!f.m || a.materia === f.m) && (!f.y || a.ano === f.y));
-  const total = gratis.length + lista.length;
+  const total = kits.length + gratis.length + lista.length;
 
   return (
     <>
@@ -69,6 +70,23 @@ export default function Vitrine() {
       </div>
       <p className="meta" aria-live="polite">{total === 1 ? "1 material" : `${total} materiais`}</p>
       <div className="vitrine">
+        {kits.map((k) => (
+          <article className="produto" key={k.slug} style={{ ["--sc" as string]: "var(--por)" }}>
+            <Link href={`/apostilas/${k.slug}`} className="produto-capa" aria-label={`Ver detalhes de ${k.titulo}`}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/apostilas/${k.slug}/capa.webp`} alt={`Capa do kit ${k.titulo}`} width={566} height={800} loading="lazy" />
+            </Link>
+            <div className="produto-info">
+              <div className="tags"><span className="tag por">{k.selo}</span><span className="tag">Kit temático</span><span className="tag">{k.publico}</span></div>
+              <h3><Link href={`/apostilas/${k.slug}`}>{k.titulo}</Link></h3>
+              <p className="meta">{k.subtitulo} · {k.paginas} páginas</p>
+              <div className="row">
+                <Comprar slug={k.slug} titulo={k.titulo} checkout={k.checkout} preco={k.preco} />
+                <Link className="btn small ghost" href={`/apostilas/${k.slug}`}>Ver páginas</Link>
+              </div>
+            </div>
+          </article>
+        ))}
         {gratis.map((g) => (
           <article className="produto" key={g.slug} style={{ ["--sc" as string]: "var(--cie)" }}>
             <Link href={`/apostilas/${g.slug}`} className="produto-capa" aria-label={`Ver detalhes de ${g.titulo}`}>
