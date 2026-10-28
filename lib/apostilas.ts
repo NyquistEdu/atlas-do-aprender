@@ -123,7 +123,7 @@ export const KITS: Kit[] = [
     subtitulo: "Calendário do Advento e caça ao presente de Natal",
     paginas: 31,
     preco: "R$ 19,90",
-    checkout: "",
+    checkout: "https://pay.kiwify.com.br/AjOvx3A",
     resumo: "De 1º a 24 de dezembro, o Duende Tico deixa um cartão por dia com uma atividade curta e uma letra. As letras formam a Frase Secreta. Na noite de Natal, ele esconde um presente pela casa e esquece onde: as crianças seguem 6 pistas, juntam os 4 números do cadeado e dizem a frase para abrir a caixa. No caminho, leem, contam, fazem experimentos, criam e praticam gentileza.",
     dentro: [
       "24 cartões do Advento, com atividades de 10 a 20 minutos de Português, Matemática, Ciências, arte, jogo e gentileza",
