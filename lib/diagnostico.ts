@@ -5,9 +5,10 @@ import type { Materia } from "@/lib/data";
  * O adulto responde se a criança já faz sozinha, com ajuda ou ainda não.
  * O tema indicado é o primeiro que ainda não está firme.
  */
+export type Area = "por" | "mat" | "cie";
 export type Habilidade = { ano: string; tema: number; frase: string; exemplo?: string };
 
-export const HABILIDADES_DIAG: Record<"por" | "mat", Habilidade[]> = {
+export const HABILIDADES_DIAG: Record<Area, Habilidade[]> = {
   por: [
     { ano: "1", tema: 1, frase: "Percebe palavras que rimam e bate palmas nas sílabas de uma palavra.", exemplo: "gato e pato rimam; “ca-sa” tem duas palmas" },
     { ano: "1", tema: 2, frase: "Reconhece as letras do alfabeto e sabe o som de cada uma.", exemplo: "vê o B e diz “bê”, faz o som de “b” em bola" },
@@ -57,67 +58,116 @@ export const HABILIDADES_DIAG: Record<"por" | "mat", Habilidade[]> = {
     { ano: "5", tema: 4, frase: "Diz se um acontecimento é certo, provável ou impossível." },
     { ano: "5", tema: 5, frase: "Localiza pontos por coordenadas e resolve problemas de várias etapas." },
   ],
+  cie: [
+    { ano: "1", tema: 1, frase: "Nomeia as partes do corpo e sabe para que serve cada um dos cinco sentidos." },
+    { ano: "1", tema: 2, frase: "Explica por que lavamos as mãos, escovamos os dentes e precisamos dormir bem." },
+    { ano: "1", tema: 3, frase: "Diz de que material são feitos os objetos e compara suas características.", exemplo: "madeira, plástico, metal, vidro; duro, mole, transparente" },
+    { ano: "1", tema: 4, frase: "Explica a diferença entre o dia e a noite e o que vemos no céu em cada um." },
+    { ano: "2", tema: 1, frase: "Diferencia seres vivos de não vivos e diz onde alguns animais e plantas vivem." },
+    { ano: "2", tema: 2, frase: "Nomeia raiz, caule, folha, flor, fruto e semente e sabe do que a planta precisa para viver." },
+    { ano: "2", tema: 3, frase: "Explica como se forma a sombra e percebe que ela muda ao longo do dia." },
+    { ano: "2", tema: 4, frase: "Agrupa animais pelo que comem, por como se locomovem ou pela cobertura do corpo.", exemplo: "pelos, penas, escamas" },
+    { ano: "3", tema: 1, frase: "Descreve o ciclo de vida de um animal: nascer, crescer, se reproduzir.", exemplo: "ovo, lagarta, casulo, borboleta" },
+    { ano: "3", tema: 2, frase: "Explica que o som é produzido por uma vibração.", exemplo: "a corda do violão, o sino" },
+    { ano: "3", tema: 3, frase: "Diferencia tipos de solo e sabe que existe ar e água no solo." },
+    { ano: "3", tema: 4, frase: "Sabe que o Sol é uma estrela e percebe que a Lua muda de forma ao longo do mês." },
+    { ano: "4", tema: 1, frase: "Monta uma cadeia alimentar simples e sabe o papel dos decompositores.", exemplo: "capim → coelho → raposa" },
+    { ano: "4", tema: 2, frase: "Sabe que existem microrganismos, alguns úteis e outros que causam doenças.", exemplo: "o fermento do pão e o iogurte" },
+    { ano: "4", tema: 3, frase: "Diferencia mistura de transformação e sabe que algumas transformações não voltam atrás.", exemplo: "ovo cozido, papel queimado" },
+    { ano: "4", tema: 4, frase: "Usa o nascer do Sol ou a sombra para achar leste, oeste, norte e sul." },
+    { ano: "5", tema: 1, frase: "Explica como a digestão, a respiração e a circulação trabalham juntas no corpo." },
+    { ano: "5", tema: 2, frase: "Explica o ciclo da água: evaporação, condensação e chuva." },
+    { ano: "5", tema: 3, frase: "Nomeia os planetas do Sistema Solar e reconhece pelo menos uma constelação." },
+    { ano: "5", tema: 4, frase: "Sabe o que conduz e o que isola eletricidade e entende um circuito com pilha e lâmpada." },
+    { ano: "5", tema: 5, frase: "Relaciona consumo, lixo e reciclagem com o impacto no ambiente." },
+  ],
 };
 
 export type Resposta = "sim" | "ajuda" | "nao";
 
-/** Ano escolar informado → ano da trilha onde as perguntas começam (um ano abaixo, para dar segurança). */
-export const SERIES: [string, string, string][] = [
-  ["ei", "Educação infantil", "1"],
-  ["1", "1º ano", "1"],
-  ["2", "2º ano", "1"],
-  ["3", "3º ano", "2"],
-  ["4", "4º ano", "3"],
-  ["5", "5º ano", "4"],
-  ["6", "6º ano ou mais", "5"],
+/** Ano escolar informado → [ano da trilha onde as perguntas começam, ano da série]. Começa um ano abaixo, para dar segurança. */
+export const SERIES: [string, string, string, string][] = [
+  ["ei", "Educação infantil", "1", "1"],
+  ["1", "1º ano", "1", "1"],
+  ["2", "2º ano", "1", "2"],
+  ["3", "3º ano", "2", "3"],
+  ["4", "4º ano", "3", "4"],
+  ["5", "5º ano", "4", "5"],
+  ["6", "6º ano ou mais", "5", "5"],
 ];
 
-/** Ciências não é sequencial como as outras: indicamos o 1º tema do ano em que a criança está. */
-export function cienciasPara(serie: string): string {
-  if (serie === "ei") return "1";
-  if (serie === "6") return "5";
-  return serie;
-}
-
+/**
+ * O diagnóstico anda por blocos de um ano da trilha (todos os temas daquele ano):
+ *  - começa um ano abaixo da série;
+ *  - se o bloco tem algum tema que não está firme, desce para o ano anterior, até achar um ano todo firme ou chegar à alfabetização;
+ *  - depois sobe a partir do ano inicial enquanto os blocos estão quase todos firmes (no máximo 1 tema não firme), até o ano da série.
+ * Assim, uma criança do 3º ano com lacunas do 1º e do 2º ano recebe todos esses temas na lista.
+ */
 export type Estado = {
-  i: number; // índice da pergunta atual
-  fase: "frente" | "volta";
-  inicio: number;
-  respostas: Record<number, Resposta>;
+  anos: string[]; // ordem dos blocos já abertos
+  ano: string; // bloco atual
+  k: number; // índice do tema dentro do bloco
+  fase: "desce" | "sobe";
+  respostas: Record<string, Resposta>; // "ano-tema" → resposta
   feito: boolean;
+  inicio: string;
+  alvo: string;
 };
 
-export function inicio(m: "por" | "mat", serie: string): Estado {
-  const ano = SERIES.find((s) => s[0] === serie)?.[2] || "1";
-  const i = HABILIDADES_DIAG[m].findIndex((h) => h.ano === ano);
-  return { i: Math.max(0, i), fase: "frente", inicio: Math.max(0, i), respostas: {}, feito: false };
+const temasDoAno = (m: Area, ano: string) => HABILIDADES_DIAG[m].filter((h) => h.ano === ano);
+const chave = (h: Habilidade) => `${h.ano}-${h.tema}`;
+
+export function inicio(m: Area, serie: string): Estado {
+  const s = SERIES.find((x) => x[0] === serie) || SERIES[0];
+  return { anos: [s[2]], ano: s[2], k: 0, fase: "desce", respostas: {}, feito: false, inicio: s[2], alvo: s[3] };
 }
 
-const MAX_FRENTE = 9;
-const MAX_VOLTA = 8;
+export function atual(m: Area, e: Estado): Habilidade {
+  return temasDoAno(m, e.ano)[e.k];
+}
 
-/** Avança o questionário de uma matéria. */
-export function responder(m: "por" | "mat", e: Estado, r: Resposta): Estado {
-  const lista = HABILIDADES_DIAG[m];
-  const respostas = { ...e.respostas, [e.i]: r };
-  const n = { ...e, respostas };
-  if (e.fase === "frente") {
-    // A primeira pergunta já não está firme: volta na trilha até achar o que ela faz sozinha.
-    if (e.i === e.inicio && r !== "sim" && e.inicio > 0) return { ...n, fase: "volta", i: e.i - 1 };
-    const naoFirmes = Object.entries(respostas).filter(([k, v]) => Number(k) >= e.inicio && v !== "sim").length;
-    const perguntadas = Object.keys(respostas).filter((k) => Number(k) >= e.inicio).length;
-    if (r === "nao" || naoFirmes >= 2 || perguntadas >= MAX_FRENTE || e.i + 1 >= lista.length) return { ...n, feito: true };
-    return { ...n, i: e.i + 1 };
+function lacunas(m: Area, ano: string, r: Record<string, Resposta>) {
+  return temasDoAno(m, ano).filter((h) => r[chave(h)] && r[chave(h)] !== "sim").length;
+}
+
+export function responder(m: Area, e: Estado, resp: Resposta): Estado {
+  const h = atual(m, e);
+  const respostas = { ...e.respostas, [chave(h)]: resp };
+  const bloco = temasDoAno(m, e.ano);
+  if (e.k + 1 < bloco.length) return { ...e, respostas, k: e.k + 1 };
+  // Fim do bloco: decidir o próximo.
+  const g = lacunas(m, e.ano, respostas);
+  const n = Number(e.ano);
+  if (e.fase === "desce" && g > 0 && n > 1) {
+    const ano = String(n - 1);
+    return { ...e, respostas, ano, k: 0, anos: [...e.anos, ano] };
   }
-  const voltas = Object.keys(respostas).filter((k) => Number(k) < e.inicio).length;
-  if (r === "sim" || e.i === 0 || voltas >= MAX_VOLTA) return { ...n, feito: true };
-  return { ...n, i: e.i - 1 };
+  // Terminou de descer: sobe a partir do ano inicial, se o ano inicial estava quase todo firme.
+  const ultimoSubido = e.fase === "sobe" ? n : Number(e.inicio);
+  const gRef = lacunas(m, String(ultimoSubido), respostas);
+  const prox = ultimoSubido + 1;
+  if (gRef <= 1 && prox <= Number(e.alvo) && prox <= 5) {
+    const ano = String(prox);
+    return { ...e, respostas, ano, k: 0, fase: "sobe", anos: [...e.anos, ano] };
+  }
+  return { ...e, respostas, feito: true };
 }
 
-/** Primeiro tema que ainda não está firme (ou null se tudo o que foi perguntado está firme até o fim da trilha). */
-export function resultado(m: "por" | "mat", e: Estado): { h: Habilidade; idx: number; firmes: number } | { h: null; idx: number; firmes: number } {
+export type Item = { h: Habilidade; r: Resposta };
+export type Resultado = { trabalhar: Item[]; proximo: Habilidade | null; firmes: number };
+
+/** Temas para trabalhar, na ordem da trilha (do mais básico ao mais avançado). */
+export function resultado(m: Area, e: Estado): Resultado {
   const lista = HABILIDADES_DIAG[m];
-  const idxs = Object.entries(e.respostas).filter(([, v]) => v !== "sim").map(([k]) => Number(k)).sort((a, b) => a - b);
-  const idx = idxs.length ? idxs[0] : Math.max(...Object.keys(e.respostas).map(Number)) + 1;
-  return idx < lista.length ? { h: lista[idx], idx, firmes: idx } : { h: null, idx, firmes: lista.length };
+  const trabalhar = lista.filter((h) => e.respostas[chave(h)] && e.respostas[chave(h)] !== "sim").map((h) => ({ h, r: e.respostas[chave(h)] }));
+  const firmes = Object.values(e.respostas).filter((v) => v === "sim").length;
+  let proximo: Habilidade | null = null;
+  if (!trabalhar.length) {
+    // Tudo firme no que foi perguntado: o próximo é o primeiro tema depois do último bloco aberto.
+    const maior = Math.max(...e.anos.map(Number));
+    proximo = lista.find((h) => Number(h.ano) === maior + 1) || null;
+  }
+  return { trabalhar, proximo, firmes };
 }
+
+export const perguntadas = (e: Estado) => Object.keys(e.respostas).length;

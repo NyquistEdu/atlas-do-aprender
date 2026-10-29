@@ -296,3 +296,9 @@ details[open]>summary .ver{display:none}
 .diag-cartao h3{margin:0}
 .diag-cartao .meta{margin:0}
 @media (max-width:520px){.diag-bts{grid-template-columns:1fr}.diag-bt{grid-auto-flow:column;justify-content:start;gap:10px;padding:12px 14px}}
+.diag-lista{margin:0;padding-left:20px;display:grid;gap:4px}
+.diag-lista li{line-height:1.4}
+.diag-tag{display:inline-block;margin-left:6px;padding:0 8px;border-radius:10px;font-size:.75rem;font-weight:700;vertical-align:1px}
+.diag-tag.ajuda{background:var(--jog-bg);color:var(--jog)}
+.diag-tag.nao{background:var(--por-bg,#fde8e6);color:var(--por)}
+.diag-aviso{margin:0;padding:10px 12px;border-radius:10px;background:var(--jog-bg);font-size:.92rem}
