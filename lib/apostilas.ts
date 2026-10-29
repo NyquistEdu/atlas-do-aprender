@@ -164,6 +164,23 @@ export type Gratuito = {
 
 export const GRATUITOS: Gratuito[] = [
   {
+    slug: "treino-brincar-com-as-palavras",
+    titulo: "Treino Diário · Brincar com as Palavras",
+    subtitulo: "30 folhas de rimas, sílabas e sons, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-brincar-com-as-palavras.pdf",
+    nomeArquivo: "Treino-Diario-Brincar-com-as-Palavras-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtinhas para treinar o ouvido antes de ler: o adulto lê a instrução e diz o nome das figuras, e a criança responde circulando, pintando ou ligando. Começa nas rimas, passa por bater palmas nas sílabas e juntar pedaços, e termina no primeiro som das palavras, em trava-línguas e na troca de sons.",
+    dentro: ["30 folhas em 3 níveis, de 3 a 7 minutos cada", "Tudo com figuras: não precisa saber ler", "Rimas, sílabas, primeiro som e palavras na frase", "Jogo da memória das rimas para recortar", "Registro de progresso, certificado e gabarito"],
+    amostras: ["O que rima?", "Uma ou duas palmas?", "O primeiro som", "Jogo da memória das rimas"],
+    publico: "Alfabetização",
+    comoUsar: [
+      "Uma folha por dia, de 3 a 7 minutos. O adulto lê a instrução e diz o nome de cada figura (está escrito pequeno embaixo dela); a criança responde falando, circulando, pintando ou ligando.",
+      "Passe para a próxima folha quando ela fizer com no máximo 1 erro e sem muita ajuda. Se não deu, repita a mesma folha em outro dia: é um treino do ouvido, e cada criança tem o seu tempo.",
+    ],
+    materia: "por", ano: "1", tema: 1, apostila: "brincar-com-as-palavras",
+  },
+  {
     slug: "treino-nomear-e-descrever",
     titulo: "Treino Diário · Nomear e Descrever",
     subtitulo: "30 folhas de substantivos e adjetivos, uma por dia",
