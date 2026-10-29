@@ -32,6 +32,8 @@ type Atlas = {
   removeCrianca: (n: string) => Promise<void>;
   /** c: nome da criança; sem c, usa a criança escolhida no topo. */
   feito: (chave: string, c?: string) => boolean;
+  /** Data (AAAA-MM-DD) em que a marcação foi feita, ou "" se não existe. */
+  dataDe: (chave: string, c?: string) => string;
   alternar: (chave: string, c?: string) => Promise<void>;
   entradas: Entrada[];
   addEntrada: (e: NovaEntrada) => Promise<string | null>;
@@ -55,6 +57,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   const [criancas, setCriancas] = useState<string[]>([]);
   const [crianca, setCriancaState] = useState("");
   const [progresso, setProgresso] = useState<Set<string>>(new Set());
+  const [datas, setDatas] = useState<Record<string, string>>({});
   const [entradas, setEntradas] = useState<Entrada[]>([]);
   const [erro, setErro] = useState("");
 
@@ -82,7 +85,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     }
     const [c, p, d] = await Promise.all([
       supabase.from("criancas").select("nome").order("criado_em"),
-      supabase.from("progresso").select("crianca,chave"),
+      supabase.from("progresso").select("crianca,chave,feito_em"),
       supabase.from("diario").select("*").order("data", { ascending: false }).order("criado_em", { ascending: false }),
     ]);
     if (c.error || p.error || d.error) {
@@ -99,6 +102,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     try { salvo = localStorage.getItem(LS_CRIANCA) || ""; } catch {}
     setCriancaState(nomes.includes(salvo) ? salvo : nomes[0] || "");
     setProgresso(new Set((p.data ?? []).map((r) => `${r.crianca}|${r.chave}`)));
+    setDatas(Object.fromEntries((p.data ?? []).map((r) => [`${r.crianca}|${r.chave}`, (r as { feito_em?: string }).feito_em || ""])));
     setEntradas((d.data ?? []) as Entrada[]);
     setErro("");
   }, [user]);
@@ -132,6 +136,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   };
 
   const feito = (chave: string, c?: string) => progresso.has(`${c || crianca}|${chave}`);
+  const dataDe = (chave: string, c?: string) => (progresso.has(`${c || crianca}|${chave}`) ? datas[`${c || crianca}|${chave}`] || "" : "");
 
   const alternar = async (chave: string, c?: string) => {
     const quem = c || crianca;
@@ -146,6 +151,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       setProgresso((p) => { const n = new Set(p); tinha ? n.add(k) : n.delete(k); return n; });
       setErro("Não consegui salvar a marcação. Tente de novo.");
     } else if (!tinha) {
+      const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+      setDatas((x) => ({ ...x, [k]: d.toISOString().slice(0, 10) }));
       rastrear("AtividadeRegistrada", { tipo: chave.split("|")[0] || "marcacao" });
     }
   };
@@ -174,9 +181,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
   const valor = useMemo<Atlas>(() => ({
     configurado: !!supabase, carregando, user, criancas, crianca, setCrianca, addCrianca, removeCrianca,
-    feito, alternar, entradas, addEntrada, removeEntrada, sair, erro,
+    feito, dataDe, alternar, entradas, addEntrada, removeEntrada, sair, erro,
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }), [carregando, user, criancas, crianca, progresso, entradas, erro]);
+  }), [carregando, user, criancas, crianca, progresso, datas, entradas, erro]);
 
   return <Ctx.Provider value={valor}>{children}</Ctx.Provider>;
 }

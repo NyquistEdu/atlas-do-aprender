@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useAtlas } from "@/components/Providers";
 import { AREAS } from "@/lib/data";
 import { FormAcesso, PreviaDiario, SELO_CONTA } from "@/components/Acesso";
+import Caminho from "@/components/Caminho";
 
 const TIPOS = ["Estudo da trilha", "Leitura", "Exercício", "Jogo", "Experimento", "Filme ou documentário", "Podcast ou áudio", "Passeio ou visita", "Conversa"];
 const hoje = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); };
@@ -92,6 +93,8 @@ export default function Diario() {
       <p className="lead">Registre o que fizeram, o que a criança descobriu e como ela se envolveu. Com o tempo, o diário mostra o caminho de cada um.</p>
       <p className="status">Conectado como {a.user.email}. <button className="btn small ghost" type="button" onClick={a.sair}>Sair</button></p>
       {a.erro && <p className="warn">{a.erro}</p>}
+      <Caminho />
+      <h2 style={{ marginBottom: 0 }}>Registrar no diário</h2>
       <form className="diary" onSubmit={salvar}>
         <div className="fgrid">
           <label className="f">Data<input id="dData" type="date" value={f.data} onChange={(e) => set("data", e.target.value)} required /></label>
