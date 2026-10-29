@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { rastrear } from "@/lib/rastreio";
 
@@ -19,6 +19,10 @@ export default function FormPlanejamento() {
   const [cs, setCs] = useState<Crianca[]>([nova()]);
   const [disp, setDisp] = useState<Record<string, string[]>>({});
   const [obs, setObs] = useState("");
+  // Veio do diagnóstico? Traz o resultado para o campo de observações.
+  useEffect(() => {
+    try { const d = sessionStorage.getItem("atlas-diagnostico-resumo"); if (d) setObs((o) => o || d); } catch {}
+  }, []);
   const [ok, setOk] = useState(false);
   const [mel, setMel] = useState("");
   const [estado, setEstado] = useState<"" | "enviando" | "enviado" | "erro">("");

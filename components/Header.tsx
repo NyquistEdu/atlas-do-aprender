@@ -8,6 +8,7 @@ import { useAtlas } from "./Providers";
 const ABAS: [string, string][] = [
   ["/", "Início"],
   ["/trilhas/portugues/1-ano", "Trilhas"],
+  ["/diagnostico", "Diagnóstico"],
   ["/livros", "Livros"],
   ["/jogos", "Jogos"],
   ["/mao-na-massa", "Mão na massa"],

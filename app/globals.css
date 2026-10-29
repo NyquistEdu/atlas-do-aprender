@@ -279,3 +279,20 @@ details[open]>summary .ver{display:none}
 .jogo-tema i{font-style:normal;font-size:2rem;width:56px;text-align:center}
 .jogo-tema div{display:grid;gap:2px;min-width:0}
 .jogo-tema span{font-size:.82rem;color:var(--soft)}
+.diag{display:grid;gap:12px;border-top:5px solid var(--sc,var(--por))}
+.diag .f{display:grid;gap:6px;font-weight:700}
+.diag .f .seg{flex-wrap:wrap}
+.diag-barra{height:6px;background:var(--line);border-radius:6px;overflow:hidden}
+.diag-barra i{display:block;height:100%;background:var(--sc,var(--por));transition:width .3s}
+.diag-q{font-family:var(--f-disp);font-weight:400;font-size:1.45rem;line-height:1.25;margin:4px 0 0}
+.diag-bts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+.diag-bt{display:grid;gap:4px;justify-items:center;padding:14px 8px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
+.diag-bt span{font-size:1.4rem;line-height:1}
+.diag-bt.sim:hover,.diag-bt.sim:focus-visible{border-color:var(--cie);background:color-mix(in srgb,var(--cie) 10%,var(--card))}
+.diag-bt.ajuda:hover,.diag-bt.ajuda:focus-visible{border-color:var(--jog);background:color-mix(in srgb,var(--jog) 10%,var(--card))}
+.diag-bt.nao:hover,.diag-bt.nao:focus-visible{border-color:var(--por);background:color-mix(in srgb,var(--por) 10%,var(--card))}
+.diag-res{display:grid;gap:12px}
+.diag-cartao{border:1px solid var(--line);border-left:5px solid var(--sc);border-radius:12px;padding:14px 16px;display:grid;gap:6px;background:var(--card)}
+.diag-cartao h3{margin:0}
+.diag-cartao .meta{margin:0}
+@media (max-width:520px){.diag-bts{grid-template-columns:1fr}.diag-bt{grid-auto-flow:column;justify-content:start;gap:10px;padding:12px 14px}}

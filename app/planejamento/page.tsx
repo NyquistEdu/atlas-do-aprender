@@ -15,6 +15,7 @@ export default function Planejamento() {
       <p className="eyebrow-i">100% gratuito</p>
       <h1 className="hero-t">Um plano de estudos feito para a sua criança</h1>
       <p className="lead">Eu me ofereço para conversar com você por videochamada, entender onde a criança está e montar um planejamento possível para a rotina da sua família, usando as trilhas, os livros, os jogos e as apostilas do Atlas. Foi assim que organizei o estudo dos meus filhos, e quero fazer o mesmo por quem precisar.</p>
+      <p className="meta">Quer adiantar? Faça antes o <Link href="/diagnostico">diagnóstico grátis</Link> (3 minutos): o resultado vem junto no formulário.</p>
       <p className="meta" style={{ marginTop: -6 }}>Stephanie Kamarry, criadora do Atlas do Aprender</p>
 
       <div className="passos-plan">

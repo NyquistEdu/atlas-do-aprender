@@ -23,6 +23,8 @@ const MAPA: Record<string, string> = {
   InitiateCheckout: "comprar",
   CliqueAfiliado: "afiliado",
   CliqueLoja: "loja",
+  DiagnosticoIniciado: "diag_inicio",
+  DiagnosticoConcluido: "diag_fim",
   BaixouMaterial: "baixou",
   ConviteVisto: "convite_visto",
   AcessoAberto: "abriu_entrar",

@@ -10,6 +10,7 @@ export default function Inicio() {
   ESTANTE.forEach(([, l]) => (livros += l.length));
   const numeros: [number, string][] = [[temas, "temas nas trilhas"], [livros, "indicações de livros"], [JOGOS.length, "jogos comentados"], [EXPERIMENTOS.length, "experimentos e atividades"]];
   const cards: [string, string, string, string][] = [
+    ["/diagnostico", "Diagnóstico grátis", "Em que tema meu filho está? Descubra em 3 minutos", "var(--mat)"],
     ["/trilhas/portugues/1-ano", "Trilhas", "Português, Matemática e Ciências, ano a ano", "var(--por)"],
     ["/livros", "Livros", "Paradidáticos e a estante de Formação", "var(--jog)"],
     ["/jogos", "Jogos", "Do jogo da memória ao GeoMundo", "var(--jog)"],
