@@ -164,6 +164,23 @@ export type Gratuito = {
 
 export const GRATUITOS: Gratuito[] = [
   {
+    slug: "treino-ouvir-as-letras",
+    titulo: "Treino Diário · Ouvir as Letras",
+    subtitulo: "30 folhas para conhecer o alfabeto e o som das letras, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-ouvir-as-letras.pdf",
+    nomeArquivo: "Treino-Diario-Ouvir-as-Letras-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com correção até acertar tudo. Começa traçando as vogais e as consoantes e caçando letras, passa por ligar maiúscula e minúscula, achar a primeira letra de cada figura e a ordem do alfabeto, e termina completando, contando e copiando palavras.",
+    dentro: ["30 folhas em 3 níveis, de 5 a 10 minutos cada", "Traçado de todas as letras, maiúsculas e minúsculas", "Som inicial com figuras, para quem ainda não lê", "Ordem do alfabeto, letras parecidas (b, d, p, q) e primeiras palavras", "Registro de progresso, certificado e gabarito"],
+    amostras: ["Com que vogal começa?", "As letras B, C e D", "Que letra começa?", "Complete a palavra"],
+    publico: "Alfabetização",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos. O adulto lê a instrução e, nas folhas com figuras, diz o nome de cada uma (está escrito pequeno embaixo). A criança responde circulando, ligando, traçando ou escrevendo.",
+      "Passe para a próxima folha quando ela fizer com no máximo 1 erro e sem muita ajuda. Se não deu, repita a mesma folha em outro dia: é assim que a letra e o som ficam automáticos.",
+    ],
+    materia: "por", ano: "1", tema: 2, apostila: "ouvir-as-letras",
+  },
+  {
     slug: "treino-brincar-com-as-palavras",
     titulo: "Treino Diário · Brincar com as Palavras",
     subtitulo: "30 folhas de rimas, sílabas e sons, uma por dia",
