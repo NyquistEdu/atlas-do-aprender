@@ -164,6 +164,23 @@ export type Gratuito = {
 
 export const GRATUITOS: Gratuito[] = [
   {
+    slug: "treino-nomear-e-descrever",
+    titulo: "Treino Diário · Nomear e Descrever",
+    subtitulo: "30 folhas de substantivos e adjetivos, uma por dia",
+    paginas: 36,
+    arquivo: "/treinos/treino-nomear-e-descrever.pdf",
+    nomeArquivo: "Treino-Diario-Nomear-e-Descrever-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com tempo-meta e correção até acertar tudo. Começa achando substantivos e usando a letra maiúscula, treina o plural e o feminino de cada tipo de palavra, uma regra por folha, e termina com adjetivos, concordância e a descrição de um personagem.",
+    dentro: ["30 folhas em 3 níveis, cada uma com tempo-meta", "Comum e próprio, maiúscula e coletivos", "Plural de cada tipo de palavra e feminino, uma regra por folha", "Adjetivos, contrários, concordância e descrição", "Registro de progresso, certificado e gabarito"],
+    amostras: ["Comum ou próprio?", "Plural das palavras em -ão", "O adjetivo acompanha", "Descreva um personagem"],
+    publico: "3º ano",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos, de preferência no mesmo horário. A criança anota a hora de início e de fim; o adulto corrige com o gabarito e ela refaz o que errou até a folha ficar toda certa.",
+      "Só passe para a próxima folha quando ela fizer dentro do tempo-meta e com no máximo 1 erro. Se não deu, imprima a mesma folha e repita no dia seguinte: é assim que a regra fica automática.",
+    ],
+    materia: "por", ano: "3", tema: 5, apostila: "nomear-e-descrever",
+  },
+  {
     slug: "treino-contar-ate-cem",
     titulo: "Treino Diário · Contar até Cem",
     subtitulo: "30 folhas de exercícios em pequenos passos, uma por dia",
