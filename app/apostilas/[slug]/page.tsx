@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { APOSTILAS, GRATUITOS, KITS, anoNome, type Gratuito, type Kit } from "@/lib/apostilas";
+import { APOSTILAS, GRATUITOS, KITS, anoNome, treinoDaApostila, type Gratuito, type Kit } from "@/lib/apostilas";
 import { MATERIAS, SLUG, anoSlug } from "@/lib/data";
 import { CONTATO } from "@/lib/contato";
 import Comprar from "@/components/Comprar";
@@ -52,6 +52,10 @@ function PaginaGratuito({ g }: { g: Gratuito }) {
       <section className="card">
         <h3>O que tem dentro</h3>
         <ul className="dentro">{g.dentro.map((d) => <li key={d}>{d}</li>)}</ul>
+        {g.apostila && (() => {
+          const ap = APOSTILAS.find((a) => a.slug === g.apostila);
+          return ap ? <p className="meta">Complementa a apostila <Link href={`/apostilas/${ap.slug}`}>{ap.titulo}</Link>, que explica o conteúdo passo a passo. Lá estão a explicação, os jogos e as atividades; aqui, o treino de todo dia. Tema da trilha: <Link href={`/trilhas/${SLUG[g.materia!]}/${anoSlug(g.ano!)}#tema-${g.tema}`}>{MATERIAS[g.materia!]} · {anoNome(g.ano!)}, tema {g.tema}</Link>.</p> : null;
+        })()}
         <h3>Como usar</h3>
         {g.comoUsar ? (
           g.comoUsar.map((p, i) => <p key={i} style={i === 0 ? { marginTop: 0 } : undefined}>{p}</p>)
@@ -179,6 +183,7 @@ export default function Apostila({ params }: P) {
         <h3>O que tem dentro</h3>
         <ul className="dentro">{a.dentro.map((d) => <li key={d}>{d}</li>)}</ul>
         <p className="meta">Faz parte da trilha de {MATERIAS[a.materia]} · {anoNome(a.ano)}, tema {a.tema}: <Link href={trilha}>{a.nomeTema}</Link>. Lá estão os livros, filmes e jogos indicados para o mesmo assunto.</p>
+        {treinoDaApostila(a.slug) && <p className="meta"><b>Complemento gratuito:</b> <Link href={`/apostilas/${treinoDaApostila(a.slug)!.slug}`}>{treinoDaApostila(a.slug)!.titulo}</Link>, com 30 folhas curtas para treinar um pouco por dia.</p>}
       </section>
       <h3 className="ini-h">Veja algumas páginas</h3>
       <div className="amostras">

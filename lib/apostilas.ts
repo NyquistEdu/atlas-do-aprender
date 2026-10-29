@@ -155,9 +155,65 @@ export type Gratuito = {
   amostras: string[];
   publico?: string; // etiqueta de público (padrão: "Todas as séries")
   comoUsar?: string[]; // parágrafos de "Como usar" (padrão: texto do Caderno de Conversa)
+  // Treinos diários: material ligado a um tema da trilha e a uma apostila (aparece no filtro da matéria e na página do tema)
+  materia?: Materia;
+  ano?: string;
+  tema?: number;
+  apostila?: string;
 };
 
 export const GRATUITOS: Gratuito[] = [
+  {
+    slug: "treino-contar-ate-cem",
+    titulo: "Treino Diário · Contar até Cem",
+    subtitulo: "30 folhas de exercícios em pequenos passos, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-contar-ate-cem.pdf",
+    nomeArquivo: "Treino-Diario-Contar-ate-Cem-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com tempo-meta e correção até acertar tudo. A ajuda vai diminuindo em passos bem pequenos: contar e escrever até 30, completar o Quadro dos 100, contar de 2 em 2, de 5 em 5 e de 10 em 10, comparar e separar dezenas e unidades.",
+    dentro: ["30 folhas em 3 níveis, cada uma com tempo-meta", "Exemplo no topo sempre que o exercício é novo", "Quadro dos 100 com cada vez menos ajuda", "Registro de progresso e certificado", "Gabarito completo"],
+    amostras: ["Quadros de dez", "Quadro dos 100", "Contar de 5 em 5", "Registro de progresso"],
+    publico: "Alfabetização",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos, de preferência no mesmo horário. A criança anota a hora de início e de fim; o adulto corrige com o gabarito e ela refaz o que errou até a folha ficar toda certa.",
+      "Só passe para a próxima folha quando ela fizer dentro do tempo-meta e com no máximo 1 erro. Se não deu, imprima a mesma folha e repita no dia seguinte: é assim que a matéria fica automática.",
+    ],
+    materia: "mat", ano: "1", tema: 1, apostila: "contar-ate-cem",
+  },
+  {
+    slug: "treino-medir-o-mundo",
+    titulo: "Treino Diário · Medir o Mundo",
+    subtitulo: "30 folhas de medidas e conversões, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-medir-o-mundo.pdf",
+    nomeArquivo: "Treino-Diario-Medir-o-Mundo-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com tempo-meta e correção até acertar tudo. Começa medindo com régua e jarra e escolhendo a unidade, passa pelas conversões (metro e centímetro, quilo e grama, litro e mililitro) e termina em receitas e problemas.",
+    dentro: ["30 folhas em 3 níveis, cada uma com tempo-meta", "Réguas em tamanho real para medir e conferir", "Conversões em passos pequenos, a partir de reais e centavos", "Registro de progresso e certificado", "Gabarito completo"],
+    amostras: ["Ler a régua", "Ler a jarra medidora", "Metros e centímetros", "Receita pela metade e em dobro"],
+    publico: "3º ano",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos, de preferência no mesmo horário. A criança anota a hora de início e de fim; o adulto corrige com o gabarito e ela refaz o que errou até a folha ficar toda certa.",
+      "Só passe para a próxima folha quando ela fizer dentro do tempo-meta e com no máximo 1 erro. Se não deu, imprima a mesma folha e repita no dia seguinte: é assim que a matéria fica automática.",
+    ],
+    materia: "mat", ano: "3", tema: 3, apostila: "medir-o-mundo",
+  },
+  {
+    slug: "treino-pedaco-por-pedaco",
+    titulo: "Treino Diário · Pedaço por Pedaço",
+    subtitulo: "30 folhas de frações em pequenos passos, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-pedaco-por-pedaco.pdf",
+    nomeArquivo: "Treino-Diario-Pedaco-por-Pedaco-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com tempo-meta e correção até acertar tudo. Começa nas partes iguais e em ler e pintar frações, passa por comparar e achar frações que valem o mesmo, e termina em fração de quantidade, meio litro, meia hora e problemas.",
+    dentro: ["30 folhas em 3 níveis, cada uma com tempo-meta", "Pizzas e barras para ler e pintar frações", "Comparar, ordenar e frações equivalentes", "Relógios, meia dúzia, meio litro e problemas", "Registro de progresso, certificado e gabarito"],
+    amostras: ["Que fração está pintada?", "Pedaços do mesmo tamanho", "Terço, quarto e quinto", "Meia hora e quarto de hora"],
+    publico: "3º ano",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos, de preferência no mesmo horário. A criança anota a hora de início e de fim; o adulto corrige com o gabarito e ela refaz o que errou até a folha ficar toda certa.",
+      "Só passe para a próxima folha quando ela fizer dentro do tempo-meta e com no máximo 1 erro. Se não deu, imprima a mesma folha e repita no dia seguinte: é assim que a matéria fica automática.",
+    ],
+    materia: "mat", ano: "3", tema: 5, apostila: "pedaco-por-pedaco",
+  },
   {
     slug: "bruxa-matilda",
     titulo: "O Feitiço da Bruxa Matilda",
@@ -186,3 +242,7 @@ export const GRATUITOS: Gratuito[] = [
     amostras: ["Como usar o caderno", "Poemas para Brincar", "As Aventuras de Pinóquio", "Chapeuzinho Amarelo"],
   },
 ];
+
+/** Treino diário (gratuito) de um tema da trilha, se existir. */
+export const treinoDoTema = (m: Materia, ano: string, tema: number) => GRATUITOS.find((g) => g.materia === m && g.ano === ano && g.tema === tema);
+export const treinoDaApostila = (slug: string) => GRATUITOS.find((g) => g.apostila === slug);

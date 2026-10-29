@@ -7,11 +7,16 @@ import { ANOS, DE_SLUG, MATERIAS, SLUG, anoDeSlug, anoSlug, type Materia } from 
 import Comprar from "@/components/Comprar";
 
 type Cat = Materia | "gerais";
+const GERAIS = GRATUITOS.filter((g) => !g.materia);
+const TREINOS = GRATUITOS.filter((g) => g.materia);
 type Filtro = { m: Cat | null; y: string | null };
 
 /** Vitrine com filtro de matéria e ano, guardado no endereço (?materia=…&ano=…) para poder compartilhar. */
 export default function Vitrine() {
   const [f, setF] = useState<Filtro>({ m: null, y: null });
+
+  // Treinos diários (gratuitos, ligados a uma matéria e série) entram junto com as apostilas nos filtros.
+  const temItem = (y: string, m: Cat | null) => APOSTILAS.some((a) => a.ano === y && (!m || a.materia === m)) || TREINOS.some((t) => t.ano === y && (!m || t.materia === m));
 
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
@@ -19,13 +24,13 @@ export default function Vitrine() {
     const m: Cat | null = qm === "gerais" ? "gerais" : DE_SLUG[qm] || null;
     const a = q.get("ano");
     let y = a && ANOS.some(([k]) => k === anoDeSlug(a)) ? anoDeSlug(a) : null;
-    if (y && m !== "gerais" && !APOSTILAS.some((x) => x.ano === y && (!m || x.materia === m))) y = null;
+    if (y && m !== "gerais" && !temItem(y, m)) y = null;
     setF({ m, y });
   }, []);
 
   const mudar = (n: Filtro) => {
     // se a série escolhida não tem apostila na matéria nova, volta para "todas as séries"
-    if (n.y && n.m !== "gerais" && !APOSTILAS.some((a) => a.ano === n.y && (!n.m || a.materia === n.m))) n = { ...n, y: null };
+    if (n.y && n.m !== "gerais" && !temItem(n.y, n.m)) n = { ...n, y: null };
     setF(n);
     const q = new URLSearchParams();
     if (n.m) q.set("materia", n.m === "gerais" ? "gerais" : SLUG[n.m]);
@@ -36,11 +41,12 @@ export default function Vitrine() {
 
   // Os materiais gerais (gratuitos) valem para todas as séries: aparecem em "Todas" e em "Gerais", com qualquer série.
   const conta = (m: Cat | null, y: string | null) =>
-    (m === "gerais" ? 0 : APOSTILAS.filter((a) => (!m || a.materia === m) && (!y || a.ano === y)).length) + (!m || m === "gerais" ? GRATUITOS.length + KITS.length : 0);
-  const gratis = !f.m || f.m === "gerais" ? GRATUITOS : [];
+    (m === "gerais" ? 0 : [...APOSTILAS, ...TREINOS].filter((a) => (!m || a.materia === m) && (!y || a.ano === y)).length) + (!m || m === "gerais" ? GERAIS.length + KITS.length : 0);
+  const gratis = !f.m || f.m === "gerais" ? GERAIS : [];
+  const treinos = f.m === "gerais" ? [] : TREINOS.filter((t) => (!f.m || t.materia === f.m) && (!f.y || t.ano === f.y));
   const kits = !f.m || f.m === "gerais" ? KITS : [];
   const lista = f.m === "gerais" ? [] : APOSTILAS.filter((a) => (!f.m || a.materia === f.m) && (!f.y || a.ano === f.y));
-  const total = kits.length + gratis.length + lista.length;
+  const total = kits.length + gratis.length + treinos.length + lista.length;
 
   return (
     <>
@@ -100,6 +106,23 @@ export default function Vitrine() {
               <div className="row">
                 <a className="btn small" href={g.arquivo} download={g.nomeArquivo}>Baixar grátis</a>
                 <Link className="btn small ghost" href={`/apostilas/${g.slug}`}>Ver páginas</Link>
+              </div>
+            </div>
+          </article>
+        ))}
+        {treinos.map((t) => (
+          <article className="produto" key={t.slug} style={{ ["--sc" as string]: `var(--${t.materia})` }}>
+            <Link href={`/apostilas/${t.slug}`} className="produto-capa" aria-label={`Ver detalhes de ${t.titulo}`}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/apostilas/${t.slug}/capa.webp`} alt={`Capa do ${t.titulo}`} width={566} height={800} loading="lazy" />
+            </Link>
+            <div className="produto-info">
+              <div className="tags"><span className="tag cie">Gratuito</span><span className={`tag ${t.materia}`}>{MATERIAS[t.materia!]}</span><span className="tag">{anoNome(t.ano!)}</span><span className="tag">Treino diário</span></div>
+              <h3><Link href={`/apostilas/${t.slug}`}>{t.titulo}</Link></h3>
+              <p className="meta">{t.subtitulo} · {t.paginas} páginas</p>
+              <div className="row">
+                <a className="btn small" href={t.arquivo} download={t.nomeArquivo}>Baixar grátis</a>
+                <Link className="btn small ghost" href={`/apostilas/${t.slug}`}>Ver páginas</Link>
               </div>
             </div>
           </article>

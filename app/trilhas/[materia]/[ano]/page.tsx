@@ -6,7 +6,7 @@ import { Feito, Marcar, ParaDiario } from "@/components/Registrar";
 import Progresso from "./Progresso";
 import { ConviteConta } from "@/components/Acesso";
 import { AmazonLivro } from "@/components/Amazon";
-import { apostilaDoTema } from "@/lib/apostilas";
+import { apostilaDoTema, treinoDoTema } from "@/lib/apostilas";
 import { jogosDoTema } from "@/lib/loja";
 import { url, jsonLd } from "@/lib/seo";
 
@@ -63,6 +63,7 @@ export default function Trilha({ params }: P) {
           const id = temaId(s, y, i);
           const ap = apostilaDoTema(s, y, i + 1);
           const jgs = jogosDoTema(s, y, i + 1);
+          const tr = treinoDoTema(s, y, i + 1);
           return (
             <details className="theme" key={id} id={`tema-${i + 1}`} style={{ ["--sc" as string]: cor }}>
               <summary>
@@ -78,6 +79,13 @@ export default function Trilha({ params }: P) {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={`/apostilas/${ap.slug}/capa.webp`} alt="" width={56} height={79} loading="lazy" />
                     <div><b>Apostila deste tema: {ap.titulo}</b><span>{ap.paginas} páginas para imprimir, com exercícios, jogos e gabarito</span></div>
+                  </Link>
+                )}
+                {tr && (
+                  <Link className="apostila-tema" href={`/apostilas/${tr.slug}`} style={{ textDecoration: "none" }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={`/apostilas/${tr.slug}/capa.webp`} alt="" width={56} height={79} loading="lazy" />
+                    <div><b>Treino diário grátis: {tr.titulo.replace("Treino Diário · ", "")}</b><span>30 folhas curtas, uma por dia, com tempo-meta e gabarito</span></div>
                   </Link>
                 )}
                 {jgs.map((j) => (
