@@ -5,6 +5,7 @@ import { APOSTILAS, GRATUITOS, KITS, anoNome, treinoDaApostila, type Gratuito, t
 import { MATERIAS, SLUG, anoSlug } from "@/lib/data";
 import { CONTATO } from "@/lib/contato";
 import Comprar from "@/components/Comprar";
+import Programa from "@/components/Programa";
 import { url, jsonLd } from "@/lib/seo";
 
 type P = { params: { slug: string } };
@@ -66,6 +67,7 @@ function PaginaGratuito({ g }: { g: Gratuito }) {
           </>
         )}
       </section>
+      <Programa slug={g.slug} materia={g.materia} ano={g.ano} tema={g.tema} nomeTema={APOSTILAS.find((a) => a.slug === g.apostila)?.nomeTema} />
       <h3 className="ini-h">Veja algumas páginas</h3>
       <div className="amostras">
         {g.amostras.map((leg, i) => (
@@ -115,6 +117,7 @@ function PaginaKit({ k }: { k: Kit }) {
         <h3>Como usar</h3>
         {k.comoUsar.map((p, i) => <p key={i} style={i === 0 ? { marginTop: 0 } : undefined}>{p}</p>)}
       </section>
+      <Programa slug={k.slug} />
       <h3 className="ini-h">Veja algumas páginas</h3>
       <div className="amostras">
         {k.amostras.map((leg, i) => (
@@ -185,6 +188,7 @@ export default function Apostila({ params }: P) {
         <p className="meta">Faz parte da trilha de {MATERIAS[a.materia]} · {anoNome(a.ano)}, tema {a.tema}: <Link href={trilha}>{a.nomeTema}</Link>. Lá estão os livros, filmes e jogos indicados para o mesmo assunto.</p>
         {treinoDaApostila(a.slug) && <p className="meta"><b>Complemento gratuito:</b> <Link href={`/apostilas/${treinoDaApostila(a.slug)!.slug}`}>{treinoDaApostila(a.slug)!.titulo}</Link>, com 30 folhas curtas para treinar um pouco por dia.</p>}
       </section>
+      <Programa slug={a.slug} materia={a.materia} ano={a.ano} tema={a.tema} nomeTema={a.nomeTema} />
       <h3 className="ini-h">Veja algumas páginas</h3>
       <div className="amostras">
         {a.amostras.map((leg, i) => (
