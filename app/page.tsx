@@ -38,7 +38,8 @@ export default function Inicio() {
   return (
     <div className="wrap">
       <section className="ini-hero">
-        <p className="eyebrow-i">Feito por uma professora e mãe</p>
+        <span className="selo" aria-hidden="true">grátis e sem cadastro</span>
+        <p className="eyebrow-i">feito por uma professora e mãe de&nbsp;3</p>
         <h1 className="hero-t">Atlas do Aprender</h1>
         <p className="lead">Um caminho de estudo para crianças da alfabetização ao 5º ano, para usar em casa, junto com a escola. Português, Matemática e Ciências, tema por tema, com livros, jogos, experimentos e treinos para imprimir.</p>
         <div className="row">
@@ -50,7 +51,7 @@ export default function Inicio() {
 
       <div className="stats">{numeros.map(([b, s]) => <div className="stat" key={s}><b>{b}</b><span>{s}</span></div>)}</div>
 
-      <h2 className="ini-h">Como funciona</h2>
+      <h2 className="ini-h"><span className="ini-kick">passo a passo</span><span className="marca">Como funciona</span></h2>
       <ol className="ini-passos">
         {passos.map(([n, t, d, href, cta]) => (
           <li key={n} className="card">
@@ -63,7 +64,7 @@ export default function Inicio() {
       </ol>
 
       <div className="row" style={{ justifyContent: "space-between", alignItems: "baseline" }}>
-        <h2 className="ini-h">Grátis para imprimir</h2>
+        <h2 className="ini-h"><span className="ini-kick">é só baixar</span><span className="marca">Grátis para imprimir</span></h2>
         <Link href="/apostilas">Ver todos os materiais →</Link>
       </div>
       <div className="ini-gratis">
@@ -94,7 +95,7 @@ export default function Inicio() {
         <article className="card"><h3>A ideia</h3><p>Criança aprende melhor quando o mesmo assunto aparece de vários jeitos: lido num livro, visto num filme, jogado num tabuleiro, testado com as mãos e praticado um pouco por dia. Cada tema reúne essas portas de entrada num só lugar.</p></article>
       </div>
 
-      <h2 className="ini-h">Tudo o que tem no Atlas</h2>
+      <h2 className="ini-h"><span className="ini-kick">explore</span><span className="marca">Tudo o que tem no Atlas</span></h2>
       <div className="home-grid">
         {cards.map(([href, t, d, c]) => (
           <Link key={href} href={href} className="home-card" style={{ ["--sc" as string]: c }}><b>{t}</b><span>{d}</span></Link>

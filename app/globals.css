@@ -1,21 +1,22 @@
 
 /* Layout: caderno de campo — cabeçalho fixo com abas, conteúdo em coluna de leitura, cores por matéria como marcadores de página */
 :root{
-  --paper:#f6f7f2; --card:#ffffff; --ink:#1d2433; --soft:#5b6476; --line:#dfe2d8;
+  --paper:#FFF8EC; --card:#ffffff; --ink:#1d2433; --soft:#56607a; --line:#eadfca; --sun:#F2B33D; --grid:rgba(42,93,176,.07);
   --por:#c4483b; --por-bg:#fbeae7;
   --mat:#2a5db0; --mat-bg:#e6eefb;
   --cie:#2f7d4f; --cie-bg:#e4f3ea;
-  --jog:#b07a12; --jog-bg:#fbf1dc;
+  --jog:#b07a12; --jog-bg:#fdf0d2;
   --acc:#1d2433; --ok:#2f7d4f;
-  --f-disp:"Young Serif", Georgia, "Times New Roman", serif;
+  --f-disp:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-hand:"Caveat", "Comic Sans MS", cursive;
   --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#141821; --card:#1c2130; --ink:#e9ecf3; --soft:#a3abbd; --line:#2d3446;
+  --paper:#141821; --card:#1c2130; --ink:#e9ecf3; --soft:#a3abbd; --line:#2d3446; --sun:#F2B33D; --grid:rgba(130,168,240,.06);
   --por:#f08a7d; --por-bg:#3a2224; --mat:#82a8f0; --mat-bg:#1e2a44;
   --cie:#7fcf9c; --cie-bg:#1b3326; --jog:#e8b65a; --jog-bg:#3a2e17; --acc:#e9ecf3; --ok:#7fcf9c; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --paper:#141821; --card:#1c2130; --ink:#e9ecf3; --soft:#a3abbd; --line:#2d3446;
+  --paper:#141821; --card:#1c2130; --ink:#e9ecf3; --soft:#a3abbd; --line:#2d3446; --sun:#F2B33D; --grid:rgba(130,168,240,.06);
   --por:#f08a7d; --por-bg:#3a2224; --mat:#82a8f0; --mat-bg:#1e2a44;
   --cie:#7fcf9c; --cie-bg:#1b3326; --jog:#e8b65a; --jog-bg:#3a2e17; --acc:#e9ecf3; --ok:#7fcf9c; color-scheme:dark}
 *{box-sizing:border-box}
@@ -444,3 +445,72 @@ h2.ini-h{font-size:1.45rem;margin:18px 0 4px}
 .prog-blocos{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 .prog-bloco h4{margin:0 0 6px;font-size:.95rem}
 .prog-bloco ul{margin:0;padding-left:20px;display:grid;gap:3px}
+
+/* ===== Identidade visual (a mesma dos carrosséis) =====
+   papel creme quadriculado, títulos em Bricolage 800, notas à mão em Caveat,
+   marca em pílula com as três bolinhas das matérias, cartões com contorno e sombra de recorte */
+body{background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px;background-attachment:fixed}
+h1,h2,.logo,.card h3,.tt,.ybook,.stage-h h3,.stat b,.home-card b,.ini-h,.produto-info h3,.tema-card h3,.pn-hoje-i b{font-weight:800;letter-spacing:-.02em}
+.hero-t{font-size:clamp(2.3rem,7vw,3.6rem);line-height:1.02;letter-spacing:-.03em;text-wrap:balance}
+.mao{font-family:var(--f-hand);font-weight:700;letter-spacing:0}
+/* cabeçalho */
+header.top{background:var(--paper);border-bottom:2px solid var(--ink)}
+.logo{font-size:1.05rem}
+.logo a{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:var(--paper);padding:7px 15px 7px 12px;border-radius:999px}
+.logo-dots{display:inline-flex;gap:4px;margin-right:4px}
+.logo-dots i{width:9px;height:9px;border-radius:50%;display:block}
+.logo small{font-family:var(--f-hand);font-weight:700;font-size:1.25rem;text-transform:none;letter-spacing:0;color:var(--soft);margin-left:10px}
+nav.tabs a{border-bottom-width:4px}
+nav.tabs a[aria-current="page"]{border-bottom-color:var(--sun)}
+nav.tabs a:hover{color:var(--ink)}
+/* botões: pílula com sombra de recorte */
+.btn{border-radius:999px;border:2px solid var(--ink);padding:9px 18px;box-shadow:3px 3px 0 var(--sun);transition:transform .12s,box-shadow .12s;text-decoration:none;display:inline-block}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--sun)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--sun)}
+.btn.ghost{background:var(--card);color:var(--ink);border-color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.btn.ghost:hover{box-shadow:4px 4px 0 var(--ink)}
+.btn.small{padding:5px 12px;box-shadow:2px 2px 0 var(--sun)}
+.btn.small.ghost{box-shadow:2px 2px 0 var(--ink)}
+.btn.danger{box-shadow:none}
+/* cartões */
+.card,details.theme,.book,.produto,.stat,form.diary{border:1.5px solid var(--ink);border-radius:14px}
+.card,.produto,.stat{box-shadow:4px 4px 0 rgba(29,36,51,.12)}
+.tag{border-radius:999px;padding:3px 10px}
+/* títulos de seção com marca-texto */
+h2.ini-h{font-size:clamp(1.5rem,4vw,2rem);margin:28px 0 6px}
+.ini-h .marca{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--sun) 70%,transparent) 58% 92%,transparent 92%);padding:0 4px}
+.ini-kick{display:block;font-family:var(--f-hand);font-weight:700;font-size:1.45rem;color:var(--por);letter-spacing:0;margin-bottom:-4px}
+/* início */
+.ini-hero{position:relative;background-color:var(--sun);background-image:linear-gradient(rgba(255,255,255,.22) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(255,255,255,.22) 1.5px,transparent 1.5px);background-size:32px 32px;color:#1d2433;border:2px solid #1d2433;border-radius:22px;padding:34px 30px 30px;box-shadow:6px 6px 0 #1d2433;gap:16px;margin-top:8px;overflow:hidden}
+.ini-hero .lead{color:#1d2433;font-size:1.1rem;max-width:52ch}
+.ini-hero .meta{color:#3d3420}
+.ini-hero .eyebrow-i{font-family:var(--f-hand);font-size:1.7rem;text-transform:none;letter-spacing:0;color:#1d2433;line-height:1}
+.ini-hero .hero-t{max-width:15ch}
+.ini-hero .btn{box-shadow:3px 3px 0 #fff8ec}
+.ini-hero .btn.ghost{background:#fff8ec;color:#1d2433;border-color:#1d2433;box-shadow:3px 3px 0 #1d2433}
+.selo{position:absolute;right:26px;top:26px;width:132px;height:132px;border-radius:50%;background:#fff8ec;color:#1d2433;border:2px solid #1d2433;display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--f-hand);font-weight:700;font-size:1.55rem;line-height:1;transform:rotate(10deg);padding:10px}
+@media (max-width:680px){.selo{position:static;transform:rotate(-4deg);width:auto;height:auto;border-radius:999px;padding:6px 16px;justify-self:start;font-size:1.3rem}.ini-hero{padding:24px 18px 22px}}
+.stats{gap:12px}
+.stat{text-align:left}
+.stat b{font-size:2rem;line-height:1}
+.stats .stat:nth-child(5n+1) b{color:var(--por)}.stats .stat:nth-child(5n+2) b{color:var(--mat)}.stats .stat:nth-child(5n+3) b{color:var(--cie)}.stats .stat:nth-child(5n+4) b{color:var(--jog)}
+.ini-n{background:var(--sun);color:#1d2433;border:2px solid var(--ink);font-family:var(--f-disp);font-weight:800;transform:rotate(-6deg)}
+.ini-passos li:nth-child(2) .ini-n{background:var(--por-bg)}.ini-passos li:nth-child(3) .ini-n{background:var(--mat-bg)}.ini-passos li:nth-child(4) .ini-n{background:var(--cie-bg)}
+.ini-g img{border:1.5px solid var(--ink);border-radius:6px;box-shadow:4px 4px 0 rgba(29,36,51,.14);transition:transform .15s}
+.ini-g:nth-child(odd) img{transform:rotate(-1.2deg)}.ini-g:nth-child(even) img{transform:rotate(1.2deg)}
+.ini-g:hover img{transform:rotate(0) translateY(-3px);border-color:var(--ink)}
+.home-card{border:1.5px solid var(--ink);border-top:8px solid var(--sc);border-left-width:1.5px;border-radius:14px;box-shadow:4px 4px 0 rgba(29,36,51,.12);transition:transform .12s,box-shadow .12s;color:inherit}
+.home-card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--sc)}
+.home-card b{font-size:1.2rem}
+/* produto */
+.produto{border-top:8px solid var(--sc)}
+.produto-capa{background:transparent}
+.produto-capa-g{transform:rotate(-2deg);border:1.5px solid var(--ink)}
+.amostras img{border:1.5px solid var(--ink)}
+/* rodapé */
+footer.credit{border-top:2px solid var(--ink);background:var(--ink);color:var(--paper)}
+footer.credit p{color:color-mix(in srgb,var(--paper) 78%,transparent)}
+footer.credit b,footer.credit a{color:var(--paper)}
+.ini-hero .btn:not(.ghost){background:#1d2433;color:#fff8ec;border-color:#1d2433}
+.ini-passos li:nth-child(n+2) .ini-n{color:var(--ink)}
+@media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.stats .stat:last-child:nth-child(odd){grid-column:1/-1}}
