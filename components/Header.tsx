@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useAtlas } from "./Providers";
+import { ADMIN_EMAIL } from "@/lib/admin";
 
 const ABAS: [string, string][] = [
   ["/", "Início"],
@@ -68,6 +69,7 @@ export default function Header() {
                 ))}
               </div>
             )}
+            {user?.email?.toLowerCase() === ADMIN_EMAIL && <Link className="btn small ghost" href="/painel">Painel</Link>}
             {configurado && !user && <Link className="btn small" href={`/entrar?volta=${encodeURIComponent(path)}&origem=header`}>Entrar</Link>}
             <Tema />
           </div>
