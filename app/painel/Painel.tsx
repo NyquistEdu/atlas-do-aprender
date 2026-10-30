@@ -158,6 +158,13 @@ export default function Painel() {
     setErro(""); setDados(data as Dados); setHora(new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }));
   }, [admin, dias]);
   useEffect(() => { void buscar(); }, [buscar]);
+  // Atualiza sozinho a cada minuto enquanto a aba está aberta, e na hora em que você volta para ela.
+  useEffect(() => {
+    const vis = () => { if (document.visibilityState === "visible") void buscar(); };
+    const id = window.setInterval(vis, 60_000);
+    document.addEventListener("visibilitychange", vis);
+    return () => { window.clearInterval(id); document.removeEventListener("visibilitychange", vis); };
+  }, [buscar]);
 
   const calc = useMemo(() => {
     if (!dados) return null;
@@ -205,7 +212,7 @@ export default function Painel() {
         <div>
           <p className="eyebrow-i" style={{ margin: 0 }}>Só você vê esta página</p>
           <h1>Painel do Atlas</h1>
-          {dados && <p className="meta" style={{ margin: 0 }}>{ddmm(dados.inicio)} a {ddmm(dados.hoje)} · atualizado às {hora}</p>}
+          {dados && <p className="meta" style={{ margin: 0 }}>{ddmm(dados.inicio)} a {ddmm(dados.hoje)} · atualizado às {hora} · atualiza sozinho a cada minuto</p>}
         </div>
         <div className="pn-ctrl">
           <div className="seg" role="group" aria-label="Período">
