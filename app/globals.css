@@ -564,3 +564,18 @@ nav.tabs a.so-cel{display:none}
   .brand{min-width:0}
   .logo{min-width:0;overflow:hidden}
 }
+/* Computador: 7 abas à vista + botão "Mais" com as outras */
+nav.tabs{flex-wrap:nowrap;align-items:center}
+nav.tabs a.extra{display:none}
+.mais{position:relative}
+.mais-bt{background:none;border:0;border-bottom:4px solid transparent;font:inherit;font-weight:700;color:var(--soft);padding:8px 12px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.mais-bt:hover,.mais-bt[aria-expanded="true"]{color:var(--ink)}
+.mais-bt.ativo{color:var(--ink);border-bottom-color:var(--sun)}
+.mais-lista{position:absolute;right:0;top:calc(100% + 6px);z-index:20;background:var(--card);border:2px solid var(--ink);border-radius:14px;box-shadow:5px 5px 0 var(--sun);padding:8px;display:grid;min-width:230px}
+nav.tabs .mais-lista a{text-decoration:none;color:var(--ink);font-weight:700;padding:9px 12px;border-radius:9px;border:0}
+nav.tabs .mais-lista a:hover{background:var(--jog-bg)}
+nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
+@media (max-width:760px){
+  .mais{display:none}
+  nav.tabs.aberto a.extra{display:block}
+}

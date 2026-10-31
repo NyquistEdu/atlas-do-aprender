@@ -2,19 +2,20 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAtlas } from "./Providers";
 import { ADMIN_EMAIL } from "@/lib/admin";
 
+// As 7 primeiras ficam sempre à vista no computador; as outras vão para o botão "Mais".
 const ABAS: [string, string][] = [
   ["/", "Início"],
   ["/trilhas/portugues/1-ano", "Trilhas"],
   ["/diagnostico", "Diagnóstico"],
+  ["/apostilas", "Apostilas"],
   ["/livros", "Livros"],
   ["/jogos", "Jogos"],
-  ["/mao-na-massa", "Mão na massa"],
-  ["/apostilas", "Apostilas"],
   ["/loja", "Loja"],
+  ["/mao-na-massa", "Mão na massa"],
   ["/olimpiadas", "Olimpíadas"],
   ["/tematicas", "Temáticas"],
   ["/duvidas", "Dúvidas"],
@@ -51,7 +52,17 @@ export default function Header() {
   const path = usePathname() || "/";
   const { configurado, user, criancas, crianca, setCrianca } = useAtlas();
   const [aberto, setAberto] = useState(false);
-  useEffect(() => setAberto(false), [path]);
+  const [mais, setMais] = useState(false);
+  const maisRef = useRef<HTMLDivElement>(null);
+  useEffect(() => { setAberto(false); setMais(false); }, [path]);
+  useEffect(() => {
+    if (!mais) return;
+    const fora = (e: MouseEvent) => { if (maisRef.current && !maisRef.current.contains(e.target as Node)) setMais(false); };
+    const esc = (e: KeyboardEvent) => { if (e.key === "Escape") setMais(false); };
+    document.addEventListener("mousedown", fora);
+    document.addEventListener("keydown", esc);
+    return () => { document.removeEventListener("mousedown", fora); document.removeEventListener("keydown", esc); };
+  }, [mais]);
   const abas = user ? [ABAS[0], ["/meu-plano", "Meu plano"] as [string, string], ...ABAS.slice(1)] : ABAS;
   const ativa = (href: string) => {
     if (href === "/") return path === "/";
@@ -59,6 +70,9 @@ export default function Header() {
     return path === href || path.startsWith(base + "/") || path === base;
   };
   const atual = abas.find(([h]) => ativa(h))?.[1];
+  const nPrincipais = user ? 8 : 7;
+  const extras = abas.slice(nPrincipais);
+  const extraAtual = extras.find(([h]) => ativa(h))?.[1];
   return (
     <header className="top">
       <div className="wrap largo">
@@ -91,9 +105,21 @@ export default function Header() {
         )}
         {atual && !aberto && <p className="menu-atual">Você está em: <b>{atual}</b></p>}
         <nav id="secoes" className={`tabs${aberto ? " aberto" : ""}`} aria-label="Seções">
-          {abas.map(([href, nome]) => (
-            <Link key={href} href={href} aria-current={ativa(href) ? "page" : undefined}>{nome}</Link>
+          {abas.map(([href, nome], i) => (
+            <Link key={href} href={href} className={i >= nPrincipais ? "extra" : undefined} aria-current={ativa(href) ? "page" : undefined}>{nome}</Link>
           ))}
+          <div className="mais" ref={maisRef}>
+            <button type="button" className={`mais-bt${extraAtual ? " ativo" : ""}`} aria-expanded={mais} aria-haspopup="true" onClick={() => setMais(!mais)}>
+              {extraAtual ?? "Mais"} <span aria-hidden="true">▾</span>
+            </button>
+            {mais && (
+              <div className="mais-lista">
+                {extras.map(([href, nome]) => (
+                  <Link key={href} href={href} aria-current={ativa(href) ? "page" : undefined}>{nome}</Link>
+                ))}
+              </div>
+            )}
+          </div>
           {configurado && !user && <Link className="so-cel menu-extra" href={`/entrar?volta=${encodeURIComponent(path)}&origem=menu`}>Entrar na conta</Link>}
           {user?.email?.toLowerCase() === ADMIN_EMAIL && <Link className="so-cel menu-extra" href="/painel">Painel</Link>}
         </nav>
