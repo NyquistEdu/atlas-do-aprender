@@ -705,3 +705,23 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .lnk{background:none;border:0;padding:0;font:inherit;color:var(--por);text-decoration:underline;cursor:pointer}
 .resp-prof{border-left:5px solid var(--sun);padding:4px 0 4px 18px}
 .resp-assina{font-family:var(--f-hand);font-weight:700;font-size:1.4rem;color:var(--jog);margin:0}
+/* Mural de conquistas */
+.mural-form .fgrid{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.mural-previa{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.mural-previa img{width:120px;height:120px;object-fit:cover;border-radius:12px;border:2px solid var(--ink)}
+.mural{columns:3 280px;column-gap:16px}
+.conq{break-inside:avoid;margin:0 0 16px;background:var(--card);border:2px solid var(--ink);border-radius:18px;overflow:hidden;box-shadow:4px 4px 0 var(--sc,var(--sun));display:grid}
+.conq img{width:100%;height:auto;display:block;border-bottom:2px solid var(--ink)}
+.conq-txt{padding:12px 14px 14px;display:grid;gap:6px;position:relative}
+.conq.sem-foto .conq-txt{background:color-mix(in srgb,var(--sc,var(--sun)) 10%,var(--card))}
+.conq-em{font-size:34px;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.conq-txt p{margin:0;font-size:1.08rem;font-weight:700;line-height:1.35}
+.conq-autor{font-size:.82rem;color:var(--soft)}
+.conq-fase{font-size:.8rem;font-weight:700;justify-self:start;text-decoration:none;background:var(--jog-bg);color:var(--ink);border-radius:999px;padding:3px 10px}
+.palma{justify-self:end;display:inline-flex;align-items:center;gap:6px;border:2px solid var(--ink);background:var(--card);border-radius:999px;padding:4px 12px;font:inherit;font-size:1.05rem;cursor:pointer;text-decoration:none;color:var(--ink);transition:transform .12s}
+.palma b{font-size:.9rem;min-width:.6em}
+.palma:hover{transform:scale(1.06)}
+.palma.on{background:var(--sun)}
+.mod-conq{display:grid;grid-template-columns:minmax(0,160px) 1fr;gap:14px;align-items:start}
+.mod-conq img{width:100%;border-radius:10px;border:1.5px solid var(--ink)}
+@media (max-width:560px){.mod-conq{grid-template-columns:1fr}}

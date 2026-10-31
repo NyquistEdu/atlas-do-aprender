@@ -126,6 +126,7 @@ export default function Trilha({ params }: P) {
                   <Marcar chave={"andamento|" + id} rotulo={["Estamos trabalhando neste tema", "Tirar de “em andamento”"]} origem="trilhas" />
                   <Marcar chave={id} rotulo={["Marcar tema como concluído", "Desmarcar tema"]} origem="trilhas" />
                   <ParaDiario area={s} tipo="Estudo da trilha" titulo={th.t} />
+                  <Link className="btn small ghost" href={`/mural?tema=${id}#compartilhar`}>🏆 Compartilhar uma conquista</Link>
                 </div>
               </div>
           );

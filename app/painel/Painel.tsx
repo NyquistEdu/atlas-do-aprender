@@ -3,6 +3,7 @@
 import Link from "next/link";
 import DicasCard from "./DicasCard";
 import PerguntasCard from "./PerguntasCard";
+import ConquistasCard from "./ConquistasCard";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useAtlas } from "@/components/Providers";
@@ -365,6 +366,7 @@ export default function Painel() {
             </div>
             <DicasCard />
             <PerguntasCard />
+            <ConquistasCard />
           </section>
 
           <p className="meta pn-nota">Contagem anônima, sem cookies, desde {dados.desde ? new Date(dados.desde + "T12:00:00Z").toLocaleDateString("pt-BR", { timeZone: "UTC" }) : "—"}. Visita conta 1 vez por sessão; downloads e cliques contam cada clique. Vendas e faturamento ficam na Kiwify.</p>

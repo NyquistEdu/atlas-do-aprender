@@ -32,6 +32,7 @@ export default function Inicio() {
     ["/tematicas", "Temáticas", "Halloween, Dia do Saci, Natal e outras datas", "var(--jog)"],
     ["/planejamento", "Planejamento gratuito", "Uma conversa por vídeo e um plano feito para a sua criança", "var(--cie)"],
     ["/diario", "Diário", "Registros e a linha do tempo de cada criança", "var(--mat)"],
+    ["/mural", "Mural de conquistas", "Vitórias das crianças, comemoradas juntas", "var(--jog)"],
     ["/duvidas", "Pergunte à professora", "Mande sua dúvida; eu respondo pessoalmente", "var(--mat)"],
     ["/guia", "Guia de uso", "Como usar cada parte do Atlas, passo a passo", "var(--line)"],
   ];

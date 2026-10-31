@@ -19,6 +19,7 @@ const ABAS: [string, string][] = [
   ["/olimpiadas", "Olimpíadas"],
   ["/tematicas", "Temáticas"],
   ["/duvidas", "Pergunte à professora"],
+  ["/mural", "Mural de conquistas"],
   ["/planejamento", "Planejamento grátis"],
   ["/diario", "Diário"],
   ["/guia", "Guia"],
