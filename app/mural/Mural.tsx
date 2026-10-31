@@ -38,7 +38,6 @@ export default function Mural({ fases, desafios = {}, desafio }: { fases: Record
   const [autor, setAutor] = useState("");
   const [foto, setFoto] = useState<File | null>(null);
   const [previa, setPrevia] = useState("");
-  const [semRosto, setSemRosto] = useState(false);
   const [enviando, setEnviando] = useState(false);
   const [ok, setOk] = useState(false);
   const [erro, setErro] = useState("");
@@ -65,7 +64,7 @@ export default function Mural({ fases, desafios = {}, desafio }: { fases: Record
   }, [user]);
 
   const escolherFoto = (f: File | null) => {
-    setFoto(f); setSemRosto(false);
+    setFoto(f);
     setPrevia((p) => { if (p) URL.revokeObjectURL(p); return f ? URL.createObjectURL(f) : ""; });
   };
 
@@ -74,7 +73,6 @@ export default function Mural({ fases, desafios = {}, desafio }: { fases: Record
     setErro("");
     if (texto.trim().length < 5) return setErro("Conte qual foi a conquista.");
     if (autor.trim().length < 2) return setErro("Escreva como você quer aparecer, por exemplo: Ana, mãe do Theo.");
-    if (foto && !semRosto) return setErro("Confirme que a foto não mostra o rosto de nenhuma criança.");
     setEnviando(true);
     try {
       let caminho = "";
@@ -140,9 +138,6 @@ export default function Mural({ fases, desafios = {}, desafio }: { fases: Record
               <div className="mural-previa">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={previa} alt="Prévia da foto" />
-                <label className="f" style={{ display: "flex", gap: 8, alignItems: "center", fontWeight: 700, color: "var(--ink)" }}>
-                  <input type="checkbox" checked={semRosto} onChange={(e) => setSemRosto(e.target.checked)} style={{ width: "auto" }} /> A foto não mostra o rosto de nenhuma criança
-                </label>
               </div>
             )}
             <p className="meta" style={{ margin: 0 }}>Não escreva o nome completo nem a escola da criança. A foto é reduzida no seu aparelho antes de enviar, e a localização dela é apagada. {texto.length}/300</p>
