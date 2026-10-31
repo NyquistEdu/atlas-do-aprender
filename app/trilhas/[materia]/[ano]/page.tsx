@@ -2,8 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ANOS, CATEGORIAS, DE_SLUG, MATERIAS, SLUG, TRILHAS, anoDeSlug, anoSlug, temaId, type Materia } from "@/lib/data";
-import { Feito, Marcar, ParaDiario } from "@/components/Registrar";
+import { Marcar, ParaDiario } from "@/components/Registrar";
 import Progresso from "./Progresso";
+import Mapa from "./Mapa";
+import { EMOJI_FASE, ENFEITES, NOME_REGIAO } from "@/lib/fases";
 import { ConviteConta } from "@/components/Acesso";
 import { AmazonLivro } from "@/components/Amazon";
 import { apostilaDoTema, treinoDoTema } from "@/lib/apostilas";
@@ -51,29 +53,27 @@ export default function Trilha({ params }: P) {
           <Link key={m} data-s={m} href={`/trilhas/${SLUG[m]}/${params.ano}`} aria-current={m === s ? "true" : undefined}>{MATERIAS[m]}</Link>
         ))}
       </div>
-      <div className="seg yr">
+      <nav className="mundo" aria-label="Ano">
         {ANOS.map(([a, l]) => (
-          <Link key={a} href={`/trilhas/${params.materia}/${anoSlug(a)}`} aria-current={a === y ? "true" : undefined}>{l}</Link>
+          <Link key={a} href={`/trilhas/${params.materia}/${anoSlug(a)}`} aria-current={a === y ? "true" : undefined} className="ilha">
+            <i aria-hidden="true">{["🏝️", "🌴", "⛰️", "🏞️", "🗻"][Number(a) - 1]}</i>
+            <b>{a === "1" ? "Alfabetização" : l}</b>
+            <span>{NOME_REGIAO[a]}</span>
+          </Link>
         ))}
-      </div>
-      <p className="passo">2. Toque em um tema para ver as atividades</p>
+      </nav>
+      <p className="passo">2. Siga o caminho: cada fase do mapa é um tema. Toque numa fase para entrar</p>
       <Progresso chaves={lista.map((_, i) => temaId(s, y, i))} cor={cor} />
-      <div className="list">
+      <Mapa cor={cor} enfeites={ENFEITES[s]} regiao={`${MATERIAS[s]} · ${NOME_REGIAO[y]}`}
+        fases={lista.map((th, i) => ({ id: temaId(s, y, i), titulo: th.t, obj: th.o, emoji: EMOJI_FASE[temaId(s, y, i)] || "📍" }))}>
         {lista.map((th, i) => {
           const id = temaId(s, y, i);
           const ap = apostilaDoTema(s, y, i + 1);
           const jgs = jogosDoTema(s, y, i + 1);
           const tr = treinoDoTema(s, y, i + 1);
           return (
-            <details className="theme" key={id} id={`tema-${i + 1}`} style={{ ["--sc" as string]: cor }}>
-              <summary>
-                <span className="tnum">Tema {i + 1}</span>
-                <span className="tt">{th.t}</span>
-                <Feito chave={id} />
-                <span className="tobj">{th.o}</span>
-                <span className="ver">Ver atividades ▾</span>
-              </summary>
-              <div className="tbody">
+              <div className="tbody" key={id}>
+
                 {ap && (
                   <Link className="apostila-tema" href={`/apostilas/${ap.slug}`} style={{ textDecoration: "none" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -116,10 +116,9 @@ export default function Trilha({ params }: P) {
                   <ParaDiario area={s} tipo="Estudo da trilha" titulo={th.t} />
                 </div>
               </div>
-            </details>
           );
         })}
-      </div>
+      </Mapa>
       <p className="note">Filmes e séries mudam de plataforma com frequência; confira a classificação e onde estão disponíveis antes de assistir. Os anos são referência: avance ou volte conforme a criança.</p>
     </div>
   );

@@ -579,3 +579,66 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
   .mais{display:none}
   nav.tabs.aberto a.extra{display:block}
 }
+/* ===== Trilha como mapa de jogo ===== */
+.mundo{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;position:relative;padding:4px 0}
+.mundo::before{content:"";position:absolute;left:8%;right:8%;top:34px;border-top:3px dashed color-mix(in srgb,var(--ink) 35%,transparent);z-index:0}
+.mundo .ilha{position:relative;z-index:1;display:grid;justify-items:center;text-align:center;gap:2px;text-decoration:none;color:var(--soft);padding:6px 4px 8px;border-radius:14px;border:2px solid transparent}
+.mundo .ilha i{font-style:normal;font-size:30px;line-height:1;width:56px;height:56px;display:grid;place-items:center;background:var(--card);border:2px solid var(--line);border-radius:50%;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.mundo .ilha b{font-size:.86rem;color:var(--ink)}
+.mundo .ilha span{font-family:var(--f-hand);font-weight:700;font-size:1rem;line-height:1.05}
+.mundo .ilha:hover i{border-color:var(--ink)}
+.mundo .ilha[aria-current="true"]{background:var(--card);border-color:var(--ink);box-shadow:3px 3px 0 var(--sun);color:var(--ink)}
+.mundo .ilha[aria-current="true"] i{background:var(--sun);border-color:var(--ink)}
+@media (max-width:560px){.mundo{gap:2px}.mundo .ilha i{width:44px;height:44px;font-size:22px}.mundo::before{top:28px}.mundo .ilha b{font-size:.72rem}.mundo .ilha span{display:none}}
+
+.mapa{position:relative;border:2px solid var(--ink);border-radius:22px;overflow:hidden;box-shadow:6px 6px 0 var(--sc);
+  background:radial-gradient(ellipse 40% 22% at 85% 12%,color-mix(in srgb,#6f97e0 22%,transparent),transparent 70%),radial-gradient(ellipse 35% 18% at 10% 70%,color-mix(in srgb,#5fb37f 22%,transparent),transparent 70%),radial-gradient(ellipse 30% 15% at 90% 85%,color-mix(in srgb,#5fb37f 18%,transparent),transparent 70%),#f7ecd3}
+:root[data-theme="dark"] .mapa{background:#1f2636}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mapa{background:#1f2636}}
+.mapa-caminho{position:absolute;inset:0;width:100%;height:100%}
+.mapa-caminho .estrada{fill:none;stroke:color-mix(in srgb,var(--sc) 22%,#fff8ec);stroke-width:26px;stroke-linecap:round}
+.mapa-caminho .trilha{fill:none;stroke:var(--ink);stroke-width:3px;stroke-dasharray:2 12;stroke-linecap:round}
+.mapa-regiao{position:absolute;left:16px;bottom:14px;font-family:var(--f-hand);font-weight:700;font-size:1.35rem;color:var(--soft);z-index:1}
+.mapa-rosa{position:absolute;right:14px;top:12px;font-size:34px;opacity:.85;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.mapa-enfeite{position:absolute;font-size:34px;opacity:.55;transform:translate(-50%,-50%);font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif;pointer-events:none}
+.mapa-marco{position:absolute;transform:translate(-30%,-50%);display:flex;align-items:center;gap:4px;font-size:30px;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif;z-index:1}
+.mapa-marco b{font-family:var(--f-hand);font-size:1.3rem;color:var(--ink)}
+.fase-no{position:absolute;transform:translate(-50%,-44px);background:none;border:0;padding:0;cursor:pointer;display:grid;justify-items:center;gap:6px;z-index:2;font:inherit;color:var(--ink)}
+.fase-no .circ{position:relative;width:88px;height:88px;border-radius:50%;background:var(--card);border:3px solid var(--ink);display:grid;place-items:center;box-shadow:0 6px 0 var(--ink);transition:transform .15s,box-shadow .15s}
+.fase-no .em{font-size:40px;line-height:1;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.fase-no .num{position:absolute;left:-6px;top:-6px;width:32px;height:32px;border-radius:50%;background:var(--sc);color:#fff;border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--f-disp);font-weight:800;font-size:1rem}
+.fase-no .ok{position:absolute;right:-6px;bottom:-4px;width:30px;height:30px;border-radius:50%;background:var(--ok);color:#fff;border:2px solid var(--ink);display:grid;place-items:center;font-weight:800}
+.fase-no .rot{background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:6px 10px;max-width:210px;text-align:center;font-weight:700;font-size:.9rem;line-height:1.25;box-shadow:2px 2px 0 rgba(29,36,51,.15)}
+.fase-no .rot small{display:block;font-family:var(--f-hand);font-size:1.05rem;color:var(--sc);font-weight:700;line-height:1}
+.fase-no:hover .circ,.fase-no:focus-visible .circ{transform:translateY(-3px);box-shadow:0 9px 0 var(--ink)}
+.fase-no:active .circ{transform:translateY(4px);box-shadow:0 2px 0 var(--ink)}
+.fase-no.feita .circ{background:color-mix(in srgb,var(--sc) 22%,var(--card))}
+.fase-no.atual .circ{background:var(--sun);animation:pulso 1.8s ease-in-out infinite}
+.fase-no.sel .circ{outline:4px solid var(--sun);outline-offset:4px}
+.fase-no .pin{position:absolute;top:-34px;background:var(--ink);color:var(--paper);font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap;animation:quica 1.6s ease-in-out infinite}
+.fase-no .pin::after{content:"";position:absolute;left:50%;bottom:-5px;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--ink);border-bottom:0}
+@keyframes pulso{0%,100%{box-shadow:0 6px 0 var(--ink),0 0 0 0 color-mix(in srgb,var(--sun) 60%,transparent)}50%{box-shadow:0 6px 0 var(--ink),0 0 0 12px transparent}}
+@keyframes quica{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){.fase-no.atual .circ,.fase-no .pin{animation:none}}
+@media (max-width:560px){
+  .fase-no .circ{width:70px;height:70px}.fase-no .em{font-size:32px}
+  .fase-no{transform:translate(-50%,-35px)}
+  .fase-no .rot{max-width:150px;font-size:.8rem;padding:5px 8px}
+  .fase-no.esq .rot{transform:translateX(22%)}.fase-no.dir .rot{transform:translateX(-22%)}
+  .mapa-enfeite{font-size:26px}
+}
+.fase-painel-ancora{scroll-margin-top:110px}
+.fase-dica{margin:0;text-align:center;font-family:var(--f-hand);font-weight:700;font-size:1.4rem;color:var(--soft)}
+.fase-painel{background:var(--card);border:2px solid var(--ink);border-top:10px solid var(--sc);border-radius:18px;padding:18px;display:grid;gap:14px;box-shadow:5px 5px 0 rgba(29,36,51,.12);scroll-margin-top:110px}
+.fase-painel[hidden]{display:none}
+.fase-painel .tbody{padding:0}
+.fase-topo{display:flex;gap:14px;align-items:center}
+.fase-em{font-size:44px;width:76px;height:76px;flex:none;display:grid;place-items:center;border-radius:50%;background:color-mix(in srgb,var(--sc) 15%,var(--card));border:2px solid var(--ink);font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.fase-n{margin:0;font-family:var(--f-hand);font-weight:700;font-size:1.2rem;color:var(--sc)}
+.fase-topo h2{font-size:clamp(1.35rem,4vw,1.8rem);line-height:1.1}
+.fase-obj{margin:4px 0 0;color:var(--soft)}
+.fase-nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;border-top:1.5px dashed var(--line);padding-top:12px}
+.fase-nav .btn[disabled]{opacity:.35;pointer-events:none}
+.mapa-regiao{left:auto;right:62px;top:16px;bottom:auto;text-align:right;max-width:45%}
+.fase-no .rot{width:max-content}
+@media (max-width:560px){.mapa-regiao{display:none}}
