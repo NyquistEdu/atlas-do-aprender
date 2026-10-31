@@ -66,7 +66,7 @@ export default function Header() {
           <p className="logo"><Link href="/" style={{ textDecoration: "none" }}><span className="logo-dots" aria-hidden="true"><i style={{ background: "#e0675a" }} /><i style={{ background: "#6f97e0" }} /><i style={{ background: "#5fb37f" }} /></span>Atlas do Aprender</Link> <small>da alfabetização ao 5º ano</small></p>
           <div className="brand-r">
             {user && criancas.length > 0 && (
-              <div className="kids" aria-label="Criança">
+              <div className="kids so-pc" aria-label="Criança">
                 <span className="lbl">Criança</span>
                 {criancas.map((n) => (
                   <button key={n} className="chip" aria-pressed={n === crianca} onClick={() => setCrianca(n)}>{n}</button>
@@ -81,6 +81,14 @@ export default function Header() {
             </button>
           </div>
         </div>
+        {user && criancas.length > 0 && (
+          <div className="kids kids-cel so-cel" aria-label="Criança">
+            <span className="lbl">Criança</span>
+            {criancas.map((n) => (
+              <button key={n} className="chip" aria-pressed={n === crianca} onClick={() => setCrianca(n)}>{n}</button>
+            ))}
+          </div>
+        )}
         {atual && !aberto && <p className="menu-atual">Você está em: <b>{atual}</b></p>}
         <nav id="secoes" className={`tabs${aberto ? " aberto" : ""}`} aria-label="Seções">
           {abas.map(([href, nome]) => (

@@ -557,3 +557,10 @@ nav.tabs a.so-cel{display:none}
   nav.tabs.aberto a.so-cel{display:block}
   nav.tabs.aberto a.menu-extra{background:var(--ink);color:var(--paper)}
 }
+.kids-cel{display:none}
+@media (max-width:760px){
+  .kids-cel{display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:6px;align-items:center;padding-top:2px}
+  .kids-cel .chip{padding:4px 12px;font-size:.88rem;flex:0 0 auto}
+  .brand{min-width:0}
+  .logo{min-width:0;overflow:hidden}
+}
