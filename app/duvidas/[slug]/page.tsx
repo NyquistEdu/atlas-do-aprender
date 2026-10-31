@@ -25,10 +25,10 @@ export default function Pagina({ params }: P) {
         "@context": "https://schema.org",
         "@graph": [
           { "@type": "Article", headline: d.pergunta, description: d.resumo, inLanguage: "pt-BR", author: { "@type": "Person", name: "Stephanie Kamarry" }, publisher: { "@type": "Organization", name: "Atlas do Aprender", logo: { "@type": "ImageObject", url: url("/logo.png") } }, mainEntityOfPage: url(`/duvidas/${d.slug}`), image: url("/og-v2.png") },
-          { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Dúvidas", item: url("/duvidas") }, { "@type": "ListItem", position: 2, name: d.pergunta, item: url(`/duvidas/${d.slug}`) }] },
+          { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Pergunte à professora", item: url("/duvidas") }, { "@type": "ListItem", position: 2, name: d.pergunta, item: url(`/duvidas/${d.slug}`) }] },
         ],
       })} />
-      <p className="eyebrow-i"><Link href="/duvidas">Dúvidas comuns</Link></p>
+      <p className="eyebrow-i"><Link href="/duvidas">Pergunte à professora</Link></p>
       <h1 className="hero-t">{d.pergunta}</h1>
       <p className="lead">{d.resumo}</p>
       {[visao].map((s) => (

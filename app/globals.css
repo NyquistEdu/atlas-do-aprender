@@ -685,3 +685,23 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .books-fechado[open]>summary::after{transform:rotate(-135deg) translate(-2px,-2px)}
 .books-fechado[open]>summary{border-bottom:1.5px dashed color-mix(in srgb,var(--jog) 40%,transparent)}
 .books-fechado>ul{padding:12px 14px 14px 32px}
+/* Pergunte à professora */
+.perg{border:2px solid var(--ink);box-shadow:5px 5px 0 var(--sun);gap:14px}
+.perg-topo{display:flex;gap:14px;align-items:flex-start}
+.perg-topo h2{font-size:1.4rem}
+.perg-topo p{margin:4px 0 0;color:var(--soft);max-width:65ch}
+.perg-em{font-size:34px;width:62px;height:62px;flex:none;display:grid;place-items:center;border-radius:50%;background:var(--sun);border:2px solid var(--ink);font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.perg-form{display:grid;gap:10px}
+.perg-form textarea,.perg-form select{width:100%}
+.perg>.btn{justify-self:start}
+.perg-minhas{display:grid;gap:10px;border-top:1.5px dashed var(--line);padding-top:12px}
+.perg-minhas h3{font-size:1.1rem}
+.perg-m{border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;display:grid;gap:6px}
+.perg-m.respondida{border-color:var(--ok)}
+.perg-q{margin:0;font-weight:700}
+.perg-r{background:var(--cie-bg);border-radius:10px;padding:10px 12px}
+.perg-r b{display:block;font-family:var(--f-hand);font-size:1.2rem;color:var(--cie)}
+.perg-r p{margin:4px 0 0}
+.lnk{background:none;border:0;padding:0;font:inherit;color:var(--por);text-decoration:underline;cursor:pointer}
+.resp-prof{border-left:5px solid var(--sun);padding:4px 0 4px 18px}
+.resp-assina{font-family:var(--f-hand);font-weight:700;font-size:1.4rem;color:var(--jog);margin:0}

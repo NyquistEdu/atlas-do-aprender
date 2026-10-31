@@ -18,7 +18,7 @@ const ABAS: [string, string][] = [
   ["/mao-na-massa", "Mão na massa"],
   ["/olimpiadas", "Olimpíadas"],
   ["/tematicas", "Temáticas"],
-  ["/duvidas", "Dúvidas"],
+  ["/duvidas", "Pergunte à professora"],
   ["/planejamento", "Planejamento grátis"],
   ["/diario", "Diário"],
   ["/guia", "Guia"],
