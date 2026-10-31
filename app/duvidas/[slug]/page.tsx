@@ -24,7 +24,7 @@ export default function Pagina({ params }: P) {
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd({
         "@context": "https://schema.org",
         "@graph": [
-          { "@type": "Article", headline: d.pergunta, description: d.resumo, inLanguage: "pt-BR", author: { "@type": "Person", name: "Stephanie Kamarry" }, publisher: { "@type": "Organization", name: "Atlas do Aprender", logo: { "@type": "ImageObject", url: url("/logo.png") } }, mainEntityOfPage: url(`/duvidas/${d.slug}`), image: url("/og.png") },
+          { "@type": "Article", headline: d.pergunta, description: d.resumo, inLanguage: "pt-BR", author: { "@type": "Person", name: "Stephanie Kamarry" }, publisher: { "@type": "Organization", name: "Atlas do Aprender", logo: { "@type": "ImageObject", url: url("/logo.png") } }, mainEntityOfPage: url(`/duvidas/${d.slug}`), image: url("/og-v2.png") },
           { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Dúvidas", item: url("/duvidas") }, { "@type": "ListItem", position: 2, name: d.pergunta, item: url(`/duvidas/${d.slug}`) }] },
         ],
       })} />
