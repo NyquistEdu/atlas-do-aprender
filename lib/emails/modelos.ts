@@ -48,10 +48,13 @@ Você recebe este e-mail porque pediu dicas e novidades do Atlas do Aprender. É
 </td></tr></table></td></tr></table></body></html>`;
 }
 
-export function boasVindas(descadastro: string): Email {
-  const tipo = "boas_vindas";
-  const previa = "Três passos para começar: o diagnóstico, o mapa da trilha e o desafio do mês.";
-  const corpo = `${p("Que bom ter vocês aqui! Eu criei o Atlas quando precisei ensinar meu filho em casa, do jeito dele, sem pressão. Agora ele é de vocês também, e é todo gratuito.")}
+export function boasVindas(descadastro: string, contaAntiga = false): Email {
+  const tipo = contaAntiga ? "boas_vindas_antiga" : "boas_vindas";
+  const previa = contaAntiga ? "O Atlas mudou bastante desde o seu cadastro. Três passos para aproveitar." : "Três passos para começar: o diagnóstico, o mapa da trilha e o desafio do mês.";
+  const abertura = contaAntiga
+    ? "Você criou sua conta no Atlas há um tempinho, e ele mudou bastante desde então: as trilhas viraram um mapa com fases, chegaram apostilas grátis, o desafio do mês e um espaço para perguntar direto para mim. Eu criei o Atlas quando precisei ensinar meu filho em casa, do jeito dele, sem pressão, e ele continua todo gratuito."
+    : "Que bom ter vocês aqui! Eu criei o Atlas quando precisei ensinar meu filho em casa, do jeito dele, sem pressão. Agora ele é de vocês também, e é todo gratuito.";
+  const corpo = `${p(abertura)}
 ${p("Para começar bem, sugiro três passos, um de cada vez:")}
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
 ${bloco("🧭", "1. Faça o diagnóstico grátis", "Uns 5 minutos para descobrir o que a criança já domina em Português, Matemática e Ciências e por onde começar.", "/diagnostico", tipo)}
@@ -59,7 +62,9 @@ ${bloco("🗺️", "2. Abra o mapa da trilha", "Cada tema é uma fase do caminho
 ${bloco("🌱", "3. Conheça o desafio do mês", "Uma atividade para fazer em família. Quem mostra o resultado no mural ganha um selo.", "/desafio", tipo)}
 </table>
 ${botao("Fazer o diagnóstico agora", "/diagnostico", tipo)}`;
-  return { assunto: "Bem-vindos ao Atlas do Aprender 💛", previa, html: base({ tipo, previa, kicker: "que bom ter vocês aqui", titulo: "Bem-vindos ao Atlas do Aprender", corpo, descadastro }) };
+  return contaAntiga
+    ? { assunto: "O Atlas mudou bastante desde que vocês chegaram 💛", previa, html: base({ tipo, previa, kicker: "que bom ter vocês de volta", titulo: "O Atlas cresceu, e está esperando vocês", corpo, descadastro }) }
+    : { assunto: "Bem-vindos ao Atlas do Aprender 💛", previa, html: base({ tipo, previa, kicker: "que bom ter vocês aqui", titulo: "Bem-vindos ao Atlas do Aprender", corpo, descadastro }) };
 }
 
 export function dia2(descadastro: string): Email {

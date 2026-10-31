@@ -23,7 +23,7 @@ export async function GET(req: Request) {
   if (!db) return NextResponse.json({ erro: "Falta SUPABASE_SERVICE_ROLE_KEY na Vercel." }, { status: 503 });
   if (ENVIO_LIGADO && !process.env.BREVO_API_KEY) return NextResponse.json({ erro: "Falta BREVO_API_KEY na Vercel." }, { status: 503 });
 
-  const { data: prefs, error } = await db.from("preferencias_email").select("user_id,token,enviados").eq("quer", true);
+  const { data: prefs, error } = await db.from("preferencias_email").select("user_id,token,enviados,inicio,origem").eq("quer", true);
   if (error) return NextResponse.json({ erro: "Tabela de preferências indisponível. Rode supabase/emails.sql.", detalhe: error.message }, { status: 503 });
   if (!prefs?.length) return NextResponse.json({ ligado: ENVIO_LIGADO, familias: 0, plano: {} });
 
@@ -69,16 +69,18 @@ export async function GET(req: Request) {
     if (!u?.email) continue;
     const env = (pref.enviados || {}) as Record<string, string>;
     if (env.ultimo === hoje) continue;
-    const dias = diasDesde(u.created_at, agora);
+    const dias = diasDesde(pref.inicio || u.created_at, agora); // a sequência conta a partir do início dos e-mails
+    const antiga = pref.origem === "conta_antiga";
     const desc = linkDescadastro(pref.token);
     let tipo = "", email: Email | null = null;
 
-    if (!env.boas_vindas && dias <= 7) { tipo = "boas_vindas"; email = boasVindas(desc); }
-    else if (hojeF.getDate() <= 5 && !env[`mensal_${mesId}`] && dias >= 3) { tipo = `mensal_${mesId}`; email = mensal(await prepararMensal(), desc); }
-    else if (!env.d2 && dias >= 2 && dias <= 20) { tipo = "d2"; email = dia2(desc); }
-    else if (env.d2 && !env.d5 && dias >= 5 && dias <= 25) { tipo = "d5"; email = dia5(desc); }
-    else if (env.d5 && !env.d10 && dias >= 10 && dias <= 35) { tipo = "d10"; email = dia10(desc); }
-    else if (dias >= 14 && diasDesde(env.saudade, agora) >= 30 && diasDesde(env.ultimo, agora) >= 5) {
+    const desdeBV = diasDesde(env.boas_vindas, agora); // a sequência conta a partir das boas-vindas
+    if (!env.boas_vindas && dias <= 30) { tipo = "boas_vindas"; email = boasVindas(desc, antiga); }
+    else if (hojeF.getDate() <= 5 && !env[`mensal_${mesId}`] && desdeBV >= 3) { tipo = `mensal_${mesId}`; email = mensal(await prepararMensal(), desc); }
+    else if (!env.d2 && desdeBV >= 2 && desdeBV <= 20) { tipo = "d2"; email = dia2(desc); }
+    else if (env.d2 && !env.d5 && desdeBV >= 5 && desdeBV <= 25) { tipo = "d5"; email = dia5(desc); }
+    else if (env.d5 && !env.d10 && desdeBV >= 10 && desdeBV <= 35) { tipo = "d10"; email = dia10(desc); }
+    else if (desdeBV >= 14 && diasDesde(u.created_at, agora) >= 14 && diasDesde(env.saudade, agora) >= 30 && diasDesde(env.ultimo, agora) >= 5) {
       const prog = (progresso || []).filter((p) => p.user_id === pref.user_id);
       const ultDiario = (diario || []).find((d) => d.user_id === pref.user_id)?.criado_em;
       const ultProg = prog.reduce((m, p) => (p.feito_em > m ? p.feito_em : m), "");

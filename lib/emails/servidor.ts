@@ -9,7 +9,7 @@ export const ENVIO_LIGADO = false;
 
 export const REMETENTE = { name: "Atlas do Aprender", email: "contato@atlasdoaprender.com.br" };
 export const RESPONDER_PARA = { name: "Stephanie Kamarry", email: "stephaniekamarryas@gmail.com" };
-export const LIMITE_DIARIO = 250; // o plano grátis do Brevo envia até 300 por dia
+export const LIMITE_DIARIO = 150; // o plano grátis do Brevo envia até 300 por dia; começar devagar protege o domínio novo
 
 export function admin(): SupabaseClient | null {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL, key = process.env.SUPABASE_SERVICE_ROLE_KEY;
