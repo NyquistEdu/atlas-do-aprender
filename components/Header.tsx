@@ -12,15 +12,14 @@ const ABAS: [string, string][] = [
   ["/trilhas/portugues/1-ano", "Trilhas"],
   ["/diagnostico", "Diagnóstico"],
   ["/apostilas", "Apostilas"],
+  ["/comunidade", "Comunidade"],
   ["/livros", "Livros"],
-  ["/jogos", "Jogos"],
   ["/loja", "Loja"],
+  ["/jogos", "Jogos"],
   ["/mao-na-massa", "Mão na massa"],
   ["/olimpiadas", "Olimpíadas"],
   ["/tematicas", "Temáticas"],
   ["/duvidas", "Pergunte à professora"],
-  ["/desafio", "Desafio do mês"],
-  ["/mural", "Mural de conquistas"],
   ["/planejamento", "Planejamento grátis"],
   ["/diario", "Diário"],
   ["/guia", "Guia"],
@@ -68,6 +67,7 @@ export default function Header() {
   const abas = user ? [ABAS[0], ["/meu-plano", "Meu plano"] as [string, string], ...ABAS.slice(1)] : ABAS;
   const ativa = (href: string) => {
     if (href === "/") return path === "/";
+    if (href === "/comunidade" && (path.startsWith("/mural") || path.startsWith("/desafio"))) return true;
     const base = "/" + href.split("/")[1];
     return path === href || path.startsWith(base + "/") || path === base;
   };

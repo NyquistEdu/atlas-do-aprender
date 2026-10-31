@@ -754,3 +754,12 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .selo-mini{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--ink);border-radius:999px;padding:4px 12px 4px 6px;background:var(--sun);color:#1d2433;font-weight:700;font-size:.85rem;text-transform:capitalize}
 .selo-mini i{font-style:normal;font-size:20px;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
 .conq-desafio{font-size:.8rem;font-weight:700;justify-self:start;text-decoration:none;background:#e6f3ea;color:#1d2433;border:1.5px solid #2f7d4f;border-radius:999px;padding:3px 10px}
+/* Comunidade */
+.com-portas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}
+.com-porta{text-decoration:none;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-top:8px solid var(--sc);border-radius:16px;padding:14px;display:grid;gap:4px;box-shadow:4px 4px 0 rgba(29,36,51,.12);transition:transform .12s,box-shadow .12s}
+.com-porta:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--sc)}
+.com-porta i{font-style:normal;font-size:30px;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.com-porta b{font-family:var(--f-disp);font-weight:800;font-size:1.15rem;letter-spacing:-.01em}
+.com-porta span{color:var(--soft);font-size:.9rem}
+.com-vazio p{margin:0;font-family:var(--f-hand);font-weight:700;font-size:1.3rem;color:var(--soft);line-height:1.25}
+.com-colunas{align-items:start;gap:24px}

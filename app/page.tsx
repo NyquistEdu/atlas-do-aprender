@@ -3,13 +3,18 @@ import type { Metadata } from "next";
 import { ESTANTE, EXPERIMENTOS, JOGOS, TRILHAS } from "@/lib/data";
 import { APOSTILAS, GRATUITOS, KITS } from "@/lib/apostilas";
 import { desafioAtual } from "@/lib/desafios";
+import { ultimasConquistas } from "@/lib/comunidade";
+import { todasFases } from "@/lib/fasesInfo";
+import CartaoConquista from "@/components/CartaoConquista";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
-export const revalidate = 3600;
+export const revalidate = 600;
 
-export default function Inicio() {
+export default async function Inicio() {
   const desafio = desafioAtual();
+  const conquistas = await ultimasConquistas(3);
+  const fases = conquistas.length ? todasFases() : {};
   let temas = 0, livros = 0;
   Object.values(TRILHAS).forEach((anos) => Object.values(anos).forEach((l) => l.forEach((t) => { temas++; livros += t.l?.length || 0; })));
   ESTANTE.forEach(([, l]) => (livros += l.length));
@@ -36,7 +41,7 @@ export default function Inicio() {
     ["/tematicas", "Temáticas", "Halloween, Dia do Saci, Natal e outras datas", "var(--jog)"],
     ["/planejamento", "Planejamento gratuito", "Uma conversa por vídeo e um plano feito para a sua criança", "var(--cie)"],
     ["/diario", "Diário", "Registros e a linha do tempo de cada criança", "var(--mat)"],
-    ["/mural", "Mural de conquistas", "Vitórias das crianças, comemoradas juntas", "var(--jog)"],
+    ["/comunidade", "Comunidade", "Desafio do mês, mural de conquistas e dicas das famílias", "var(--jog)"],
     ["/duvidas", "Pergunte à professora", "Mande sua dúvida; eu respondo pessoalmente", "var(--mat)"],
     ["/guia", "Guia de uso", "Como usar cada parte do Atlas, passo a passo", "var(--line)"],
   ];
@@ -87,6 +92,16 @@ export default function Inicio() {
           </Link>
         ))}
       </div>
+
+      {conquistas.length > 0 && (
+        <>
+          <div className="row" style={{ justifyContent: "space-between", alignItems: "baseline" }}>
+            <h2 className="ini-h"><span className="ini-kick">da comunidade</span><span className="marca">Conquistas das famílias</span></h2>
+            <Link href="/comunidade">Ver a comunidade →</Link>
+          </div>
+          <div className="mural">{conquistas.map((c) => <CartaoConquista key={c.id} c={c} fase={fases[c.tema]} />)}</div>
+        </>
+      )}
 
       <div className="grid2">
         <article className="card">
