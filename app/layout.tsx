@@ -4,6 +4,7 @@ import Providers from "@/components/Providers";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
+import ConsentimentoEmail from "@/components/ConsentimentoEmail";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { SITE, jsonLd } from "@/lib/seo";
 
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main>{children}</main>
           <Footer />
           <Analytics />
+          <ConsentimentoEmail />
         </Providers>
         <VercelAnalytics />
       </body>

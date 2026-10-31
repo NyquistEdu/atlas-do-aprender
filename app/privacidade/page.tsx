@@ -69,6 +69,15 @@ export default function Privacidade() {
         Para proteger as crianças, sugerimos usar só o primeiro nome ou um apelido.
       </p>
 
+      <h3 className="ini-h">E-mails do Atlas</h3>
+      <p>
+        Só enviamos e-mails para quem marcou que quer receber, no cadastro ou depois. São poucos por mês: boas-vindas,
+        dicas para os primeiros dias, a novidade do mês com o desafio e, se a família passar algumas semanas sem entrar,
+        um lembrete da próxima fase da criança. Os e-mails são enviados pelo Brevo, um serviço de envio de e-mails, que
+        recebe apenas o endereço e o texto de cada e-mail. Todo e-mail tem um link para parar de receber com um clique,
+        e você também pode mudar a escolha na página “E-mails do Atlas”. Nunca vendemos nem compartilhamos o seu e-mail.
+      </p>
+
       <h3 className="ini-h">Pedido de planejamento gratuito</h3>
       <p>
         Quem pede um planejamento informa nome, e-mail, WhatsApp, cidade, dados sobre a rotina da família, sobre a criança

@@ -51,6 +51,7 @@ export function ConviteConta({ origem, titulo, texto, acao = "Criar conta gráti
 /** Formulário de e-mail (link mágico). Usado na tela Entrar e dentro do diário. */
 export function FormAcesso({ volta, origem, botao = "Receber link de acesso" }: { volta: string; origem: string; botao?: string }) {
   const [email, setEmail] = useState("");
+  const [querEmails, setQuerEmails] = useState(false);
   const [estado, setEstado] = useState<"" | "enviando" | "enviado" | "erro">("");
   const [msgErro, setMsgErro] = useState("");
   const aberto = useRef(false);
@@ -67,6 +68,7 @@ export function FormAcesso({ volta, origem, botao = "Receber link de acesso" }: 
     e.preventDefault();
     setEstado("enviando");
     setMsgErro("");
+    try { localStorage.setItem("atlas-quer-emails", querEmails ? "sim" : "nao"); } catch {}
     const { error } = await supabase!.auth.signInWithOtp({
       email: email.trim(),
       options: { emailRedirectTo: `${window.location.origin}${volta}` },
@@ -96,6 +98,7 @@ export function FormAcesso({ volta, origem, botao = "Receber link de acesso" }: 
   return (
     <form className="diary" onSubmit={enviar}>
       <label className="f">Seu e-mail<input type="email" maxLength={100} required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="voce@exemplo.com" autoComplete="email" /></label>
+      <label className="consent-email"><input type="checkbox" checked={querEmails} onChange={(e) => setQuerEmails(e.target.checked)} /> <span>Quero receber por e-mail dicas, o desafio do mês e as novidades do Atlas. Dá para cancelar quando quiser.</span></label>
       <div className="row">
         <button className="btn" type="submit" disabled={estado === "enviando"}>{estado === "enviando" ? "Enviando…" : botao}</button>
         {estado === "erro" && (

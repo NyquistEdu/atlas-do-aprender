@@ -763,3 +763,9 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .com-porta span{color:var(--soft);font-size:.9rem}
 .com-vazio p{margin:0;font-family:var(--f-hand);font-weight:700;font-size:1.3rem;color:var(--soft);line-height:1.25}
 .com-colunas{align-items:start;gap:24px}
+/* E-mails: consentimento */
+.consent-email{display:flex;gap:8px;align-items:flex-start;font-size:.9rem;color:var(--ink);cursor:pointer}
+.consent-email input{width:auto;margin-top:3px;flex:none}
+.consent-aviso{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:40;width:min(560px,calc(100% - 24px));background:var(--card);border:2px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--sun);padding:14px 16px;display:grid;gap:10px}
+.consent-aviso p{margin:0}
+.consent-aviso .row{align-items:center}
