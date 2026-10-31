@@ -659,3 +659,16 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .dfam-form{display:grid;gap:8px}
 .dfam-form textarea,.dfam-form input{width:100%}
 .dicas>.btn{justify-self:start}
+/* Recursos do tema: só o título; a lista abre na setinha */
+.res.res-fechado{grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:10px;align-items:start}
+.res-item{border:1.5px solid var(--ink);border-radius:14px;background:var(--card);box-shadow:2px 2px 0 rgba(29,36,51,.1)}
+.res-item>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:10px 12px;user-select:none}
+.res-item>summary::-webkit-details-marker{display:none}
+.res-item>summary i{font-style:normal;font-size:22px;line-height:1;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.res-item>summary b{flex:1;font-size:.95rem}
+.res-n{font-size:.75rem;font-weight:700;background:color-mix(in srgb,var(--sc) 14%,var(--card));color:var(--sc);border-radius:999px;padding:2px 8px}
+.res-item>summary::after{content:"";width:9px;height:9px;border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg) translate(-2px,-2px);transition:transform .2s;margin-left:2px}
+.res-item[open]>summary::after{transform:rotate(-135deg) translate(-2px,-2px)}
+.res-item[open]>summary{border-bottom:1.5px dashed var(--line)}
+.res-item:hover{border-color:var(--sc)}
+.res-item ul{margin:0;padding:10px 14px 12px 30px;display:grid;gap:4px}

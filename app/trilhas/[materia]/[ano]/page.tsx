@@ -15,6 +15,8 @@ import { url, jsonLd } from "@/lib/seo";
 
 type P = { params: { materia: string; ano: string } };
 
+const ICONE_CAT: Record<string, string> = { m: "📚", e: "✏️", f: "🎬", a: "🎧", j: "🎲", p: "🧪" };
+
 export function generateStaticParams() {
   return (Object.keys(SLUG) as Materia[]).flatMap((s) => ANOS.map(([y]) => ({ materia: SLUG[s], ano: anoSlug(y) })));
 }
@@ -104,11 +106,14 @@ export default function Trilha({ params }: P) {
                     <p className="meta">Ainda sem livro específico para este tema; use as revistas e o material indicados.</p>
                   )}
                 </section>
-                <div className="res">
+                <div className="res res-fechado">
                   {CATEGORIAS.map(([k, nome]) => {
                     const itens = ((th[k] as string[] | undefined) || []).filter((x) => x && x !== "—");
                     return itens.length ? (
-                      <section key={k as string}><h4>{nome}</h4><ul>{itens.map((x) => <li key={x}>{x}</li>)}</ul></section>
+                      <details key={k as string} className="res-item">
+                        <summary><i aria-hidden="true">{ICONE_CAT[k as string]}</i><b>{nome}</b><span className="res-n">{itens.length}</span></summary>
+                        <ul>{itens.map((x) => <li key={x}>{x}</li>)}</ul>
+                      </details>
                     ) : null;
                   })}
                 </div>
