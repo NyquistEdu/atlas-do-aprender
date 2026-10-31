@@ -7,7 +7,8 @@ import { useAtlas } from "@/components/Providers";
 import { linkAcesso } from "@/components/Acesso";
 
 export type FaseInfo = { nome: string; rot: string; href: string; emoji: string; cor: string };
-type Item = { id: string; criado_em: string; tema: string; texto: string; autor: string; foto: string; palmas: number; aplaudi: boolean };
+type Item = { id: string; criado_em: string; tema: string; texto: string; autor: string; foto: string; desafio: string; palmas: number; aplaudi: boolean };
+export type DesafioInfo = { id: string; titulo: string; emoji: string; mes: string };
 type Minha = { id: string; criado_em: string; texto: string; status: string };
 
 const CHAVE_AUTOR = "atlas-autor-dica";
@@ -26,7 +27,7 @@ async function prepararFoto(f: File): Promise<Blob> {
   } finally { URL.revokeObjectURL(url); }
 }
 
-export default function Mural({ fases }: { fases: Record<string, FaseInfo> }) {
+export default function Mural({ fases, desafios = {}, desafio }: { fases: Record<string, FaseInfo>; desafios?: Record<string, DesafioInfo>; desafio?: DesafioInfo }) {
   const { configurado, user } = useAtlas();
   const [itens, setItens] = useState<Item[] | null>(null);
   const [mais, setMais] = useState(false);
@@ -45,7 +46,7 @@ export default function Mural({ fases }: { fases: Record<string, FaseInfo> }) {
 
   const carregar = async (antes?: string) => {
     if (!supabase) return;
-    const { data, error } = await supabase.rpc("mural", { p_limite: 60, p_antes: antes ?? null });
+    const { data, error } = await supabase.rpc("mural", { p_limite: 60, p_antes: antes ?? null, p_desafio: desafio?.id ?? null });
     if (error) { setIndisponivel(true); return; }
     const novos = data as Item[];
     setItens((l) => (antes ? [...(l || []), ...novos] : novos));
@@ -83,7 +84,7 @@ export default function Mural({ fases }: { fases: Record<string, FaseInfo> }) {
         const up = await supabase!.storage.from("conquistas").upload(caminho, blob, { contentType: "image/jpeg", upsert: false });
         if (up.error) throw up.error;
       }
-      const { data, error } = await supabase!.from("conquistas").insert({ tema, texto: texto.trim(), autor: autor.trim(), foto: caminho }).select("id,criado_em,texto,status").single();
+      const { data, error } = await supabase!.from("conquistas").insert({ tema, texto: texto.trim(), autor: autor.trim(), foto: caminho, desafio: desafio?.id ?? "" }).select("id,criado_em,texto,status").single();
       if (error) throw error;
       try { localStorage.setItem(CHAVE_AUTOR, autor.trim()); } catch {}
       setMinhas((l) => [data as Minha, ...l]);
@@ -101,25 +102,25 @@ export default function Mural({ fases }: { fases: Record<string, FaseInfo> }) {
     if (!error) setItens((l) => l && l.map((x) => (x.id === it.id ? { ...x, palmas: data as number } : x)));
   };
 
-  if (!configurado || indisponivel) return <p className="note">O mural está sendo preparado. Volte em breve!</p>;
+  if (!configurado || indisponivel) return <p className="note">{desafio ? "As participações estão sendo preparadas. Já dá para começar o desafio em casa!" : "O mural está sendo preparado. Volte em breve!"}</p>;
 
   const opcoes = Object.entries(fases);
   return (
     <>
       <section className="perg card mural-form" id="compartilhar">
         <div className="perg-topo">
-          <span className="perg-em" aria-hidden="true">🏆</span>
+          <span className="perg-em" aria-hidden="true">{desafio?.emoji || "🏆"}</span>
           <div>
-            <h2>Compartilhe uma conquista</h2>
-            <p>Conte uma vitória da sua criança, grande ou pequena. Se quiser, mande uma foto da atividade, do desenho ou do caderno. Para proteger as crianças, não aceitamos fotos de rosto, e toda conquista passa por aprovação antes de aparecer.</p>
+            <h2>{desafio ? `Mostre o seu ${desafio.titulo.toLowerCase().replace(/^o /, "")}` : "Compartilhe uma conquista"}</h2>
+            <p>{desafio ? "Mande uma foto do resultado (sem rosto de criança) e conte o que vocês descobriram. Quando for aprovada, ela aparece aqui e no Mural de conquistas, e sua família ganha o selo do desafio." : "Conte uma vitória da sua criança, grande ou pequena. Se quiser, mande uma foto da atividade, do desenho ou do caderno. Para proteger as crianças, não aceitamos fotos de rosto, e toda conquista passa por aprovação antes de aparecer."}</p>
           </div>
         </div>
         {!user ? (
-          <Link className="btn" href={linkAcesso("/mural", "mural")}>Entrar para compartilhar</Link>
+          <Link className="btn" href={linkAcesso(desafio ? "/desafio" : "/mural", desafio ? "desafio" : "mural")}>Entrar para compartilhar</Link>
         ) : (
           <form ref={formRef} className="perg-form" onSubmit={enviar}>
             <label className="f">A conquista
-              <textarea rows={3} maxLength={300} value={texto} onChange={(e) => setTexto(e.target.value)} placeholder="Ex.: Hoje ela leu o primeiro livro inteirinho sozinha!" />
+              <textarea rows={3} maxLength={300} value={texto} onChange={(e) => setTexto(e.target.value)} placeholder={desafio ? "Ex.: O feijão cresceu 12 cm em duas semanas! Ela descobriu que a raiz aparece antes do caule." : "Ex.: Hoje ela leu o primeiro livro inteirinho sozinha!"} />
             </label>
             <div className="fgrid">
               <label className="f">Fase da trilha (opcional)
@@ -158,7 +159,8 @@ export default function Mural({ fases }: { fases: Record<string, FaseInfo> }) {
         )}
       </section>
 
-      {itens && !itens.length && <p className="fase-dica">O mural ainda está vazio. Que tal ser a primeira família a comemorar aqui?</p>}
+      {desafio && itens && itens.length > 0 && <h2 className="sec-t">Quem já fez o desafio</h2>}
+      {itens && !itens.length && <p className="fase-dica">{desafio ? "Ainda ninguém mostrou o resultado. Sua família pode ser a primeira!" : "O mural ainda está vazio. Que tal ser a primeira família a comemorar aqui?"}</p>}
       <div className="mural">
         {itens?.map((it) => {
           const f = fases[it.tema];
@@ -171,6 +173,7 @@ export default function Mural({ fases }: { fases: Record<string, FaseInfo> }) {
                 {!src && <span className="conq-em" aria-hidden="true">{f?.emoji || "🏆"}</span>}
                 <p>{it.texto}</p>
                 <span className="conq-autor">{it.autor} · {new Date(it.criado_em).toLocaleDateString("pt-BR", { day: "numeric", month: "short" })}</span>
+                {it.desafio && desafios[it.desafio] && <Link className="conq-desafio" href="/desafio">🏅 Desafio de {desafios[it.desafio].mes}: {desafios[it.desafio].titulo}</Link>}
                 {f && <Link className="conq-fase" href={f.href}>{f.emoji} {f.nome}</Link>}
                 {user ? (
                   <button type="button" className={`palma${it.aplaudi ? " on" : ""}`} onClick={() => aplaudir(it)} aria-pressed={it.aplaudi} aria-label="Aplaudir">👏 <b>{it.palmas || ""}</b></button>

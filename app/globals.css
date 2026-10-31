@@ -725,3 +725,32 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .mod-conq{display:grid;grid-template-columns:minmax(0,160px) 1fr;gap:14px;align-items:start}
 .mod-conq img{width:100%;border-radius:10px;border:1.5px solid var(--ink)}
 @media (max-width:560px){.mod-conq{grid-template-columns:1fr}}
+/* Desafio do mês */
+.ini-desafio{display:flex;align-items:center;gap:16px;text-decoration:none;color:#1d2433;background:#e6f3ea;border:2px solid #1d2433;border-radius:18px;padding:16px 18px;box-shadow:5px 5px 0 #2f7d4f;transition:transform .12s}
+.ini-desafio:hover{transform:translate(-2px,-2px)}
+.ini-desafio-em{font-size:44px;width:72px;height:72px;flex:none;display:grid;place-items:center;border-radius:50%;background:#fff8ec;border:2px solid #1d2433;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif;transform:rotate(-6deg)}
+.ini-desafio-t{flex:1;display:grid;gap:2px}
+.ini-desafio-t small{font-family:var(--f-hand);font-weight:700;font-size:1.3rem;color:#2f7d4f;line-height:1}
+.ini-desafio-t b{font-family:var(--f-disp);font-weight:800;font-size:1.35rem;letter-spacing:-.02em}
+.ini-desafio-t span{font-size:.92rem;color:#3d4456}
+@media (max-width:620px){.ini-desafio{flex-wrap:wrap}.ini-desafio .btn{width:100%;text-align:center}}
+.desafio-hero{position:relative;background-color:#e6f3ea;background-image:linear-gradient(rgba(47,125,79,.08) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(47,125,79,.08) 1.5px,transparent 1.5px);background-size:32px 32px;color:#1d2433;border:2px solid #1d2433;border-radius:22px;padding:30px 28px;box-shadow:6px 6px 0 #2f7d4f;display:grid;gap:14px;margin-top:6px}
+.desafio-hero .lead{color:#3d4456;max-width:60ch}
+.desafio-hero .eyebrow-i{font-family:var(--f-hand);font-size:1.7rem;text-transform:none;letter-spacing:0;color:#2f7d4f;margin:0;line-height:1}
+.desafio-hero .hero-t{max-width:14ch}
+.desafio-selo{font-size:1.25rem!important;line-height:1.1!important}
+.desafio-fatos{display:flex;flex-wrap:wrap;gap:8px}
+.desafio-fatos span{background:#fff8ec;border:1.5px solid #1d2433;border-radius:999px;padding:4px 12px;font-size:.88rem;font-weight:700}
+.desafio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px;align-items:start}
+.desafio-passos{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.desafio-passos li{display:flex;gap:12px;align-items:flex-start}
+.desafio-passos .ini-n{flex:none;width:34px;height:34px;font-size:1rem;background:var(--cie-bg)}
+.desafio-passos p{margin:2px 0 0;color:var(--soft)}
+.desafio-idades{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px}
+.desafio-idades>div{border-left:5px solid var(--cie);background:var(--cie-bg);border-radius:0 12px 12px 0;padding:10px 14px}
+.desafio-idades p{margin:4px 0 0}
+.selos{display:grid;gap:6px;border-top:1.5px dashed var(--line);padding-top:10px}
+.selos-lista{display:flex;flex-wrap:wrap;gap:8px}
+.selo-mini{display:inline-flex;align-items:center;gap:6px;border:2px solid var(--ink);border-radius:999px;padding:4px 12px 4px 6px;background:var(--sun);color:#1d2433;font-weight:700;font-size:.85rem;text-transform:capitalize}
+.selo-mini i{font-style:normal;font-size:20px;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.conq-desafio{font-size:.8rem;font-weight:700;justify-self:start;text-decoration:none;background:#e6f3ea;color:#1d2433;border:1.5px solid #2f7d4f;border-radius:999px;padding:3px 10px}

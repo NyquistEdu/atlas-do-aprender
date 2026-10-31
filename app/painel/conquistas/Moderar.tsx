@@ -6,7 +6,7 @@ import { supabase } from "@/lib/supabase";
 import { useAtlas } from "@/components/Providers";
 import { ADMIN_EMAIL } from "@/lib/admin";
 
-type C = { id: string; criado_em: string; tema: string; texto: string; autor: string; foto: string; status: string };
+type C = { id: string; criado_em: string; tema: string; texto: string; autor: string; foto: string; desafio: string; status: string };
 const fotoUrl = (p: string) => (p && supabase ? supabase.storage.from("conquistas").getPublicUrl(p).data.publicUrl : "");
 
 export default function Moderar() {
@@ -18,7 +18,7 @@ export default function Moderar() {
 
   useEffect(() => {
     if (!admin || !supabase) return;
-    supabase.from("conquistas").select("id,criado_em,tema,texto,autor,foto,status").order("criado_em", { ascending: false }).limit(500).then(({ data, error }) => {
+    supabase.from("conquistas").select("id,criado_em,tema,texto,autor,foto,desafio,status").order("criado_em", { ascending: false }).limit(500).then(({ data, error }) => {
       if (error) setErro(error.code === "42P01" ? "O mural ainda não foi ativado. Rode o arquivo supabase/conquistas.sql no SQL Editor do Supabase." : error.message);
       else setLista(data as C[]);
     });
@@ -62,7 +62,7 @@ export default function Moderar() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             {c.foto && <a href={fotoUrl(c.foto)} target="_blank" rel="noopener"><img src={fotoUrl(c.foto)} alt="Foto enviada" /></a>}
             <div style={{ display: "grid", gap: 8 }}>
-              <p className="meta" style={{ margin: 0 }}>{new Date(c.criado_em).toLocaleString("pt-BR")}{c.tema ? ` · fase ${c.tema}` : ""}</p>
+              <p className="meta" style={{ margin: 0 }}>{new Date(c.criado_em).toLocaleString("pt-BR")}{c.tema ? ` · fase ${c.tema}` : ""}{c.desafio ? ` · 🏅 desafio ${c.desafio}` : ""}</p>
               <p style={{ margin: 0, fontSize: "1.05rem" }}>{c.texto}</p>
               <p className="meta" style={{ margin: 0 }}>— {c.autor}</p>
               <div className="row">

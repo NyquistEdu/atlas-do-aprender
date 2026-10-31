@@ -2,10 +2,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ESTANTE, EXPERIMENTOS, JOGOS, TRILHAS } from "@/lib/data";
 import { APOSTILAS, GRATUITOS, KITS } from "@/lib/apostilas";
+import { desafioAtual } from "@/lib/desafios";
 
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 
+export const revalidate = 3600;
+
 export default function Inicio() {
+  const desafio = desafioAtual();
   let temas = 0, livros = 0;
   Object.values(TRILHAS).forEach((anos) => Object.values(anos).forEach((l) => l.forEach((t) => { temas++; livros += t.l?.length || 0; })));
   ESTANTE.forEach(([, l]) => (livros += l.length));
@@ -51,6 +55,12 @@ export default function Inicio() {
       </section>
 
       <div className="stats">{numeros.map(([b, s]) => <div className="stat" key={s}><b>{b}</b><span>{s}</span></div>)}</div>
+
+      <Link href="/desafio" className="ini-desafio">
+        <span className="ini-desafio-em" aria-hidden="true">{desafio.emoji}</span>
+        <span className="ini-desafio-t"><small>Desafio de {desafio.mes}</small><b>{desafio.titulo}</b><span>{desafio.resumo}</span></span>
+        <span className="btn small">Participar →</span>
+      </Link>
 
       <h2 className="ini-h"><span className="ini-kick">passo a passo</span><span className="marca">Como funciona</span></h2>
       <ol className="ini-passos">
