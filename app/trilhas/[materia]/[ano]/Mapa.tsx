@@ -11,7 +11,7 @@ const TOPO = 96;
 const FIM = 170;
 
 /** Mapa de jogo da trilha: cada tema é uma fase no caminho. Ao escolher uma fase, abre o painel com tudo do tema. */
-export default function Mapa({ fases, cor, enfeites, regiao, children }: { fases: Fase[]; cor: string; enfeites: string[]; regiao: string; children: ReactNode }) {
+export default function Mapa({ fases, cor, enfeites, regiao, anos, anoIdx, children }: { fases: Fase[]; cor: string; enfeites: string[]; regiao: string; anos: string[][]; anoIdx: number; children: ReactNode }) {
   const { user, feito } = useAtlas();
   const paineis = Children.toArray(children);
   const [sel, setSel] = useState<number | null>(null);
@@ -19,7 +19,20 @@ export default function Mapa({ fases, cor, enfeites, regiao, children }: { fases
   const mapaRef = useRef<HTMLDivElement>(null);
   const n = fases.length;
   const feitas = fases.map((f) => !!user && feito(f.id));
-  const atual = user ? (feitas.indexOf(false) === -1 ? -1 : feitas.indexOf(false)) : 0;
+  // "Você está aqui": um só lugar por matéria, onde a criança realmente está.
+  const atual = (() => {
+    if (!user) return 0; // sem conta: "Comece aqui" na primeira fase
+    const andando = (id: string) => feito("andamento|" + id) && !feito(id);
+    const aqui = fases.findIndex((f) => andando(f.id));
+    if (aqui >= 0) return aqui;
+    if (anos.some((ids) => ids.some(andando))) return -1; // está trabalhando em outro ano
+    let ultimo = -1;
+    anos.forEach((ids, a) => { if (ids.some((id) => feito(id))) ultimo = a; });
+    if (ultimo < 0) return -1; // ainda não começou esta matéria
+    const falta = anos[ultimo].findIndex((id) => !feito(id));
+    if (falta >= 0) return ultimo === anoIdx ? falta : -1;
+    return ultimo + 1 === anoIdx ? 0 : -1; // ano concluído: próxima parada é a fase 1 do ano seguinte
+  })();
 
   // Fase pelo endereço (#tema-3), para os links que já apontam para um tema.
   useEffect(() => {

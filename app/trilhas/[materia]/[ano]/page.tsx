@@ -64,7 +64,8 @@ export default function Trilha({ params }: P) {
       </nav>
       <p className="passo">2. Siga o caminho: cada fase do mapa é um tema. Toque numa fase para entrar</p>
       <Progresso chaves={lista.map((_, i) => temaId(s, y, i))} cor={cor} />
-      <Mapa cor={cor} enfeites={ENFEITES[s]} regiao={`${MATERIAS[s]} · ${NOME_REGIAO[y]}`}
+      <Mapa cor={cor} enfeites={ENFEITES[s]} anoIdx={ANOS.findIndex(([a]) => a === y)}
+        anos={ANOS.map(([a]) => (TRILHAS[s][a] || []).map((_, i) => temaId(s, a, i)))} regiao={`${MATERIAS[s]} · ${NOME_REGIAO[y]}`}
         fases={lista.map((th, i) => ({ id: temaId(s, y, i), titulo: th.t, obj: th.o, emoji: EMOJI_FASE[temaId(s, y, i)] || "📍" }))}>
         {lista.map((th, i) => {
           const id = temaId(s, y, i);
