@@ -50,11 +50,15 @@ function Tema() {
 export default function Header() {
   const path = usePathname() || "/";
   const { configurado, user, criancas, crianca, setCrianca } = useAtlas();
+  const [aberto, setAberto] = useState(false);
+  useEffect(() => setAberto(false), [path]);
+  const abas = user ? [ABAS[0], ["/meu-plano", "Meu plano"] as [string, string], ...ABAS.slice(1)] : ABAS;
   const ativa = (href: string) => {
     if (href === "/") return path === "/";
     const base = "/" + href.split("/")[1];
     return path === href || path.startsWith(base + "/") || path === base;
   };
+  const atual = abas.find(([h]) => ativa(h))?.[1];
   return (
     <header className="top">
       <div className="wrap largo">
@@ -69,15 +73,21 @@ export default function Header() {
                 ))}
               </div>
             )}
-            {user?.email?.toLowerCase() === ADMIN_EMAIL && <Link className="btn small ghost" href="/painel">Painel</Link>}
-            {configurado && !user && <Link className="btn small" href={`/entrar?volta=${encodeURIComponent(path)}&origem=header`}>Entrar</Link>}
+            {user?.email?.toLowerCase() === ADMIN_EMAIL && <Link className="btn small ghost so-pc" href="/painel">Painel</Link>}
+            {configurado && !user && <Link className="btn small so-pc" href={`/entrar?volta=${encodeURIComponent(path)}&origem=header`}>Entrar</Link>}
             <Tema />
+            <button type="button" className="menu-bt" aria-expanded={aberto} aria-controls="secoes" onClick={() => setAberto(!aberto)}>
+              <i aria-hidden="true"><b /><b /><b /></i>{aberto ? "Fechar" : "Menu"}
+            </button>
           </div>
         </div>
-        <nav className="tabs" aria-label="Seções">
-          {(user ? [ABAS[0], ["/meu-plano", "Meu plano"] as [string, string], ...ABAS.slice(1)] : ABAS).map(([href, nome]) => (
+        {atual && !aberto && <p className="menu-atual">Você está em: <b>{atual}</b></p>}
+        <nav id="secoes" className={`tabs${aberto ? " aberto" : ""}`} aria-label="Seções">
+          {abas.map(([href, nome]) => (
             <Link key={href} href={href} aria-current={ativa(href) ? "page" : undefined}>{nome}</Link>
           ))}
+          {configurado && !user && <Link className="so-cel menu-extra" href={`/entrar?volta=${encodeURIComponent(path)}&origem=menu`}>Entrar na conta</Link>}
+          {user?.email?.toLowerCase() === ADMIN_EMAIL && <Link className="so-cel menu-extra" href="/painel">Painel</Link>}
         </nav>
       </div>
     </header>

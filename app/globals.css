@@ -527,3 +527,33 @@ footer.credit .feedback .feedback-t{color:#1d2433;font-family:var(--f-disp);font
 footer.credit .feedback .btn{background:#1d2433;color:#fff8ec;border-color:#1d2433}
 footer.credit .feedback .btn.ghost{background:#fff8ec;color:#1d2433;box-shadow:2px 2px 0 #1d2433}
 footer.credit .footer-links a,footer.credit .footer-links button{color:var(--paper)}
+/* Menu: no computador as abas quebram linha (nada fica escondido); no celular, botão Menu abre todas as seções */
+nav.tabs{flex-wrap:wrap;overflow:visible;row-gap:0}
+.menu-bt,.menu-atual{display:none}
+@media (max-width:760px){
+  .menu-bt{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);border:2px solid var(--ink);border-radius:999px;padding:6px 14px 6px 12px;font:inherit;font-weight:700;font-size:.9rem;cursor:pointer;box-shadow:2px 2px 0 var(--sun)}
+  .menu-bt i{display:grid;gap:3px}.menu-bt i b{display:block;width:16px;height:2px;border-radius:2px;background:currentColor;transition:transform .2s,opacity .2s}
+  .menu-bt[aria-expanded="true"] i b:nth-child(1){transform:translateY(5px) rotate(45deg)}
+  .menu-bt[aria-expanded="true"] i b:nth-child(2){opacity:0}
+  .menu-bt[aria-expanded="true"] i b:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+  .menu-atual{display:block;margin:0;padding:2px 0 8px;font-size:.85rem;color:var(--soft)}
+  .menu-atual b{color:var(--ink)}
+  nav.tabs{display:none}
+  nav.tabs.aberto{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px 0 14px;max-height:calc(100dvh - 80px);overflow-y:auto}
+  nav.tabs.aberto a{border:1.5px solid var(--ink);border-radius:12px;background:var(--card);color:var(--ink);padding:11px 12px;box-shadow:2px 2px 0 rgba(29,36,51,.12)}
+  nav.tabs.aberto a[aria-current="page"]{background:var(--sun);color:#1d2433;border-color:#1d2433}
+  .brand-r .tema{padding:5px 8px}
+}
+@media (max-width:760px){
+  .brand{flex-wrap:nowrap;align-items:center}
+  .logo{font-size:.98rem;white-space:nowrap}
+  .logo a{padding:6px 12px 6px 10px}
+  .brand-r{flex-wrap:nowrap;gap:6px}
+}
+@media (max-width:360px){.logo-dots{display:none!important}}
+nav.tabs a.so-cel{display:none}
+@media (max-width:760px){
+  .so-pc{display:none!important}
+  nav.tabs.aberto a.so-cel{display:block}
+  nav.tabs.aberto a.menu-extra{background:var(--ink);color:var(--paper)}
+}
