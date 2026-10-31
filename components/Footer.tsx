@@ -10,7 +10,7 @@ export default function Footer() {
   const temContato = !!(email || whatsapp || instagram);
   return (
     <footer className="credit">
-      <div className="wrap" style={{ display: "grid", gap: 16 }}>
+      <div className="wrap largo" style={{ display: "grid", gap: 16 }}>
         {temContato && (
           <div className="feedback">
             <p className="feedback-t">Me ajude a melhorar o Atlas</p>

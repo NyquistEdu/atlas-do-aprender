@@ -19,7 +19,7 @@ export default function Inicio() {
     ["3", "Pratique um pouco por dia", "Os treinos diários são folhas curtas para imprimir, uma por dia, de 5 a 10 minutos, com gabarito. As apostilas aprofundam cada tema.", "/apostilas", "Ver os materiais"],
     ["4", "Acompanhe o caminho", "No Diário você registra o que a criança fez e descobriu, e vê a linha do tempo de cada uma: temas concluídos, em andamento e os próximos.", "/diario", "Abrir o Diário"],
   ];
-  const destaque = GRATUITOS.slice(0, 8);
+  const destaque = GRATUITOS.slice(0, 6);
   const cards: [string, string, string, string][] = [
     ["/diagnostico", "Diagnóstico grátis", "Por onde começar com o seu filho", "var(--mat)"],
     ["/trilhas/portugues/1-ano", "Trilhas", "Português, Matemática e Ciências, ano a ano", "var(--por)"],
@@ -36,7 +36,7 @@ export default function Inicio() {
     ["/guia", "Guia de uso", "Como usar cada parte do Atlas, passo a passo", "var(--line)"],
   ];
   return (
-    <div className="wrap">
+    <div className="wrap largo">
       <section className="ini-hero">
         <span className="selo" aria-hidden="true">grátis e sem cadastro</span>
         <p className="eyebrow-i">feito por uma professora e mãe de&nbsp;3</p>

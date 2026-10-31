@@ -57,7 +57,7 @@ export default function Header() {
   };
   return (
     <header className="top">
-      <div className="wrap">
+      <div className="wrap largo">
         <div className="brand">
           <p className="logo"><Link href="/" style={{ textDecoration: "none" }}><span className="logo-dots" aria-hidden="true"><i style={{ background: "#e0675a" }} /><i style={{ background: "#6f97e0" }} /><i style={{ background: "#5fb37f" }} /></span>Atlas do Aprender</Link> <small>da alfabetização ao 5º ano</small></p>
           <div className="brand-r">

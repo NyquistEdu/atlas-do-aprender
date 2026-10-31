@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function Loja() {
   return (
-    <div className="wrap">
+    <div className="wrap largo">
       <p className="eyebrow-i">Para pegar com a mão</p>
       <h1 className="hero-t">Jogos do Atlas</h1>
       <p className="lead">Jogos que criamos para usar junto com as trilhas do Atlas: frações que se encaixam, contas que viram partida e um esqueleto para montar. Cada um diz o que trabalha, em que tema entra e como aproveitar.</p>

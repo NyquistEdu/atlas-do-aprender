@@ -514,3 +514,16 @@ footer.credit b,footer.credit a{color:var(--paper)}
 .ini-hero .btn:not(.ghost){background:#1d2433;color:#fff8ec;border-color:#1d2433}
 .ini-passos li:nth-child(n+2) .ini-n{color:var(--ink)}
 @media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.stats .stat:last-child:nth-child(odd){grid-column:1/-1}}
+/* Páginas de grade usam a tela mais larga; páginas de leitura continuam na coluna de 860px */
+.wrap.largo{max-width:1200px}
+.wrap.largo .ini-gratis{grid-template-columns:repeat(auto-fill,minmax(min(100%,160px),1fr))}
+@media (max-width:560px){.wrap.largo .ini-gratis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.wrap.largo p{max-width:75ch}
+.wrap.largo .card p,.wrap.largo .home-card span{max-width:none}
+/* rodapé escuro: o quadro de sugestões fica claro, com texto escuro */
+footer.credit .feedback{background:#fff8ec;color:#1d2433;border:2px solid #1d2433;border-radius:16px;box-shadow:4px 4px 0 var(--sun)}
+footer.credit .feedback p{color:#3d4456}
+footer.credit .feedback .feedback-t{color:#1d2433;font-family:var(--f-disp);font-weight:800;font-size:1.15rem}
+footer.credit .feedback .btn{background:#1d2433;color:#fff8ec;border-color:#1d2433}
+footer.credit .feedback .btn.ghost{background:#fff8ec;color:#1d2433;box-shadow:2px 2px 0 #1d2433}
+footer.credit .footer-links a,footer.credit .footer-links button{color:var(--paper)}

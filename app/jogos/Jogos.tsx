@@ -8,7 +8,7 @@ import { AmazonJogo } from "@/components/Amazon";
 export default function Jogos() {
   const [k, setK] = useState("all");
   return (
-    <div className="wrap">
+    <div className="wrap largo">
       <h1>Jogos que formam</h1>
       <p className="lead">Do jogo da memória aos jogos de estratégia e geografia. Cada um traz o que desenvolve, por que isso importa e como tirar mais proveito dele.</p>
       <div className="seg">

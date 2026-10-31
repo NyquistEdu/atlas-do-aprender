@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Tematicas() {
   return (
-    <div className="wrap">
+    <div className="wrap largo">
       <p className="eyebrow-i">Datas especiais</p>
       <h1 className="hero-t">Temáticas</h1>
       <p className="lead">Algumas datas do ano rendem um tema inteiro: livros para ler junto, filmes, experimentos, jogos e atividades de Português e Matemática ligadas à festa.</p>
