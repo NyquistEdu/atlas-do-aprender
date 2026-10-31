@@ -98,14 +98,18 @@ export default function Trilha({ params }: P) {
                     <div><b>Jogo para este tema: {j.nome}</b><span>Feito pelo Atlas, à venda no Mercado Livre · ver como usar</span></div>
                   </Link>
                 ))}
-                <section className="books">
-                  <h4>Livros paradidáticos</h4>
-                  {th.l?.length ? (
+                {th.l?.length ? (
+                  <details className="books books-fechado">
+                    <summary>
+                      <i aria-hidden="true">📖</i>
+                      <span className="bk-t"><b>Livros paradidáticos</b><small>{th.l[0][0].split(" — ")[0]}{th.l.length > 1 ? ` e mais ${th.l.length - 1}` : ""}</small></span>
+                      <span className="res-n">{th.l.length}</span>
+                    </summary>
                     <ul>{th.l.map(([b, w]) => <li key={b}><b>{b}</b><span>{w}</span><AmazonLivro livro={b} /></li>)}</ul>
-                  ) : (
-                    <p className="meta">Ainda sem livro específico para este tema; use as revistas e o material indicados.</p>
-                  )}
-                </section>
+                  </details>
+                ) : (
+                  <p className="meta">Ainda sem livro específico para este tema; use as revistas e o material indicados.</p>
+                )}
                 <div className="res res-fechado">
                   {CATEGORIAS.map(([k, nome]) => {
                     const itens = ((th[k] as string[] | undefined) || []).filter((x) => x && x !== "—");

@@ -672,3 +672,16 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .res-item[open]>summary{border-bottom:1.5px dashed var(--line)}
 .res-item:hover{border-color:var(--sc)}
 .res-item ul{margin:0;padding:10px 14px 12px 30px;display:grid;gap:4px}
+/* Livros paradidáticos fechados, com o primeiro título à mostra */
+.books.books-fechado{padding:0;border:1.5px solid var(--ink);border-radius:14px;box-shadow:2px 2px 0 rgba(29,36,51,.1)}
+.books-fechado>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:10px 12px;user-select:none}
+.books-fechado>summary::-webkit-details-marker{display:none}
+.books-fechado>summary i{font-style:normal;font-size:24px;line-height:1;font-family:"Noto Color Emoji","Apple Color Emoji","Segoe UI Emoji",sans-serif}
+.books-fechado .bk-t{flex:1;display:grid;gap:1px;min-width:0}
+.books-fechado .bk-t b{font-size:.95rem;color:var(--ink)}
+.books-fechado .bk-t small{color:var(--soft);font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.books-fechado .res-n{background:color-mix(in srgb,var(--jog) 18%,var(--card));color:var(--jog)}
+.books-fechado>summary::after{content:"";width:9px;height:9px;border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg) translate(-2px,-2px);transition:transform .2s;margin-left:2px}
+.books-fechado[open]>summary::after{transform:rotate(-135deg) translate(-2px,-2px)}
+.books-fechado[open]>summary{border-bottom:1.5px dashed color-mix(in srgb,var(--jog) 40%,transparent)}
+.books-fechado>ul{padding:12px 14px 14px 32px}
