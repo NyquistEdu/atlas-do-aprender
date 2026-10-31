@@ -22,6 +22,8 @@ export type Apostila = {
   resumo: string;
   dentro: string[];
   amostras: string[]; // legenda de cada página de amostra (pagina-1.webp, pagina-2.webp…)
+  arquivo?: string; // apostila liberada de graça: caminho do PDF em /public (o botão vira "Baixar grátis")
+  nomeArquivo?: string;
 };
 
 export const APOSTILAS: Apostila[] = [
@@ -44,6 +46,17 @@ export const APOSTILAS: Apostila[] = [
     resumo: "O alfabeto ilustrado, maiúsculas e minúsculas, vogais, consoantes, o som do começo das palavras e as letras curiosas. A criança ouve, fala, vê e traça cada letra, com páginas de traçado de A a Z.",
     dentro: ["Alfabeto ilustrado com 26 figuras", "Traçado de todas as letras, com ponto de início e ordem dos traços", "Cuidado especial com b, d, p e q", "5 revisões diárias, caça-letra, bingo, memória e alfabeto móvel para recortar", "Certificado e gabarito"],
     amostras: ["O alfabeto ilustrado", "As vogais", "Traçar letras", "Revisão diária"],
+  },
+  {
+    slug: "escrever-o-nome",
+    titulo: "Escrever o Nome",
+    subtitulo: "O próprio nome, as letras que ele tem e as primeiras palavras",
+    materia: "por", ano: "1", tema: 3, nomeTema: "Escrita do nome e primeiras palavras",
+    paginas: 32, preco: "Grátis", checkout: "",
+    arquivo: "/apostilas-pdf/escrever-o-nome.pdf", nomeArquivo: "Escrever-o-Nome-Atlas-do-Aprender.pdf",
+    resumo: "O nome é a primeira palavra que a criança aprende a escrever de verdade, e a porta para todas as outras. Aqui ela escreve o próprio nome sem copiar, descobre quantas e quais letras ele tem, usa os nomes da família como modelo e começa a escrever palavras simples ouvindo os sons, até fazer listas, etiquetas e bilhetes. Com uma página para o adulto sobre como a criança pensa a escrita.",
+    dentro: ["6 partes com explicação e exercícios, tudo em letra de forma maiúscula", "Para o adulto: as fases da escrita e um ditado para ver por onde começar", "Erros que são pistas, exercícios guiados e 5 treinos diários", "Cartões de dobrar, alfabeto móvel para recortar, forca da flor e stop dos nomes", "Mão na massa, certificado e gabarito"],
+    amostras: ["Meu nome tem letras", "Quantas e quais letras?", "Escrever do meu jeito", "Cartões de dobrar"],
   },
   {
     slug: "contar-ate-cem",

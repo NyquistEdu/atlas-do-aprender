@@ -78,7 +78,7 @@ export default function Trilha({ params }: P) {
                   <Link className="apostila-tema" href={`/apostilas/${ap.slug}`} style={{ textDecoration: "none" }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={`/apostilas/${ap.slug}/capa.webp`} alt="" width={56} height={79} loading="lazy" />
-                    <div><b>Apostila deste tema: {ap.titulo}</b><span>{ap.paginas} páginas para imprimir, com exercícios, jogos e gabarito</span></div>
+                    <div><b>Apostila deste tema: {ap.titulo}</b><span>{ap.paginas} páginas para imprimir, com exercícios, jogos e gabarito{ap.arquivo ? " · grátis" : ""}</span></div>
                   </Link>
                 )}
                 {tr && (

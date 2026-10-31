@@ -159,27 +159,28 @@ export default function Apostila({ params }: P) {
   const a = APOSTILAS.find((x) => x.slug === params.slug);
   if (!a) notFound();
   const trilha = `/trilhas/${SLUG[a.materia]}/${anoSlug(a.ano)}#tema-${a.tema}`;
+  const botao = a.arquivo ? <a className="btn" href={a.arquivo} download={a.nomeArquivo}>Baixar grátis</a> : <Comprar slug={a.slug} titulo={a.titulo} checkout={a.checkout} preco={a.preco} grande />;
   return (
     <div className="wrap">
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd({
         "@context": "https://schema.org", "@type": "Product", name: `Apostila ${a.titulo}`, description: a.resumo,
         image: url(`/apostilas/${a.slug}/capa.webp`), brand: { "@type": "Brand", name: "Atlas do Aprender" },
         category: `${MATERIAS[a.materia]} · ${anoNome(a.ano)}`, audience: { "@type": "PeopleAudience", suggestedMinAge: 6, suggestedMaxAge: 11 },
-        ...(a.checkout ? { offers: { "@type": "Offer", price: a.preco.replace(/[^0-9,]/g, "").replace(",", "."), priceCurrency: "BRL", availability: "https://schema.org/InStock", url: url(`/apostilas/${a.slug}`) } } : {}),
+        ...(a.arquivo ? { offers: { "@type": "Offer", price: "0", priceCurrency: "BRL", availability: "https://schema.org/InStock", url: url(`/apostilas/${a.slug}`) } } : a.checkout ? { offers: { "@type": "Offer", price: a.preco.replace(/[^0-9,]/g, "").replace(",", "."), priceCurrency: "BRL", availability: "https://schema.org/InStock", url: url(`/apostilas/${a.slug}`) } } : {}),
       })} />
       <p className="meta"><Link href="/apostilas">Apostilas</Link> › {a.titulo}</p>
       <div className="produto-topo" style={{ ["--sc" as string]: `var(--${a.materia})` }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="produto-capa-g" src={`/apostilas/${a.slug}/capa.webp`} alt={`Capa da apostila ${a.titulo}`} width={566} height={800} />
         <div className="produto-txt">
-          <div className="tags"><span className={`tag ${a.materia}`}>{MATERIAS[a.materia]}</span><span className="tag">{anoNome(a.ano)}</span><span className="tag">{a.paginas} páginas</span></div>
+          <div className="tags">{a.arquivo && <span className="tag cie">Gratuito</span>}<span className={`tag ${a.materia}`}>{MATERIAS[a.materia]}</span><span className="tag">{anoNome(a.ano)}</span><span className="tag">{a.paginas} páginas</span></div>
           <h1 className="hero-t">{a.titulo}</h1>
           <p className="lead">{a.subtitulo}</p>
           <p>{a.resumo}</p>
           <div className="row">
-            <Comprar slug={a.slug} titulo={a.titulo} checkout={a.checkout} preco={a.preco} grande />
+            {botao}
           </div>
-          <p className="note">PDF em tamanho A4, para imprimir em casa. Pix, cartão ou boleto; o arquivo chega no seu e-mail.</p>
+          <p className="note">{a.arquivo ? "PDF em tamanho A4, para imprimir em casa. Gratuito por tempo limitado: pode compartilhar com outras famílias, sem alterar e sem vender." : "PDF em tamanho A4, para imprimir em casa. Pix, cartão ou boleto; o arquivo chega no seu e-mail."}</p>
         </div>
       </div>
       <section className="card">
@@ -205,7 +206,7 @@ export default function Apostila({ params }: P) {
         <h3>Perguntas frequentes</h3>
         <dl>
           <dt>Como recebo a apostila?</dt>
-          <dd>Depois que o pagamento é confirmado, a plataforma envia o link do PDF para o seu e-mail. No Pix, costuma ser em poucos minutos.</dd>
+          <dd>{a.arquivo ? "É só tocar em “Baixar grátis”: o PDF é salvo no seu celular ou computador na hora, sem cadastro." : "Depois que o pagamento é confirmado, a plataforma envia o link do PDF para o seu e-mail. No Pix, costuma ser em poucos minutos."}</dd>
           <dt>Posso imprimir mais de uma vez?</dt>
           <dd>Pode. A licença permite imprimir quantas cópias precisar para as crianças da sua casa, inclusive para refazer os exercícios.</dd>
           <dt>Preciso de algum material especial?</dt>
@@ -215,7 +216,7 @@ export default function Apostila({ params }: P) {
         </dl>
       </section>
       <div className="row">
-        <Comprar slug={a.slug} titulo={a.titulo} checkout={a.checkout} preco={a.preco} grande />
+        {botao}
         <Link className="btn ghost" href="/apostilas">Ver todas as apostilas</Link>
       </div>
     </div>

@@ -36,6 +36,7 @@ const soma = (a: number[]) => a.reduce((x, y) => x + y, 0);
 const NOMES: Record<string, string> = Object.fromEntries([
   ...APOSTILAS.map((a) => [a.slug, a.titulo]), ...KITS.map((k) => [k.slug, k.titulo]), ...GRATUITOS.map((g) => [g.slug, g.titulo]),
   ...GRATUITOS.map((g) => [g.arquivo, g.titulo]),
+  ...APOSTILAS.filter((a) => a.arquivo).map((a) => [a.arquivo!, a.titulo]),
 ]);
 const nomeDetalhe = (e: string, k: string) => {
   if (e === "loja") { const [slug, loja] = k.split("/"); const p = LOJA.find((x) => x.slug === slug); return `${p?.nome || slug}${loja ? ` · ${loja === "ml" || loja === "mercadolivre" ? "Mercado Livre" : loja[0].toUpperCase() + loja.slice(1)}` : ""}`; }

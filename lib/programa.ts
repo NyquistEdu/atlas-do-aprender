@@ -56,6 +56,10 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "O que a criança trabalha", itens: ["O alfabeto ilustrado", "Letras maiúsculas e minúsculas", "Vogais e consoantes", "O som do começo das palavras", "As letras curiosas", "O traçado de A a Z, com ponto de início e ordem dos traços", "As letras que se confundem: b, d, p e q"] },
     { titulo: "Para praticar", itens: ["5 revisões diárias", "Caça-letra, bingo e jogo da memória", "Alfabeto móvel para recortar", "Gabarito"] },
   ] },
+  "escrever-o-nome": { blocos: [
+    { titulo: "Partes da apostila", itens: ["Para o adulto · Como a criança pensa a escrita, com ditado inicial", "Parte 1 · Meu nome tem letras: a primeira letra e a ordem das letras", "Parte 2 · Nomes curtos e nomes compridos: contar letras", "Parte 3 · Os nomes de quem eu gosto: a agenda da família", "Parte 4 · Usar palavras que eu já sei para escrever outras", "Parte 5 · Quantas e quais letras? Falar, bater palmas, escutar e escrever", "Parte 6 · Escrever para alguém: listas, etiquetas e bilhetes"] },
+    { titulo: "Para praticar", itens: ["Escrita do meu jeito e erros que são pistas", "5 treinos diários", "Cartões de dobrar e alfabeto móvel para recortar", "Forca da flor e stop dos nomes", "Gabarito"] },
+  ] },
   "contar-ate-cem": { blocos: [
     { titulo: "O que a criança trabalha", itens: ["As regras da contagem: contar de verdade, não de cor", "Escrever os números, com traçado de 0 a 9", "Comparar quantidades", "Formar dezenas com palitos e material dourado", "Contar em saltos", "Os padrões do quadro dos 100"] },
     { titulo: "Para praticar", itens: ["Quadro de dez, reta numérica e material dourado desenhados", "5 revisões diárias", "Bingo, jogo da memória e mercadinho com dinheiro de brincadeira", "Gabarito"] },

@@ -134,11 +134,11 @@ export default function Vitrine() {
               <img src={`/apostilas/${a.slug}/capa.webp`} alt={`Capa da apostila ${a.titulo}`} width={566} height={800} loading="lazy" />
             </Link>
             <div className="produto-info">
-              <div className="tags"><span className={`tag ${a.materia}`}>{MATERIAS[a.materia]}</span><span className="tag">{anoNome(a.ano)}</span></div>
+              <div className="tags">{a.arquivo && <span className="tag cie">Gratuito</span>}<span className={`tag ${a.materia}`}>{MATERIAS[a.materia]}</span><span className="tag">{anoNome(a.ano)}</span></div>
               <h3><Link href={`/apostilas/${a.slug}`}>{a.titulo}</Link></h3>
               <p className="meta">{a.subtitulo} · {a.paginas} páginas</p>
               <div className="row">
-                <Comprar slug={a.slug} titulo={a.titulo} checkout={a.checkout} preco={a.preco} />
+                {a.arquivo ? <a className="btn small" href={a.arquivo} download={a.nomeArquivo}>Baixar grátis</a> : <Comprar slug={a.slug} titulo={a.titulo} checkout={a.checkout} preco={a.preco} />}
                 <Link className="btn small ghost" href={`/apostilas/${a.slug}`}>Ver páginas</Link>
               </div>
             </div>
