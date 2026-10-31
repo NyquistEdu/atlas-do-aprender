@@ -39,6 +39,12 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Nível C · Adjetivos e concordância (folhas 21 a 30)", itens: ["Reconhecer os adjetivos", "Adjetivos contrários", "Escolher o adjetivo que combina", "Concordância entre substantivo e adjetivo", "Completar descrições", "Descrever um personagem"] },
   ] },
 
+  "treino-escrever-o-nome": { blocos: [
+    { titulo: "Nível A · O meu nome (folhas 1 a 10)", itens: ["Escrever o próprio nome com e sem modelo", "Achar o nome escrito igual", "Contar as letras de um nome", "Comparar palavras: o tamanho da palavra não é o tamanho da coisa", "Letras fora do lugar", "Nomes e palavras que começam igual", "Palavras de carinho: MAMÃE, PAPAI, VOVÓ…"] },
+    { titulo: "Nível B · Ouvir para escrever (folhas 11 a 20)", itens: ["Contar os pedaços (sílabas) com palmas", "A vogal que falta", "A consoante que falta", "O pedaço que falta", "Escrever palavras de duas sílabas e de três letras nos quadradinhos", "Ler e ligar palavra e figura"] },
+    { titulo: "Nível C · Escrever de verdade (folhas 21 a 30)", itens: ["Escrever palavras sem quadradinhos", "Palavras de três sílabas", "Ditado", "Lista, etiquetas e bilhete", "Completar frases", "Separar as palavras de uma frase", "Desafio final: o mesmo ditado do começo da apostila"] },
+  ] },
+
   // ---------- Apostilas ----------
   "nomear-e-descrever": { blocos: [
     { titulo: "Partes da apostila", itens: ["Parte 1 · Tudo tem um nome", "Parte 2 · Nome de todos e nome de um só (comum e próprio)", "Parte 3 · Um ou muitos? Masculino ou feminino?", "Parte 4 · Como é? O adjetivo", "Parte 5 · O adjetivo combina com o substantivo (concordância)", "Parte 6 · Descrever: pintar com palavras"] },

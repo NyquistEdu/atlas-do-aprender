@@ -194,6 +194,23 @@ export const GRATUITOS: Gratuito[] = [
     materia: "por", ano: "1", tema: 2, apostila: "ouvir-as-letras",
   },
   {
+    slug: "treino-escrever-o-nome",
+    titulo: "Treino Diário · Escrever o Nome",
+    subtitulo: "30 folhas para escrever o nome e as primeiras palavras, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-escrever-o-nome.pdf",
+    nomeArquivo: "Treino-Diario-Escrever-o-Nome-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com correção até acertar tudo. Começa no próprio nome (escrever com e sem modelo, achar nomes iguais, contar e comparar letras), passa por ouvir os pedaços e os sons das palavras e completar o que falta, e termina escrevendo de verdade: palavras sem apoio, ditado, lista, etiquetas, frases e um bilhete.",
+    dentro: ["30 folhas em 3 níveis, de 5 a 10 minutos cada", "O próprio nome e os nomes da família", "Pedaços, vogais, consoantes e sílabas que faltam, com figuras", "Ditado, lista, etiquetas, frases e bilhete", "Registro de progresso, certificado e gabarito"],
+    amostras: ["Ache o nome igual", "Quantos pedaços?", "Escreva a palavra", "Complete a frase"],
+    publico: "Alfabetização",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos. O adulto lê a instrução e, nas folhas com figuras, diz o nome de cada uma (está escrito pequeno embaixo). Deixe o nome da criança escrito num papel perto da mesa, como modelo.",
+      "Passe para a próxima folha quando ela fizer com no máximo 1 erro e sem muita ajuda. Nas folhas de escrita livre (ditado, lista, bilhete), não conte erros de ortografia: observe se ela já escreve todos os sons e mostre primeiro o que ela acertou.",
+    ],
+    materia: "por", ano: "1", tema: 3, apostila: "escrever-o-nome",
+  },
+  {
     slug: "treino-brincar-com-as-palavras",
     titulo: "Treino Diário · Brincar com as Palavras",
     subtitulo: "30 folhas de rimas, sílabas e sons, uma por dia",
