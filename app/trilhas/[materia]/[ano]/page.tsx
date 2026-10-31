@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ANOS, CATEGORIAS, DE_SLUG, MATERIAS, SLUG, TRILHAS, anoDeSlug, anoSlug, temaId, type Materia } from "@/lib/data";
 import { Marcar, ParaDiario } from "@/components/Registrar";
+import Dicas from "@/components/Dicas";
 import Progresso from "./Progresso";
 import Mapa from "./Mapa";
 import { EMOJI_FASE, ENFEITES, NOME_REGIAO } from "@/lib/fases";
@@ -111,6 +112,7 @@ export default function Trilha({ params }: P) {
                     ) : null;
                   })}
                 </div>
+                <Dicas tema={id} titulo={th.t} />
                 <div className="row">
                   <Marcar chave={"andamento|" + id} rotulo={["Estamos trabalhando neste tema", "Tirar de “em andamento”"]} origem="trilhas" />
                   <Marcar chave={id} rotulo={["Marcar tema como concluído", "Desmarcar tema"]} origem="trilhas" />
