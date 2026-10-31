@@ -79,6 +79,11 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Para praticar", itens: ["Diário da Lua para 15 noites", "Experimentos com lanterna e biscoito", "5 revisões diárias", "Caça-palavras, jogo da memória e constelação na lata", "Gabarito"] },
   ] },
 
+  "ontem-hoje-e-amanha": { blocos: [
+    { titulo: "Partes da apostila", itens: ["Parte 1 · O que é verbo: ação, estado e fenômeno da natureza", "Parte 2 · O infinitivo e os grupos -AR, -ER e -IR", "Parte 3 · Quem faz a ação: as pessoas do verbo e a concordância", "Parte 4 · Ontem, hoje e amanhã: passado, presente e futuro", "Parte 5 · Dois jeitos de contar o passado: pretérito perfeito e imperfeito", "Parte 6 · Verbos irregulares: ser, estar, ter, ir, fazer, ver, dizer, trazer", "Parte 7 · -AM ou -ÃO? (cantaram × cantarão)", "Parte 8 · Um tempo só no texto: coerência verbal"] },
+    { titulo: "Para praticar", itens: ["Erros comuns, exercícios guiados e desafios", "5 treinos diários", "Leitura: A caixa de lata", "Cartas de mímica e dados do tempo para montar", "Produção de texto, mão na massa e gabarito"] },
+  ] },
+
   // ---------- Kits e outros gratuitos ----------
   "duende-tico": { blocos: [
     { titulo: "Nas 24 atividades do Advento", itens: ["Português: leitura, rimas e entrevista", "Matemática: problemas e contas", "Ciências: pequenos experimentos", "Arte, jogos e gentileza"] },

@@ -108,6 +108,17 @@ export const APOSTILAS: Apostila[] = [
     dentro: ["6 partes com explicação e exercícios", "Frações no dia a dia, erros comuns e exercícios guiados", "Treino diário de 5 dias", "Barra e discos de frações para recortar, dominó de frações e mão na massa", "Certificado e gabarito"],
     amostras: ["A metade", "Qual pedaço é maior?", "Treino diário", "Dominó de frações"],
   },
+  {
+    slug: "ontem-hoje-e-amanha",
+    titulo: "Ontem, Hoje e Amanhã",
+    subtitulo: "Verbos e tempos verbais para contar o que foi, o que é e o que será",
+    materia: "por", ano: "4", tema: 2, nomeTema: "Verbos e tempos verbais",
+    paginas: 35, preco: "Grátis", checkout: "",
+    arquivo: "/apostilas-pdf/ontem-hoje-e-amanha.pdf", nomeArquivo: "Ontem-Hoje-e-Amanha-Atlas-do-Aprender.pdf",
+    resumo: "O verbo é o coração da frase. A criança descobre o que é verbo (ação, estado e fenômeno da natureza), acha o infinitivo e os grupos -AR, -ER e -IR, faz o verbo combinar com quem pratica a ação e usa passado, presente e futuro, incluindo a diferença entre “brinquei” e “brincava”, os verbos irregulares e o eterno -AM ou -ÃO. No fim, escreve textos sem misturar os tempos. Com cartas de mímica e dados do tempo para montar.",
+    dentro: ["8 partes com explicação e exercícios", "Tabelas de conjugação, verbos irregulares e o truque do -AM e -ÃO", "Erros comuns, exercícios guiados e 5 treinos diários", "Leitura original, cartas de mímica e dados do tempo para recortar", "Mão na massa, certificado e gabarito"],
+    amostras: ["O que é verbo", "Ontem, hoje e amanhã", "Cantaram ou cantarão?", "Cartas de mímica"],
+  },
 ];
 
 export const apostilaDoTema = (m: Materia, ano: string, tema: number) => APOSTILAS.find((a) => a.materia === m && a.ano === ano && a.tema === tema);
