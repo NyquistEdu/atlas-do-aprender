@@ -12,18 +12,25 @@ export default function Preferencias() {
   const [quer, setQuer] = useState<boolean | null>(null);
   const [salvo, setSalvo] = useState(false);
   const [indisp, setIndisp] = useState(false);
+  const [existe, setExiste] = useState(false);
+  const [erro, setErro] = useState("");
 
   useEffect(() => {
     if (!user || !supabase) return;
     supabase.from("preferencias_email").select("quer").eq("user_id", user.id).maybeSingle().then(({ data, error }) => {
-      if (error) setIndisp(true); else setQuer(!!data?.quer);
+      if (error) setIndisp(true); else { setQuer(!!data?.quer); setExiste(!!data); }
     });
   }, [user]);
 
   const mudar = async (v: boolean) => {
     if (!supabase || !user) return;
-    const { error } = await supabase.from("preferencias_email").upsert({ user_id: user.id, quer: v, atualizado_em: new Date().toISOString() }, { onConflict: "user_id" });
-    if (error) return;
+    setErro("");
+    // A família só pode gravar "quer" (e a data, ao atualizar): por isso update quando já existe e insert só com user_id e quer.
+    const { error } = existe
+      ? await supabase.from("preferencias_email").update({ quer: v, atualizado_em: new Date().toISOString() }).eq("user_id", user.id)
+      : await supabase.from("preferencias_email").insert({ user_id: user.id, quer: v });
+    if (error) { console.error("preferencias_email:", error); setErro("Não consegui salvar agora. Tente de novo em instantes."); return; }
+    setExiste(true);
     setQuer(v); setSalvo(true); setTimeout(() => setSalvo(false), 2500);
     if (v) {
       const { data } = await supabase.auth.getSession();
@@ -49,6 +56,7 @@ export default function Preferencias() {
           <div className="row">
             {quer ? <button className="btn ghost" type="button" onClick={() => mudar(false)}>Parar de receber</button> : <button className="btn" type="button" onClick={() => mudar(true)}>Quero receber</button>}
             {salvo && <span className="dicas-ok">Salvo ✓</span>}
+            {erro && <span className="meta" role="status" style={{ color: "#dc2626" }}>{erro}</span>}
           </div>
           <p className="meta" style={{ margin: 0 }}>Sua conta, as crianças e tudo o que vocês registraram não mudam com esta escolha.</p>
         </section>

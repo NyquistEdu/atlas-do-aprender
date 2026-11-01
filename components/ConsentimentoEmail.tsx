@@ -39,7 +39,9 @@ export default function ConsentimentoEmail() {
 
   async function salvar(quer: boolean) {
     if (!supabase || !user) return;
-    const { error } = await supabase.from("preferencias_email").upsert({ user_id: user.id, quer }, { onConflict: "user_id" });
+    // insert só com user_id e quer; se a família já tiver registro, atualiza (a permissão de cada coluna é diferente).
+    let { error } = await supabase.from("preferencias_email").insert({ user_id: user.id, quer });
+    if (error?.code === "23505") ({ error } = await supabase.from("preferencias_email").update({ quer, atualizado_em: new Date().toISOString() }).eq("user_id", user.id));
     if (error || !quer) return;
     const { data } = await supabase.auth.getSession();
     const t = data.session?.access_token;
