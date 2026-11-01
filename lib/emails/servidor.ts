@@ -5,7 +5,9 @@ import { TRILHAS, SLUG, anoSlug, type Materia } from "@/lib/data";
 import { EMOJI_FASE } from "@/lib/fases";
 
 /** Chave geral: enquanto for false, nada é enviado (a rotina só calcula e mostra o que enviaria). */
-export const ENVIO_LIGADO = false;
+export const ENVIO_LIGADO = true;
+/** Modo de teste: com endereços aqui, os e-mails só saem para eles. Lista vazia = envio para todas as famílias. */
+export const SO_PARA: string[] = ["stephaniekamarryas@gmail.com"];
 
 export const REMETENTE = { name: "Atlas do Aprender", email: "contato@atlasdoaprender.com.br" };
 export const RESPONDER_PARA = { name: "Stephanie Kamarry", email: "stephaniekamarryas@gmail.com" };
@@ -22,6 +24,7 @@ export const linkDescadastro = (token: string) => `${SITE}/api/descadastrar?t=${
 export async function enviar(para: string, email: Email, tipo: string, token: string): Promise<boolean> {
   const key = process.env.BREVO_API_KEY;
   if (!key || !ENVIO_LIGADO) return false;
+  if (SO_PARA.length && !SO_PARA.includes(para.toLowerCase())) return false;
   const r = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
     headers: { "api-key": key, "content-type": "application/json", accept: "application/json" },

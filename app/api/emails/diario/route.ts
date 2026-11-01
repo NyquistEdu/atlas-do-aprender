@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { admin, enviar, linkDescadastro, proximaFase, ENVIO_LIGADO, LIMITE_DIARIO } from "@/lib/emails/servidor";
+import { admin, enviar, linkDescadastro, proximaFase, ENVIO_LIGADO, LIMITE_DIARIO, SO_PARA } from "@/lib/emails/servidor";
 import { boasVindas, dia2, dia5, dia10, mensal, saudade, type Email } from "@/lib/emails/modelos";
 import { desafioAtual } from "@/lib/desafios";
 import { NOVIDADES } from "@/lib/novidades";
@@ -95,6 +95,7 @@ export async function GET(req: Request) {
       }
     }
     if (!email) continue;
+    if (SO_PARA.length && !SO_PARA.includes(u.email.toLowerCase())) { plano[`(teste) ${tipo}`] = (plano[`(teste) ${tipo}`] || 0) + 1; continue; }
     plano[tipo.startsWith("mensal") ? "mensal" : tipo] = (plano[tipo.startsWith("mensal") ? "mensal" : tipo] || 0) + 1;
     if (!ENVIO_LIGADO) continue;
     const ok = await enviar(u.email, email, tipo, pref.token);
