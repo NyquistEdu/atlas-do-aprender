@@ -7,7 +7,7 @@ import { EMOJI_FASE } from "@/lib/fases";
 /** Chave geral: enquanto for false, nada é enviado (a rotina só calcula e mostra o que enviaria). */
 export const ENVIO_LIGADO = true;
 /** Modo de teste: com endereços aqui, os e-mails só saem para eles. Lista vazia = envio para todas as famílias. */
-export const SO_PARA: string[] = ["stephaniekamarryas@gmail.com"];
+export const SO_PARA: string[] = [];
 
 export const REMETENTE = { name: "Atlas do Aprender", email: "contato@atlasdoaprender.com.br" };
 export const RESPONDER_PARA = { name: "Stephanie Kamarry", email: "stephaniekamarryas@gmail.com" };
