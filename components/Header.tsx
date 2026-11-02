@@ -28,13 +28,8 @@ const ABAS: [string, string][] = [
 function Tema() {
   const [escuro, setEscuro] = useState(false);
   useEffect(() => {
-    const r = document.documentElement;
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const atual = () => (r.getAttribute("data-theme") || (mq.matches ? "dark" : "light")) === "dark";
-    setEscuro(atual());
-    const f = () => setEscuro(atual());
-    mq.addEventListener("change", f);
-    return () => mq.removeEventListener("change", f);
+    // Sempre claro, a não ser que a pessoa tenha escolhido o escuro no botão.
+    setEscuro(document.documentElement.getAttribute("data-theme") === "dark");
   }, []);
   const trocar = () => {
     const n = escuro ? "light" : "dark";

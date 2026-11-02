@@ -11,10 +11,7 @@
   --f-hand:"Caveat", "Comic Sans MS", cursive;
   --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#141821; --card:#1c2130; --ink:#e9ecf3; --soft:#a3abbd; --line:#2d3446; --sun:#F2B33D; --grid:rgba(130,168,240,.06);
-  --por:#f08a7d; --por-bg:#3a2224; --mat:#82a8f0; --mat-bg:#1e2a44;
-  --cie:#7fcf9c; --cie-bg:#1b3326; --jog:#e8b65a; --jog-bg:#3a2e17; --acc:#e9ecf3; --ok:#7fcf9c; color-scheme:dark}}
+/* O site abre sempre claro; o escuro só vale quando a pessoa escolhe no botão de tema. */
 :root[data-theme="dark"]{
   --paper:#141821; --card:#1c2130; --ink:#e9ecf3; --soft:#a3abbd; --line:#2d3446; --sun:#F2B33D; --grid:rgba(130,168,240,.06);
   --por:#f08a7d; --por-bg:#3a2224; --mat:#82a8f0; --mat-bg:#1e2a44;
@@ -594,7 +591,6 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .mapa{position:relative;border:2px solid var(--ink);border-radius:22px;overflow:hidden;box-shadow:6px 6px 0 var(--sc);
   background:radial-gradient(ellipse 40% 22% at 85% 12%,color-mix(in srgb,#6f97e0 22%,transparent),transparent 70%),radial-gradient(ellipse 35% 18% at 10% 70%,color-mix(in srgb,#5fb37f 22%,transparent),transparent 70%),radial-gradient(ellipse 30% 15% at 90% 85%,color-mix(in srgb,#5fb37f 18%,transparent),transparent 70%),#f7ecd3}
 :root[data-theme="dark"] .mapa{background:#1f2636}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mapa{background:#1f2636}}
 .mapa-caminho{position:absolute;inset:0;width:100%;height:100%}
 .mapa-caminho .estrada{fill:none;stroke:color-mix(in srgb,var(--sc) 22%,#fff8ec);stroke-width:26px;stroke-linecap:round}
 .mapa-caminho .trilha{fill:none;stroke:var(--ink);stroke-width:3px;stroke-dasharray:2 12;stroke-linecap:round}
