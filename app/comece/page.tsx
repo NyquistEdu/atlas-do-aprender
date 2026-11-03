@@ -4,7 +4,7 @@ import Comece from "./Comece";
 
 export const metadata: Metadata = {
   title: "Comece grátis",
-  description: "Trilhas da alfabetização ao 5º ano com livros, filmes, jogos e experimentos para cada tema. Crie sua conta grátis em um minuto.",
+  description: "Descubra as lacunas de aprendizagem da criança e siga o caminho para resolvê-las, 15 minutos por dia, da alfabetização ao 5º ano. Crie sua conta grátis em um minuto.",
   alternates: { canonical: "/comece" },
   robots: { index: false, follow: true },
 };
@@ -14,20 +14,20 @@ export default function Page() {
   return (
     <div className="wrap" style={{ maxWidth: 720 }}>
       <p className="eyebrow-i">Feito por uma professora e mãe</p>
-      <h1 className="hero-t">Criança aprende melhor quando o mesmo assunto aparece de vários jeitos.</h1>
+      <h1 className="hero-t">Descubra o que falta para o seu filho e saiba exatamente como resolver.</h1>
       <p className="lead">
-        No Atlas do Aprender, cada tema do 1º ao 5º ano já vem com um livro para ler, um filme, um jogo e um experimento com material de casa.
-        Você escolhe uma ou duas atividades por semana. É gratuito.
+        O Atlas do Aprender encontra as lacunas de aprendizagem da criança e entrega o caminho e o material para resolvê-las,
+        em 15 minutos por dia, da alfabetização ao 5º ano. Um pouquinho, todo dia, com amor. É gratuito.
       </p>
 
       <Comece />
 
       <h3 className="ini-h">O que você encontra lá dentro</h3>
       <ul className="ini-steps">
-        <li><b>Trilhas de Português, Matemática e Ciências</b>, ano a ano, na ordem certa.</li>
-        <li><b>Indicações de livros, filmes e jogos</b> comentados para cada tema.</li>
-        <li><b>Experimentos e atividades</b> com o que você já tem em casa.</li>
-        <li><b>Diário da criança</b> para guardar o que ela fez e descobriu, com a sua conta.</li>
+        <li><b>Diagnóstico de 5 minutos</b> que mostra onde estão as lacunas em Português, Matemática e Ciências.</li>
+        <li><b>O mapa da trilha</b>, com a próxima fase de cada matéria, na ordem certa.</li>
+        <li><b>Material pronto para 15 minutos por dia</b>: treinos para imprimir, apostilas, livros, jogos e experimentos.</li>
+        <li><b>Progresso de cada criança</b> guardado na sua conta, fase por fase.</li>
       </ul>
       <p className="meta" style={{ margin: 0 }}>
         Prefere olhar antes? <Link href="/trilhas/portugues/1-ano">Ver as trilhas sem conta</Link>.

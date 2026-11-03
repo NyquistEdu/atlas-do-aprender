@@ -8,11 +8,11 @@ import ConsentimentoEmail from "@/components/ConsentimentoEmail";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { SITE, jsonLd } from "@/lib/seo";
 
-const DESC = "Atividades para crianças da alfabetização ao 5º ano: trilhas de Português, Matemática e Ciências alinhadas à BNCC, livros infantis, jogos, experimentos, apostilas para imprimir e diário de aprendizagem. Gratuito.";
+const DESC = "O Atlas do Aprender encontra as lacunas de aprendizagem da criança e entrega o caminho e o material para resolvê-las, em 15 minutos por dia. Português, Matemática e Ciências, da alfabetização ao 5º ano. Gratuito.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: { default: "Atlas do Aprender · atividades, livros e jogos da alfabetização ao 5º ano", template: "%s · Atlas do Aprender" },
+  title: { default: "Atlas do Aprender · encontre as lacunas e siga o caminho, da alfabetização ao 5º ano", template: "%s · Atlas do Aprender" },
   description: DESC,
   applicationName: "Atlas do Aprender",
   authors: [{ name: "Stephanie Kamarry" }],

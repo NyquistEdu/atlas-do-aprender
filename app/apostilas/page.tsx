@@ -13,7 +13,7 @@ export default function Apostilas() {
     <div className="wrap largo">
       <p className="eyebrow-i">Para imprimir em casa</p>
       <h1 className="hero-t">Apostilas do Atlas</h1>
-      <p className="lead">Cada apostila aprofunda um tema das trilhas: explicação para a família, exercícios de entendimento, cinco revisões diárias em que a ajuda vai diminuindo, jogos para recortar, atividades mão na massa e gabarito.</p>
+      <p className="lead">O material para resolver cada lacuna, 15 minutos por dia. Os treinos diários são grátis, e cada apostila aprofunda uma fase da trilha: explicação para a família, exercícios de entendimento, cinco revisões diárias em que a ajuda vai diminuindo, jogos para recortar, atividades mão na massa e gabarito.</p>
       <Vitrine />
       <PedirApostila />
       <div className="feedback">

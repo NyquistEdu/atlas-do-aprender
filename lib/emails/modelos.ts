@@ -52,16 +52,16 @@ Você recebe este e-mail porque pediu dicas e novidades do Atlas do Aprender. É
 
 export function boasVindas(descadastro: string, contaAntiga = false): Email {
   const tipo = contaAntiga ? "boas_vindas_antiga" : "boas_vindas";
-  const previa = contaAntiga ? "O Atlas mudou bastante desde o seu cadastro. Três passos para aproveitar." : "Três passos para começar: o diagnóstico, o mapa da trilha e o desafio do mês.";
+  const previa = contaAntiga ? "O Atlas mudou bastante desde o seu cadastro. Três passos para aproveitar." : "Três passos para começar: descobrir as lacunas, seguir o mapa e um pouquinho todo dia.";
   const abertura = contaAntiga
     ? "Você criou sua conta no Atlas há um tempinho, e ele mudou bastante desde então: as trilhas viraram um mapa com fases, chegaram apostilas grátis, o desafio do mês e um espaço para perguntar direto para mim. Eu criei o Atlas quando precisei ensinar meu filho em casa, do jeito dele, sem pressão, e ele continua todo gratuito."
     : "Que bom ter vocês aqui! Eu criei o Atlas quando precisei ensinar meu filho em casa, do jeito dele, sem pressão. Agora ele é de vocês também, e é todo gratuito.";
   const corpo = `${p(abertura)}
 ${p("Para começar bem, sugiro três passos, um de cada vez:")}
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-${bloco("🧭", "1. Faça o diagnóstico grátis", "Uns 5 minutos para descobrir o que a criança já domina em Português, Matemática e Ciências e por onde começar.", "/diagnostico", tipo)}
-${bloco("🗺️", "2. Abra o mapa da trilha", "Cada tema é uma fase do caminho, com livros, jogos, filmes e atividades. Escolha a fase e entre.", "/trilhas/portugues/1-ano", tipo)}
-${bloco("🌱", "3. Conheça o desafio do mês", "Uma atividade para fazer em família. Quem mostra o resultado no mural ganha um selo.", "/desafio", tipo)}
+${bloco("🧭", "1. Descubra as lacunas", "Um diagnóstico de uns 5 minutos mostra o que a criança já domina em Português, Matemática e Ciências e onde estão as lacunas.", "/diagnostico", tipo)}
+${bloco("🗺️", "2. Siga a trilha", "Cada lacuna é uma fase no mapa. Você sabe qual é a próxima e, quando ela fica firme, passa para a seguinte.", "/trilhas/portugues/1-ano", tipo)}
+${bloco("🌱", "3. Um pouquinho todo dia", "15 minutos por dia, com material pronto para cada fase: treinos grátis para imprimir, apostilas, livros e jogos.", "/apostilas", tipo)}
 </table>
 ${botao("Fazer o diagnóstico agora", "/diagnostico", tipo)}`;
   return contaAntiga
@@ -73,7 +73,7 @@ export function dia2(descadastro: string): Email {
   const tipo = "seq_d2";
   const previa = "Cinco minutos para saber exatamente por onde começar com a sua criança.";
   const corpo = `${p("Uma das perguntas que mais recebo é: <b>“por onde eu começo?”</b>. A resposta mais honesta é: pelo que a criança já sabe.")}
-${p("No diagnóstico do Atlas, você responde perguntas simples sobre o que ela já faz (por exemplo, se lê frases curtas ou se soma com reagrupamento). Em uns 5 minutos, ele mostra os temas que ela já domina e os que ficaram para trás, inclusive de anos anteriores.")}
+${p("No diagnóstico do Atlas, você responde perguntas simples sobre o que ela já faz (por exemplo, se lê frases curtas ou se soma com reagrupamento). Em uns 5 minutos, ele mostra o que ela já domina e onde estão as lacunas, inclusive de anos anteriores.")}
 ${p("Com o resultado, você vai direto para a fase certa do mapa, sem perder tempo com o que ela já sabe nem pular o que ainda falta.")}
 ${botao("Fazer o diagnóstico", "/diagnostico", tipo)}`;
   return { assunto: "Por onde começar? Cinco minutos respondem", previa, html: base({ tipo, previa, kicker: "dica do dia 2", titulo: "Por onde começar com a sua criança", corpo, descadastro }) };
@@ -83,7 +83,7 @@ export function dia5(descadastro: string): Email {
   const tipo = "seq_d5";
   const previa = "Um tema de cada vez: como usar o mapa da trilha sem se perder.";
   const corpo = `${p("As trilhas do Atlas são um mapa: cada tema é uma <b>fase</b> no caminho, do começo ao fim do ano. Dentro de cada fase estão os livros, jogos, filmes, exercícios e atividades mão na massa daquele assunto.")}
-${p("O segredo é ir devagar: <b>um tema por vez, uma ou duas atividades por semana</b>. Quando começarem uma fase, toque em “Estamos trabalhando neste tema”. Assim o mapa marca “Você está aqui” e você sempre sabe de onde continuar, em qualquer aparelho.")}
+${p("O segredo é ir devagar: <b>uma fase por vez, um pouquinho todo dia</b>. Quinze minutos bastam. Quando começarem uma fase, toque em “Estamos trabalhando neste tema”. Assim o mapa marca “Você está aqui” e você sempre sabe de onde continuar, em qualquer aparelho.")}
 ${p("E quando terminar, marque como concluída: a fase ganha um ✓ e o pin anda para a próxima. As crianças adoram ver o caminho avançar.")}
 ${botao("Abrir o mapa da trilha", "/trilhas/portugues/1-ano", tipo)}`;
   return { assunto: "Um tema de cada vez: o mapa da trilha", previa, html: base({ tipo, previa, kicker: "dica do dia 5", titulo: "Como usar o mapa sem se perder", corpo, descadastro }) };

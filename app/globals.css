@@ -769,3 +769,16 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 /* Lema do Atlas */
 .lema{font-family:var(--f-hand);font-weight:700;font-size:clamp(1.35rem,3.6vw,1.75rem);line-height:1.2;color:var(--por);margin:2px 0 4px;max-width:34ch;text-wrap:balance}
 .credit .lema.lema-rod{font-size:clamp(1.5rem,4vw,1.9rem);color:var(--sun);margin:4px 0 0;max-width:none}
+
+/* Página inicial: o caminho em 3 passos */
+.ini-sec{font-weight:700;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.ini-passos3{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.ini-passos3 li{padding:22px 20px 18px;gap:8px}
+.ini-passos3 h3{font-size:1.3rem}
+.ini-passos3 p{font-size:1rem}
+.ini-passos3 li:nth-child(1) .ini-n{background:var(--mat)}
+.ini-passos3 li:nth-child(2) .ini-n{background:var(--por)}
+.ini-passos3 li:nth-child(3) .ini-n{background:var(--cie)}
+.ini-passos3 .ini-n{color:#fff}
+.diag-como{margin:0;padding-left:1.3em;display:grid;gap:4px}
+.diag-onde{display:block;font-family:var(--f-body);font-weight:400;font-size:.8rem;color:var(--soft);margin-top:2px}

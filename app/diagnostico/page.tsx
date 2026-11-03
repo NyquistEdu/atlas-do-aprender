@@ -4,8 +4,8 @@ import Diagnostico from "./Diagnostico";
 import { jsonLd, url } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Diagnóstico grátis: em que tema meu filho está? (1º ao 5º ano)",
-  description: "Responda perguntas rápidas sobre o que a criança já faz em Português, Matemática e Ciências e descubra quais temas trabalhar, inclusive de anos anteriores, da alfabetização ao 5º ano. Gratuito e sem cadastro.",
+  title: "Diagnóstico grátis: onde estão as lacunas do meu filho? (1º ao 5º ano)",
+  description: "Responda perguntas rápidas sobre o que a criança já faz em Português, Matemática e Ciências e descubra onde estão as lacunas, inclusive de anos anteriores, e por qual fase da trilha começar. Da alfabetização ao 5º ano. Gratuito e sem cadastro.",
   alternates: { canonical: "/diagnostico" },
 };
 
@@ -25,8 +25,8 @@ export default function Page() {
         mainEntity: FAQ.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })),
       })} />
       <p className="eyebrow-i">Gratuito · 5 minutos · sem cadastro</p>
-      <h1 className="hero-t">Em que tema meu filho está?</h1>
-      <p className="lead">Responda algumas perguntas sobre o que a criança já faz sozinha em Português, Matemática e Ciências. No final, você recebe a lista de temas para trabalhar em cada matéria, na ordem certa, com livros, jogos e atividades prontos nas trilhas do Atlas.</p>
+      <h1 className="hero-t">Onde estão as lacunas do meu filho?</h1>
+      <p className="lead">Responda algumas perguntas sobre o que a criança já faz sozinha em Português, Matemática e Ciências. No final, você vê onde estão as lacunas em cada matéria, na ordem certa, e por qual fase da trilha começar, com material pronto para 15 minutos por dia.</p>
 
       <Diagnostico />
 

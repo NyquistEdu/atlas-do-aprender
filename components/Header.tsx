@@ -6,22 +6,23 @@ import { useEffect, useRef, useState } from "react";
 import { useAtlas } from "./Providers";
 import { ADMIN_EMAIL } from "@/lib/admin";
 
-// As 7 primeiras ficam sempre à vista no computador; as outras vão para o botão "Mais".
+// O caminho do Atlas fica sempre à vista (Início, Diagnóstico, Trilhas, Apostilas e Comunidade);
+// o resto vai para o botão "Mais" no computador.
 const ABAS: [string, string][] = [
   ["/", "Início"],
-  ["/trilhas/portugues/1-ano", "Trilhas"],
   ["/diagnostico", "Diagnóstico"],
+  ["/trilhas/portugues/1-ano", "Trilhas"],
   ["/apostilas", "Apostilas"],
   ["/comunidade", "Comunidade"],
   ["/livros", "Livros"],
-  ["/loja", "Loja"],
   ["/jogos", "Jogos"],
   ["/mao-na-massa", "Mão na massa"],
-  ["/olimpiadas", "Olimpíadas"],
-  ["/tematicas", "Temáticas"],
   ["/duvidas", "Pergunte à professora"],
   ["/planejamento", "Planejamento grátis"],
   ["/diario", "Diário"],
+  ["/loja", "Loja"],
+  ["/olimpiadas", "Olimpíadas"],
+  ["/tematicas", "Temáticas"],
   ["/guia", "Guia"],
 ];
 
@@ -67,7 +68,7 @@ export default function Header() {
     return path === href || path.startsWith(base + "/") || path === base;
   };
   const atual = abas.find(([h]) => ativa(h))?.[1];
-  const nPrincipais = user ? 8 : 7;
+  const nPrincipais = user ? 6 : 5;
   const extras = abas.slice(nPrincipais);
   const extraAtual = extras.find(([h]) => ativa(h))?.[1];
   return (

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { SERIES, atual, inicio, perguntadas, responder, resultado, type Area, type Estado, type Resposta, type Resultado } from "@/lib/diagnostico";
 import { MATERIAS, SLUG, TRILHAS, anoSlug } from "@/lib/data";
-import { anoNome, apostilaDoTema } from "@/lib/apostilas";
+import { anoNome, apostilaDoTema, treinoDoTema } from "@/lib/apostilas";
 import { jogosDoTema } from "@/lib/loja";
 import { rastrear } from "@/lib/rastreio";
 import { useAtlas } from "@/components/Providers";
@@ -118,6 +118,7 @@ export default function Diagnostico() {
   })].join(" · ");
   const paraPlanejamento = () => { try { sessionStorage.setItem("atlas-diagnostico-resumo", resumo); } catch {} };
   const primeiro = ORDEM.map((a) => rs[a].trabalhar[0] && linkTema(a, rs[a].trabalhar[0].h.ano, rs[a].trabalhar[0].h.tema)).find(Boolean) || "/trilhas/portugues/1-ano";
+  const lacunas = ORDEM.reduce((t, a) => t + rs[a].trabalhar.length, 0);
   const anterior = ORDEM.some((a) => rs[a].trabalhar.some((i) => SERIES.find((s) => s[0] === serie) && Number(i.h.ano) < Number(SERIES.find((s) => s[0] === serie)![3])));
 
   return (
@@ -125,8 +126,14 @@ export default function Diagnostico() {
       <section className="card diag">
         <p className="eyebrow-i" style={{ margin: 0 }}>Resultado</p>
         <h2 style={{ margin: 0 }}>O caminho de {nome.trim() || "estudo"}</h2>
-        <p className="meta" style={{ margin: 0 }}>Em cada matéria, os temas para trabalhar aparecem na ordem da trilha: comece pelo primeiro e siga a lista. Os temas marcados “com ajuda” costumam andar mais rápido.</p>
-        {anterior && <p className="diag-aviso">Alguns temas são de anos anteriores ao da série. Isso é comum e não é motivo de preocupação: firmar a base é o caminho mais rápido para alcançar a turma.</p>}
+        <p style={{ margin: 0 }}>{lacunas ? <>Encontramos <b>{lacunas} {lacunas === 1 ? "lacuna" : "lacunas"}</b> para trabalhar. Cada uma é uma fase no mapa da trilha, e elas aparecem abaixo na ordem certa.</> : <>Nenhuma lacuna nos temas perguntados. Abaixo está a próxima fase de cada matéria.</>}</p>
+        <ol className="diag-como">
+          <li><b>Abra a primeira fase</b> de cada matéria no mapa da trilha.</li>
+          <li><b>15 minutos por dia</b>, alternando as matérias: um treino diário, uma página da apostila, um livro ou um jogo da fase.</li>
+          <li><b>Quando a fase ficar firme</b>, passe para a próxima da lista.</li>
+        </ol>
+        <p className="meta" style={{ margin: 0 }}>As fases marcadas “com ajuda” costumam andar mais rápido.</p>
+        {anterior && <p className="diag-aviso">Algumas lacunas são de anos anteriores ao da série. Isso é comum e não é motivo de preocupação: firmar a base é o caminho mais rápido para alcançar a turma.</p>}
         <div className="diag-res">{ORDEM.map((a) => <CartaoResultado key={a} m={a} r={rs[a]} />)}</div>
       </section>
 
@@ -147,8 +154,10 @@ export default function Diagnostico() {
 function Extras({ m, ano, tema }: { m: Area; ano: string; tema: number }) {
   const ap = apostilaDoTema(m, ano, tema);
   const jgs = jogosDoTema(m, ano, tema);
+  const tr = treinoDoTema(m, ano, tema);
   return (
     <>
+      {tr && <Link className="btn small ghost" href={`/apostilas/${tr.slug}`}>Treino diário grátis</Link>}
       {ap && <Link className="btn small ghost" href={`/apostilas/${ap.slug}`}>Apostila: {ap.titulo}</Link>}
       {jgs.map((j) => <Link key={j.slug} className="btn small ghost" href={`/loja#${j.slug}`}>Jogo: {j.nome}</Link>)}
     </>
@@ -164,9 +173,9 @@ function CartaoResultado({ m, r }: { m: Area; r: Resultado }) {
         {cab}
         {p ? (
           <>
-            <h3>Tudo firme! Próximo passo: {anoNome(p.ano)}, tema {p.tema} · {nomeTema(m, p.ano, p.tema)}</h3>
+            <h3>Tudo firme! Próxima fase: {nomeTema(m, p.ano, p.tema)} <small className="diag-onde">{anoNome(p.ano)}, tema {p.tema}</small></h3>
             <p className="meta">Pelo que você respondeu, os temas até aqui estão firmes. Pode seguir em frente na trilha.</p>
-            <div className="row"><Link className="btn small" href={linkTema(m, p.ano, p.tema)}>Abrir o tema</Link><Extras m={m} ano={p.ano} tema={p.tema} /></div>
+            <div className="row"><Link className="btn small" href={linkTema(m, p.ano, p.tema)}>Abrir a fase no mapa</Link><Extras m={m} ano={p.ano} tema={p.tema} /></div>
           </>
         ) : (
           <>
@@ -182,12 +191,12 @@ function CartaoResultado({ m, r }: { m: Area; r: Resultado }) {
   return (
     <article className="diag-cartao" style={{ ["--sc" as string]: `var(--${m})` }}>
       {cab}
-      <h3>Comece por: {anoNome(pri.h.ano)}, tema {pri.h.tema} · {nomeTema(m, pri.h.ano, pri.h.tema)}</h3>
+      <h3>Comece pela fase: {nomeTema(m, pri.h.ano, pri.h.tema)} <small className="diag-onde">{anoNome(pri.h.ano)}, tema {pri.h.tema}</small></h3>
       <p style={{ margin: 0 }}>{TRILHAS[m][pri.h.ano]?.[pri.h.tema - 1]?.o}</p>
-      <div className="row"><Link className="btn small" href={linkTema(m, pri.h.ano, pri.h.tema)}>Abrir o tema</Link><Extras m={m} ano={pri.h.ano} tema={pri.h.tema} /></div>
+      <div className="row"><Link className="btn small" href={linkTema(m, pri.h.ano, pri.h.tema)}>Abrir a fase no mapa</Link><Extras m={m} ano={pri.h.ano} tema={pri.h.tema} /></div>
       {resto.length > 0 && (
         <>
-          <p className="meta" style={{ marginTop: 6 }}><b>Depois, nesta ordem:</b></p>
+          <p className="meta" style={{ marginTop: 6 }}><b>As próximas lacunas, nesta ordem:</b></p>
           <ol className="diag-lista">
             {resto.map((i) => (
               <li key={`${i.h.ano}-${i.h.tema}`}>
@@ -208,7 +217,7 @@ function Cadastro({ volta }: { volta: string }) {
   if (!configurado || user) return null;
   return (
     <section className="card" style={{ borderTop: "5px solid var(--por)" }}>
-      <h3 style={{ margin: 0 }}>Guarde o caminho e marque o progresso</h3>
+      <h3 style={{ margin: 0 }}>Guarde o caminho e marque cada fase vencida</h3>
       <p className="meta" style={{ margin: 0 }}><b>{SELO_CONTA}.</b> Com a conta, você marca cada tema concluído, registra o que a criança fez no diário e acompanha a evolução.</p>
       <FormAcesso volta={volta} origem="diagnostico" botao="Criar minha conta grátis" />
     </section>

@@ -47,7 +47,7 @@ export default function Trilha({ params }: P) {
         itemListElement: lista.map((th, i) => ({ "@type": "ListItem", position: i + 1, name: th.t, description: th.o, url: url(`/trilhas/${params.materia}/${params.ano}#tema-${i + 1}`) })),
       })} />
       <h1>{MATERIAS[s]} · {ANOS.find(([a]) => a === y)?.[1]}: o que estudar em casa</h1>
-      <p className="lead">Uma sequência pronta para ajudar a criança em casa: cada tema traz livros, exercícios, jogos, vídeos e uma atividade prática, seguindo o que a escola ensina em cada ano (BNCC).</p>
+      <p className="lead">Cada tema é uma fase do mapa, na ordem que a escola ensina (BNCC). Siga uma fase de cada vez, um pouquinho por dia: cada uma traz treino, livros, exercícios, jogos, vídeos e uma atividade prática. Não sabe em que fase a criança está? <Link href="/diagnostico">Faça o diagnóstico</Link> e descubra as lacunas.</p>
       <ConviteConta origem="trilhas" titulo="Acompanhe cada criança"
         texto="Veja os temas que ela já explorou e continue de onde parou." />
       <p className="passo">1. Escolha a matéria e o ano da criança</p>
