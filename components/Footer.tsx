@@ -1,3 +1,4 @@
+import { LEMA } from "@/lib/lema";
 import Link from "next/link";
 import { CONTATO } from "@/lib/contato";
 import PreferenciasCookies from "./PreferenciasCookies";
@@ -29,6 +30,7 @@ export default function Footer() {
             </div>
           </div>
         )}
+        <p className="lema lema-rod">{LEMA}</p>
         <p>
           <b>Atlas do Aprender</b> foi criado por <b>Stephanie Kamarry</b>, com base na experiência de acompanhar a
           formação dos próprios filhos e em anos de estudo sobre educação e aprendizagem.

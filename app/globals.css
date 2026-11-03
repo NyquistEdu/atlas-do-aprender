@@ -765,3 +765,7 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .consent-aviso{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:40;width:min(560px,calc(100% - 24px));background:var(--card);border:2px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--sun);padding:14px 16px;display:grid;gap:10px}
 .consent-aviso p{margin:0}
 .consent-aviso .row{align-items:center}
+
+/* Lema do Atlas */
+.lema{font-family:var(--f-hand);font-weight:700;font-size:clamp(1.35rem,3.6vw,1.75rem);line-height:1.2;color:var(--por);margin:2px 0 4px;max-width:34ch;text-wrap:balance}
+.credit .lema.lema-rod{font-size:clamp(1.5rem,4vw,1.9rem);color:var(--sun);margin:4px 0 0;max-width:none}

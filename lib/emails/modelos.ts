@@ -1,3 +1,4 @@
+import { LEMA } from "@/lib/lema";
 /**
  * Modelos dos e-mails do Atlas (HTML com estilos na própria tag, como os programas de e-mail exigem).
  * Visual: papel creme, marca em pílula com as três bolinhas, botões arredondados.
@@ -42,7 +43,8 @@ function base(o: { tipo: string; previa: string; kicker: string; titulo: string;
 ${o.corpo}
 <p style="${F}font-size:16px;line-height:1.5;color:#1d2433;margin:22px 0 0">Um abraço,<br><b>Stephanie Kamarry</b><br><span style="color:#56607a;font-size:14px">professora, pesquisadora e mãe de três · criadora do Atlas</span></p>
 </td></tr>
-<tr><td style="padding:18px 8px 0;${F}font-size:12.5px;line-height:1.6;color:#56607a;text-align:center">
+<tr><td style="padding:20px 8px 0;font-family:'Caveat','Comic Sans MS',cursive;font-size:21px;font-weight:700;line-height:1.25;color:#c4483b;text-align:center">${esc(LEMA)}</td></tr>
+<tr><td style="padding:12px 8px 0;${F}font-size:12.5px;line-height:1.6;color:#56607a;text-align:center">
 Você recebe este e-mail porque pediu dicas e novidades do Atlas do Aprender. É só responder para falar comigo.<br>
 <a href="${o.descadastro}" style="color:#56607a">Não quero mais receber estes e-mails</a> · <a href="${utm("/", o.tipo)}" style="color:#56607a">atlasdoaprender.com.br</a>
 </td></tr></table></td></tr></table></body></html>`;

@@ -1,3 +1,4 @@
+import { LEMA } from "@/lib/lema";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ESTANTE, EXPERIMENTOS, JOGOS, TRILHAS } from "@/lib/data";
@@ -51,6 +52,7 @@ export default async function Inicio() {
         <span className="selo" aria-hidden="true">grátis e sem cadastro</span>
         <p className="eyebrow-i">feito por uma professora e mãe de&nbsp;3</p>
         <h1 className="hero-t">Atlas do Aprender</h1>
+        <p className="lema">{LEMA}</p>
         <p className="lead">Um caminho de estudo para crianças da alfabetização ao 5º ano, para usar em casa, junto com a escola. Português, Matemática e Ciências, tema por tema, com livros, jogos, experimentos e treinos para imprimir.</p>
         <div className="row">
           <Link className="btn" href="/diagnostico">Fazer o diagnóstico grátis</Link>
