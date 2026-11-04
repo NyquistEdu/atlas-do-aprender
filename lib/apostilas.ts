@@ -239,7 +239,7 @@ const TODOS_GRATUITOS: Gratuito[] = [
     paginas: 35,
     arquivo: "/treinos/treino-t-ou-d.pdf",
     nomeArquivo: "Treino-Diario-T-ou-D-Atlas-do-Aprender.pdf",
-    resumo: "Para a criança que escreve “dado” no lugar de “tado” (ou o contrário). T e D são feitos com a boca na mesma posição: só muda a voz. O treino ensina a sentir a diferença com a mão na garganta, depois a ouvir com pares mínimos (gato e gado, tia e dia, roda e rota) e por fim a escrever certo em palavras, frases e numa pequena história.",
+    resumo: "Para a criança que escreve “pado” no lugar de “pato” ou “tente” no lugar de “dente”. T e D são feitos com a boca na mesma posição: só muda a voz. O treino ensina a sentir a diferença com a mão na garganta, depois a ouvir com pares mínimos (gato e gado, tia e dia, roda e rota) e por fim a escrever certo em palavras, frases e numa pequena história.",
     dentro: ["30 folhas em 3 níveis, de 3 a 10 minutos cada", "O truque da mão na garganta: D vibra, T só sopra", "Pares mínimos para ouvir, ler e escrever (gato e gado, tia e dia, roda e rota)", "T e D no começo e no meio da palavra, sílabas, ditados e frases malucas", "Registro de progresso, certificado e gabarito"],
     amostras: ["Mão na garganta", "O adulto diz, você circula", "Uma letra muda tudo", "Frases malucas"],
     publico: "Alfabetização",
