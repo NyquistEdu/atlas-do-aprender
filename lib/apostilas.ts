@@ -110,6 +110,17 @@ export const APOSTILAS: Apostila[] = [
     amostras: ["Tudo tem um nome", "O adjetivo", "Treino diário", "Jogo Quem sou eu?"],
   },
   {
+    slug: "detetives-de-dados",
+    titulo: "Detetives de Dados",
+    subtitulo: "Pesquisar, organizar em tabela e fazer gráfico de barras",
+    materia: "mat", ano: "3", tema: 4, nomeTema: "Tabelas e gráficos",
+    paginas: 31, preco: "Grátis", checkout: "",
+    arquivo: "/apostilas-pdf/detetives-de-dados.pdf", nomeArquivo: "Detetives-de-Dados-Atlas-do-Aprender.pdf",
+    resumo: "A criança faz o que um pesquisador faz: pergunta, conta as respostas com risquinhos de 5 em 5, organiza tudo numa tabela e mostra num gráfico de barras desenhado na malha. Depois aprende a ler gráficos e tabelas feitos por outras pessoas, incluindo pictogramas, gráficos de 2 em 2 e tabelas de dupla entrada, e a resolver problemas com esses dados.",
+    dentro: ["6 partes com explicação e exercícios: pesquisa, tabela, ler gráfico, fazer gráfico, pictograma e escala, dupla entrada", "Gráficos e tabelas do dia a dia, erros comuns e problemas", "5 treinos diários e a leitura A horta da escola", "Malha quadriculada para gráficos e o jogo Corrida dos dados", "5 pesquisas de verdade para fazer em casa, certificado e gabarito"],
+    amostras: ["Perguntar e contar", "Ler um gráfico de barras", "Pictograma e escala", "Jogo: corrida dos dados"],
+  },
+  {
     slug: "pedaco-por-pedaco",
     titulo: "Pedaço por Pedaço",
     subtitulo: "Metade, terço, quarto e as frações do dia a dia",
