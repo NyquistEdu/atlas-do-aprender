@@ -10,12 +10,14 @@ export type Tematica = {
   livros: [string, string][];
   blocos: Bloco[];
   cuidado?: string;
-  material?: { href: string; titulo: string; texto: string; pago?: boolean }; // material do Atlas em destaque (gratuito, ou pago se pago=true)
+  material?: { href: string; titulo: string; texto: string; pago?: boolean };
+  foraDoAr?: boolean; // fica guardada para o ano que vem, mas não aparece no site // material do Atlas em destaque (gratuito, ou pago se pago=true)
 };
 
-export const TEMATICAS: Tematica[] = [
+const TODAS_TEMATICAS: Tematica[] = [
   {
     slug: "halloween",
+    foraDoAr: true, // volta em outubro
     titulo: "Halloween e Dia do Saci",
     quando: "31 de outubro",
     emoji: "🎃",
@@ -179,4 +181,6 @@ export const TEMATICAS: Tematica[] = [
   },
 ];
 
+/** Só a temática da época fica no ar. */
+export const TEMATICAS = TODAS_TEMATICAS.filter((t) => !t.foraDoAr);
 export const tematica = (slug: string) => TEMATICAS.find((t) => t.slug === slug);

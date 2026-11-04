@@ -94,8 +94,7 @@ export default function Guia() {
             <tr><td>Treinos diários ({treinos})</td><td>30 folhas curtas por tema, uma por dia, de 5 a 10 minutos, em pequenos passos, com gabarito e registro de progresso. Fixam o que a criança aprendeu.</td><td>Grátis</td></tr>
             <tr><td>Apostilas ({APOSTILAS.length})</td><td>Explicação para a família, exemplos, exercícios, jogo e gabarito de um tema da trilha.</td><td>R$ 9,90</td></tr>
             <tr><td>Kits temáticos ({KITS.length})</td><td>Atividades para datas especiais, como o calendário do Advento com caça ao presente.</td><td>Variam</td></tr>
-            <tr><td>Outros gratuitos</td><td>A caça ao tesouro de Halloween e o Caderno de Conversa sobre os livros.</td><td>Grátis</td></tr>
-          </tbody>
+                      </tbody>
         </table>
         <h3>Como usar o treino diário</h3>
         <ol className="guia-passos">
@@ -159,7 +158,7 @@ export default function Guia() {
         <ul>
           <li><b>Loja</b>: jogos educativos à venda no Mercado Livre e na Shopee, com o que cada um trabalha. Eles também aparecem nos temas em que fazem sentido.</li>
           <li><b>Olimpíadas</b>: competições com inscrição individual para crianças dos anos iniciais, com filtro por área, materiais para se preparar e um selo quando as inscrições estão abertas. A lista é conferida todo mês.</li>
-          <li><b>Temáticas</b>: livros, filmes, atividades e materiais para datas especiais, como Halloween, Dia do Saci e Natal.</li>
+          <li><b>Temáticas</b>: livros, filmes, atividades e materiais para datas especiais, como o Natal.</li>
           <li><b>Dúvidas comuns</b>: respostas sobre o que se aprende em cada ano, leitura, rotina de estudo e mais.</li>
         </ul>
       </section>

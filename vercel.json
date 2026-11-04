@@ -20,6 +20,31 @@
       ],
       "destination": "https://www.atlasdoaprender.com.br/:path*",
       "permanent": true
+    },
+    {
+      "source": "/apostilas/caderno-de-conversa",
+      "destination": "/livros",
+      "permanent": false
+    },
+    {
+      "source": "/caderno-de-conversa.pdf",
+      "destination": "/livros",
+      "permanent": false
+    },
+    {
+      "source": "/apostilas/bruxa-matilda",
+      "destination": "/tematicas",
+      "permanent": false
+    },
+    {
+      "source": "/bruxa-matilda.pdf",
+      "destination": "/tematicas",
+      "permanent": false
+    },
+    {
+      "source": "/tematicas/halloween",
+      "destination": "/tematicas",
+      "permanent": false
     }
   ]
 }

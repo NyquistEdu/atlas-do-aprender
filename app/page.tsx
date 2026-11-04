@@ -33,7 +33,7 @@ export default async function Inicio() {
     ["/mao-na-massa", "Mão na massa", `${EXPERIMENTOS.length} experimentos com material de casa`, "var(--cie)"],
     ["/diario", "Diário", "Registros e a linha do tempo de cada criança", "var(--mat)"],
     ["/planejamento", "Planejamento gratuito", "Uma conversa por vídeo e um plano feito para a sua criança", "var(--cie)"],
-    ["/tematicas", "Temáticas", "Halloween, Dia do Saci, Natal e outras datas", "var(--jog)"],
+    ["/tematicas", "Temáticas", "Natal: livros, filmes e o calendário do Duende Tico", "var(--jog)"],
     ["/olimpiadas", "Olimpíadas", "Competições com inscrição individual e quando abrem", "var(--por)"],
     ["/loja", "Loja", "Jogos educativos para aprender brincando", "var(--jog)"],
     ["/guia", "Guia de uso", "Como usar cada parte do Atlas, passo a passo", "var(--line)"],

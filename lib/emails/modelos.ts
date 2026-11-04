@@ -96,7 +96,7 @@ export function dia10(descadastro: string): Email {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
 ${bloco("🔤", "Alfabetização", "Treinos de letras, de rimas e sílabas e de escrita do nome, e a apostila Escrever o Nome.", "/apostilas", tipo)}
 ${bloco("🧮", "Matemática", "Treinos de contagem até 100, de medidas e de frações.", "/apostilas", tipo)}
-${bloco("💬", "Caderno de Conversa", "Perguntas e respostas para conversar com a criança sobre mais de cem livros.", "/apostilas/caderno-de-conversa", tipo)}
+${bloco("📘", "Português do 3º e do 4º ano", "Treino de substantivos e adjetivos e a apostila Ontem, Hoje e Amanhã, de verbos.", "/apostilas", tipo)}
 </table>
 ${p("E se tiver alguma dúvida sobre o estudo da sua criança, pode perguntar direto para mim na página <b>Pergunte à professora</b>. Eu respondo pessoalmente.")}
 ${botao("Ver os materiais grátis", "/apostilas", tipo)}`;

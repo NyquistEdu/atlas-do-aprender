@@ -42,12 +42,6 @@ export default function Livros() {
       <div className="seg subj">{segM.map(([v, l]) => <button key={v} type="button" data-s={v} aria-pressed={m === v} onClick={() => setM(v as typeof m)}>{l}</button>)}</div>
       <div className="seg yr">{[["all", "Todos os anos"], ...ANOS.map(([a, l]) => [a, anoCurto(l)])].map(([v, l]) => <button key={v} type="button" aria-pressed={y === v} onClick={() => setY(v)}>{l}</button>)}</div>
       {y === "all" && m !== "for" && <p className="dica">Comece tocando no ano da criança e escolha um livro para esta semana.</p>}
-      <a className="caderno-mini" href="/apostilas/caderno-de-conversa">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/apostilas/caderno-de-conversa/capa.webp" alt="" width={34} height={48} />
-        <span><b>Caderno de Conversa grátis:</b> perguntas para depois de cada um destes livros.</span>
-        <span className="caderno-ir">Ver ›</span>
-      </a>
       {user && <div className="prog"><span>{lidos ? `${crianca} já leu ${lidos} ${lidos === 1 ? "livro" : "livros"} desta lista.` : `Marque os livros que ${crianca} já leu para lembrar das histórias e escolher a próxima.`}</span></div>}
       <div className="list">
         {grupos.length ? grupos.map((g, gi) => (

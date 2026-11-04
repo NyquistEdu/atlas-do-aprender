@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { APOSTILAS, GRATUITOS, KITS, anoNome } from "@/lib/apostilas";
+import { APOSTILAS, GRATUITOS, KITS, anoNome, type Apostila, type Gratuito } from "@/lib/apostilas";
 import { ANOS, DE_SLUG, MATERIAS, SLUG, anoDeSlug, anoSlug, type Materia } from "@/lib/data";
 import Comprar from "@/components/Comprar";
 
@@ -110,41 +110,59 @@ export default function Vitrine() {
             </div>
           </article>
         ))}
-        {treinos.map((t) => (
-          <article className="produto" key={t.slug} style={{ ["--sc" as string]: `var(--${t.materia})` }}>
-            <Link href={`/apostilas/${t.slug}`} className="produto-capa" aria-label={`Ver detalhes de ${t.titulo}`}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`/apostilas/${t.slug}/capa.webp`} alt={`Capa do ${t.titulo}`} width={566} height={800} loading="lazy" />
-            </Link>
-            <div className="produto-info">
-              <div className="tags"><span className="tag cie">Gratuito</span><span className={`tag ${t.materia}`}>{MATERIAS[t.materia!]}</span><span className="tag">{anoNome(t.ano!)}</span><span className="tag">Treino diário</span></div>
-              <h3><Link href={`/apostilas/${t.slug}`}>{t.titulo}</Link></h3>
-              <p className="meta">{t.subtitulo} · {t.paginas} páginas</p>
-              <div className="row">
-                <a className="btn small" href={t.arquivo} download={t.nomeArquivo}>Baixar grátis</a>
-                <Link className="btn small ghost" href={`/apostilas/${t.slug}`}>Ver páginas</Link>
-              </div>
+        {lista.map((a) => {
+          const t = treinos.find((x) => x.apostila === a.slug);
+          if (!t) return <CartaoApostila key={a.slug} a={a} />;
+          return (
+            <div className="par" key={a.slug} style={{ ["--sc" as string]: `var(--${a.materia})` }}>
+              <p className="par-t"><b>Use junto:</b> a apostila explica e aprofunda; o treino diário fixa, um pouquinho por dia.</p>
+              <CartaoApostila a={a} />
+              <CartaoTreino t={t} />
             </div>
-          </article>
-        ))}
-        {lista.map((a) => (
-          <article className="produto" key={a.slug} style={{ ["--sc" as string]: `var(--${a.materia})` }}>
-            <Link href={`/apostilas/${a.slug}`} className="produto-capa" aria-label={`Ver detalhes de ${a.titulo}`}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`/apostilas/${a.slug}/capa.webp`} alt={`Capa da apostila ${a.titulo}`} width={566} height={800} loading="lazy" />
-            </Link>
-            <div className="produto-info">
-              <div className="tags">{a.arquivo && <span className="tag cie">Gratuito</span>}<span className={`tag ${a.materia}`}>{MATERIAS[a.materia]}</span><span className="tag">{anoNome(a.ano)}</span></div>
-              <h3><Link href={`/apostilas/${a.slug}`}>{a.titulo}</Link></h3>
-              <p className="meta">{a.subtitulo} · {a.paginas} páginas</p>
-              <div className="row">
-                {a.arquivo ? <a className="btn small" href={a.arquivo} download={a.nomeArquivo}>Baixar grátis</a> : <Comprar slug={a.slug} titulo={a.titulo} checkout={a.checkout} preco={a.preco} />}
-                <Link className="btn small ghost" href={`/apostilas/${a.slug}`}>Ver páginas</Link>
-              </div>
-            </div>
-          </article>
-        ))}
+          );
+        })}
+        {treinos.filter((t) => !lista.some((a) => a.slug === t.apostila)).map((t) => <CartaoTreino key={t.slug} t={t} />)}
       </div>
     </>
+  );
+}
+
+function CartaoTreino({ t }: { t: Gratuito }) {
+  return (
+    <article className="produto" style={{ ["--sc" as string]: `var(--${t.materia})` }}>
+      <Link href={`/apostilas/${t.slug}`} className="produto-capa" aria-label={`Ver detalhes de ${t.titulo}`}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={`/apostilas/${t.slug}/capa.webp`} alt={`Capa do ${t.titulo}`} width={566} height={800} loading="lazy" />
+      </Link>
+      <div className="produto-info">
+        <div className="tags"><span className="tag cie">Gratuito</span><span className={`tag ${t.materia}`}>{MATERIAS[t.materia!]}</span><span className="tag">{anoNome(t.ano!)}</span><span className="tag">Treino diário</span></div>
+        <h3><Link href={`/apostilas/${t.slug}`}>{t.titulo}</Link></h3>
+        <p className="meta">{t.subtitulo} · {t.paginas} páginas</p>
+        <div className="row">
+          <a className="btn small" href={t.arquivo} download={t.nomeArquivo}>Baixar grátis</a>
+          <Link className="btn small ghost" href={`/apostilas/${t.slug}`}>Ver páginas</Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function CartaoApostila({ a }: { a: Apostila }) {
+  return (
+    <article className="produto" style={{ ["--sc" as string]: `var(--${a.materia})` }}>
+      <Link href={`/apostilas/${a.slug}`} className="produto-capa" aria-label={`Ver detalhes de ${a.titulo}`}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={`/apostilas/${a.slug}/capa.webp`} alt={`Capa da apostila ${a.titulo}`} width={566} height={800} loading="lazy" />
+      </Link>
+      <div className="produto-info">
+        <div className="tags">{a.arquivo && <span className="tag cie">Gratuito</span>}<span className={`tag ${a.materia}`}>{MATERIAS[a.materia]}</span><span className="tag">{anoNome(a.ano)}</span><span className="tag">Apostila</span></div>
+        <h3><Link href={`/apostilas/${a.slug}`}>{a.titulo}</Link></h3>
+        <p className="meta">{a.subtitulo} · {a.paginas} páginas</p>
+        <div className="row">
+          {a.arquivo ? <a className="btn small" href={a.arquivo} download={a.nomeArquivo}>Baixar grátis</a> : <Comprar slug={a.slug} titulo={a.titulo} checkout={a.checkout} preco={a.preco} />}
+          <Link className="btn small ghost" href={`/apostilas/${a.slug}`}>Ver páginas</Link>
+        </div>
+      </div>
+    </article>
   );
 }

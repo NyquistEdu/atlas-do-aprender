@@ -3,7 +3,7 @@ import Link from "next/link";
 import { TEMATICAS } from "@/lib/tematicas";
 
 export const metadata: Metadata = {
-  title: "Atividades temáticas para crianças: Halloween, Natal e mais",
+  title: "Atividades temáticas para crianças: Natal",
   alternates: { canonical: "/tematicas" },
   description: "Datas especiais do ano com livros, filmes, experimentos, jogos e atividades para viver o tema em família.",
 };

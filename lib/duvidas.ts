@@ -95,7 +95,7 @@ const gerais: Duvida[] = [
       { h: "O hábito nasce da companhia", p: ["Crianças que ouvem histórias todos os dias tendem a gostar de ler. Ler em voz alta, mesmo para quem já lê sozinho, amplia o vocabulário e mostra que a leitura é um momento bom, não uma obrigação."] },
       { h: "Ideias que funcionam", lista: ["Um horário fixo: 15 minutos antes de dormir.", "Comece por livros curtos e engraçados, mesmo que pareçam fáceis para a idade.", "Deixe a criança escolher na biblioteca ou no sebo.", "Converse depois: do que você mais gostou? O que você faria no lugar do personagem?", "Deixe livros à vista e leia perto dela: o exemplo pesa.", "Nunca use a leitura como castigo."] },
     ],
-    links: [["/livros", "Livros para ler com a criança, por ano"], ["/apostilas/caderno-de-conversa", "Caderno de Conversa gratuito, com perguntas para cada livro"]],
+    links: [["/livros", "Livros para ler com a criança, por ano"]],
   },
   {
     slug: "dever-de-casa-sem-brigas",

@@ -184,9 +184,10 @@ export type Gratuito = {
   ano?: string;
   tema?: number;
   apostila?: string;
+  foraDoAr?: boolean; // guardado aqui, mas não aparece no site (ex.: material de uma data que já passou)
 };
 
-export const GRATUITOS: Gratuito[] = [
+const TODOS_GRATUITOS: Gratuito[] = [
   {
     slug: "treino-ouvir-as-letras",
     titulo: "Treino Diário · Ouvir as Letras",
@@ -308,6 +309,7 @@ export const GRATUITOS: Gratuito[] = [
   },
   {
     slug: "bruxa-matilda",
+    foraDoAr: true, // Halloween: volta em outubro
     titulo: "O Feitiço da Bruxa Matilda",
     subtitulo: "Caça ao tesouro de Halloween para fazer em casa",
     paginas: 22,
@@ -324,6 +326,7 @@ export const GRATUITOS: Gratuito[] = [
   },
   {
     slug: "caderno-de-conversa",
+    foraDoAr: true,
     titulo: "Caderno de Conversa",
     subtitulo: "Perguntas e respostas para conversar sobre os livros do Atlas",
     paginas: 137,
@@ -334,6 +337,9 @@ export const GRATUITOS: Gratuito[] = [
     amostras: ["Como usar o caderno", "Poemas para Brincar", "As Aventuras de Pinóquio", "Chapeuzinho Amarelo"],
   },
 ];
+
+/** Os materiais gratuitos que estão no ar. */
+export const GRATUITOS = TODOS_GRATUITOS.filter((g) => !g.foraDoAr);
 
 /** Treino diário (gratuito) de um tema da trilha, se existir. */
 export const treinoDoTema = (m: Materia, ano: string, tema: number) => GRATUITOS.find((g) => g.materia === m && g.ano === ano && g.tema === tema);
