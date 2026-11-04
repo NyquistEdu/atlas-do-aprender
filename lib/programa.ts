@@ -92,6 +92,10 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "O que a criança trabalha", itens: ["Comprimento: metro, centímetro e quilômetro", "Massa: quilograma e grama", "Capacidade: litro e mililitro", "Conversões, partindo do dinheiro: 1 real = 100 centavos, 1 metro = 100 centímetros", "O quadro das trocas"] },
     { titulo: "Para praticar", itens: ["5 treinos diários em que a ajuda vai diminuindo", "Jogo da memória das medidas", "Mão na massa na cozinha", "Gabarito"] },
   ] },
+  "ouvir-o-mundo": { blocos: [
+    { titulo: "Partes da apostila", itens: ["Antes de começar · Como um cientista investiga", "Parte 1 · Todo som é uma vibração", "Parte 2 · O som viaja: pelo ar, pela água e pelos sólidos", "Parte 3 · Grave e agudo: tamanho, esticado e grossura", "Parte 4 · Forte e fraco: a força da vibração e a distância", "Parte 5 · Como a gente ouve", "Parte 6 · Cuidar dos ouvidos", "Instrumentos musicais e ideias erradas sobre o som"] },
+    { titulo: "Para praticar", itens: ["Exercícios guiados", "5 treinos diários", "Leitura: O telefone de lata do vovô", "Bingo dos sons", "Telefone de lata e a banda de casa", "Gabarito"] },
+  ] },
   "olhar-o-ceu": { blocos: [
     { titulo: "O que a criança trabalha", itens: ["O caminho do Sol e as sombras", "O dia e a noite", "As fases da Lua", "As estrelas", "Constelações: Cruzeiro do Sul e Três Marias"] },
     { titulo: "Para praticar", itens: ["Diário da Lua para 15 noites", "Experimentos com lanterna e biscoito", "5 revisões diárias", "Caça-palavras, jogo da memória e constelação na lata", "Gabarito"] },

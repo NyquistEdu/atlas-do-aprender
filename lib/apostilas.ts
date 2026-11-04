@@ -90,6 +90,17 @@ export const APOSTILAS: Apostila[] = [
     amostras: ["Conversões", "Comprimento", "Treino diário", "Jogo da memória"],
   },
   {
+    slug: "ouvir-o-mundo",
+    titulo: "Ouvir o Mundo",
+    subtitulo: "Som e vibração: de onde vem o som e como ele viaja",
+    materia: "cie", ano: "3", tema: 2, nomeTema: "Som e vibração",
+    paginas: 31, preco: "Grátis", checkout: "",
+    arquivo: "/apostilas-pdf/ouvir-o-mundo.pdf", nomeArquivo: "Ouvir-o-Mundo-Atlas-do-Aprender.pdf",
+    resumo: "Com experimentos simples, feitos com régua, elástico, arroz, copos e latas, a criança descobre que todo som nasce de uma vibração e que ele viaja pelo ar, pela água e pelos sólidos. Depois investiga o que deixa um som grave ou agudo, forte ou fraco, acompanha a viagem do som até o cérebro e aprende a cuidar da audição. Sempre do jeito de um cientista: pergunta, palpite, teste e conclusão.",
+    dentro: ["6 partes com explicação, experimentos e exercícios: vibração, o som viaja, grave e agudo, forte e fraco, como a gente ouve e cuidar dos ouvidos", "Como um cientista investiga, instrumentos musicais e ideias erradas sobre o som", "Exercícios guiados, 5 treinos diários e a leitura O telefone de lata do vovô", "Bingo dos sons para jogar em casa", "Telefone de lata, xilofone de copos, violão de caixa, tambor e chocalho, certificado e gabarito"],
+    amostras: ["Todo som é uma vibração", "Grave e agudo", "Como a gente ouve", "Telefone de lata"],
+  },
+  {
     slug: "olhar-o-ceu",
     titulo: "Olhar o Céu",
     subtitulo: "O Sol, a Lua, as estrelas e as constelações",
