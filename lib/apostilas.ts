@@ -59,6 +59,17 @@ export const APOSTILAS: Apostila[] = [
     amostras: ["Meu nome tem letras", "Quantas e quais letras?", "Escrever do meu jeito", "Cartões de dobrar"],
   },
   {
+    slug: "ler-o-que-eu-sei",
+    titulo: "Ler o que Eu Sei",
+    subtitulo: "Parlendas, cantigas e listas para as primeiras leituras",
+    materia: "por", ano: "1", tema: 4, nomeTema: "Primeiras leituras: parlendas, cantigas e listas",
+    paginas: 32, preco: "Grátis", checkout: "",
+    arquivo: "/apostilas-pdf/ler-o-que-eu-sei.pdf", nomeArquivo: "Ler-o-que-Eu-Sei-Atlas-do-Aprender.pdf",
+    resumo: "A criança já sabe de cor muitas parlendas e cantigas. Aqui ela usa isso para dar o grande passo: descobrir onde está escrito o que ela fala. Primeiro ela lê apontando com o dedo um texto que sabe de memória; depois acha palavras pelas pistas da primeira letra e do tamanho, ordena versos, usa as rimas para conferir e chega a ler sozinha listas e frases curtas. Com uma página para o adulto sobre como a criança lê antes de ler.",
+    dentro: ["6 partes com explicação e exercícios, com Batatinha quando nasce, Ciranda, O sapo não lava o pé e outras cantigas e parlendas", "Para o adulto: como a criança lê antes de ler e uma leitura inicial para ver por onde começar", "Erros que são pistas, exercícios guiados e 5 treinos diários", "Dominó de palavra e figura, memória e tiras de versos para recortar", "Varal de poesias, molde de livrinho dobrado, certificado e gabarito"],
+    amostras: ["Ler o que eu sei de cor", "Versos em ordem", "Listas", "Dominó de palavra e figura"],
+  },
+  {
     slug: "contar-ate-cem",
     titulo: "Contar até Cem",
     subtitulo: "Contagem, dezenas e o quadro dos 100",

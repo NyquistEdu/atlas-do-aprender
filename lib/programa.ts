@@ -66,6 +66,10 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Partes da apostila", itens: ["Para o adulto · Como a criança pensa a escrita, com ditado inicial", "Parte 1 · Meu nome tem letras: a primeira letra e a ordem das letras", "Parte 2 · Nomes curtos e nomes compridos: contar letras", "Parte 3 · Os nomes de quem eu gosto: a agenda da família", "Parte 4 · Usar palavras que eu já sei para escrever outras", "Parte 5 · Quantas e quais letras? Falar, bater palmas, escutar e escrever", "Parte 6 · Escrever para alguém: listas, etiquetas e bilhetes"] },
     { titulo: "Para praticar", itens: ["Escrita do meu jeito e erros que são pistas", "5 treinos diários", "Cartões de dobrar e alfabeto móvel para recortar", "Forca da flor e stop dos nomes", "Gabarito"] },
   ] },
+  "ler-o-que-eu-sei": { blocos: [
+    { titulo: "Partes da apostila", itens: ["Para o adulto · Como a criança lê antes de ler, com leitura inicial", "Parte 1 · Ler o que eu sei de cor: o dedo junto com a voz", "Parte 2 · Onde está escrito? As pistas da primeira letra, do tamanho e do final", "Parte 3 · Versos em ordem: Ciranda e O sapo não lava o pé", "Parte 4 · Rimas que ajudam a ler: Um, dois, feijão com arroz", "Parte 5 · Listas: uma palavra embaixo da outra", "Parte 6 · Ler sozinho frases curtas"] },
+    { titulo: "Para praticar", itens: ["Erros que são pistas e exercícios guiados", "5 treinos diários", "Dominó de palavra e figura, memória e tiras de versos para recortar", "Varal de poesias e livrinho dobrado", "Gabarito"] },
+  ] },
   "contar-ate-cem": { blocos: [
     { titulo: "O que a criança trabalha", itens: ["As regras da contagem: contar de verdade, não de cor", "Escrever os números, com traçado de 0 a 9", "Comparar quantidades", "Formar dezenas com palitos e material dourado", "Contar em saltos", "Os padrões do quadro dos 100"] },
     { titulo: "Para praticar", itens: ["Quadro de dez, reta numérica e material dourado desenhados", "5 revisões diárias", "Bingo, jogo da memória e mercadinho com dinheiro de brincadeira", "Gabarito"] },
