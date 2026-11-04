@@ -234,6 +234,23 @@ const TODOS_GRATUITOS: Gratuito[] = [
     materia: "por", ano: "1", tema: 3, apostila: "escrever-o-nome",
   },
   {
+    slug: "treino-ler-o-que-eu-sei",
+    titulo: "Treino Diário · Ler o que Eu Sei",
+    subtitulo: "30 folhas para as primeiras leituras, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-ler-o-que-eu-sei.pdf",
+    nomeArquivo: "Treino-Diario-Ler-o-que-Eu-Sei-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com correção até acertar tudo. Começa lendo com o dedo parlendas e cantigas que a criança sabe de cor (contar as palavras dos versos, achar palavras iguais, completar versos), passa pelas pistas para ler (a primeira letra, palavras parecidas, rimas, versos em ordem e listas) e termina lendo sozinha frases, perguntas e textos curtos novos.",
+    dentro: ["30 folhas em 3 níveis, de 5 a 10 minutos cada", "Parlendas e cantigas para ler apontando", "Palavras parecidas, rimas, versos em ordem e listas", "Frases, perguntas de sim ou não e dois textos novos", "Registro de progresso, certificado e gabarito"],
+    amostras: ["Batatinha com o dedo", "Qual palavra está escrita?", "Versos em ordem: Borboletinha", "A pipa do Leo"],
+    publico: "Alfabetização",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos. Quando a folha tiver parlenda ou cantiga, recitem ou cantem juntos antes, e o dedo vai sempre junto com a voz. Nas folhas com figuras, o nome de cada uma está escrito pequeno embaixo.",
+      "Passe para a próxima folha quando ela fizer com no máximo 1 erro e sem muita ajuda. Ao corrigir, pergunte “como você descobriu?” e elogie a pista que ela usou: a primeira letra, o tamanho ou a rima.",
+    ],
+    materia: "por", ano: "1", tema: 4, apostila: "ler-o-que-eu-sei",
+  },
+  {
     slug: "treino-brincar-com-as-palavras",
     titulo: "Treino Diário · Brincar com as Palavras",
     subtitulo: "30 folhas de rimas, sílabas e sons, uma por dia",

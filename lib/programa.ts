@@ -39,6 +39,11 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Nível C · Adjetivos e concordância (folhas 21 a 30)", itens: ["Reconhecer os adjetivos", "Adjetivos contrários", "Escolher o adjetivo que combina", "Concordância entre substantivo e adjetivo", "Completar descrições", "Descrever um personagem"] },
   ] },
 
+  "treino-ler-o-que-eu-sei": { blocos: [
+    { titulo: "Nível A · Ler com o dedo (folhas 1 a 10)", itens: ["Ler apontando parlendas que já sabe de cor", "Contar as palavras de cada verso", "Achar a palavra escrita igual", "Achar palavras no texto pela primeira letra", "Ligar palavra e figura", "Palavras que grudaram: separar e contar", "Completar versos e comparar versos iguais e diferentes"] },
+    { titulo: "Nível B · Pistas para ler (folhas 11 a 20)", itens: ["A primeira letra como pista", "Palavras parecidas: PATO, PRATO, RATO", "Ligar e completar rimas", "Versos em ordem: Borboletinha e O sapo não lava o pé", "A palavra intrusa e o nome da lista", "Ler frases e ligar à figura"] },
+    { titulo: "Nível C · Ler sozinho (folhas 21 a 30)", itens: ["Ler e desenhar", "Perguntas de sim ou não", "Dois textos novos com perguntas", "Completar frases e montar frases", "A lista do piquenique", "Desafio final: ler uma cantiga sozinho, com observação do adulto"] },
+  ] },
   "treino-escrever-o-nome": { blocos: [
     { titulo: "Nível A · O meu nome (folhas 1 a 10)", itens: ["Escrever o próprio nome com e sem modelo", "Achar o nome escrito igual", "Contar as letras de um nome", "Comparar palavras: o tamanho da palavra não é o tamanho da coisa", "Letras fora do lugar", "Nomes e palavras que começam igual", "Palavras de carinho: MAMÃE, PAPAI, VOVÓ…"] },
     { titulo: "Nível B · Ouvir para escrever (folhas 11 a 20)", itens: ["Contar os pedaços (sílabas) com palmas", "A vogal que falta", "A consoante que falta", "O pedaço que falta", "Escrever palavras de duas sílabas e de três letras nos quadradinhos", "Ler e ligar palavra e figura"] },
