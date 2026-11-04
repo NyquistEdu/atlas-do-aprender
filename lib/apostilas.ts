@@ -335,6 +335,23 @@ const TODOS_GRATUITOS: Gratuito[] = [
     materia: "mat", ano: "1", tema: 1, apostila: "contar-ate-cem",
   },
   {
+    slug: "treino-separar-e-comparar",
+    titulo: "Treino Diário · Separar e Comparar",
+    subtitulo: "30 folhas para separar, comparar e ordenar, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-separar-e-comparar.pdf",
+    nomeArquivo: "Treino-Diario-Separar-e-Comparar-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com correção até acertar tudo. Começa separando por cor, forma e tamanho e achando o intruso, passa por comparar quantidades ligando um a um (mais, menos, igual, quantos a mais) e termina colocando em ordem do menor para o maior, 1º, 2º e 3º, sequências e problemas.",
+    dentro: ["30 folhas em 3 níveis, de 3 a 7 minutos cada", "Separar por cor, forma e tamanho e descobrir a regra", "Comparar ligando um a um: mais, menos, igual e quantos a mais", "Ordenar tamanhos, quantidades, posições e números", "Registro de progresso, certificado e gabarito"],
+    amostras: ["Conte por cor", "Mais, menos ou igual?", "Desenhe para ficar igual", "Do mais curto para o mais comprido"],
+    publico: "Alfabetização",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos, de preferência no mesmo horário. Nas folhas de comparar, deixe a criança ligar um a um com o lápis: ela não precisa contar para saber quem tem mais.",
+      "Passe para a próxima folha quando ela fizer com no máximo 1 erro e sem muita ajuda. Se não deu, faça primeiro com objetos de verdade (tampinhas, botões, lápis) e depois refaça a folha em outro dia.",
+    ],
+    materia: "mat", ano: "1", tema: 2, apostila: "separar-e-comparar",
+  },
+  {
     slug: "treino-medir-o-mundo",
     titulo: "Treino Diário · Medir o Mundo",
     subtitulo: "30 folhas de medidas e conversões, uma por dia",

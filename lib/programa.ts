@@ -13,6 +13,11 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Nível B · Números até 100 (folhas 11 a 20)", itens: ["Escrever os números de 31 a 100", "O quadro dos 100", "Antes, depois e entre dois números", "Virar a dezena (29, 30, 31…)", "Dezenas e unidades"] },
     { titulo: "Nível C · Contar em saltos e comparar (folhas 21 a 30)", itens: ["Contar de 10 em 10, de 5 em 5 e de 2 em 2", "Descobrir a regra de uma sequência", "Maior e menor, do menor para o maior", "Separar dezena e unidade", "Andar no quadro dos 100", "Desafio final: escrever de 1 a 100"] },
   ] },
+  "treino-separar-e-comparar": { blocos: [
+    { titulo: "Nível A · Separar (folhas 1 a 10)", itens: ["Contar por cor", "Reconhecer cores e formas (círculo, quadrado, triângulo, retângulo)", "Contar as formas", "Grande ou pequeno", "Achar o intruso e a forma intrusa", "Descobrir a regra do grupo: cor, forma ou tamanho", "Desenhar um que combina"] },
+    { titulo: "Nível B · Comparar (folhas 11 a 20)", itens: ["Mais, menos ou igual, ligando um a um", "Qual grupo tem mais e qual tem menos", "É igual? Sim ou não", "Juntinho ou espalhado: a quantidade não muda", "Desenhar a mesma quantidade", "Quantos a mais", "Desenhar ou riscar para ficar igual"] },
+    { titulo: "Nível C · Ordenar (folhas 21 a 30)", itens: ["Do menor para o maior e do maior para o menor", "Do mais curto para o mais comprido", "1º, 2º, 3º e último da fila", "O que vem depois na sequência", "Ordenar quantidades", "Os números em fila", "Problemas de comparar", "Desafio final: a festa da bicharada"] },
+  ] },
   "treino-detetives-de-dados": { blocos: [
     { titulo: "Nível A · Contar e organizar (folhas 1 a 10)", itens: ["Contar e desenhar risquinhos de 5 em 5", "Das respostas para a tabela", "Completar e ler tabelas", "Verdadeiro ou falso com tabela", "Achar erros de contagem", "Total ou diferença", "Boas perguntas de pesquisa"] },
     { titulo: "Nível B · Gráficos de barras (folhas 11 a 20)", itens: ["Ler o valor de cada barra", "Responder perguntas com o gráfico", "Do gráfico para a tabela", "Fazer gráficos na malha a partir de tabelas e risquinhos", "Qual gráfico combina com a tabela?", "Gráfico de 2 em 2 e pictograma de 5 em 5", "Problemas com gráfico"] },
