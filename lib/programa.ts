@@ -13,6 +13,11 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Nível B · Números até 100 (folhas 11 a 20)", itens: ["Escrever os números de 31 a 100", "O quadro dos 100", "Antes, depois e entre dois números", "Virar a dezena (29, 30, 31…)", "Dezenas e unidades"] },
     { titulo: "Nível C · Contar em saltos e comparar (folhas 21 a 30)", itens: ["Contar de 10 em 10, de 5 em 5 e de 2 em 2", "Descobrir a regra de uma sequência", "Maior e menor, do menor para o maior", "Separar dezena e unidade", "Andar no quadro dos 100", "Desafio final: escrever de 1 a 100"] },
   ] },
+  "treino-detetives-de-dados": { blocos: [
+    { titulo: "Nível A · Contar e organizar (folhas 1 a 10)", itens: ["Contar e desenhar risquinhos de 5 em 5", "Das respostas para a tabela", "Completar e ler tabelas", "Verdadeiro ou falso com tabela", "Achar erros de contagem", "Total ou diferença", "Boas perguntas de pesquisa"] },
+    { titulo: "Nível B · Gráficos de barras (folhas 11 a 20)", itens: ["Ler o valor de cada barra", "Responder perguntas com o gráfico", "Do gráfico para a tabela", "Fazer gráficos na malha a partir de tabelas e risquinhos", "Qual gráfico combina com a tabela?", "Gráfico de 2 em 2 e pictograma de 5 em 5", "Problemas com gráfico"] },
+    { titulo: "Nível C · Dupla entrada e problemas (folhas 21 a 30)", itens: ["Cruzar linha e coluna", "Completar os totais", "Comparar na dupla entrada", "Desenhar pictograma e gráfico de 2 em 2", "Problemas com tabela e com gráfico", "A minha pesquisa", "Desafio final: o diário do feijão"] },
+  ] },
   "treino-pedaco-por-pedaco": { blocos: [
     { titulo: "Nível A · Partes iguais e frações (folhas 1 a 10)", itens: ["Reconhecer partes iguais", "Em quantas partes o inteiro foi dividido", "A metade", "Ler e pintar frações em barras e pizzas", "Escrever frações com números (um terço = 1/3)", "A parte que ficou sem pintar"] },
     { titulo: "Nível B · Comparar frações (folhas 11 a 20)", itens: ["Qual pedaço é maior", "Comparar frações com o mesmo número de partes", "Ordenar frações do menor para o maior", "Quantos pedaços formam o inteiro", "Frações que valem o mesmo (equivalentes)", "Mais ou menos que a metade"] },

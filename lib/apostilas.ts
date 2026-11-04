@@ -330,6 +330,23 @@ const TODOS_GRATUITOS: Gratuito[] = [
     materia: "mat", ano: "3", tema: 3, apostila: "medir-o-mundo",
   },
   {
+    slug: "treino-detetives-de-dados",
+    titulo: "Treino Diário · Detetives de Dados",
+    subtitulo: "30 folhas de tabelas e gráficos, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-detetives-de-dados.pdf",
+    nomeArquivo: "Treino-Diario-Detetives-de-Dados-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com correção até acertar tudo. Começa contando respostas com risquinhos e organizando tabelas, passa por ler e fazer gráficos de barras na malha, gráficos de 2 em 2 e pictogramas, e termina com tabelas de dupla entrada, problemas, uma pesquisa feita pela própria criança e o diário do feijão.",
+    dentro: ["30 folhas em 3 níveis, de 5 a 10 minutos cada", "Risquinhos de 5 em 5, tabelas com total e boas perguntas de pesquisa", "Ler e fazer gráficos de barras, gráficos de 2 em 2 e pictogramas", "Dupla entrada, problemas, a minha pesquisa e o diário do feijão", "Registro de progresso, certificado e gabarito"],
+    amostras: ["Quantos risquinhos?", "Quanto vale cada barra?", "Pictograma: cada figura vale 5", "Linha com coluna"],
+    publico: "3º ano",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos. Para ler um gráfico, use uma régua deitada do topo da barra até os números. Antes de responder, a criança confere o título, a escala e a legenda.",
+      "Passe para a próxima folha quando ela fizer com no máximo 1 erro e sem muita ajuda. Quando errar, peça que mostre com o dedo onde leu: quase sempre o erro aparece na hora.",
+    ],
+    materia: "mat", ano: "3", tema: 4, apostila: "detetives-de-dados",
+  },
+  {
     slug: "treino-pedaco-por-pedaco",
     titulo: "Treino Diário · Pedaço por Pedaço",
     subtitulo: "30 folhas de frações em pequenos passos, uma por dia",
