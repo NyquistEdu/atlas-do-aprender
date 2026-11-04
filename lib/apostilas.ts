@@ -233,6 +233,23 @@ export type Gratuito = {
 
 const TODOS_GRATUITOS: Gratuito[] = [
   {
+    slug: "treino-t-ou-d",
+    titulo: "Treino Diário · T ou D?",
+    subtitulo: "30 folhas para parar de trocar o T pelo D, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-t-ou-d.pdf",
+    nomeArquivo: "Treino-Diario-T-ou-D-Atlas-do-Aprender.pdf",
+    resumo: "Para a criança que escreve “dado” no lugar de “tado” (ou o contrário). T e D são feitos com a boca na mesma posição: só muda a voz. O treino ensina a sentir a diferença com a mão na garganta, depois a ouvir com pares mínimos (gato e gado, tia e dia, roda e rota) e por fim a escrever certo em palavras, frases e numa pequena história.",
+    dentro: ["30 folhas em 3 níveis, de 3 a 10 minutos cada", "O truque da mão na garganta: D vibra, T só sopra", "Pares mínimos para ouvir, ler e escrever (gato e gado, tia e dia, roda e rota)", "T e D no começo e no meio da palavra, sílabas, ditados e frases malucas", "Registro de progresso, certificado e gabarito"],
+    amostras: ["Mão na garganta", "O adulto diz, você circula", "Uma letra muda tudo", "Frases malucas"],
+    publico: "Alfabetização",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos. Antes de começar, a criança põe a mão no pescoço e fala “ddddd” (vibra) e “ttttt” (não vibra, só sai ar). Use esse truque sempre que ela ficar em dúvida.",
+      "Nas folhas de ouvir e de ditado, fale normalmente, sem exagerar o som. Passe para a próxima folha quando ela fizer com no máximo 1 erro. Se a troca também aparece na fala ou continua forte depois do 2º ano, vale procurar um fonoaudiólogo.",
+    ],
+    materia: "por", ano: "1", tema: 2,
+  },
+  {
     slug: "treino-ouvir-as-letras",
     titulo: "Treino Diário · Ouvir as Letras",
     subtitulo: "30 folhas para conhecer o alfabeto e o som das letras, uma por dia",
