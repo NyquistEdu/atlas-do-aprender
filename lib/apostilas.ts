@@ -78,7 +78,18 @@ export const APOSTILAS: Apostila[] = [
     resumo: "Contar de verdade não é falar os números de cor. A criança aprende as regras da contagem, escreve os números, compara quantidades, forma dezenas com palitos e material dourado, conta em saltos e descobre os padrões do quadro dos 100.",
     dentro: ["7 partes com explicação e exercícios", "Quadro de dez, reta numérica e material dourado desenhados", "Traçado dos números de 0 a 9", "5 revisões diárias, bingo, memória e mercadinho com dinheiro de brincadeira", "Certificado e gabarito"],
     amostras: ["Os números de 0 a 10", "Dezenas e unidades", "O quadro dos 100", "Revisão diária"],
+  },  {
+    slug: "separar-e-comparar",
+    titulo: "Separar e Comparar",
+    subtitulo: "Agrupar, comparar quantidades e colocar em ordem",
+    materia: "mat", ano: "1", tema: 2, nomeTema: "Comparar, classificar e ordenar",
+    paginas: 30, preco: "Grátis", checkout: "",
+    arquivo: "/apostilas-pdf/separar-e-comparar.pdf", nomeArquivo: "Separar-e-Comparar-Atlas-do-Aprender.pdf",
+    resumo: "Antes de contar bem, a criança precisa aprender a olhar com atenção. Aqui ela separa objetos pela cor, pela forma e pelo tamanho, descobre a regra de um grupo e acha o intruso, compara quantidades ligando um a um (mais, menos ou igual), coloca coisas em ordem do menor para o maior e descobre quantos faltam para ficar igual. Sempre começando com objetos de verdade.",
+    dentro: ["6 partes com explicação e exercícios: cor, forma e tamanho, a regra e o intruso, mais, menos ou igual, ordenar e quantos a mais", "Para o adulto: o que a criança aprende e uma observação inicial", "Erros que são pistas, exercícios guiados e 5 treinos diários", "Leitura A gaveta bagunçada, 24 peças para separar e o jogo Batalha dos números", "Arrumar a casa por critério, certificado e gabarito"],
+    amostras: ["Separar por cor", "Mais, menos ou igual", "Colocar em ordem", "Batalha dos números"],
   },
+
   {
     slug: "medir-o-mundo",
     titulo: "Medir o Mundo",
