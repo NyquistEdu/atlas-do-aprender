@@ -375,6 +375,38 @@ const TODOS_GRATUITOS: Gratuito[] = [
     materia: "mat", ano: "3", tema: 5, apostila: "pedaco-por-pedaco",
   },
   {
+    slug: "olimpiada-gato-de-botas",
+    titulo: "Olimpíada de Literatura · O Gato de Botas",
+    subtitulo: "Preparação para a Candura 17 (2026), para quem está aprendendo a ler",
+    paginas: 20,
+    arquivo: "/olimpiadas/gato-de-botas.pdf",
+    nomeArquivo: "Gato-de-Botas-Olimpiada-Atlas-do-Aprender.pdf",
+    resumo: "Apostila para treinar para a Olimpíada de Literatura com o conto O Gato de Botas, de Charles Perrault. Feita para quem está aprendendo a ler: o adulto lê o conto em partes e a criança responde falando, ligando, circulando ou desenhando. Termina com três simulados no formato da prova. Material independente, sem ligação com a organização da olimpíada.",
+    dentro: ["A história em 6 partes, com conversa e atividade", "Personagens, ordem da história e palavras do conto", "Jeito de contar, moral e jogos", "3 simulados no formato da prova e gabarito"],
+    amostras: ["A herança", "O banho no rio", "Brincar com o conto", "Simulado 1"],
+    publico: "Alfabetização e 1º ano",
+    comoUsar: [
+      "Um encontro por dia, de 15 a 20 minutos. O adulto lê o trecho do conto e as perguntas; a criança responde do jeito dela. Deixe o conto sempre por perto: na prova, pode consultar.",
+      "Nos simulados, faça como na prova: o adulto pode ler o enunciado junto, mas a criança responde sozinha. Confira datas e regras no site oficial da olimpíada.",
+    ],
+  },
+  {
+    slug: "olimpiada-enquanto-ana-espera",
+    titulo: "Olimpíada de Literatura · Enquanto Ana Espera",
+    subtitulo: "Preparação para a Candura 16 (2026), para quem já lê",
+    paginas: 20,
+    arquivo: "/olimpiadas/enquanto-ana-espera.pdf",
+    nomeArquivo: "Enquanto-Ana-Espera-Olimpiada-Atlas-do-Aprender.pdf",
+    resumo: "Apostila para treinar para a Olimpíada de Literatura com o livro Enquanto Ana Espera, de Fernanda Witwytzky. Para quem já lê: as quatro visitas de Ana à Grande Árvore, uma por página, com perguntas para responder conferindo no livro, e três simulados de 10 questões no formato da prova. Material independente, sem ligação com a organização da olimpíada.",
+    dentro: ["Mapa das quatro visitas e uma página por visita", "Ana e Eliseu, o fruto e o caminho, ordem da história", "Palavras do livro, jeito de contar e reflexão", "3 simulados de 10 questões e gabarito"],
+    amostras: ["O mapa das quatro visitas", "A 2ª visita", "Como o livro é contado", "Simulado 1"],
+    publico: "1º ao 3º ano",
+    comoUsar: [
+      "Primeiro a criança lê o livro inteiro, sem pressa. Depois, uma página da apostila por dia, sempre com o livro aberto ao lado: os resumos ajudam a lembrar, mas as respostas devem ser conferidas no livro.",
+      "Nos simulados, marque o tempo e deixe a criança responder sozinha, como na prova. Confira datas e regras no site oficial da olimpíada.",
+    ],
+  },
+  {
     slug: "bruxa-matilda",
     foraDoAr: true, // Halloween: volta em outubro
     titulo: "O Feitiço da Bruxa Matilda",

@@ -111,6 +111,14 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Nas 24 atividades do Advento", itens: ["Português: leitura, rimas e entrevista", "Matemática: problemas e contas", "Ciências: pequenos experimentos", "Arte, jogos e gentileza"] },
     { titulo: "Na caça ao presente", itens: ["Ler e seguir 6 pistas pela casa", "Juntar os números do código do cadeado", "Montar a Frase Secreta com as letras dos 24 dias"] },
   ], nota: "Atividades de 10 a 20 minutos, para crianças de 6 a 10 anos." },
+  "olimpiada-gato-de-botas": { blocos: [
+    { titulo: "A história", itens: ["O conto em 6 partes, cada uma com conversa e atividade", "Personagens e ordem da história", "Palavras do conto"] },
+    { titulo: "Para a prova", itens: ["Jeito de contar e moral da história", "Jogos e desafios", "3 simulados no formato da prova", "Véspera e dia da prova", "Gabarito"] },
+  ] },
+  "olimpiada-enquanto-ana-espera": { blocos: [
+    { titulo: "O livro", itens: ["Ficha do livro e mapa das quatro visitas", "Uma página para cada visita de Ana à Grande Árvore", "Ana e Eliseu, o fruto e o caminho", "Ordem da história e palavras do livro"] },
+    { titulo: "Para a prova", itens: ["Jeito de contar, reflexão e jogos", "3 simulados de 10 questões, com relógio", "Véspera e dia da prova", "Gabarito"] },
+  ] },
   "bruxa-matilda": { blocos: [
     { titulo: "O que as crianças trabalham na caça ao tesouro", itens: ["Leitura: pistas com 1 ou 2 palavras e desenho, e uma palavra no espelho", "Números: achar os morcegos e montar o código do cadeado", "Lógica: decifrar uma mensagem em símbolos", "Ciência: mensagem invisível e poção que espuma", "Corpo e sentidos: atravessar a teia sem tocar os sinos e a caixa de tato", "Cooperação: cada criança tem um papel, e ninguém é eliminado"] },
   ] },

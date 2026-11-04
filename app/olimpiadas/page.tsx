@@ -34,7 +34,7 @@ export default function Olimpiadas() {
               <p className="meta">{m.autor} · {m.paginas} páginas</p>
               <p style={{ margin: 0 }}>{m.resumo}</p>
               <ul className="dentro">{m.dentro.map((d) => <li key={d}>{d}</li>)}</ul>
-              <div className="row"><a className="btn small" href={m.arquivo} download={m.nomeArquivo}>Baixar grátis</a></div>
+              <div className="row"><a className="btn small" href={m.arquivo} download={m.nomeArquivo}>Baixar grátis</a><a className="btn small ghost" href={`/apostilas/olimpiada-${m.slug}`}>Ver páginas</a></div>
             </div>
           </article>
         ))}
