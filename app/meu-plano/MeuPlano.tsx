@@ -128,7 +128,7 @@ export default function MeuPlano() {
       {p.objetivo && <p className="note" style={{ margin: 0 }}><b>Objetivo:</b> {p.objetivo}</p>}
       <div className="row pl-pdf" style={{ gap: 8, marginTop: 10 }}>
         <button type="button" className="btn small ghost" onClick={() => abrirImpressao(p, "semana")}>🗓️ Quadro da semana (PDF)</button>
-        <button type="button" className="btn small ghost" onClick={() => abrirImpressao(p, "marcar")}>✅ Calendário para marcar (PDF)</button>
+        <button type="button" className="btn small ghost" onClick={() => abrirImpressao(p, "temas")}>📚 Os temas de cada um (PDF)</button>
       </div>
 
       <div className="pl-nav">

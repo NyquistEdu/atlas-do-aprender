@@ -923,3 +923,45 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .imp-dia:not(:has(.imp-noite)) .imp-lt{margin-top:auto}
 .imp-noite+.imp-lt,.imp-noite~.imp-lt{margin-top:0}
 .imp-dia.dens{gap:1.6mm}.imp-dia.dens .imp-it{font-size:9pt}
+/* Os temas (retrato) */
+.imp-folha.imp-retrato{width:210mm;height:297mm;padding:12mm 14mm 9mm;gap:4mm;font-size:10.6pt;page-break-after:always;break-after:page}
+.imp-folha.imp-retrato+.imp-folha,.imp div+div>.imp-folha:first-child{margin-top:12px}
+.imp-capa-tm{background:#f6f7f2!important;position:relative;padding-top:20mm!important}
+.imp-faixa{position:absolute;top:0;left:0;right:0;height:5mm;display:flex}.imp-faixa i{flex:1}
+.imp-kick{font-size:8pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin:0}
+.imp-capa-tm h1{font:800 38pt/1.02 "Bricolage Grotesque",sans-serif;margin:8mm 0 2mm}
+.imp-intro{font-size:12pt;line-height:1.45;margin:0;max-width:160mm}
+.imp-tms{display:grid;grid-template-columns:1fr 1fr;gap:3.4mm;margin-top:4mm}
+.imp-tm{display:flex;gap:3mm;align-items:center;border-radius:3mm;padding:4mm 3.4mm}
+.imp-tm .imp-em{font-size:20pt}.imp-tm b{display:block;font-size:10.6pt}.imp-tm span:not(.imp-em){font-size:9.6pt;color:var(--soft)}
+.imp-box{border:1pt solid var(--line);border-radius:3mm;padding:3mm 4mm;background:#fff}.imp-box b{font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}.imp-box p{margin:1.4mm 0 0;font-size:10.4pt;line-height:1.45}
+.imp-capa-tm .imp-rod{margin-top:auto}
+.imp-pg-tm{position:relative;padding-top:15mm!important}
+.imp-band{position:absolute;top:0;left:0;right:0;height:8mm;display:flex;justify-content:space-between;align-items:center;padding:0 14mm;color:#fff;font-size:7.6pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.imp-pg-tm h2{font:800 21pt/1.08 "Bricolage Grotesque",sans-serif;margin:0}
+.imp-obj{background:var(--t);border-radius:3mm;padding:2.6mm 4mm;font-size:11pt;line-height:1.4}
+.imp-ap{display:flex;gap:3.4mm;align-items:center;border:1pt solid var(--line);border-radius:3mm;padding:2.4mm 3.4mm}
+.imp-ap img{width:20mm;border-radius:1.2mm;box-shadow:0 0 0 .5pt #0003}
+.imp-ap b{display:block;font:800 13pt/1.15 "Bricolage Grotesque",sans-serif;margin:1mm 0}.imp-ap span:last-child{font-size:9pt;color:var(--soft)}
+.imp-tag{display:inline-block;font-size:7pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:1.4mm;padding:.5mm 1.8mm;color:#fff}
+.imp-cols{columns:2;column-gap:7mm;flex:1;min-height:0}
+.imp-blk{break-inside:avoid;margin-bottom:4mm}
+.imp-blk h4{font:800 12.4pt/1.1 "Bricolage Grotesque",sans-serif;margin:0 0 1.2mm;display:flex;gap:1.6mm;align-items:center}
+.imp-blk ul{margin:0;padding-left:4.6mm}
+.imp-blk li{margin-bottom:1.3mm;font-size:10pt;line-height:1.36}
+.imp-blk li small{display:block;color:var(--soft);font-size:8.8pt}
+.imp-pg-tm .imp-rod{margin-top:auto}
+@media print{.imp-folha.imp-retrato{margin:0!important}@page retrato{size:A4 portrait;margin:0}.imp-retrato{page:retrato}}
+.imp-pg-tm h2{font-size:25pt}
+.imp-obj{font-size:12.6pt;padding:3.4mm 4.4mm}
+.imp-ap img{width:25mm}.imp-ap b{font-size:15pt}.imp-ap span:last-child{font-size:10pt}
+.imp-blk{margin-bottom:6mm}
+.imp-blk h4{font-size:15pt;margin-bottom:2mm}
+.imp-blk li{font-size:12pt;line-height:1.4;margin-bottom:2mm}
+.imp-blk li small{font-size:10.2pt}
+.imp-capa-tm h1{font-size:46pt;margin-top:24mm}
+.imp-intro{font-size:13.4pt}
+.imp-tms{gap:4mm;margin-top:8mm}.imp-tm{padding:5mm 4mm}.imp-tm b{font-size:12pt}.imp-tm span:not(.imp-em){font-size:10.8pt}.imp-tm .imp-em{font-size:24pt}
+.imp-box p{font-size:11.6pt}.imp-capa-tm .imp-box{margin-top:3mm}
+.imp>div:last-child>.imp-folha:last-child{break-after:auto;page-break-after:auto}
+@media print{.imp footer.imp-rod{display:flex!important}}
