@@ -162,6 +162,12 @@ export default function Fluencia() {
     topo();
   }
 
+  const apagar = (id: string) => {
+    if (!window.confirm("Apagar este teste do histórico? Não dá para desfazer.")) return;
+    setHist((h) => { const n = h.filter((x) => x.id !== id); gravarHist(n); return n; });
+    if (supabase && user) supabase.from("fluencia").delete().eq("id", id).then(() => {});
+  };
+
   const recomecar = () => {
     setEt({ palavras: vazio(), pseudo: vazio(), texto: vazio() });
     setProsodia(0); setComp([]); setFase({ f: "inicio" }); topo();
@@ -204,7 +210,7 @@ export default function Fluencia() {
           </div>
           <p className="note" style={{ margin: 0 }}>{user ? "O resultado fica salvo na sua conta, no histórico desta criança." : "O resultado fica guardado neste navegador. Com a conta gratuita, o histórico fica salvo em qualquer aparelho."}</p>
         </section>
-        {doNome.length > 0 && <Historico lista={doNome} nome={nome.trim()} />}
+        {doNome.length > 0 && <Historico lista={doNome} nome={nome.trim()} apagar={apagar} />}
       </div>
     );
   }
@@ -381,7 +387,7 @@ export default function Fluencia() {
         </div>
       </section>
 
-      {doNome.length > 0 && <Historico lista={doNome} nome={r.crianca} />}
+      {doNome.length > 0 && <Historico lista={doNome} nome={r.crianca} apagar={apagar} />}
     </div>
   );
 }
@@ -394,7 +400,7 @@ function Num({ v, l, destaque }: { v: string | number; l: string; destaque?: boo
   return <div className={`flu-num${destaque ? " d" : ""}`}><b>{v}</b><span>{l}</span></div>;
 }
 
-function Historico({ lista, nome }: { lista: Resultado[]; nome: string }) {
+function Historico({ lista, nome, apagar }: { lista: Resultado[]; nome: string; apagar: (id: string) => void }) {
   const pts = lista.map((r) => ({ d: r.data, v: porMinuto(r.texto), p: perfil(r).nome, r }));
   const max = Math.max(80, ...pts.map((p) => p.v)) * 1.1;
   const W = 600, H = 200, ml = 34, mb = 26, mt = 12;
@@ -419,9 +425,9 @@ function Historico({ lista, nome }: { lista: Resultado[]; nome: string }) {
         ))}
       </svg>
       <div className="flu-tabw"><table className="flu-tab">
-        <thead><tr><th>Data</th><th>Versão</th><th>Texto/min</th><th>Precisão</th><th>Perguntas</th><th>Perfil</th></tr></thead>
+        <thead><tr><th>Data</th><th>Versão</th><th>Texto/min</th><th>Precisão</th><th>Perguntas</th><th>Perfil</th><th></th></tr></thead>
         <tbody>{[...pts].reverse().map((p) => (
-          <tr key={p.r.id}><td>{dataBR(p.d)}</td><td>{nivelPorId(p.r.nivel).nome} {p.r.forma}</td><td>{p.v}</td><td>{precisao(p.r.texto)}%</td><td>{p.r.comp.length ? `${p.r.comp.filter(Boolean).length}/${p.r.comp.length}` : "–"}</td><td>{p.p}</td></tr>
+          <tr key={p.r.id}><td>{dataBR(p.d)}</td><td>{nivelPorId(p.r.nivel).nome} {p.r.forma}</td><td>{p.v}</td><td>{precisao(p.r.texto)}%</td><td>{p.r.comp.length ? `${p.r.comp.filter(Boolean).length}/${p.r.comp.length}` : "–"}</td><td>{p.p}</td><td><button type="button" className="link-btn" onClick={() => apagar(p.r.id)} aria-label={`Apagar o teste de ${dataBR(p.d)}`}>Apagar</button></td></tr>
         ))}</tbody>
       </table></div>
     </section>
