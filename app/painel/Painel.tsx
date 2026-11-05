@@ -359,6 +359,11 @@ export default function Painel() {
               <b>{fmt(pend(dados.pedidos.planejamento))} {pend(dados.pedidos.planejamento) === 1 ? "novo" : "novos"}</b>
               <span className="meta">{fmt(soma(Object.values(dados.pedidos.planejamento)))} no total · abrir a lista →</span>
             </Link>
+            <Link href="/planejamento/montar" className="card pn-pend">
+              <span className="pn-kpi-n">Montar planejamento</span>
+              <b>Ficha, sugestão e publicar</b>
+              <span className="meta">Ficha nova ou renovar um plano (inclusive o seu) · abrir →</span>
+            </Link>
             <div className="card pn-pend">
               <span className="pn-kpi-n">Pedidos de apostila sob medida</span>
               <b>{fmt(pend(dados.pedidos.apostila))} {pend(dados.pedidos.apostila) === 1 ? "novo" : "novos"}</b>
