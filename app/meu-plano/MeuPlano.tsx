@@ -175,6 +175,7 @@ export default function MeuPlano() {
         {p.criancas.map((c) => (
           <section key={c.nome}>
             <h4 style={{ color: cores[c.nome] }}>{c.nome}{c.ano ? <span className="meta"> · {c.ano}</span> : null}</h4>
+            {c.reforcar && <p className="meta" style={{ margin: "0 0 8px" }}><b>O que vamos reforçar primeiro:</b> {c.reforcar}</p>}
             <div className="list">
               {temasDe(p, c.nome).map(({ t, juntos }) => {
                 const i = infoTema(t);

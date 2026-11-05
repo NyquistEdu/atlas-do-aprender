@@ -6,7 +6,7 @@ import { TRILHAS, SLUG, anoSlug, type Materia, type Tema } from "@/lib/data";
 import { apostilaDoTema, type Apostila } from "@/lib/apostilas";
 
 export type TemaPlano = { materia: Materia; ano: string; tema: number };
-export type CriancaPlano = { nome: string; ano?: string; idade?: number; temas: TemaPlano[] };
+export type CriancaPlano = { nome: string; ano?: string; idade?: number; temas: TemaPlano[]; reforcar?: string };
 export type ExtraPlano = { quem: string; texto: string; icone?: string; dias: string[]; de?: string; ate?: string; link?: string };
 export type EventoPlano = { data: string; quem: string; texto: string; icone?: string; link?: string };
 export type Plano = {

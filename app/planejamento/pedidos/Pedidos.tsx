@@ -32,7 +32,7 @@ export default function Pedidos() {
   if (!user) return <div className="wrap"><h1>Pedidos de planejamento</h1><p>Esta página é só para a administradora. <Link href="/entrar?volta=/planejamento/pedidos">Entrar</Link></p></div>;
   return (
     <div className="wrap">
-      <h1>Pedidos de planejamento</h1>
+      <div className="row" style={{ justifyContent: "space-between" }}><h1>Pedidos de planejamento</h1><Link className="btn small ghost" href="/planejamento/montar">Ficha nova sem pedido</Link></div>
       {erro && <p className="warn">{erro}</p>}
       {lista && !lista.length && <p className="empty">Nenhum pedido ainda (ou esta conta não tem acesso).</p>}
       <div className="list">
@@ -58,6 +58,7 @@ export default function Pedidos() {
               ))}
               <p style={{ margin: 0 }}><b>Horários:</b> {Object.entries(p.disponibilidade).filter(([, t]) => t.length).map(([d, t]) => `${d} (${t.join(", ").toLowerCase()})`).join(" · ")}</p>
               {p.observacoes && <p style={{ margin: 0 }}><b>Observações:</b> {p.observacoes}</p>}
+              <div className="row"><Link className="btn small" href={`/planejamento/montar?pedido=${p.id}`}>{p.status === "concluido" ? "Abrir a ficha" : "Montar planejamento →"}</Link></div>
             </article>
           );
         })}
