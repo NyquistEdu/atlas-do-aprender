@@ -6,7 +6,7 @@ import type { Materia } from "@/lib/data";
 import type { ExtraPlano, TemaPlano, EventoPlano } from "@/lib/plano";
 import { TRILHAS } from "@/lib/data";
 import { GRATUITOS, apostilaDoTema } from "@/lib/apostilas";
-import { DS, somaDias } from "@/lib/plano";
+import { DS, fimDoPlano, somaDias, type Plano } from "@/lib/plano";
 
 export type Nivel = "" | "sim" | "ajuda" | "nao";
 export const NIVEIS: [Exclude<Nivel, "">, string][] = [["sim", "consegue"], ["ajuda", "com ajuda"], ["nao", "ainda não"]];
@@ -112,6 +112,7 @@ export type Ficha = {
   conversa: Record<string, string>;
   criancas: FichaCrianca[];
   cieJuntos: boolean;
+  juntosTemas?: TemaPlano[]; // outros temas que os irmãos fazem juntos
   extras: ExtraPlano[];
   eventos?: EventoPlano[];
   sugestao?: Sugestao;
@@ -205,8 +206,8 @@ export function sugerir(f: Ficha): Sugestao {
     ] : [];
 
     return {
-      nome, sabe, lacunas, por, porPorque: sl?.porque || "Sem tarefas de leitura marcadas: tema do ano escolar.",
-      mat, matPorque: sm?.porque || "Sem tarefas de matemática marcadas: tema do ano escolar.",
+      nome, sabe, lacunas, por, porPorque: sl?.porque || (c.por ? "Mantido o tema que já estava na ficha." : "Sem tarefas de leitura marcadas: tema do ano escolar."),
+      mat, matPorque: sm?.porque || (c.matT ? "Mantido o tema que já estava na ficha." : "Sem tarefas de matemática marcadas: tema do ano escolar."),
       cie, ciePorque: c.cie ? "Tema já escolhido na ficha." : sc.porque, reforcar, extras, eventos,
     };
   });
@@ -224,3 +225,32 @@ export function sugerir(f: Ficha): Sugestao {
 }
 
 export const DIAS_SEMANA = DS;
+
+/** O tema seguinte na trilha (o próximo do mesmo ano ou o primeiro do ano seguinte). */
+export function proximoTema(t: TemaPlano): TemaPlano {
+  const n = TRILHAS[t.materia]?.[t.ano]?.length || 0;
+  if (t.tema < n) return { ...t, tema: t.tema + 1 };
+  const ano = String(Math.min(5, Number(t.ano) + 1));
+  return ano === t.ano ? t : { ...t, ano, tema: 1 };
+}
+
+/** Ficha para renovar um plano: mesmas crianças, temas, extras e rotina, começando no dia seguinte ao fim. */
+export function fichaDoPlano(email: string, p: Plano, id: string): Ficha {
+  const inicio = somaDias(fimDoPlano(p), 1);
+  const fim = somaDias(inicio, (p.dias || 30) - 1);
+  const de = (l: TemaPlano[], m: string) => l.find((t) => t.materia === m) || null;
+  const como = (p.como || "").replace(/\s*Quem acompanha:[^.]*\.?/, "").trim();
+  const acompanha = (p.como || "").match(/Quem acompanha:\s*([^.]*)/)?.[1]?.trim() || "";
+  return {
+    id, email, familia: p.familia, inicio, dias: p.dias || 30, acompanha, objetivo: p.objetivo || "", como, obs: "",
+    conversa: {},
+    criancas: p.criancas.map((c) => novaCrianca({
+      nome: c.nome, ano: c.ano || "", idade: c.idade ? String(c.idade) : "", reforcar: c.reforcar || "",
+      por: de(c.temas, "por"), matT: de(c.temas, "mat"), cie: de(c.temas, "cie"),
+    })),
+    cieJuntos: false,
+    juntosTemas: p.juntos || [],
+    extras: (p.extras || []).filter((e) => !e.ate || e.ate >= inicio).filter((e) => !e.de || e.de <= fim).map((e) => ({ ...e, de: e.de && e.de > inicio ? e.de : undefined })),
+    eventos: (p.eventos || []).filter((e) => e.data >= inicio && e.data <= fim),
+  };
+}

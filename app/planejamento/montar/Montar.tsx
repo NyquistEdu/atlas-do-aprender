@@ -9,7 +9,7 @@ import { TRILHAS, type Materia } from "@/lib/data";
 import { anoNome } from "@/lib/apostilas";
 import { DIAS_NOME, DS, JUNTOS, MAT_INFO, ddmm, diaSemana, infoTema, iso, itensDoDia, somaDias, type ExtraPlano, type Plano, type TemaPlano } from "@/lib/plano";
 import {
-  COM_A_CRIANCA, CONVERSA, FECHAMENTO, LEITURA, MATEMATICA, NIVEIS, anoTrilha, novaCrianca, sugereLeitura, sugereMat, sugerir,
+  COM_A_CRIANCA, CONVERSA, FECHAMENTO, LEITURA, MATEMATICA, NIVEIS, anoTrilha, fichaDoPlano, novaCrianca, proximoTema, sugereLeitura, sugereMat, sugerir,
   type Ficha, type FichaCrianca, type Nivel, type SugCrianca, type Tarefa,
 } from "@/lib/roteiro";
 
@@ -65,7 +65,11 @@ export function montarPlano(f: Ficha): Plano {
       temas: [c.por, c.matT, juntos ? null : c.cie].filter(Boolean) as TemaPlano[],
       reforcar: c.reforcar.replace(/^Formulário:\s*/, "").trim() || undefined,
     })),
-    juntos: cieJ.length ? cieJ.slice(0, 1) : undefined,
+    juntos: (() => {
+      const l = [...cieJ.slice(0, 1), ...(f.juntosTemas || [])];
+      const u = l.filter((t, k) => l.findIndex((x) => x.materia === t.materia && x.ano === t.ano && x.tema === t.tema) === k);
+      return u.length ? u : undefined;
+    })(),
     extras: f.extras.filter((e) => e.texto.trim() && e.dias.length),
     eventos: (f.eventos || []).filter((e) => e.texto.trim()),
   };
@@ -80,6 +84,7 @@ export default function Montar() {
   const [aviso, setAviso] = useState("");
   const [publicando, setPublicando] = useState(false);
   const [aplicado, setAplicado] = useState(false);
+  const [renovarEmail, setRenovarEmail] = useState("");
   const [pronto, setPronto] = useState<{ email: string; nomes: string } | null>(null);
   const carregado = useRef(false);
 
@@ -118,6 +123,16 @@ export default function Montar() {
   const up = (p: Partial<Ficha>) => setF((x) => x && { ...x, ...p });
   const upC = (i: number, p: Partial<FichaCrianca>) => setF((x) => x && { ...x, criancas: x.criancas.map((c, j) => (j === i ? { ...c, ...p } : c)) });
   const upE = (i: number, p: Partial<ExtraPlano>) => setF((x) => x && { ...x, extras: x.extras.map((e, j) => (j === i ? { ...e, ...p } : e)) });
+
+  const renovar = async () => {
+    const email = (renovarEmail || user.email || "").trim().toLowerCase();
+    const { data, error } = await supabase!.from("planos").select("dados,criado_em").eq("email", email).eq("ativo", true).order("criado_em", { ascending: false });
+    if (error || !data?.length) { setAviso(`Não achei plano ativo para ${email}.`); return; }
+    const p = (data.map((x) => x.dados as Plano)).sort((a, b) => b.inicio.localeCompare(a.inicio))[0];
+    if (!window.confirm(`Carregar o plano “${p.familia}” (começou em ${ddmm(p.inicio)}) e preparar os próximos ${p.dias || 30} dias? A ficha aberta agora será trocada.`)) return;
+    setF(fichaDoPlano(email, p, novoId())); setAplicado(false);
+    setAviso(`Plano carregado. O novo começa em ${ddmm(somaDias(p.inicio, p.dias || 30))}. Atualize os temas (o botão “próximo →” avança para o tema seguinte da trilha), confira os extras e publique.`);
+  };
 
   const sug = f.sugestao;
   const upS = (i: number, p: Partial<SugCrianca>) => setF((x) => x && x.sugestao ? { ...x, sugestao: { ...x.sugestao, criancas: x.sugestao.criancas.map((c, j) => (j === i ? { ...c, ...p } : c)) } } : x);
@@ -163,10 +178,17 @@ export default function Montar() {
 
   const publicar = async () => {
     if (problemas.length || !supabase) return;
-    if (!window.confirm(`Publicar o planejamento de ${plano.dias} dias para ${f.email.trim().toLowerCase()}? Se ela já tiver um plano ativo, ele é substituído por este.`)) return;
+    if (!window.confirm(`Publicar o planejamento de ${plano.dias} dias (${ddmm(plano.inicio)} a ${ddmm(somaDias(plano.inicio, (plano.dias || 30) - 1))}) para ${f.email.trim().toLowerCase()}? Um plano ativo que cubra esses mesmos dias é substituído; o plano que termina antes continua até o fim.`)) return;
     setPublicando(true); setAviso("");
     const email = f.email.trim().toLowerCase();
-    await supabase.from("planos").update({ ativo: false }).eq("email", email).eq("ativo", true);
+    // desativa só os planos ativos que se sobrepõem a este período (o plano atual continua até o fim)
+    const fimNovo = somaDias(plano.inicio, (plano.dias || 30) - 1);
+    const { data: ativos } = await supabase.from("planos").select("id,dados").eq("email", email).eq("ativo", true);
+    for (const a of ativos || []) {
+      const d = a.dados as Plano;
+      const fimA = somaDias(d.inicio, (d.dias || 30) - 1);
+      if (d.inicio <= fimNovo && fimA >= plano.inicio) await supabase.from("planos").update({ ativo: false }).eq("id", a.id);
+    }
     const { error } = await supabase.from("planos").insert({ email, dados: plano, ativo: true });
     if (error) { setAviso(`Não consegui publicar: ${error.message}`); setPublicando(false); return; }
     if (f.pedidoId) await supabase.from("pedidos_planejamento").update({ status: "concluido" }).eq("id", f.pedidoId);
@@ -186,6 +208,19 @@ export default function Montar() {
       <p className="eyebrow-i" style={{ margin: 0 }}>Só para a administradora · <Link href="/planejamento/pedidos">Pedidos</Link></p>
       <h1 style={{ marginBottom: 4 }}>Montar planejamento</h1>
       <p className="meta" style={{ marginTop: 0 }}>{pedido ? <>Pedido de <b>{pedido.nome}</b> · {pedido.email}{pedido.whatsapp && ` · WhatsApp ${pedido.whatsapp}`}</> : "Ficha nova, sem pedido do formulário."} {f.publicado && <b> · Publicado em {f.publicado.split("-").reverse().join("/")}</b>}</p>
+
+      {!pedido && (
+        <section className="card mt-sec mt-renova">
+          <h2>Renovar um plano</h2>
+          <p className="meta" style={{ margin: 0 }}>Para o mês seguinte de uma família que já tem plano (inclusive o seu): carrega as crianças, os temas, os extras e a rotina do plano atual e começa no dia seguinte ao fim dele.</p>
+          <div className="row" style={{ gap: 10, alignItems: "end" }}>
+            <label className="f" style={{ flex: 1, minWidth: 220 }}>E-mail da família<input type="email" value={renovarEmail} onChange={(e) => setRenovarEmail(e.target.value)} placeholder={user.email || "mae@email.com"} /></label>
+            <button type="button" className="btn small" onClick={renovar}>Carregar o plano atual</button>
+          </div>
+          <p className="meta" style={{ margin: 0 }}>Em branco, carrega o seu próprio plano.</p>
+        </section>
+      )}
+      {aviso && !pronto && <p className="note">{aviso}</p>}
 
       {pronto && (
         <section className="card mt-ok">
@@ -271,6 +306,16 @@ export default function Montar() {
         {f.criancas.length > 1 && (
           <label className="mt-check"><input type="checkbox" checked={f.cieJuntos} onChange={(e) => up({ cieJuntos: e.target.checked })} /> Ciências com os irmãos juntos (usa o tema de Ciências da primeira criança)</label>
         )}
+        <h3 className="mt-h">Temas que fazem juntos <span className="meta">aparecem para todos, nos dias da matéria</span></h3>
+        {(f.juntosTemas || []).map((t, k) => (
+          <div key={k} className="mt-item">
+            <select value={t.materia} style={{ width: "auto" }} onChange={(e) => up({ juntosTemas: (f.juntosTemas || []).map((x, j) => (j === k ? { materia: e.target.value as Materia, ano: x.ano, tema: 1 } : x)) })}>{(["por", "mat", "cie"] as Materia[]).map((m) => <option key={m} value={m}>{MAT_INFO[m][0]}</option>)}</select>
+            <div style={{ flex: 1 }}><EscolheTema m={t.materia} v={t} muda={(n) => up({ juntosTemas: (f.juntosTemas || []).map((x, j) => (j === k ? n || x : x)) })} /></div>
+            <button type="button" className="link-btn" onClick={() => up({ juntosTemas: (f.juntosTemas || []).filter((_, j) => j !== k) })}>tirar</button>
+          </div>
+        ))}
+        <div className="row"><button type="button" className="btn small ghost" onClick={() => up({ juntosTemas: [...(f.juntosTemas || []), { materia: "cie", ano: "1", tema: 1 }] })}>+ Tema juntos</button></div>
+
         <h3 className="mt-h">Extras com dia fixo <span className="meta">olimpíada, livro da escola, prova, treino diário…</span></h3>
         {f.extras.map((e, i) => (
           <div key={i} className="mt-extra">
@@ -281,7 +326,9 @@ export default function Montar() {
             <div className="mt-g3">
               <label className="f">Ícone<select value={e.icone || "⭐"} onChange={(ev) => upE(i, { icone: ev.target.value })}>{["⭐", "📚", "🔤", "🔢", "🔭", "🏅", "🧪", "🎲"].map((x) => <option key={x}>{x}</option>)}</select></label>
               <label className="f">Link no site (opcional)<input value={e.link || ""} onChange={(ev) => upE(i, { link: ev.target.value || undefined })} placeholder="/apostilas/treino-t-ou-d" /></label>
-              <div className="f"><span>Dias</span><div className="seg">{DS.map((d) => <button key={d} type="button" aria-pressed={e.dias.includes(d)} onClick={() => upE(i, { dias: e.dias.includes(d) ? e.dias.filter((x) => x !== d) : [...e.dias, d] })}>{d}</button>)}</div></div>
+              <label className="f">A partir de (opcional)<input type="date" value={e.de || ""} onChange={(ev) => upE(i, { de: ev.target.value || undefined })} /></label>
+              <label className="f">Até (opcional)<input type="date" value={e.ate || ""} onChange={(ev) => upE(i, { ate: ev.target.value || undefined })} /></label>
+              <div className="f" style={{ gridColumn: "1 / -1" }}><span>Dias</span><div className="seg">{DS.map((d) => <button key={d} type="button" aria-pressed={e.dias.includes(d)} onClick={() => upE(i, { dias: e.dias.includes(d) ? e.dias.filter((x) => x !== d) : [...e.dias, d] })}>{d}</button>)}</div></div>
             </div>
             <button type="button" className="link-btn" onClick={() => up({ extras: f.extras.filter((_, j) => j !== i) })}>Remover extra</button>
           </div>
@@ -407,6 +454,7 @@ function EscolheTema({ m, v, muda }: { m: Materia; v: TemaPlano | null; muda: (t
           </optgroup>
         ))}
       </select>
+      {v && <button type="button" className="link-btn" style={{ justifySelf: "start", fontSize: ".82rem" }} onClick={(e) => { e.preventDefault(); muda(proximoTema(v)); }}>próximo →</button>}
     </label>
   );
 }

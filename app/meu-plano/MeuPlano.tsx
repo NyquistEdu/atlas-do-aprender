@@ -24,11 +24,16 @@ export default function MeuPlano() {
   useEffect(() => {
     if (!supabase || !a.user) return;
     let vivo = true;
-    supabase.from("planos").select("dados").eq("ativo", true).order("criado_em", { ascending: false }).limit(1)
+    supabase.from("planos").select("dados").eq("ativo", true).order("criado_em", { ascending: false }).limit(6)
       .then(({ data, error }) => {
         if (!vivo) return;
         if (error) { setEstado("erro"); return; }
-        const p = data?.[0]?.dados as Plano | undefined;
+        // o plano que cobre hoje; senão o próximo a começar; senão o mais recente
+        const hojeISO = iso(new Date());
+        const lista = (data || []).map((x) => x.dados as Plano);
+        const p = lista.find((x) => x.inicio <= hojeISO && hojeISO <= fimDoPlano(x))
+          || lista.filter((x) => x.inicio > hojeISO).sort((a, b) => a.inicio.localeCompare(b.inicio))[0]
+          || lista[0];
         if (!p) { setEstado("sem"); return; }
         setPlano(p); setEstado("ok");
         const hoje = iso(new Date());
