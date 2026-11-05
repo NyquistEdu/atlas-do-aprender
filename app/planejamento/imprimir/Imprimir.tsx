@@ -61,7 +61,7 @@ export default function Imprimir() {
   return (
     <div className="imp">
       <div className="imp-barra">
-        <span>Na janela de impressão, escolha <b>Salvar como PDF</b>, papel <b>A4</b> e orientação <b>{folha === "temas" ? "retrato" : "paisagem"}</b>.</span>
+        <span>Na janela de impressão, escolha <b>Salvar como PDF</b>, papel <b>A4</b> e orientação <b>paisagem</b>.</span>
         <button className="btn small" type="button" onClick={() => window.print()}>Imprimir ou salvar PDF</button>
       </div>
       {folha === "semana" ? <Semana p={p} /> : folha === "temas" ? <Temas p={p} /> : <Marcar p={p} />}
@@ -204,8 +204,23 @@ function Marcar({ p }: { p: Plano }) {
 }
 
 
-// ------------------------------------------------------------------ OS TEMAS (um caderno por criança: capa + uma página por tema)
-const COR_MAT: Record<string, [string, string]> = { por: ["#c4483b", "#fbeceb"], mat: ["#2a5db0", "#e9f0fb"], cie: ["#2f7d4f", "#e7f4ec"] };
+// ------------------------------------------------------------------ OS TEMAS (uma folha por criança: o essencial de cada tema)
+const COR_MAT: Record<string, string> = { por: "#c4483b", mat: "#2a5db0", cie: "#2f7d4f", extra: "#a8456e" };
+const limpa = (x: string) => x.replace(/\s+—\s+(?!.*”).*$/, "");
+const primeiros = (l: string[] | undefined, k = 1) => (l || []).filter((x) => x.trim() !== "—").slice(0, k);
+
+type Linha = [string, string, string[]];
+function Cartao({ cor, kick, tit, junto, capa, ap, linhas }: { cor: string; kick: string; tit: string; junto?: string; capa?: string; ap?: string; linhas: Linha[] }) {
+  return (
+    <div className="ess-card" style={{ ["--c" as string]: cor }}>
+      <div className="ess-top"><p>{kick}</p><h3>{tit}</h3>{junto && <span className="ess-junto">{junto}</span>}</div>
+      {ap && <div className="ess-ap">{capa ? <img src={capa} alt="" /> : null}<div><small>Apostila</small><b>{ap}</b></div></div>}
+      {linhas.filter(([, , v]) => v.length).map(([ic, n, v]) => (
+        <div key={n} className="ess-l"><span className="imp-em">{ic}</span><div><b>{n}</b>{v.map((x, k) => <span key={k}>{x}</span>)}</div></div>
+      ))}
+    </div>
+  );
+}
 
 function Temas({ p }: { p: Plano }) {
   const q = quemDe(p);
@@ -215,78 +230,45 @@ function Temas({ p }: { p: Plano }) {
   return (
     <>
       {p.criancas.map((c, ci) => {
-        const temas: { t: TemaPlano; junto: string }[] = [...c.temas.map((t) => ({ t, junto: "" })), ...(p.juntos || []).map((t) => ({ t, junto: outros(c.nome).length ? `junto com ${outros(c.nome).join(" e ")}` : "" }))];
-        const extras = (p.extras || []).filter((e) => (e.quem === c.nome || e.quem === JUNTOS) && !/^leitura da noite$/i.test(e.texto));
+        const temas: { t: TemaPlano; junto: string }[] = [...c.temas.map((t) => ({ t, junto: "" })), ...(p.juntos || []).map((t) => ({ t, junto: outros(c.nome).length ? `com ${outros(c.nome).join(" e ")}` : "" }))];
+        const extras = (p.extras || []).filter((e) => (e.quem === c.nome || e.quem === JUNTOS) && !/^leitura da noite/i.test(e.texto) && !/^treino di[áa]rio/i.test(e.texto));
+        const eventos = (p.eventos || []).filter((e) => e.quem === c.nome || e.quem === JUNTOS);
+        const cards = [
+          ...temas.map(({ t, junto }) => {
+            const i = infoTema(t); const tm = i.tema;
+            const treino = (p.extras || []).find((e) => (e.quem === c.nome || e.quem === JUNTOS) && /^treino di[áa]rio/i.test(e.texto) && i.apostila && e.link?.includes(i.apostila.slug.split("-").slice(-2).join("-")));
+            return (
+              <Cartao key={`${t.materia}${t.ano}${t.tema}`} cor={COR_MAT[t.materia]} kick={`${MAT_INFO[t.materia][0]} · ${anoNome(t.ano)} · tema ${t.tema}`} tit={tm?.t || ""} junto={junto}
+                capa={i.apostila ? `/apostilas/${i.apostila.slug}/capa.webp` : undefined} ap={i.apostila?.titulo}
+                linhas={[
+                  ["📚", "Livros", (tm?.l || []).slice(0, 2).map((x) => x[0])],
+                  ["🎬", "Filme ou série", primeiros(tm?.f).map(limpa)],
+                  ["🎧", "Áudio", primeiros(tm?.a).map(limpa)],
+                  ["🎲", "Jogo", primeiros(tm?.j, 2).map(limpa)],
+                  ["🧪", "Mão na massa", primeiros(tm?.p, 2).map(limpa)],
+                  ["✏️", "Treino", treino ? [treino.texto.replace(/:.*$/, "")] : []],
+                ]} />
+            );
+          }),
+          ...extras.map((e, k) => {
+            const slug = e.link?.match(/^\/apostilas\/([^/?#]+)/)?.[1];
+            const quando = `${e.dias.join(", ")}${e.de ? ` · a partir de ${ddmm(e.de)}` : ""}${e.ate ? ` · até ${ddmm(e.ate)}` : ""}`;
+            const evs = eventos.map((x) => `${ddmm(x.data)}: ${x.texto.split(/[(]/)[0].trim()}`);
+            return (
+              <Cartao key={"x" + k} cor={COR_MAT.extra} kick={e.quem === JUNTOS ? "Extra · juntos" : "Extra"} tit={e.texto.split(":")[0].trim()}
+                capa={slug ? `/apostilas/${slug}/capa.webp` : undefined} ap={slug ? e.texto.split(":").slice(1).join(":").trim() || e.texto : undefined}
+                linhas={[["🗓️", "Quando", [quando]], ...(k === 0 && evs.length ? [["📌", "Datas", evs.slice(0, 4)] as Linha] : []), ...(!slug && e.texto.includes(":") ? [["⭐", "O que fazer", [e.texto.split(":").slice(1).join(":").trim()]] as Linha] : [])]} />
+            );
+          }),
+        ];
         return (
-          <div key={c.nome}>
-            <section className="imp-folha imp-retrato imp-capa-tm">
-              <div className="imp-faixa">{["por", "mat", "cie"].map((m) => <i key={m} style={{ background: COR_MAT[m][0] }} />)}</div>
-              <p className="imp-kick">Atlas do Aprender · {periodo}</p>
-              <h1>Os temas de<br /><span style={{ color: q[ci].cor }}>{c.nome}</span></h1>
-              <p className="imp-intro">Tudo o que cada tema oferece: livros paradidáticos, material, exercícios, filmes, áudios, jogos e mão na massa. Escolha uma ou duas portas por semana; não é preciso fazer tudo.</p>
-              <div className="imp-tms">
-                {temas.map(({ t, junto }, k) => { const i = infoTema(t); return (
-                  <div key={k} className="imp-tm" style={{ background: COR_MAT[t.materia][1] }}>
-                    <span className="imp-em">{MAT_INFO[t.materia][1]}</span>
-                    <div><b>{MAT_INFO[t.materia][0]} · {anoNome(t.ano)}{junto ? ` · ${junto}` : ""}</b><span>Tema {t.tema}: {i.tema?.t}</span></div>
-                  </div>
-                ); })}
-                {extras.map((e, k) => (
-                  <div key={"x" + k} className="imp-tm" style={{ background: "#f7eef3" }}>
-                    <span className="imp-em">{e.icone || "⭐"}</span>
-                    <div><b>{e.texto.split(":")[0]}</b><span>{e.texto.includes(":") ? e.texto.split(":").slice(1).join(":").trim() : ""}{e.ate ? ` (até ${ddmm(e.ate)})` : ""}</span></div>
-                  </div>
-                ))}
-              </div>
-              {c.reforcar && <div className="imp-box"><b>O que vamos reforçar primeiro</b><p>{c.reforcar}</p></div>}
-              <div className="imp-box"><b>Como usar</b><p>A apostila é o caminho principal de cada tema. O resto deste guia serve para variar: um livro para ler junto à noite, um filme na sexta, um jogo no domingo, uma atividade no sábado. Registre no diário o que a criança descobriu.</p></div>
-              <footer className="imp-rod"><span><b>Atlas do Aprender</b> · Temas de {c.nome}</span><span>© Stephanie Kamarry · uso pessoal</span></footer>
-            </section>
-            {temas.map(({ t, junto }, k) => <PaginaTema key={k} t={t} junto={junto} nome={c.nome} pag={k + 2} />)}
-          </div>
+          <section key={c.nome} className="imp-folha ess">
+            <header className="imp-cab"><div><h1>Os temas de <span style={{ color: q[ci].cor }}>{c.nome}</span></h1><p>{periodo} · o essencial de cada tema · escolha uma ou duas portas por semana</p></div></header>
+            <div className="ess-grid" style={{ gridTemplateColumns: `repeat(${Math.max(3, cards.length)}, minmax(0, 1fr))` }}>{cards}</div>
+            <footer className="imp-rod"><span>A apostila é o caminho principal; o resto serve para variar: livro à noite, filme na sexta, jogo no domingo, mão na massa no sábado.</span><span>Atlas do Aprender · © Stephanie Kamarry</span></footer>
+          </section>
         );
       })}
     </>
-  );
-}
-
-function PaginaTema({ t, junto, nome, pag }: { t: TemaPlano; junto: string; nome: string; pag: number }) {
-  const i = infoTema(t);
-  const tm = i.tema;
-  if (!tm) return null;
-  const [cor, fundo] = COR_MAT[t.materia];
-  const bloco = (ic: string, tit: string, itens: (string | [string, string])[] | undefined) => {
-    const l = (itens || []).filter((x) => (typeof x === "string" ? x.trim() !== "—" : true));
-    if (!l.length) return null;
-    return (
-      <div className="imp-blk">
-        <h4 style={{ color: cor }}><span className="imp-em">{ic}</span> {tit}</h4>
-        <ul>{l.map((x, k) => <li key={k}>{typeof x === "string" ? x : <><b>{x[0]}</b><small>{x[1]}</small></>}</li>)}</ul>
-      </div>
-    );
-  };
-  return (
-    <section className="imp-folha imp-retrato imp-pg-tm" style={{ ["--c" as string]: cor, ["--t" as string]: fundo }}>
-      <div className="imp-band" style={{ background: cor }}><span>{MAT_INFO[t.materia][0]} · {anoNome(t.ano)}</span><span>Temas de {nome}</span></div>
-      <p className="imp-kick" style={{ color: cor }}>{MAT_INFO[t.materia][0]} · {anoNome(t.ano)} · Tema {t.tema}{junto ? ` · ${junto}` : ""}</p>
-      <h2>{tm.t}</h2>
-      <div className="imp-obj"><b>Objetivo:</b> {tm.o}</div>
-      {i.apostila && (
-        <div className="imp-ap">
-          <img src={`/apostilas/${i.apostila.slug}/capa.webp`} alt="" />
-          <div><span className="imp-tag" style={{ background: cor }}>Apostila</span><b>{i.apostila.titulo}</b><span>Para imprimir, com explicação, exercícios, treino diário, jogos e gabarito.</span></div>
-        </div>
-      )}
-      <div className="imp-cols">
-        {bloco("📚", "Livros paradidáticos", tm.l as [string, string][] | undefined)}
-        {bloco("🧰", "Material e livros de apoio", tm.m)}
-        {bloco("✏️", "Exercícios", tm.e)}
-        {bloco("🎬", "Filmes e documentários", tm.f)}
-        {bloco("🎧", "Podcasts e áudio", tm.a)}
-        {bloco("🎲", "Jogos", tm.j)}
-        {bloco("🧪", "Mão na massa", tm.p)}
-      </div>
-      <footer className="imp-rod"><span><b>Atlas do Aprender</b> · Temas de {nome} · © Stephanie Kamarry · uso pessoal</span><span>{pag}</span></footer>
-    </section>
   );
 }
