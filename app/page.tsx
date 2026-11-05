@@ -26,6 +26,7 @@ export default async function Inicio() {
   ];
   const destaque = GRATUITOS.slice(0, 6);
   const extras: [string, string, string, string][] = [
+    ["/fluencia", "Teste de fluência", "10 minutos para ver como a criança lê: palavras por minuto, precisão e compreensão", "var(--por)"],
     ["/comunidade", "Comunidade", "Desafio do mês, mural de conquistas e dicas das famílias", "var(--jog)"],
     ["/duvidas", "Pergunte à professora", "Mande sua dúvida; eu respondo pessoalmente", "var(--mat)"],
     ["/livros", "Livros", `${livros} indicações, por tema e na estante de Formação`, "var(--jog)"],

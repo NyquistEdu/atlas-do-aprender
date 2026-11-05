@@ -34,6 +34,7 @@ export default function Page() {
       <section className="card">
         <dl>{FAQ.map(([q, a]) => <div key={q}><dt>{q}</dt><dd>{a}</dd></div>)}</dl>
       </section>
+      <p className="meta">Quer ver de perto a leitura? Faça o <Link href="/fluencia">Teste de fluência leitora</Link>: 10 minutos, com palavras por minuto, precisão e compreensão.</p>
       <p className="meta">Quer um plano completo, feito para a rotina da sua família? Conheça o <Link href="/planejamento">Planejamento gratuito</Link>.</p>
     </div>
   );
