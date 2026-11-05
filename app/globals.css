@@ -870,3 +870,5 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .mt-item{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between;border-bottom:1px dashed var(--line);padding-bottom:6px}
 .mt-item .seg button{padding:3px 8px;font-size:.8rem}
 .mt-renova{border-left:4px solid var(--por)}
+.mt-agenda{display:grid;gap:6px;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.mt-agenda .seg button{padding:3px 8px;font-size:.8rem}

@@ -6,7 +6,7 @@ import type { Materia } from "@/lib/data";
 import type { ExtraPlano, TemaPlano, EventoPlano } from "@/lib/plano";
 import { TRILHAS } from "@/lib/data";
 import { GRATUITOS, apostilaDoTema } from "@/lib/apostilas";
-import { DS, fimDoPlano, somaDias, type Plano } from "@/lib/plano";
+import { AGENDA_PADRAO, DS, fimDoPlano, somaDias, type Agenda, type Plano } from "@/lib/plano";
 
 export type Nivel = "" | "sim" | "ajuda" | "nao";
 export const NIVEIS: [Exclude<Nivel, "">, string][] = [["sim", "consegue"], ["ajuda", "com ajuda"], ["nao", "ainda não"]];
@@ -113,6 +113,8 @@ export type Ficha = {
   criancas: FichaCrianca[];
   cieJuntos: boolean;
   juntosTemas?: TemaPlano[]; // outros temas que os irmãos fazem juntos
+  materias?: Materia[]; // matérias deste plano (padrão: as três)
+  agenda?: Agenda; // dias de cada matéria e da rotina (padrão do Atlas)
   extras: ExtraPlano[];
   eventos?: EventoPlano[];
   sugestao?: Sugestao;
@@ -177,10 +179,11 @@ export function sugerir(f: Ficha): Sugestao {
     MATEMATICA.forEach((t, k) => { const v = c.mat[k]; if (v === "sim") sabe.push(t.t); else if (v === "ajuda") lacunas.push(`${t.t} (com ajuda)`); else if (v === "nao") lacunas.push(`${t.t} (ainda não)`); });
 
     const sl = sugereLeitura(c.leitura, c.ano), sm = sugereMat(c.mat);
-    const por = sl?.tema || c.por || { materia: "por", ano, tema: 1 };
-    const mat = sm?.tema || c.matT || { materia: "mat", ano, tema: 1 };
+    const tem = (m: Materia) => (f.materias || ["por", "mat", "cie"]).includes(m);
+    const por = tem("por") ? sl?.tema || c.por || { materia: "por", ano, tema: 1 } : null;
+    const mat = tem("mat") ? sm?.tema || c.matT || { materia: "mat", ano, tema: 1 } : null;
     const sc = cieDoInteresse(ano, c.gosta);
-    const cie = c.cie || sc.tema;
+    const cie = tem("cie") ? c.cie || sc.tema : null;
 
     // o que reforçar primeiro: as primeiras lacunas de cada matéria + os temas escolhidos
     const lacLei = LEITURA.map((t, k) => (c.leitura[k] === "ajuda" || c.leitura[k] === "nao" ? t.t.toLowerCase() : "")).filter(Boolean).slice(0, 2);
@@ -189,17 +192,20 @@ export function sugerir(f: Ficha): Sugestao {
     if (lacLei.length) partes.push(`Na leitura: ${lacLei.join(" e ")}.`);
     if (lacMat.length) partes.push(`Na matemática: ${lacMat.join(" e ")}.`);
     const reforcar = partes.length
-      ? `${partes.join(" ")} Vamos começar por ${nomeTema(por)} e ${nomeTema(mat)}, um pouquinho por dia.`
-      : `Já domina o que foi pedido no diagnóstico. Vamos seguir com ${nomeTema(por)} e ${nomeTema(mat)} e aprofundar com leitura e desafios.`;
+      ? `${partes.join(" ")} Vamos começar por ${[nomeTema(por), nomeTema(mat)].filter(Boolean).join(" e ") || "os temas escolhidos"}, um pouquinho por dia.`
+      : `Já domina o que foi pedido no diagnóstico. Vamos seguir com ${[nomeTema(por), nomeTema(mat)].filter(Boolean).join(" e ") || "os temas escolhidos"} e aprofundar com leitura e desafios.`;
 
     // extras: treinos diários dos temas, treino T ou D se apareceu troca, teste de fluência no começo e no fim
     const extras: ExtraPlano[] = [];
     const tp = treinoDo(por), tm = treinoDo(mat);
-    if (tp) extras.push({ quem: nome, texto: `${tp.titulo}: uma folha`, icone: "🔤", dias: ["Ter", "Qui"], link: `/apostilas/${tp.slug}` });
-    if (tm) extras.push({ quem: nome, texto: `${tm.titulo}: uma folha`, icone: "🔢", dias: ["Seg", "Qua", "Sex"], link: `/apostilas/${tm.slug}` });
+    // treino nos dias úteis em que a matéria não tem apostila (para espalhar); se não sobrar dia, nos dias da matéria
+    const ag = { ...AGENDA_PADRAO, ...(f.agenda || {}) };
+    const diasTreino = (m: "por" | "mat") => { const fora = DS.slice(0, 5).filter((d) => !ag[m].includes(d)); return fora.length ? fora : ag[m]; };
+    if (tp) extras.push({ quem: nome, texto: `${tp.titulo}: uma folha`, icone: "🔤", dias: diasTreino("por"), link: `/apostilas/${tp.slug}` });
+    if (tm) extras.push({ quem: nome, texto: `${tm.titulo}: uma folha`, icone: "🔢", dias: diasTreino("mat"), link: `/apostilas/${tm.slug}` });
     if (/troc/i.test(c.leituraNota) && /\bt\b.{0,6}\bd\b|\bd\b.{0,6}\bt\b/i.test(c.leituraNota) && !extras.some((e) => e.link?.includes("t-ou-d")))
-      extras.push({ quem: nome, texto: "Treino Diário · T ou D?: uma folha", icone: "🔤", dias: ["Ter", "Qui"], link: "/apostilas/treino-t-ou-d" });
-    const lePalavras = c.leitura[4] === "sim" || c.leitura[4] === "ajuda";
+      extras.push({ quem: nome, texto: "Treino Diário · T ou D?: uma folha", icone: "🔤", dias: diasTreino("por"), link: "/apostilas/treino-t-ou-d" });
+    const lePalavras = tem("por") && (c.leitura[4] === "sim" || c.leitura[4] === "ajuda");
     const eventos: EventoPlano[] = lePalavras ? [
       { data: f.inicio, quem: nome, texto: "Teste de fluência leitora (10 min): o ponto de partida", icone: "📚", link: "/fluencia" },
       { data: somaDias(f.inicio, (f.dias || 30) - 2), quem: nome, texto: "Teste de fluência leitora de novo, com a outra versão do texto", icone: "📚", link: "/fluencia" },
@@ -214,11 +220,14 @@ export function sugerir(f: Ficha): Sugestao {
 
   const tempo = (f.conversa.confirmar || "").match(/Tempo:\s*([^·]+)/)?.[1]?.trim();
   const quem = f.acompanha.trim();
+  const ag = { ...AGENDA_PADRAO, ...(f.agenda || {}) };
+  const ms = f.materias || ["por", "mat", "cie"];
+  const diasEstudo = DS.filter((d) => ms.some((m) => ag[m as "por"].includes(d)));
   const como = [
-    `Encontros de ${tempo ? tempo.toLowerCase() : "15 a 20 minutos"}, de segunda a sexta, sempre no mesmo horário${f.conversa.dia ? " (no horário em que a criança está mais disposta)" : ""}.`,
+    `Encontros de ${tempo ? tempo.toLowerCase() : "15 a 20 minutos"}, ${diasPorExtenso(diasEstudo)}, sempre no mesmo horário${f.conversa.dia ? " (no horário em que a criança está mais disposta)" : ""}.`,
     `Cada dia tem uma apostila e, em alguns dias, uma folha de treino: comece pela apostila e pare antes de cansar.`,
     quem ? `${quem[0].toUpperCase() + quem.slice(1)} acompanha, sentando junto no começo e deixando a criança tentar sozinha.` : "",
-    "Nos fins de semana, só atividades práticas e jogos.",
+    diasEstudo.some((d) => d === "Sáb" || d === "Dom") ? "" : "Nos fins de semana, só atividades práticas e jogos.",
   ].filter(Boolean).join(" ");
   const objetivo = f.objetivo.trim() || (f.conversa.espera || "").trim();
   return { criancas, como, objetivo };
@@ -250,7 +259,21 @@ export function fichaDoPlano(email: string, p: Plano, id: string): Ficha {
     })),
     cieJuntos: false,
     juntosTemas: p.juntos || [],
+    materias: (["por", "mat", "cie"] as const).filter((m) => [...p.criancas.flatMap((c) => c.temas), ...(p.juntos || [])].some((t) => t.materia === m)),
+    agenda: p.agenda,
     extras: (p.extras || []).filter((e) => !e.ate || e.ate >= inicio).filter((e) => !e.de || e.de <= fim).map((e) => ({ ...e, de: e.de && e.de > inicio ? e.de : undefined })),
     eventos: (p.eventos || []).filter((e) => e.data >= inicio && e.data <= fim),
   };
+}
+
+const EXTENSO: Record<string, string> = { Seg: "segunda", Ter: "terça", Qua: "quarta", Qui: "quinta", Sex: "sexta", Sáb: "sábado", Dom: "domingo" };
+/** ["Seg","Ter","Qua","Qui","Sex"] → "de segunda a sexta"; ["Seg","Qua"] → "na segunda e na quarta". */
+export function diasPorExtenso(dias: string[]): string {
+  const ord = DS.filter((d) => dias.includes(d));
+  if (!ord.length) return "nos dias combinados";
+  const idx = ord.map((d) => DS.indexOf(d));
+  const seguidos = idx.every((v, k) => k === 0 || v === idx[k - 1] + 1);
+  if (ord.length >= 3 && seguidos) return `de ${EXTENSO[ord[0]]} a ${EXTENSO[ord[ord.length - 1]]}`;
+  const n = ord.map((d) => EXTENSO[d]);
+  return n.length === 1 ? `${/^(s[áa]bado|domingo)$/.test(n[0]) ? "no" : "na"} ${n[0]}` : `${n.slice(0, -1).join(", ")} e ${n[n.length - 1]}`;
 }

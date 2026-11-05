@@ -7,9 +7,9 @@ import { useAtlas } from "@/components/Providers";
 import { ADMIN_EMAIL } from "@/lib/admin";
 import { TRILHAS, type Materia } from "@/lib/data";
 import { anoNome } from "@/lib/apostilas";
-import { DIAS_NOME, DS, JUNTOS, MAT_INFO, ddmm, diaSemana, infoTema, iso, itensDoDia, somaDias, type ExtraPlano, type Plano, type TemaPlano } from "@/lib/plano";
+import { AGENDA_PADRAO, DIAS_NOME, DS, JUNTOS, MAT_INFO, ROTINA, ddmm, diaSemana, infoTema, iso, itensDoDia, somaDias, type ExtraPlano, type Plano, type TemaPlano } from "@/lib/plano";
 import {
-  COM_A_CRIANCA, CONVERSA, FECHAMENTO, LEITURA, MATEMATICA, NIVEIS, anoTrilha, fichaDoPlano, novaCrianca, proximoTema, sugereLeitura, sugereMat, sugerir,
+  COM_A_CRIANCA, CONVERSA, FECHAMENTO, LEITURA, MATEMATICA, NIVEIS, anoTrilha, diasPorExtenso, fichaDoPlano, novaCrianca, proximoTema, sugereLeitura, sugereMat, sugerir,
   type Ficha, type FichaCrianca, type Nivel, type SugCrianca, type Tarefa,
 } from "@/lib/roteiro";
 
@@ -51,7 +51,9 @@ function doPedido(p: Pedido): Ficha {
 
 /** Monta o plano que vai para a tabela planos (o mesmo formato de lib/plano.ts). */
 export function montarPlano(f: Ficha): Plano {
-  const juntos = f.cieJuntos && f.criancas.length > 1;
+  const ms = f.materias || ["por", "mat", "cie"];
+  const ok = (t: TemaPlano | null) => !!t && ms.includes(t.materia);
+  const juntos = f.cieJuntos && f.criancas.length > 1 && ms.includes("cie");
   const cieJ: TemaPlano[] = [];
   if (juntos) for (const c of f.criancas) if (c.cie && !cieJ.some((t) => t.ano === c.cie!.ano && t.tema === c.cie!.tema)) cieJ.push(c.cie);
   const como = [f.como.trim(), f.acompanha.trim() && `Quem acompanha: ${f.acompanha.trim()}.`].filter(Boolean).join(" ");
@@ -62,16 +64,17 @@ export function montarPlano(f: Ficha): Plano {
     como: como || undefined,
     criancas: f.criancas.filter((c) => c.nome.trim()).map((c) => ({
       nome: c.nome.trim(), ano: c.ano || undefined, idade: Number(c.idade) || undefined,
-      temas: [c.por, c.matT, juntos ? null : c.cie].filter(Boolean) as TemaPlano[],
+      temas: [c.por, c.matT, juntos ? null : c.cie].filter(ok) as TemaPlano[],
       reforcar: c.reforcar.replace(/^Formulário:\s*/, "").trim() || undefined,
     })),
     juntos: (() => {
-      const l = [...cieJ.slice(0, 1), ...(f.juntosTemas || [])];
+      const l = [...cieJ.slice(0, 1), ...(f.juntosTemas || [])].filter(ok);
       const u = l.filter((t, k) => l.findIndex((x) => x.materia === t.materia && x.ano === t.ano && x.tema === t.tema) === k);
       return u.length ? u : undefined;
     })(),
     extras: f.extras.filter((e) => e.texto.trim() && e.dias.length),
     eventos: (f.eventos || []).filter((e) => e.texto.trim()),
+    agenda: f.agenda,
   };
 }
 
@@ -125,7 +128,7 @@ export default function Montar() {
   const upE = (i: number, p: Partial<ExtraPlano>) => setF((x) => x && { ...x, extras: x.extras.map((e, j) => (j === i ? { ...e, ...p } : e)) });
 
   const renovar = async () => {
-    const email = (renovarEmail || user.email || "").trim().toLowerCase();
+    const email = (renovarEmail || user?.email || "").trim().toLowerCase();
     const { data, error } = await supabase!.from("planos").select("dados,criado_em").eq("email", email).eq("ativo", true).order("criado_em", { ascending: false });
     if (error || !data?.length) { setAviso(`Não achei plano ativo para ${email}.`); return; }
     const p = (data.map((x) => x.dados as Plano)).sort((a, b) => b.inicio.localeCompare(a.inicio))[0];
@@ -174,7 +177,9 @@ export default function Montar() {
   const problemas: string[] = [];
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email.trim())) problemas.push("o e-mail da mãe");
   if (!plano.criancas.length) problemas.push("o nome de pelo menos uma criança");
-  f.criancas.forEach((c) => { if (c.nome.trim() && !c.por && !c.matT && !c.cie) problemas.push(`os temas de ${c.nome}`); });
+  if (!(f.materias || ["por", "mat", "cie"]).length) problemas.push("pelo menos uma matéria");
+  for (const m of f.materias || (["por", "mat", "cie"] as Materia[])) if (!({ ...AGENDA_PADRAO, ...(f.agenda || {}) })[m].length) problemas.push(`os dias de ${MAT_INFO[m][0]}`);
+  plano.criancas.forEach((c) => { if (!c.temas.length && !plano.juntos?.length) problemas.push(`os temas de ${c.nome}`); });
 
   const publicar = async () => {
     if (problemas.length || !supabase) return;
@@ -214,7 +219,7 @@ export default function Montar() {
           <h2>Renovar um plano</h2>
           <p className="meta" style={{ margin: 0 }}>Para o mês seguinte de uma família que já tem plano (inclusive o seu): carrega as crianças, os temas, os extras e a rotina do plano atual e começa no dia seguinte ao fim dele.</p>
           <div className="row" style={{ gap: 10, alignItems: "end" }}>
-            <label className="f" style={{ flex: 1, minWidth: 220 }}>E-mail da família<input type="email" value={renovarEmail} onChange={(e) => setRenovarEmail(e.target.value)} placeholder={user.email || "mae@email.com"} /></label>
+            <label className="f" style={{ flex: 1, minWidth: 220 }}>E-mail da família<input type="email" value={renovarEmail} onChange={(e) => setRenovarEmail(e.target.value)} placeholder={user?.email || "mae@email.com"} /></label>
             <button type="button" className="btn small" onClick={renovar}>Carregar o plano atual</button>
           </div>
           <p className="meta" style={{ margin: 0 }}>Em branco, carrega o seu próprio plano.</p>
@@ -288,9 +293,9 @@ export default function Montar() {
             </div>
             <label className="f">O que vamos reforçar primeiro (aparece para a mãe no plano)<textarea rows={2} value={c.reforcar} onChange={(e) => upC(i, { reforcar: e.target.value })} /></label>
             <div className="mt-g3">
-              <EscolheTema m="por" v={c.por} muda={(t) => upC(i, { por: t })} />
-              <EscolheTema m="mat" v={c.matT} muda={(t) => upC(i, { matT: t })} />
-              <EscolheTema m="cie" v={c.cie} muda={(t) => upC(i, { cie: t })} />
+              {(f.materias || ["por", "mat", "cie"]).includes("por") && <EscolheTema m="por" v={c.por} muda={(t) => upC(i, { por: t })} />}
+              {(f.materias || ["por", "mat", "cie"]).includes("mat") && <EscolheTema m="mat" v={c.matT} muda={(t) => upC(i, { matT: t })} />}
+              {(f.materias || ["por", "mat", "cie"]).includes("cie") && <EscolheTema m="cie" v={c.cie} muda={(t) => upC(i, { cie: t })} />}
             </div>
             <p className="meta" style={{ margin: 0 }}>Ciências não precisa de teste: escolha o tema do ano que mais combina com o que a criança gosta. Deixe “nenhum” em qualquer matéria que não vai entrar agora.</p>
           </section>
@@ -306,6 +311,30 @@ export default function Montar() {
         {f.criancas.length > 1 && (
           <label className="mt-check"><input type="checkbox" checked={f.cieJuntos} onChange={(e) => up({ cieJuntos: e.target.checked })} /> Ciências com os irmãos juntos (usa o tema de Ciências da primeira criança)</label>
         )}
+        <h3 className="mt-h">Matérias e dias deste plano <span className="meta">cada família e cada mês do seu jeito</span></h3>
+        {(() => {
+          const ms = f.materias || ["por", "mat", "cie"];
+          const ag = { ...AGENDA_PADRAO, ...(f.agenda || {}) };
+          const setDias = (k: keyof typeof AGENDA_PADRAO, d: string) => up({ agenda: { ...ag, [k]: ag[k].includes(d) ? ag[k].filter((x) => x !== d) : DS.filter((x) => x === d || ag[k].includes(x)) } });
+          return (
+            <div className="mt-agenda">
+              <div className="mt-item"><b>Matérias</b><div className="seg">{(["por", "mat", "cie"] as Materia[]).map((m) => (
+                <button key={m} type="button" aria-pressed={ms.includes(m)} onClick={() => up({ materias: ms.includes(m) ? ms.filter((x) => x !== m) : (["por", "mat", "cie"] as Materia[]).filter((x) => x === m || ms.includes(x)) })}>{MAT_INFO[m][1]} {MAT_INFO[m][0]}</button>
+              ))}</div></div>
+              {(["por", "mat", "cie"] as Materia[]).filter((m) => ms.includes(m)).map((m) => (
+                <div key={m} className="mt-item"><span>{MAT_INFO[m][1]} {MAT_INFO[m][0]}</span><div className="seg">{DS.map((d) => <button key={d} type="button" aria-pressed={ag[m].includes(d)} onClick={() => setDias(m, d)}>{d}</button>)}</div></div>
+              ))}
+              {ROTINA.map(([k, ic, tx]) => (
+                <div key={k} className="mt-item"><span>{ic} {(() => { const t = tx.replace("À noite: ", ""); return t[0].toUpperCase() + t.slice(1) + (tx.startsWith("À noite") ? " (à noite)" : ""); })()}</span><div className="seg">{DS.map((d) => <button key={d} type="button" aria-pressed={ag[k].includes(d)} onClick={() => setDias(k, d)}>{d}</button>)}</div></div>
+              ))}
+              <div className="row" style={{ gap: 10 }}>
+                <button type="button" className="link-btn" onClick={() => up({ agenda: undefined, materias: undefined })}>Voltar ao padrão do Atlas</button>
+                <span className="meta">Dia sem marcação = não entra. Desmarque todos os dias de um momento da rotina para tirá-lo.</span>
+              </div>
+            </div>
+          );
+        })()}
+
         <h3 className="mt-h">Temas que fazem juntos <span className="meta">aparecem para todos, nos dias da matéria</span></h3>
         {(f.juntosTemas || []).map((t, k) => (
           <div key={k} className="mt-item">
@@ -351,9 +380,9 @@ export default function Montar() {
                 {c.sabe.length > 0 && <p style={{ margin: 0 }}><b>Já faz sozinha:</b> {c.sabe.join(", ").toLowerCase()}.</p>}
                 {c.lacunas.length > 0 ? <p style={{ margin: 0 }}><b>{c.lacunas.length} {c.lacunas.length === 1 ? "lacuna" : "lacunas"}:</b> {c.lacunas.join(", ").toLowerCase()}.</p> : <p className="meta" style={{ margin: 0 }}>Nenhuma lacuna nas tarefas marcadas.</p>}
                 <div className="mt-g3">
-                  <div><EscolheTema m="por" v={c.por} muda={(t) => upS(i, { por: t })} /><small className="meta">{c.porPorque}</small></div>
-                  <div><EscolheTema m="mat" v={c.mat} muda={(t) => upS(i, { mat: t })} /><small className="meta">{c.matPorque}</small></div>
-                  <div><EscolheTema m="cie" v={c.cie} muda={(t) => upS(i, { cie: t })} /><small className="meta">{c.ciePorque}</small></div>
+                  {(f.materias || ["por", "mat", "cie"]).includes("por") && <div><EscolheTema m="por" v={c.por} muda={(t) => upS(i, { por: t })} /><small className="meta">{c.porPorque}</small></div>}
+                  {(f.materias || ["por", "mat", "cie"]).includes("mat") && <div><EscolheTema m="mat" v={c.mat} muda={(t) => upS(i, { mat: t })} /><small className="meta">{c.matPorque}</small></div>}
+                  {(f.materias || ["por", "mat", "cie"]).includes("cie") && <div><EscolheTema m="cie" v={c.cie} muda={(t) => upS(i, { cie: t })} /><small className="meta">{c.ciePorque}</small></div>}
                 </div>
                 <label className="f">O que vamos reforçar primeiro<textarea rows={2} value={c.reforcar} onChange={(e) => upS(i, { reforcar: e.target.value })} /></label>
                 <div className="mt-lista">
@@ -388,7 +417,7 @@ export default function Montar() {
       {/* 6 · PRÉVIA E PUBLICAR */}
       <section className="card mt-sec" id="mt-previa">
         <h2>6 · Prévia da primeira semana</h2>
-        <p className="meta" style={{ margin: 0 }}>{plano.dias} dias, de {ddmm(f.inicio)} a {ddmm(somaDias(f.inicio, plano.dias! - 1))}. A semana segue o padrão do Atlas: Português seg, qua e sex; Matemática ter e qui; Ciências seg e qua; filme ou episódios à noite; mão na massa no sábado e jogo no domingo.</p>
+        <p className="meta" style={{ margin: 0 }}>{plano.dias} dias, de {ddmm(f.inicio)} a {ddmm(somaDias(f.inicio, plano.dias! - 1))}. {" "}{(() => { const ag = { ...AGENDA_PADRAO, ...(f.agenda || {}) }; return (f.materias || ["por", "mat", "cie"]).map((m) => `${MAT_INFO[m][0]}: ${diasPorExtenso(ag[m as "por"])}`).join(" · ") || "Nenhuma matéria marcada."; })()}</p>
         <div className="mt-prev">
           {semana.map((d) => (
             <div key={d} className="mt-dia">
