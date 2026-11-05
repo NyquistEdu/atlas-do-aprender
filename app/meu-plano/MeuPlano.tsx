@@ -10,6 +10,7 @@ import {
   type Item, type Plano,
 } from "@/lib/plano";
 import { anoNome } from "@/lib/apostilas";
+import { abrirImpressao } from "@/lib/imprimir";
 
 const CORES = ["#1f6f78", "#c4672a", "#a8456e", "#2a5db0"];
 const COR_JUNTOS = "#6b4fa0";
@@ -125,6 +126,10 @@ export default function MeuPlano() {
       <p className="lead">{ddmm(p.inicio)} a {ddmm(fim)}/{fim.slice(0, 4)} · {hoje < p.inicio ? "começa em breve" : hoje > fim ? "plano concluído" : `dia ${nDia} de ${total}`}</p>
       <div className="pl-barra" aria-hidden="true"><i style={{ width: `${Math.min(100, Math.max(0, ((+new Date(hoje) - +new Date(p.inicio)) / 864e5 + 1) / total * 100))}%` }} /></div>
       {p.objetivo && <p className="note" style={{ margin: 0 }}><b>Objetivo:</b> {p.objetivo}</p>}
+      <div className="row pl-pdf" style={{ gap: 8, marginTop: 10 }}>
+        <button type="button" className="btn small ghost" onClick={() => abrirImpressao(p, "semana")}>🗓️ Quadro da semana (PDF)</button>
+        <button type="button" className="btn small ghost" onClick={() => abrirImpressao(p, "marcar")}>✅ Calendário para marcar (PDF)</button>
+      </div>
 
       <div className="pl-nav">
         <button className="btn small ghost" type="button" disabled={dia <= p.inicio} onClick={() => setDia(somaDias(dia, -1))} aria-label="Dia anterior">‹</button>

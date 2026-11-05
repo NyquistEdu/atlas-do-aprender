@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { abrirImpressao } from "@/lib/imprimir";
 import { useAtlas } from "@/components/Providers";
 import { ADMIN_EMAIL } from "@/lib/admin";
 import { TRILHAS, type Materia } from "@/lib/data";
@@ -234,6 +235,8 @@ export default function Montar() {
           <p className="meta" style={{ margin: 0 }}>Mensagem para mandar a ela:</p>
           <textarea readOnly rows={6} value={`Oi! O planejamento de ${pronto.nomes} está pronto 💛\n\nÉ só entrar em atlasdoaprender.com.br/meu-plano com o e-mail ${pronto.email}. Lá você vê o que fazer a cada dia, a semana inteira e os temas de cada um. Ao marcar uma tarefa como feita, ela fica registrada no diário.\n\nUm pouquinho, todo dia, com amor. Qualquer dúvida, me chama!`} onFocus={(e) => e.currentTarget.select()} />
           <div className="row" style={{ gap: 10 }}>
+            <button type="button" className="btn small" onClick={() => plano && abrirImpressao(plano, "semana")}>PDF · A semana</button>
+            <button type="button" className="btn small" onClick={() => plano && abrirImpressao(plano, "marcar")}>PDF · O que fizemos</button>
             <a className="btn small" href={`mailto:${pronto.email}?subject=${encodeURIComponent("Seu planejamento no Atlas do Aprender")}`}>Abrir no e-mail</a>
             {pedido?.whatsapp && <a className="btn small ghost" target="_blank" rel="noopener noreferrer" href={`https://wa.me/${(() => { const z = pedido.whatsapp.replace(/\D/g, ""); return z.length <= 11 ? "55" + z : z; })()}`}>Abrir WhatsApp</a>}
           </div>
@@ -437,6 +440,8 @@ export default function Montar() {
         <div className="row" style={{ gap: 10 }}>
           <button type="button" className="btn" disabled={!!problemas.length || publicando} onClick={publicar}>{publicando ? "Publicando…" : f.publicado ? "Publicar de novo (substitui o plano)" : "Publicar o planejamento de 30 dias"}</button>
           <button type="button" className="btn ghost" onClick={rascunho}>Salvar rascunho</button>
+          <button type="button" className="btn ghost" disabled={!plano.criancas.length} onClick={() => abrirImpressao(plano, "semana")}>PDF · A semana</button>
+          <button type="button" className="btn ghost" disabled={!plano.criancas.length} onClick={() => abrirImpressao(plano, "marcar")}>PDF · O que fizemos</button>
         </div>
         <p className="meta" style={{ margin: 0 }}>A ficha também fica salva sozinha neste navegador enquanto você preenche.</p>
       </section>
