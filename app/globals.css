@@ -865,3 +865,7 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .mt-dia ul{margin:4px 0 0;padding-left:16px}
 .mt-temas{display:grid;gap:4px;font-size:.92rem}
 @media (max-width:640px){.mt-g2,.mt-g3{grid-template-columns:1fr}}
+.mt-sugc{border:1px solid var(--line);border-left:4px solid var(--mat);border-radius:10px;padding:12px 14px;display:grid;gap:10px}
+.mt-lista{display:grid;gap:6px}
+.mt-item{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between;border-bottom:1px dashed var(--line);padding-bottom:6px}
+.mt-item .seg button{padding:3px 8px;font-size:.8rem}

@@ -3,7 +3,10 @@
  * usado na página /planejamento/montar para preencher a ficha durante a videochamada.
  */
 import type { Materia } from "@/lib/data";
-import type { ExtraPlano, TemaPlano } from "@/lib/plano";
+import type { ExtraPlano, TemaPlano, EventoPlano } from "@/lib/plano";
+import { TRILHAS } from "@/lib/data";
+import { GRATUITOS, apostilaDoTema } from "@/lib/apostilas";
+import { DS, somaDias } from "@/lib/plano";
 
 export type Nivel = "" | "sim" | "ajuda" | "nao";
 export const NIVEIS: [Exclude<Nivel, "">, string][] = [["sim", "consegue"], ["ajuda", "com ajuda"], ["nao", "ainda não"]];
@@ -110,6 +113,8 @@ export type Ficha = {
   criancas: FichaCrianca[];
   cieJuntos: boolean;
   extras: ExtraPlano[];
+  eventos?: EventoPlano[];
+  sugestao?: Sugestao;
   publicado?: string; // data em que o plano foi publicado
 };
 
@@ -117,3 +122,105 @@ export const novaCrianca = (c: Partial<FichaCrianca> = {}): FichaCrianca => ({
   nome: "", idade: "", ano: "", leitura: LEITURA.map(() => ""), leituraNota: "", mat: MATEMATICA.map(() => ""), matNota: "",
   fortes: "", gosta: "", reforcar: "", por: null, matT: null, cie: null, ...c,
 });
+
+// ---------------------------------------------------------------- SUGESTÃO DE PONTO DE PARTIDA
+export type SugCrianca = {
+  nome: string;
+  sabe: string[];
+  lacunas: string[];
+  por: TemaPlano | null; porPorque: string;
+  mat: TemaPlano | null; matPorque: string;
+  cie: TemaPlano | null; ciePorque: string;
+  reforcar: string;
+  extras: ExtraPlano[];
+  eventos: EventoPlano[];
+};
+export type Sugestao = { criancas: SugCrianca[]; como: string; objetivo: string };
+
+const nomeTema = (t: TemaPlano | null) => (t ? TRILHAS[t.materia]?.[t.ano]?.[t.tema - 1]?.t || "" : "");
+
+/** Ciências: tema do ano escolar que mais combina com o que a criança gosta. */
+function cieDoInteresse(ano: string, gosta: string): { tema: TemaPlano; porque: string } {
+  const temas = TRILHAS.cie?.[ano] || [];
+  const regras: [RegExp, RegExp][] = [
+    [/bich|anima|dinoss|cachorr|gato|inset|peix|zoo/i, /anima|seres vivos|ciclos de vida|cadeias/i],
+    [/plant|jardim|horta|flor|natureza/i, /planta|seres vivos|solo/i],
+    [/c[ée]u|estrel|planet|espa[çc]|lua|foguete|astron/i, /c[ée]u|estrel|sol|sistema solar|cardeais|noite/i],
+    [/corpo|m[ée]dic|sa[úu]de|esporte|futebol|dan[çc]/i, /corpo|sa[úu]de|higiene|digest/i],
+    [/m[úu]sic|cant|instrument|barulho/i, /som/i],
+    [/experi|cozinh|mistur|slime|massinha|qu[íi]mic/i, /materia|mistur|transforma/i],
+    [/[áa]gua|mar|praia|chuva|rio/i, /[áa]gua|solo/i],
+    [/luz|sombra|lanterna/i, /luz|sombra/i],
+  ];
+  for (const [gostoRe, temaRe] of regras) {
+    if (!gostoRe.test(gosta)) continue;
+    const k = temas.findIndex((t) => temaRe.test(t.t));
+    if (k >= 0) return { tema: { materia: "cie", ano, tema: k + 1 }, porque: `Combina com o que a criança gosta (${gosta.replace(/^Formulário:\s*/, "").slice(0, 60)}).` };
+  }
+  return { tema: { materia: "cie", ano, tema: 1 }, porque: "Primeiro tema de Ciências do ano escolar." };
+}
+
+/** Treino diário ligado à apostila do tema, se existir. */
+function treinoDo(t: TemaPlano | null) {
+  if (!t) return null;
+  const ap = apostilaDoTema(t.materia, t.ano, t.tema);
+  return ap ? GRATUITOS.find((g) => g.apostila === ap.slug) || null : null;
+}
+
+export function sugerir(f: Ficha): Sugestao {
+  const criancas = f.criancas.filter((c) => c.nome.trim()).map((c): SugCrianca => {
+    const nome = c.nome.trim();
+    const ano = anoTrilha(c.ano);
+    const sabe: string[] = [], lacunas: string[] = [];
+    LEITURA.forEach((t, k) => { const v = c.leitura[k]; if (v === "sim") sabe.push(t.t); else if (v === "ajuda") lacunas.push(`${t.t} (com ajuda)`); else if (v === "nao") lacunas.push(`${t.t} (ainda não)`); });
+    MATEMATICA.forEach((t, k) => { const v = c.mat[k]; if (v === "sim") sabe.push(t.t); else if (v === "ajuda") lacunas.push(`${t.t} (com ajuda)`); else if (v === "nao") lacunas.push(`${t.t} (ainda não)`); });
+
+    const sl = sugereLeitura(c.leitura, c.ano), sm = sugereMat(c.mat);
+    const por = sl?.tema || c.por || { materia: "por", ano, tema: 1 };
+    const mat = sm?.tema || c.matT || { materia: "mat", ano, tema: 1 };
+    const sc = cieDoInteresse(ano, c.gosta);
+    const cie = c.cie || sc.tema;
+
+    // o que reforçar primeiro: as primeiras lacunas de cada matéria + os temas escolhidos
+    const lacLei = LEITURA.map((t, k) => (c.leitura[k] === "ajuda" || c.leitura[k] === "nao" ? t.t.toLowerCase() : "")).filter(Boolean).slice(0, 2);
+    const lacMat = MATEMATICA.map((t, k) => (c.mat[k] === "ajuda" || c.mat[k] === "nao" ? t.t.toLowerCase() : "")).filter(Boolean).slice(0, 2);
+    const partes: string[] = [];
+    if (lacLei.length) partes.push(`Na leitura: ${lacLei.join(" e ")}.`);
+    if (lacMat.length) partes.push(`Na matemática: ${lacMat.join(" e ")}.`);
+    const reforcar = partes.length
+      ? `${partes.join(" ")} Vamos começar por ${nomeTema(por)} e ${nomeTema(mat)}, um pouquinho por dia.`
+      : `Já domina o que foi pedido no diagnóstico. Vamos seguir com ${nomeTema(por)} e ${nomeTema(mat)} e aprofundar com leitura e desafios.`;
+
+    // extras: treinos diários dos temas, treino T ou D se apareceu troca, teste de fluência no começo e no fim
+    const extras: ExtraPlano[] = [];
+    const tp = treinoDo(por), tm = treinoDo(mat);
+    if (tp) extras.push({ quem: nome, texto: `${tp.titulo}: uma folha`, icone: "🔤", dias: ["Ter", "Qui"], link: `/apostilas/${tp.slug}` });
+    if (tm) extras.push({ quem: nome, texto: `${tm.titulo}: uma folha`, icone: "🔢", dias: ["Seg", "Qua", "Sex"], link: `/apostilas/${tm.slug}` });
+    if (/troc/i.test(c.leituraNota) && /\bt\b.{0,6}\bd\b|\bd\b.{0,6}\bt\b/i.test(c.leituraNota) && !extras.some((e) => e.link?.includes("t-ou-d")))
+      extras.push({ quem: nome, texto: "Treino Diário · T ou D?: uma folha", icone: "🔤", dias: ["Ter", "Qui"], link: "/apostilas/treino-t-ou-d" });
+    const lePalavras = c.leitura[4] === "sim" || c.leitura[4] === "ajuda";
+    const eventos: EventoPlano[] = lePalavras ? [
+      { data: f.inicio, quem: nome, texto: "Teste de fluência leitora (10 min): o ponto de partida", icone: "📚", link: "/fluencia" },
+      { data: somaDias(f.inicio, (f.dias || 30) - 2), quem: nome, texto: "Teste de fluência leitora de novo, com a outra versão do texto", icone: "📚", link: "/fluencia" },
+    ] : [];
+
+    return {
+      nome, sabe, lacunas, por, porPorque: sl?.porque || "Sem tarefas de leitura marcadas: tema do ano escolar.",
+      mat, matPorque: sm?.porque || "Sem tarefas de matemática marcadas: tema do ano escolar.",
+      cie, ciePorque: c.cie ? "Tema já escolhido na ficha." : sc.porque, reforcar, extras, eventos,
+    };
+  });
+
+  const tempo = (f.conversa.confirmar || "").match(/Tempo:\s*([^·]+)/)?.[1]?.trim();
+  const quem = f.acompanha.trim();
+  const como = [
+    `Encontros de ${tempo ? tempo.toLowerCase() : "15 a 20 minutos"}, de segunda a sexta, sempre no mesmo horário${f.conversa.dia ? " (no horário em que a criança está mais disposta)" : ""}.`,
+    `Cada dia tem uma apostila e, em alguns dias, uma folha de treino: comece pela apostila e pare antes de cansar.`,
+    quem ? `${quem[0].toUpperCase() + quem.slice(1)} acompanha, sentando junto no começo e deixando a criança tentar sozinha.` : "",
+    "Nos fins de semana, só atividades práticas e jogos.",
+  ].filter(Boolean).join(" ");
+  const objetivo = f.objetivo.trim() || (f.conversa.espera || "").trim();
+  return { criancas, como, objetivo };
+}
+
+export const DIAS_SEMANA = DS;

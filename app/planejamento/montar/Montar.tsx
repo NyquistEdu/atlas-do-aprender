@@ -9,8 +9,8 @@ import { TRILHAS, type Materia } from "@/lib/data";
 import { anoNome } from "@/lib/apostilas";
 import { DIAS_NOME, DS, JUNTOS, MAT_INFO, ddmm, diaSemana, infoTema, iso, itensDoDia, somaDias, type ExtraPlano, type Plano, type TemaPlano } from "@/lib/plano";
 import {
-  COM_A_CRIANCA, CONVERSA, FECHAMENTO, LEITURA, MATEMATICA, NIVEIS, anoTrilha, novaCrianca, sugereLeitura, sugereMat,
-  type Ficha, type FichaCrianca, type Nivel, type Tarefa,
+  COM_A_CRIANCA, CONVERSA, FECHAMENTO, LEITURA, MATEMATICA, NIVEIS, anoTrilha, novaCrianca, sugereLeitura, sugereMat, sugerir,
+  type Ficha, type FichaCrianca, type Nivel, type SugCrianca, type Tarefa,
 } from "@/lib/roteiro";
 
 type Pedido = {
@@ -67,6 +67,7 @@ export function montarPlano(f: Ficha): Plano {
     })),
     juntos: cieJ.length ? cieJ.slice(0, 1) : undefined,
     extras: f.extras.filter((e) => e.texto.trim() && e.dias.length),
+    eventos: (f.eventos || []).filter((e) => e.texto.trim()),
   };
 }
 
@@ -78,6 +79,7 @@ export default function Montar() {
   const [f, setF] = useState<Ficha | null>(null);
   const [aviso, setAviso] = useState("");
   const [publicando, setPublicando] = useState(false);
+  const [aplicado, setAplicado] = useState(false);
   const [pronto, setPronto] = useState<{ email: string; nomes: string } | null>(null);
   const carregado = useRef(false);
 
@@ -116,6 +118,32 @@ export default function Montar() {
   const up = (p: Partial<Ficha>) => setF((x) => x && { ...x, ...p });
   const upC = (i: number, p: Partial<FichaCrianca>) => setF((x) => x && { ...x, criancas: x.criancas.map((c, j) => (j === i ? { ...c, ...p } : c)) });
   const upE = (i: number, p: Partial<ExtraPlano>) => setF((x) => x && { ...x, extras: x.extras.map((e, j) => (j === i ? { ...e, ...p } : e)) });
+
+  const sug = f.sugestao;
+  const upS = (i: number, p: Partial<SugCrianca>) => setF((x) => x && x.sugestao ? { ...x, sugestao: { ...x.sugestao, criancas: x.sugestao.criancas.map((c, j) => (j === i ? { ...c, ...p } : c)) } } : x);
+  const gerar = () => {
+    if (sug && !window.confirm("Gerar de novo? As mudanças que você fez na sugestão serão perdidas.")) return;
+    up({ sugestao: sugerir(f) }); setAplicado(false);
+  };
+  const aplicar = () => {
+    if (!sug) return;
+    setF((x) => {
+      if (!x || !x.sugestao) return x;
+      const s2 = x.sugestao;
+      const links = new Set(s2.criancas.flatMap((c) => c.extras.map((e) => `${e.quem}|${e.link || e.texto}`)));
+      const extras = [...x.extras.filter((e) => !links.has(`${e.quem}|${e.link || e.texto}`)), ...s2.criancas.flatMap((c) => c.extras)];
+      return {
+        ...x,
+        objetivo: s2.objetivo || x.objetivo,
+        como: s2.como || x.como,
+        criancas: x.criancas.map((c) => { const sc = s2.criancas.find((y) => y.nome === c.nome.trim()); return sc ? { ...c, por: sc.por, matT: sc.mat, cie: sc.cie, reforcar: sc.reforcar } : c; }),
+        extras,
+        eventos: s2.criancas.flatMap((c) => c.eventos),
+      };
+    });
+    setAplicado(true);
+    setTimeout(() => document.getElementById("mt-previa")?.scrollIntoView({ behavior: "smooth" }), 50);
+  };
 
   const salvarFicha = async (extra: Partial<Ficha> = {}) => {
     const dados = { ...f, ...extra };
@@ -262,9 +290,57 @@ export default function Montar() {
         <label className="f">Observações (ficam só na ficha, a mãe não vê)<textarea rows={3} value={f.obs} onChange={(e) => up({ obs: e.target.value })} /></label>
       </section>
 
-      {/* 5 · PRÉVIA E PUBLICAR */}
+      {/* 5 · SUGESTÃO */}
       <section className="card mt-sec">
-        <h2>5 · Prévia da primeira semana</h2>
+        <h2>5 · Ponto de partida sugerido</h2>
+        <p className="meta" style={{ margin: 0 }}>Depois da conversa e das tarefas, gere a sugestão. O Atlas lê o que você marcou e propõe por onde começar, o que reforçar, os treinos e a rotina. Mude o que quiser aqui e, quando estiver bom, aplique ao plano.</p>
+        <div className="row"><button type="button" className="btn" onClick={gerar}>{sug ? "Gerar de novo" : "Gerar sugestão"}</button></div>
+        {sug && (
+          <>
+            {sug.criancas.length === 0 && <p className="warn" style={{ margin: 0 }}>Preencha o nome de pelo menos uma criança.</p>}
+            {sug.criancas.map((c, i) => (
+              <div key={c.nome} className="mt-sugc">
+                <h3 className="mt-h" style={{ marginTop: 0 }}>{c.nome}</h3>
+                {c.sabe.length > 0 && <p style={{ margin: 0 }}><b>Já faz sozinha:</b> {c.sabe.join(", ").toLowerCase()}.</p>}
+                {c.lacunas.length > 0 ? <p style={{ margin: 0 }}><b>{c.lacunas.length} {c.lacunas.length === 1 ? "lacuna" : "lacunas"}:</b> {c.lacunas.join(", ").toLowerCase()}.</p> : <p className="meta" style={{ margin: 0 }}>Nenhuma lacuna nas tarefas marcadas.</p>}
+                <div className="mt-g3">
+                  <div><EscolheTema m="por" v={c.por} muda={(t) => upS(i, { por: t })} /><small className="meta">{c.porPorque}</small></div>
+                  <div><EscolheTema m="mat" v={c.mat} muda={(t) => upS(i, { mat: t })} /><small className="meta">{c.matPorque}</small></div>
+                  <div><EscolheTema m="cie" v={c.cie} muda={(t) => upS(i, { cie: t })} /><small className="meta">{c.ciePorque}</small></div>
+                </div>
+                <label className="f">O que vamos reforçar primeiro<textarea rows={2} value={c.reforcar} onChange={(e) => upS(i, { reforcar: e.target.value })} /></label>
+                <div className="mt-lista">
+                  <b>Extras sugeridos</b>
+                  {c.extras.length === 0 && <span className="meta">Nenhum treino diário ligado a estes temas.</span>}
+                  {c.extras.map((e, k) => (
+                    <div key={k} className="mt-item">
+                      <span>{e.icone} {e.texto}</span>
+                      <div className="seg">{DS.map((d) => <button key={d} type="button" aria-pressed={e.dias.includes(d)} onClick={() => upS(i, { extras: c.extras.map((x, j) => (j === k ? { ...x, dias: x.dias.includes(d) ? x.dias.filter((y) => y !== d) : [...x.dias, d] } : x)) })}>{d}</button>)}</div>
+                      <button type="button" className="link-btn" onClick={() => upS(i, { extras: c.extras.filter((_, j) => j !== k) })}>tirar</button>
+                    </div>
+                  ))}
+                  {c.eventos.map((e, k) => (
+                    <div key={"ev" + k} className="mt-item">
+                      <span>{e.icone} {ddmm(e.data)}: {e.texto}</span>
+                      <button type="button" className="link-btn" onClick={() => upS(i, { eventos: c.eventos.filter((_, j) => j !== k) })}>tirar</button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+            <label className="f">Objetivo do plano<textarea rows={2} value={sug.objetivo} onChange={(e) => up({ sugestao: { ...sug, objetivo: e.target.value } })} /></label>
+            <label className="f">Como vamos fazer (rotina)<textarea rows={3} value={sug.como} onChange={(e) => up({ sugestao: { ...sug, como: e.target.value } })} /></label>
+            <div className="row" style={{ gap: 10, alignItems: "center" }}>
+              <button type="button" className="btn" onClick={aplicar} disabled={!sug.criancas.length}>Aceitar e aplicar ao plano</button>
+              {aplicado && <span className="meta">✓ Aplicado. Os temas, o reforço, os extras e a rotina foram para a ficha acima; dá para ajustar lá também.</span>}
+            </div>
+          </>
+        )}
+      </section>
+
+      {/* 6 · PRÉVIA E PUBLICAR */}
+      <section className="card mt-sec" id="mt-previa">
+        <h2>6 · Prévia da primeira semana</h2>
         <p className="meta" style={{ margin: 0 }}>{plano.dias} dias, de {ddmm(f.inicio)} a {ddmm(somaDias(f.inicio, plano.dias! - 1))}. A semana segue o padrão do Atlas: Português seg, qua e sex; Matemática ter e qui; Ciências seg e qua; filme ou episódios à noite; mão na massa no sábado e jogo no domingo.</p>
         <div className="mt-prev">
           {semana.map((d) => (
