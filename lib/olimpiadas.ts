@@ -193,7 +193,7 @@ export const INDIVIDUAIS: Olimpiada[] = [
     inscricao: "Pela Olimpíadas Internacionais (Mathletes): inscrição comprada no site e prova online.",
     custo: "R$ 139,90.",
     quando: "Em 2026: inscrições até 30/03 e prova online de 03 a 05/04. A próxima edição deve seguir o mesmo calendário.",
-    como: "Prova no estilo da matemática de Singapura, com problemas de lógica e raciocínio.",
+    como: "Prova no estilo da matemática de Singapura, com problemas de lógica e raciocínio. Os premiados com bronze ou mais podem ser convidados para a SIMOC, a final internacional em Singapura (que tem uma divisão para o 1º ao 4º ano).",
     site: "https://olimpiadasinternacionais.org/sasmo/",
   },
   {
@@ -215,7 +215,7 @@ export const INDIVIDUAIS: Olimpiada[] = [
     inscricao: "Pela Olimpíadas Internacionais (Mathletes): inscrição comprada no site e prova online.",
     custo: "R$ 149,90.",
     quando: "Em 2026: inscrições até 16/10 e prova de 23 a 25/10. Fique de olho para a próxima edição.",
-    como: "Prova de matemática com etapa global para os melhores colocados.",
+    como: "Prova de matemática com etapa global para os melhores colocados. Assim como na SASMO, os premiados podem ser convidados para a SIMOC, em Singapura.",
     site: "https://olimpiadasinternacionais.org/amo/",
   },
   {
@@ -269,7 +269,12 @@ export const PELA_ESCOLA: [string, string, string][] = [
   ["Canguru de Matemática", "a partir do 3º ano", "Prova em março; inscrições até o meio de março, só pela escola."],
   ["OP Bê-á-bá (Olimpíada de Português)", "1º ao 5º ano", "Duas fases de múltipla escolha no 2º semestre; inscrição só pela escola. Para inscrever a criança sem a escola, use o Torneio Individual (TOP), na lista acima."],
   ["OBMEP Mirim", "2º ao 5º ano", "A versão da OBMEP para os anos iniciais; inscrição pela escola."],
-  ["OBA (Astronomia e Astronáutica)", "do 1º ano ao ensino médio", "Prova em maio; inscrição pela escola."],
+  ["OBA (Astronomia e Astronáutica)", "do 1º ano ao ensino médio", "Prova em maio; inscrição pela escola, gratuita, até o começo de maio. Nível 1: 1º ao 3º ano; nível 2: 4º e 5º ano."],
+  ["OBAFOG (Olimpíada Brasileira de Foguetes, antiga MOBFOG)", "do 1º ano ao ensino médio", "Vem junto com a OBA: quem está inscrito na OBA já está na OBAFOG. No nível 1 (1º ao 3º ano) a criança lança um foguete de canudo; no nível 2 (4º e 5º ano), um foguete de papel. Lançamentos na escola até meados de maio. Para treinar em casa, veja o Foguete de canudo na aba Mão na massa."],
+  ["OBR (Olimpíada Brasileira de Robótica), modalidade teórica", "1º ao 5º ano", "Gratuita e inscrita pelo professor. Nível 0: 1º ano; nível 1: 2º e 3º ano; nível 2: 4º e 5º ano. Inscrições até junho e 1ª fase on-line ou na escola. Não precisa saber robótica: as questões usam situações com robôs para trabalhar lógica, ciências e matemática."],
+  ["OBI (Olimpíada Brasileira de Informática), modalidade Iniciação", "4º e 5º ano", "Nível Júnior, de raciocínio lógico e computacional, sem computador e sem saber programar. Inscrição pela escola, no primeiro semestre."],
+  ["OBEF (Olimpíada Brasileira de Educação Financeira)", "2º ao 5º ano", "Gratuita, organizada pela UFPB. Nível 1: 2º e 3º ano; nível 2: 4º e 5º ano. Só a escola inscreve, em junho; a 1ª fase é on-line, em agosto. Combina com o banco da família e o mercadinho, na aba Mão na massa."],
+  ["Matemática sem Fronteiras", "a partir do 4º ano", "A prova é feita pela turma inteira, em equipe, e não individualmente. Inscrição da classe pela escola, no primeiro semestre."],
 ];
 
 /** Materiais do Atlas para competições específicas. */
