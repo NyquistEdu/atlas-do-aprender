@@ -7,6 +7,7 @@ import { MATERIAS } from "@/lib/data";
 import { url, jsonLd } from "@/lib/seo";
 import Caixote from "@/components/Caixote";
 import Acoes from "./Acoes";
+import { temasDaFicha } from "@/lib/maoNaMassaTemas";
 
 type P = { params: { slug: string } };
 
@@ -35,6 +36,7 @@ export default function Page({ params }: P) {
   const prox = ATIVIDADES[i + 1];
   const est = ESTACOES[x.est];
   const adulto = new Set(x.ad);
+  const temas = temasDaFicha(x.slug);
 
   return (
     <div className="wrap mm-ficha" data-e={x.est}>
@@ -72,6 +74,15 @@ export default function Page({ params }: P) {
           <div className="mm-i-ideia"><dt>Grande ideia</dt><dd>{x.ideia}</dd></div>
         </dl>
       </div>
+
+      {temas.length > 0 && (
+        <div className="mm-trilha">
+          <b>Na trilha:</b>
+          {temas.map((tm) => (
+            <Link key={tm.href} href={tm.href} className={`mm-tema tag ${tm.materia}`}>{tm.rotulo}: {tm.titulo}</Link>
+          ))}
+        </div>
+      )}
 
       <Acoes area={x.a} titulo={x.n} />
 

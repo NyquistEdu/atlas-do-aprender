@@ -10,7 +10,8 @@ import Caixote from "@/components/Caixote";
 export default function Mao({ itens }: { itens: Cartao[] }) {
   const [e, setE] = useState<"all" | Estacao>("all");
   const [y, setY] = useState("all");
-  const xs = itens.filter((x) => (e === "all" || x.est === e) && (y === "all" || +x.y <= +y));
+  const [soTrilha, setSoTrilha] = useState(false);
+  const xs = itens.filter((x) => (e === "all" || x.est === e) && (y === "all" || +x.y <= +y) && (!soTrilha || x.tema));
   const grupos = ORDEM_ESTACOES.map((k) => [k, xs.filter((x) => x.est === k)] as const).filter(([, l]) => l.length);
   return (
     <div className="wrap largo">
@@ -43,6 +44,7 @@ export default function Mao({ itens }: { itens: Cartao[] }) {
           <button key={v} type="button" aria-pressed={y === v} onClick={() => setY(v)}>{l}</button>
         ))}
       </div>
+      <label className="mm-check"><input type="checkbox" checked={soTrilha} onChange={(ev) => setSoTrilha(ev.target.checked)} /> Só as sugeridas nos temas das trilhas</label>
       {e === "all" && y === "all" && <p className="dica">Para começar nesta semana: construa o <Link href="/mao-na-massa/caixote-o-robo-de-caixa">Caixote, o robô de caixa</Link>, ou faça o <Link href="/mao-na-massa/leite-magico">Leite mágico</Link>, que leva 15 minutos.</p>}
 
       {grupos.length ? grupos.map(([k, lista]) => (
@@ -67,6 +69,7 @@ export default function Mao({ itens }: { itens: Cartao[] }) {
                     <span className="tag mm-tag">{x.idade}</span>
                     <span className="tag mm-tag-n">{x.tm}</span>
                     <span className="tag mm-tag-n">{NIVEIS[x.nivel]}</span>
+                    {x.tema && <span className="tag mm-tag-n">na trilha</span>}
                   </div>
                 </div>
               </Link>
