@@ -71,7 +71,9 @@ O Analytics só é carregado depois que a pessoa clica em **Aceitar** no aviso d
 
 | Caminho | O que é |
 |---|---|
-| `data/conteudo.json` | Todo o conteúdo: trilhas, livros, jogos, experimentos e estante de formação |
+| `data/conteudo.json` | Trilhas, livros, jogos e estante de formação |
+| `data/mao-na-massa.json` | As atividades mão na massa, uma ficha por atividade (página em `/mao-na-massa/<slug>`). Para criar uma nova, copie um bloco, troque o `slug` e preencha os campos; `ad` lista os passos feitos pelo adulto |
+| `public/mao-na-massa/<slug>.webp` | Foto de cada atividade (aparece sozinha quando o arquivo existe). Prompts em `ferramentas/mao-na-massa/PROMPTS-FOTOS.md` |
 | `app/trilhas/[materia]/[ano]` | Páginas das trilhas (ex.: `/trilhas/matematica/3-ano`) |
 | `app/livros`, `app/jogos`, `app/mao-na-massa` | Abas de consulta |
 | `app/diario`, `app/entrar` | Diário e login |

@@ -31,7 +31,7 @@ export default async function Inicio() {
     ["/duvidas", "Pergunte à professora", "Mande sua dúvida; eu respondo pessoalmente", "var(--mat)"],
     ["/livros", "Livros", `${livros} indicações, por tema e na estante de Formação`, "var(--jog)"],
     ["/jogos", "Jogos", `${JOGOS.length} jogos comentados, do jogo da memória ao GeoMundo`, "var(--jog)"],
-    ["/mao-na-massa", "Mão na massa", `${EXPERIMENTOS.length} experimentos com material de casa`, "var(--cie)"],
+    ["/mao-na-massa", "Mão na massa", `${EXPERIMENTOS.length} experimentos e invenções com material de casa`, "var(--cie)"],
     ["/diario", "Diário", "Registros e a linha do tempo de cada criança", "var(--mat)"],
     ["/planejamento", "Planejamento gratuito", "Uma conversa por vídeo e um plano feito para a sua criança", "var(--cie)"],
     ["/tematicas", "Temáticas", "Natal: livros, filmes e o calendário do Duende Tico", "var(--jog)"],
