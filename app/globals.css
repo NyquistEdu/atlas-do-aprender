@@ -1028,6 +1028,14 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .mm-mini{border:1.5px solid var(--ink);border-left:6px solid var(--mc);border-radius:12px;padding:10px 12px;display:grid;gap:2px;color:var(--ink);text-decoration:none;background:var(--card)}
 .mm-mini:hover{background:var(--mc-bg)}
 .mm-nav{justify-content:space-between}
+.mm-trilha{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.9rem}
+.mm-tema{text-decoration:none;font-size:.8rem}
+.mm-tema:hover{text-decoration:underline}
+.mm-check{display:flex;gap:8px;align-items:center;font-size:.92rem;cursor:pointer}
+.mm-check input{width:18px;height:18px;accent-color:var(--ink)}
+.res-ficha{color:var(--ink);text-decoration:underline;text-decoration-color:var(--sc);text-decoration-thickness:1.5px;text-underline-offset:3px}
+.res-ficha span{display:inline-block;text-decoration:none;font-size:.8rem;color:var(--sc);font-weight:700;white-space:nowrap;margin-left:2px}
+.res-ficha:hover{background:color-mix(in srgb,var(--sc) 12%,transparent)}
 @media print{
   @page{size:A4;margin:10mm}
   body:has(.mm-ficha){background:#fff!important;background-image:none!important}
@@ -1045,5 +1053,6 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
   .mm-foto.vazia{display:none}
   .mm-alto{grid-template-columns:1fr 1fr}
   .mm-corpo{grid-template-columns:1fr 1.5fr}
+  .mm-trilha{font-size:9pt}
   .mm-alto:has(.vazia) .mm-info{grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr))}
 }

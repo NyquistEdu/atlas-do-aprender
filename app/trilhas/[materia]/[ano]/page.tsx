@@ -10,6 +10,7 @@ import { EMOJI_FASE, ENFEITES, NOME_REGIAO } from "@/lib/fases";
 import { ConviteConta } from "@/components/Acesso";
 import { AmazonLivro } from "@/components/Amazon";
 import { apostilaDoTema, treinoDoTema } from "@/lib/apostilas";
+import { fichaDoItem } from "@/lib/maoNaMassaTemas";
 import { jogosDoTema } from "@/lib/loja";
 import { url, jsonLd } from "@/lib/seo";
 
@@ -116,7 +117,10 @@ export default function Trilha({ params }: P) {
                     return itens.length ? (
                       <details key={k as string} className="res-item">
                         <summary><i aria-hidden="true">{ICONE_CAT[k as string]}</i><b>{nome}</b><span className="res-n">{itens.length}</span></summary>
-                        <ul>{itens.map((x) => <li key={x}>{x}</li>)}</ul>
+                        <ul>{itens.map((x) => {
+                          const f = k === "p" ? fichaDoItem(x) : undefined;
+                          return <li key={x}>{f ? <Link className="res-ficha" href={`/mao-na-massa/${f}`}>{x} <span>ver a ficha →</span></Link> : x}</li>;
+                        })}</ul>
                       </details>
                     ) : null;
                   })}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Mao from "./Mao";
 import { temFoto } from "@/lib/fotosMaoNaMassa";
 import { ATIVIDADES, numero } from "@/lib/maoNaMassa";
+import { temasDaFicha } from "@/lib/maoNaMassaTemas";
 
 export const metadata: Metadata = {
   title: "Experimentos, invenções e atividades mão na massa para crianças",
@@ -10,6 +11,6 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const itens = ATIVIDADES.map((x) => ({ slug: x.slug, n: x.n, sub: x.sub, est: x.est, y: x.y, idade: x.idade, tm: x.tm, nivel: x.nivel, a: x.a, num: numero(x), foto: temFoto(x.slug) }));
+  const itens = ATIVIDADES.map((x) => ({ slug: x.slug, n: x.n, sub: x.sub, est: x.est, y: x.y, idade: x.idade, tm: x.tm, nivel: x.nivel, a: x.a, num: numero(x), foto: temFoto(x.slug), tema: temasDaFicha(x.slug).length > 0 }));
   return <Mao itens={itens} />;
 }

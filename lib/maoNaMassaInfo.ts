@@ -17,4 +17,4 @@ export const NIVEIS: Record<1 | 2 | 3, string> = { 1: "Primeiros passos", 2: "MÃ
 export const caminhoFoto = (slug: string) => `/mao-na-massa/${slug}.webp`;
 
 /** O que a lista precisa de cada atividade. */
-export type Cartao = { slug: string; n: string; sub: string; est: Estacao; y: string; idade: string; tm: string; nivel: 1 | 2 | 3; num: string; foto: boolean; a: Materia };
+export type Cartao = { slug: string; n: string; sub: string; est: Estacao; y: string; idade: string; tm: string; nivel: 1 | 2 | 3; num: string; foto: boolean; a: Materia; tema: boolean };
