@@ -10,7 +10,7 @@ import { EMOJI_FASE, ENFEITES, NOME_REGIAO } from "@/lib/fases";
 import { ConviteConta } from "@/components/Acesso";
 import { AmazonLivro } from "@/components/Amazon";
 import { apostilaDoTema, treinoDoTema } from "@/lib/apostilas";
-import { fichaDoItem } from "@/lib/maoNaMassaTemas";
+import { fichaDoItem, fichasDoTema } from "@/lib/maoNaMassaTemas";
 import { jogosDoTema } from "@/lib/loja";
 import { url, jsonLd } from "@/lib/seo";
 
@@ -114,13 +114,16 @@ export default function Trilha({ params }: P) {
                 <div className="res res-fechado">
                   {CATEGORIAS.map(([k, nome]) => {
                     const itens = ((th[k] as string[] | undefined) || []).filter((x) => x && x !== "—");
-                    return itens.length ? (
+                    const ligadas = new Set(itens.map((x) => fichaDoItem(x)));
+                    const extras = k === "p" ? fichasDoTema(s, y, i).filter((f) => !ligadas.has(f.slug)) : [];
+                    return itens.length || extras.length ? (
                       <details key={k as string} className="res-item">
-                        <summary><i aria-hidden="true">{ICONE_CAT[k as string]}</i><b>{nome}</b><span className="res-n">{itens.length}</span></summary>
+                        <summary><i aria-hidden="true">{ICONE_CAT[k as string]}</i><b>{nome}</b><span className="res-n">{itens.length + extras.length}</span></summary>
                         <ul>{itens.map((x) => {
                           const f = k === "p" ? fichaDoItem(x) : undefined;
                           return <li key={x}>{f ? <Link className="res-ficha" href={`/mao-na-massa/${f}`}>{x} <span>ver a ficha →</span></Link> : x}</li>;
-                        })}</ul>
+                        })}
+                        {extras.map((f) => <li key={f.slug}><Link className="res-ficha" href={`/mao-na-massa/${f.slug}`}>{f.n} <span>ver a ficha →</span></Link></li>)}</ul>
                       </details>
                     ) : null;
                   })}

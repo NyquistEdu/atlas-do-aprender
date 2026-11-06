@@ -37,7 +37,12 @@
   "turbine": "Dê cotovelos ao Caixote: corte cada braço em duas partes e una com mais um colchete. Quantas posições diferentes ele consegue fazer agora?",
   "seg": "Só o adulto fura o papelão, com a ponta de um lápis sobre massinha. Colchetes e tampinhas são pequenos: longe de crianças menores de 3 anos.",
   "dica": "Eu também comecei como uma caixa esquecida no canto. Toda invenção começa assim!",
-  "foto": "robô feito de caixa de cereal com cabeça de caixa de creme dental, olhos de tampinha, antena de canudo e braços de papelão presos com colchetes, sobre mesa de madeira"
+  "foto": "robô feito de caixa de cereal com cabeça de caixa de creme dental, olhos de tampinha, antena de canudo e braços de papelão presos com colchetes, sobre mesa de madeira",
+  "temas": [
+   "mat2-5",
+   "cie5-5",
+   "cie1-1"
+  ]
  },
  {
   "slug": "robo-que-acena",
@@ -78,7 +83,10 @@
   "turbine": "Faça um novo furo de ombro a 2 cm da ponta. O tchau ficou maior ou menor? Depois tente fazer os dois braços acenarem com uma alavanca só.",
   "seg": "Só o adulto fura, sempre sobre a massinha, nunca segurando o papelão na mão. Colchetes são pequenos e pontudos: longe de crianças menores de 3 anos.",
   "dica": "Se o braço ficar duro, afrouxe um pouquinho as perninhas do colchete. Eixo bom gira solto!",
-  "foto": "robô de caixa de creme dental com braço de papelão levantado acenando, mão de criança segurando uma tira de papelão embaixo, mesa de madeira"
+  "foto": "robô de caixa de creme dental com braço de papelão levantado acenando, mão de criança segurando uma tira de papelão embaixo, mesa de madeira",
+  "temas": [
+   "mat3-3"
+  ]
  },
  {
   "slug": "foguete-de-canudo",
@@ -115,7 +123,10 @@
   "turbine": "Faça foguetes de tamanhos diferentes: curto, médio e comprido. Qual vai mais longe? Lance de ângulos diferentes: reto, inclinado, quase para cima.",
   "seg": "Nunca mire o foguete no rosto de ninguém nem em animais.",
   "dica": "Tubo bem fechado no bico. Se o ar escapar pela frente, o foguete fica com preguiça!",
-  "foto": "criança soprando um canudo com um foguetinho de papel colorido com aletas voando pela sala"
+  "foto": "criança soprando um canudo com um foguetinho de papel colorido com aletas voando pela sala",
+  "temas": [
+   "cie3-3"
+  ]
  },
  {
   "slug": "piao-de-tampinha",
@@ -153,7 +164,8 @@
   "turbine": "Pinte metade do círculo de azul e metade de amarelo. Que cor aparece girando? Depois coloque o palito fora do centro. O que acontece?",
   "seg": "Tampinhas e massinha são pequenas: longe de crianças menores de 3 anos. O adulto fura com prego e martelo, sobre uma tábua.",
   "dica": "Furo bem no centrinho! Um milímetro torto e o pião bambeia.",
-  "foto": "três piões de tampinha coloridos girando numa mesa de madeira, com espirais pintadas que parecem borradas pelo movimento"
+  "foto": "três piões de tampinha coloridos girando numa mesa de madeira, com espirais pintadas que parecem borradas pelo movimento",
+  "temas": []
  },
  {
   "slug": "carrinho-de-tampinhas",
@@ -193,7 +205,11 @@
   "turbine": "Troque as rodas por tampinhas maiores, ou por CDs velhos. Mude a altura da rampa. Faça uma tabela: o que mais aumentou a distância?",
   "seg": "O adulto fura as tampinhas com prego e martelo, sobre uma tábua. Corte as pontas dos palitos de churrasco antes de montar.",
   "dica": "Roda torta faz o carrinho dançar. Fure bem no centro da tampinha!",
-  "foto": "carrinho feito de caixa de leite com rodas de tampinhas coloridas descendo uma rampa de tábua no chão da sala"
+  "foto": "carrinho feito de caixa de leite com rodas de tampinhas coloridas descendo uma rampa de tábua no chão da sala",
+  "temas": [
+   "mat3-3",
+   "cie5-5"
+  ]
  },
  {
   "slug": "catapulta-de-palitos",
@@ -230,7 +246,11 @@
   "turbine": "Mude a pilha do meio para mais perto ou mais longe da ponta presa. Coloque alvos a 1, 2 e 3 metros e marque os pontos de cada lançamento.",
   "seg": "Lance só pompons ou bolinhas de papel. Nunca mire em pessoas, animais ou janelas.",
   "dica": "Elásticos bem apertados! Catapulta frouxa joga o pompom para trás.",
-  "foto": "catapulta de palitos de picolé com tampinha na ponta lançando um pompom colorido em direção a copos de plástico empilhados"
+  "foto": "catapulta de palitos de picolé com tampinha na ponta lançando um pompom colorido em direção a copos de plástico empilhados",
+  "temas": [
+   "mat3-3",
+   "cie5-4"
+  ]
  },
  {
   "slug": "paraquedas-de-guardanapo",
@@ -266,7 +286,11 @@
   "turbine": "Faça um furinho no meio do paraquedas. Ele fica mais lento, mais rápido ou cai mais reto? Teste também paraquedas de materiais diferentes.",
   "seg": "Solte só de lugares seguros, como uma escada com o adulto do lado ou uma janela com grade. Nunca se debruce em janela ou sacada.",
   "dica": "Dobre o paraquedas com cuidado antes de soltar. Barbante enroscado não deixa ele abrir!",
-  "foto": "paraquedas de guardanapo colorido aberto descendo devagar com um bonequinho pendurado, criança olhando de baixo num quintal"
+  "foto": "paraquedas de guardanapo colorido aberto descendo devagar com um bonequinho pendurado, criança olhando de baixo num quintal",
+  "temas": [
+   "cie3-3",
+   "mat3-4"
+  ]
  },
  {
   "slug": "labirinto-de-bolinha",
@@ -302,7 +326,8 @@
   "turbine": "Faça um labirinto mais difícil para alguém da família resolver. Ou crie uma regra: chegar sem encostar em nenhuma parede.",
   "seg": "Bolinha de gude é pequena: longe de crianças menores de 3 anos. Para os pequenos, use bolinha de papel alumínio grande.",
   "dica": "Caminho largo no começo, estreito no fim. Assim o desafio cresce aos poucos!",
-  "foto": "tampa de caixa de sapato com labirinto de canudos coloridos colados e uma bolinha de gude no caminho, mãos de criança inclinando a tampa"
+  "foto": "tampa de caixa de sapato com labirinto de canudos coloridos colados e uma bolinha de gude no caminho, mãos de criança inclinando a tampa",
+  "temas": []
  },
  {
   "slug": "ponte-de-papel",
@@ -338,7 +363,10 @@
   "turbine": "Monte a ponte mais forte possível usando só 2 folhas e 30 cm de fita. Quantas moedas ela aguenta?",
   "seg": "Moedas são pequenas: longe de crianças menores de 3 anos.",
   "dica": "Coloque as moedas com calma, uma de cada vez, sempre no centro do copo.",
-  "foto": "folha de papel dobrada em sanfona entre duas pilhas de livros segurando um copinho cheio de moedas"
+  "foto": "folha de papel dobrada em sanfona entre duas pilhas de livros segurando um copinho cheio de moedas",
+  "temas": [
+   "cie1-3"
+  ]
  },
  {
   "slug": "balanca-de-cabide",
@@ -375,7 +403,11 @@
   "turbine": "Pese a mesma coisa com tampinhas em vez de clipes. O número mudou? Por que é importante combinar uma unidade de medida que todo mundo usa?",
   "seg": "Clipes e tampinhas são pequenos: longe de crianças menores de 3 anos. Pendure o cabide em lugar firme, na altura da criança.",
   "dica": "Espere o cabide parar de balançar antes de anotar. Balança apressada mente!",
-  "foto": "cabide pendurado numa maçaneta com dois copinhos de plástico, uma borracha num e vários clipes no outro, equilibrados"
+  "foto": "cabide pendurado numa maçaneta com dois copinhos de plástico, uma borracha num e vários clipes no outro, equilibrados",
+  "temas": [
+   "mat3-3",
+   "mat1-2"
+  ]
  },
  {
   "slug": "carrinho-a-balao",
@@ -414,7 +446,11 @@
   "turbine": "Prenda dois balões. Ou use um canudo mais fino e um mais grosso. O que faz o carrinho ir mais longe? Desenhe o carrinho campeão.",
   "seg": "O adulto enche o balão se a criança for pequena. Balão murcho ou estourado é risco de sufocação para menores de 8 anos: recolha os pedaços.",
   "dica": "Chão liso ajuda muito. No tapete, até o motor mais forte cansa!",
-  "foto": "carrinho de caixa de leite com balão cheio preso num canudo apontado para trás, andando pelo piso de cerâmica"
+  "foto": "carrinho de caixa de leite com balão cheio preso num canudo apontado para trás, andando pelo piso de cerâmica",
+  "temas": [
+   "cie3-3",
+   "mat3-3"
+  ]
  },
  {
   "slug": "guindaste-de-manivela",
@@ -455,7 +491,8 @@
   "turbine": "Enrole fita no lápis para ele ficar mais grosso. A cesta sobe mais rápido ou mais devagar? Ficou mais fácil ou mais difícil de girar? Qual o peso máximo que o guindaste aguenta?",
   "seg": "O adulto fura a caixa com a ponta da tesoura ou com um prego. Não fique com o rosto embaixo da carga.",
   "dica": "Se o lápis escorregar sem enrolar o barbante, prenda a ponta do barbante nele com um pedaço de fita.",
-  "foto": "guindaste de brinquedo feito com caixa de leite, braço de papelão, lápis como manivela e barbante levantando um copinho com tampinhas dentro"
+  "foto": "guindaste de brinquedo feito com caixa de leite, braço de papelão, lápis como manivela e barbante levantando um copinho com tampinhas dentro",
+  "temas": []
  },
  {
   "slug": "braco-sanfona-que-estica",
@@ -494,7 +531,10 @@
   "turbine": "Acrescente mais 2 X. O braço estica mais? Ficou mais difícil de controlar? Qual é o objeto mais longe que você consegue pegar?",
   "seg": "Só o adulto fura, sempre sobre a massinha. Não aponte o braço para o rosto de ninguém.",
   "dica": "Colchete muito apertado trava tudo. Deixe cada um com uma folguinha para girar.",
-  "foto": "braço extensível de tiras de papelão em zigue-zague presas com colchetes, com prendedores de roupa na ponta pegando um carrinho de brinquedo"
+  "foto": "braço extensível de tiras de papelão em zigue-zague presas com colchetes, com prendedores de roupa na ponta pegando um carrinho de brinquedo",
+  "temas": [
+   "mat4-5"
+  ]
  },
  {
   "slug": "mao-robotica-de-papelao",
@@ -533,7 +573,11 @@
   "turbine": "Tente pegar um copo de plástico com a mão robótica. O que você precisa mudar para ela segurar firme? Que tal colar fita dupla face nas pontas dos dedos?",
   "seg": "O papelão grosso é difícil de cortar: o adulto recorta. Use tesoura sem ponta para os pedacinhos de canudo.",
   "dica": "Vinque bem as dobras antes de colar os canudos. Dedo duro não quer dobrar!",
-  "foto": "mão de papelão recortada com pedacinhos de canudo colados nos dedos e barbantes saindo pelo pulso, dois dedos dobrados enquanto uma criança puxa os fios"
+  "foto": "mão de papelão recortada com pedacinhos de canudo colados nos dedos e barbantes saindo pelo pulso, dois dedos dobrados enquanto uma criança puxa os fios",
+  "temas": [
+   "cie5-1",
+   "cie1-1"
+  ]
  },
  {
   "slug": "hovercraft-de-cd",
@@ -571,7 +615,10 @@
   "turbine": "Teste em superfícies diferentes: mesa, piso, tapete, papel. Onde o hovercraft desliza melhor? Use balões de tamanhos diferentes e cronometre quanto tempo ele flutua.",
   "seg": "Cola quente queima: só o adulto usa. Balão murcho ou estourado é risco de sufocação para menores de 8 anos.",
   "dica": "Superfície bem lisa é tudo. Numa mesa de vidro, o hovercraft parece mágica!",
-  "foto": "CD com balão cheio encaixado numa tampa de garrafa esportiva deslizando sobre uma mesa lisa"
+  "foto": "CD com balão cheio encaixado numa tampa de garrafa esportiva deslizando sobre uma mesa lisa",
+  "temas": [
+   "cie3-3"
+  ]
  },
  {
   "slug": "barco-de-elastico",
@@ -610,7 +657,10 @@
   "turbine": "Gire a pá 10, 20 e 30 vezes e meça quanto o barco anda em cada vez. Gire ao contrário. E se a pá for maior?",
   "seg": "Criança perto de água sempre com um adulto, mesmo na bacia ou na banheira. O adulto corta a caixa.",
   "dica": "Pá larga demais raspa no barco. Deixe ela girar livre entre os palitos!",
-  "foto": "barquinho de caixa de leite com pá de plástico presa num elástico entre dois palitos de picolé, navegando numa bacia de água"
+  "foto": "barquinho de caixa de leite com pá de plástico presa num elástico entre dois palitos de picolé, navegando numa bacia de água",
+  "temas": [
+   "cie5-4"
+  ]
  },
  {
   "slug": "torre-de-jornal",
@@ -646,7 +696,12 @@
   "turbine": "Desafio da família: quem faz a torre mais alta com só 10 folhas? Faça também uma ponte de jornal entre duas cadeiras.",
   "seg": "A tinta do jornal suja as mãos: lave depois. Não suba em móveis para construir a torre.",
   "dica": "Canudo bem apertadinho fica muito mais forte. Enrole devagar e com força!",
-  "foto": "torre alta feita de canudos de jornal enrolado presos com fita crepe formando triângulos, com um livro fino equilibrado no topo"
+  "foto": "torre alta feita de canudos de jornal enrolado presos com fita crepe formando triângulos, com um livro fino equilibrado no topo",
+  "temas": [
+   "mat1-4",
+   "mat3-3",
+   "cie5-5"
+  ]
  },
  {
   "slug": "roda-dagua",
@@ -686,7 +741,10 @@
   "turbine": "Amarre um barbante no palito com uma tampinha na ponta. Consegue fazer a roda levantar a tampinha só com a água? Teste derramando de alturas diferentes.",
   "seg": "Faça na área externa ou dentro da bacia. O adulto usa o estilete para recortar o isopor. Enxugue o chão para ninguém escorregar.",
   "dica": "Pás todas do mesmo tamanho e bem espalhadas. Roda desequilibrada gira aos trancos!",
-  "foto": "roda d'água feita de bandeja de isopor branca com pás, apoiada em dois copos dentro de uma bacia, água caindo de uma jarra sobre as pás"
+  "foto": "roda d'água feita de bandeja de isopor branca com pás, apoiada em dois copos dentro de uma bacia, água caindo de uma jarra sobre as pás",
+  "temas": [
+   "cie5-4"
+  ]
  },
  {
   "slug": "elevador-hidraulico-de-seringas",
@@ -725,7 +783,10 @@
   "turbine": "Troque uma das seringas por uma de 10 ml. Fica mais fácil ou mais difícil de empurrar? A plataforma sobe mais ou menos? Depois tente o mesmo só com ar, sem água.",
   "seg": "Use só seringas SEM agulha, novas e compradas para isso. Não aponte a seringa para o rosto de ninguém. Forre a mesa: pode vazar água colorida.",
   "dica": "Bolha de ar deixa o elevador mole. Encha a mangueira com calma, com a ponta virada para cima.",
-  "foto": "duas seringas ligadas por mangueirinha com água azul, uma presa em pé numa caixa de sapato com plataforma de papelão em cima levantando um bonequinho"
+  "foto": "duas seringas ligadas por mangueirinha com água azul, uma presa em pé numa caixa de sapato com plataforma de papelão em cima levantando um bonequinho",
+  "temas": [
+   "cie3-3"
+  ]
  },
  {
   "slug": "periscopio-de-caixa",
@@ -765,7 +826,11 @@
   "turbine": "Dá para fazer um periscópio que vê para trás ou que dobra uma esquina? Desenhe o caminho da luz com setas antes de montar.",
   "seg": "Use espelhos de plástico ou acrílico, nunca de vidro. Estilete só com o adulto. Nunca aponte o periscópio para o Sol.",
   "dica": "Os dois espelhos ficam paralelos, inclinados como as pontas de um Z. Se só vê a parede, ajuste a inclinação!",
-  "foto": "criança agachada atrás do sofá espiando por um periscópio feito com caixas de leite decoradas com papel colorido"
+  "foto": "criança agachada atrás do sofá espiando por um periscópio feito com caixas de leite decoradas com papel colorido",
+  "temas": [
+   "cie2-3",
+   "mat4-5"
+  ]
  },
  {
   "slug": "brinquedo-de-sucata",
@@ -801,7 +866,11 @@
   "turbine": "Faça um brinquedo que se mexa sozinho (com elástico, balão ou gravidade). Ou organize uma feira de brinquedos de sucata com a família.",
   "seg": "Use só embalagens limpas, nada de produtos de limpeza ou remédios. Latas só sem rebarba. Cortes difíceis com o adulto.",
   "dica": "Toda boa invenção tem um desenho antes. Projeto no papel economiza fita!",
-  "foto": "brinquedo colorido feito de garrafas pet, tampinhas e caixas sobre uma mesa, desenho do projeto ao lado"
+  "foto": "brinquedo colorido feito de garrafas pet, tampinhas e caixas sobre uma mesa, desenho do projeto ao lado",
+  "temas": [
+   "cie5-5",
+   "cie1-3"
+  ]
  },
  {
   "slug": "leite-magico",
@@ -838,7 +907,11 @@
   "seg": "Depois do detergente, o leite não é para beber: jogue fora.",
   "dica": "Leite integral funciona muito melhor. Quanto mais gordura, mais dança!",
   "foto": "prato fundo com leite e redemoinhos de corante colorido, mão de criança encostando um cotonete no centro",
-  "naocoma": true
+  "naocoma": true,
+  "temas": [
+   "cie4-3",
+   "cie1-2"
+  ]
  },
  {
   "slug": "flutua-ou-afunda",
@@ -873,7 +946,10 @@
   "turbine": "Pegue a massinha que afundou e transforme ela num barquinho. Ela flutua agora? Quantas moedas o barquinho aguenta?",
   "seg": "Criança perto de água sempre com um adulto, mesmo numa bacia. Moedas e peças pequenas longe de crianças menores de 3 anos.",
   "dica": "Errou um palpite? Ótimo! Cientista aprende mais com o palpite errado.",
-  "foto": "bacia de água com rolha, tampinha e folha boiando e moeda no fundo, tabela de palpites desenhada por criança ao lado"
+  "foto": "bacia de água com rolha, tampinha e folha boiando e moeda no fundo, tabela de palpites desenhada por criança ao lado",
+  "temas": [
+   "cie1-3"
+  ]
  },
  {
   "slug": "desenho-do-corpo-em-tamanho-real",
@@ -908,7 +984,11 @@
   "turbine": "Desenhe os ossos ou o caminho da comida no corpo. Ou faça o contorno de um adulto e compare os tamanhos.",
   "seg": "Respeite se a criança não quiser ser contornada: dá para usar um boneco.",
   "dica": "Coloque a mão no peito e sinta o coração. É ali que ele vai no desenho!",
-  "foto": "criança deitada sobre papel pardo no chão enquanto um adulto contorna o corpo com giz de cera"
+  "foto": "criança deitada sobre papel pardo no chão enquanto um adulto contorna o corpo com giz de cera",
+  "temas": [
+   "cie1-1",
+   "mat3-3"
+  ]
  },
  {
   "slug": "passeio-dos-sentidos",
@@ -942,7 +1022,11 @@
   "turbine": "Faça um mapa sonoro: desenhe você no meio e cada som na direção de onde veio.",
   "seg": "Não coloque na boca nada do quintal. O provar é só em casa, com fruta lavada. Não toque em plantas desconhecidas nem coloque a mão em buracos.",
   "dica": "De olhos fechados, conte os sons nos dedos. Aposto que passa de 5!",
-  "foto": "criança de olhos fechados num quintal com a mão na orelha, prancheta com tabela dos sentidos no colo"
+  "foto": "criança de olhos fechados num quintal com a mão na orelha, prancheta com tabela dos sentidos no colo",
+  "temas": [
+   "cie1-1",
+   "cie2-1"
+  ]
  },
  {
   "slug": "pimenta-e-sabao",
@@ -977,7 +1061,11 @@
   "turbine": "Teste outros líquidos no dedo: óleo, álcool em gel, shampoo. Qual afasta mais a pimenta?",
   "seg": "Pimenta arde nos olhos: não coce o rosto. Lave as mãos no final.",
   "dica": "Prato bem parado antes de encostar. Água mexida estraga a mágica!",
-  "foto": "prato branco com água e pimenta-do-reino espalhada fugindo para as bordas ao redor de um dedo encostado no centro"
+  "foto": "prato branco com água e pimenta-do-reino espalhada fugindo para as bordas ao redor de um dedo encostado no centro",
+  "temas": [
+   "cie1-2",
+   "cie4-2"
+  ]
  },
  {
   "slug": "tinta-reveladora-de-placa",
@@ -1014,7 +1102,11 @@
   "turbine": "Repita depois de uma semana caprichando na escovação. O desenho ficou com menos partes pintadas?",
   "seg": "Use só revelador de farmácia, seguindo a idade e o modo de uso da embalagem. Não engula. A cor pode manchar roupa e pia.",
   "dica": "Os cantinhos perto da gengiva e os dentes do fundo são os campeões de placa!",
-  "foto": "criança sorrindo no espelho do banheiro com alguns dentes tingidos de rosa pelo revelador de placa, escova na mão"
+  "foto": "criança sorrindo no espelho do banheiro com alguns dentes tingidos de rosa pelo revelador de placa, escova na mão",
+  "temas": [
+   "cie1-2",
+   "cie4-2"
+  ]
  },
  {
   "slug": "caca-ao-metal-com-ima",
@@ -1048,7 +1140,11 @@
   "turbine": "Coloque um clipe num copo de água e tire usando o ímã por fora do copo. O ímã atravessa o vidro? E o papel?",
   "seg": "Ímãs pequenos são perigosos se engolidos: use ímã grande. Mantenha ímãs longe de celulares, cartões e aparelhos eletrônicos.",
   "dica": "Panela que gruda no ímã serve para fogão de indução. Descubra quais da sua casa servem!",
-  "foto": "mão de criança segurando um ímã grande com clipes pendurados, objetos de metal e plástico separados em duas colunas na mesa"
+  "foto": "mão de criança segurando um ímã grande com clipes pendurados, objetos de metal e plástico separados em duas colunas na mesa",
+  "temas": [
+   "cie1-3",
+   "cie5-4"
+  ]
  },
  {
   "slug": "lanterna-e-bola-dia-e-noite",
@@ -1083,7 +1179,12 @@
   "turbine": "Cole um segundo adesivo do outro lado da bola, no Japão. Quando é dia na sua casa, como está lá?",
   "seg": "Não aponte a lanterna para os olhos de ninguém.",
   "dica": "Gire devagarinho, como a Terra de verdade. Uma volta é um dia inteiro!",
-  "foto": "quarto escuro com lanterna iluminando metade de uma bola com um adesivo colado, criança girando a bola"
+  "foto": "quarto escuro com lanterna iluminando metade de uma bola com um adesivo colado, criança girando a bola",
+  "temas": [
+   "cie1-4",
+   "cie2-3",
+   "cie4-4"
+  ]
  },
  {
   "slug": "observar-a-lua-da-janela",
@@ -1117,7 +1218,11 @@
   "turbine": "Anote também onde a Lua estava no céu (perto de qual prédio ou árvore). Ela aparece sempre no mesmo lugar?",
   "seg": "Observe da janela ou do quintal, sem subir em lugares altos.",
   "dica": "Não achou a Lua de noite? Às vezes ela aparece de dia! Procure de manhã também.",
-  "foto": "folha com sequência de círculos desenhados mostrando fases da lua pintadas em amarelo, janela com lua crescente ao fundo"
+  "foto": "folha com sequência de círculos desenhados mostrando fases da lua pintadas em amarelo, janela com lua crescente ao fundo",
+  "temas": [
+   "cie1-4",
+   "cie3-4"
+  ]
  },
  {
   "slug": "flor-que-muda-de-cor",
@@ -1155,7 +1260,10 @@
   "turbine": "Peça a um adulto para cortar o caule de uma flor ao meio no comprimento, de baixo até quase a flor. Coloque cada metade em um copo de cor diferente. Que cor a flor fica?",
   "seg": "Só o adulto usa a tesoura no caule. Corante mancha roupa e mesa: forre com jornal.",
   "dica": "Corte o caule logo antes de colocar na água. Caule cortado há muito tempo entope e a cor demora a subir.",
-  "foto": "três cravos brancos em copos transparentes com água azul, vermelha e amarela, pétalas já tingidas nas pontas, desenhos de criança ao lado"
+  "foto": "três cravos brancos em copos transparentes com água azul, vermelha e amarela, pétalas já tingidas nas pontas, desenhos de criança ao lado",
+  "temas": [
+   "cie2-2"
+  ]
  },
  {
   "slug": "feijao-no-algodao",
@@ -1192,7 +1300,12 @@
   "turbine": "Faça um terceiro copo e deite ele de lado. Para onde a raiz e o caule crescem? Depois transforme a tabela em gráfico de barras.",
   "seg": "Feijão cru não é para comer. Lave as mãos depois de mexer no algodão.",
   "dica": "Algodão encharcado apodrece o feijão. Úmido como uma esponja torcida é o ponto certo.",
-  "foto": "dois copos transparentes com algodão e feijões germinando, um com brotos verdes e outro com brotos longos e amarelados, régua ao lado"
+  "foto": "dois copos transparentes com algodão e feijões germinando, um com brotos verdes e outro com brotos longos e amarelados, régua ao lado",
+  "temas": [
+   "cie2-2",
+   "mat3-3",
+   "mat3-4"
+  ]
  },
  {
   "slug": "herbario-de-flores-prensadas",
@@ -1229,7 +1342,11 @@
   "turbine": "Organize o herbário por grupos que você inventar: por cor, por formato da folha ou por lugar onde achou. Qual jeito ficou melhor?",
   "seg": "Não colha plantas que você não conhece e que soltam leite ou seiva: algumas irritam a pele. Lave as mãos depois.",
   "dica": "Flores finas secam melhor. Flor muito grossa, como rosa fechada, demora e pode mofar.",
-  "foto": "página de caderno com flores e folhas prensadas coladas com fita, etiquetas escritas à mão por criança, livros empilhados ao fundo"
+  "foto": "página de caderno com flores e folhas prensadas coladas com fita, etiquetas escritas à mão por criança, livros empilhados ao fundo",
+  "temas": [
+   "cie2-2",
+   "mat1-2"
+  ]
  },
  {
   "slug": "safari-no-quintal",
@@ -1264,7 +1381,11 @@
   "turbine": "Faça o mesmo safári num lugar ensolarado e num lugar com sombra. Os moradores são os mesmos?",
   "seg": "Observe sem tocar. Nunca vire pedras, tijolos ou entulho com a mão nem coloque a mão em buracos: escorpiões e aranhas se escondem ali. Não mexa em formigueiros nem em lagartas peludas.",
   "dica": "Fique bem paradinho. Os bichos aparecem quando acham que você foi embora!",
-  "foto": "criança agachada com lupa olhando de perto a grama dentro de um quadrado marcado por barbante e palitos"
+  "foto": "criança agachada com lupa olhando de perto a grama dentro de um quadrado marcado por barbante e palitos",
+  "temas": [
+   "cie2-1",
+   "cie2-4"
+  ]
  },
  {
   "slug": "hotel-de-insetos",
@@ -1302,7 +1423,12 @@
   "turbine": "Faça um desenho por semana do hotel e dos hóspedes. Depois de um mês, pesquise o nome dos que você viu.",
   "seg": "Observe sem mexer e sem colocar o dedo nos buracos. Se aparecerem vespas ou abelhas, não chegue perto: chame um adulto. Pendure longe de passagem e de portas.",
   "dica": "Recheio bem apertado! Hotel frouxo desmonta no primeiro vento.",
-  "foto": "hotel de insetos feito de garrafa pet recheada com galhos, pinhas e canudos de bambu pendurado num galho de árvore no quintal"
+  "foto": "hotel de insetos feito de garrafa pet recheada com galhos, pinhas e canudos de bambu pendurado num galho de árvore no quintal",
+  "temas": [
+   "cie2-1",
+   "cie2-4",
+   "cie5-5"
+  ]
  },
  {
   "slug": "teatro-de-sombras",
@@ -1338,7 +1464,11 @@
   "turbine": "Faça um personagem com papel celofane colorido no lugar dos olhos. O que aparece na sombra? E se usar duas lanternas?",
   "seg": "Não aponte a lanterna para os olhos. Corte as pontas dos palitos.",
   "dica": "Para fazer o vilão gigante, chegue o boneco pertinho da lanterna. Funciona sempre!",
-  "foto": "sombras de bonecos de papel recortados projetadas num lençol branco iluminado por lanterna, crianças segurando os palitos"
+  "foto": "sombras de bonecos de papel recortados projetadas num lençol branco iluminado por lanterna, crianças segurando os palitos",
+  "temas": [
+   "cie2-3",
+   "por2-3"
+  ]
  },
  {
   "slug": "visita-ao-zoologico-com-ficha",
@@ -1372,7 +1502,11 @@
   "turbine": "Escolha um animal e faça uma pesquisa: onde vive na natureza, o que come, se está em risco de extinção.",
   "seg": "Respeite as placas e as grades, não alimente os animais e não bata nos vidros. Protetor solar e água.",
   "dica": "Fique pelo menos 5 minutos com cada animal. Muita coisa só aparece com paciência!",
-  "foto": "criança com prancheta e ficha de observação desenhando uma girafa num zoológico, adulto ao lado"
+  "foto": "criança com prancheta e ficha de observação desenhando uma girafa num zoológico, adulto ao lado",
+  "temas": [
+   "cie2-4",
+   "cie2-1"
+  ]
  },
  {
   "slug": "vulcao-de-bicarbonato",
@@ -1411,7 +1545,10 @@
   "seg": "Faça ao ar livre ou dentro da bacia. Vinagre arde nos olhos: não fique com o rosto em cima da garrafa. Nada do vulcão é para comer.",
   "dica": "Despeje o vinagre rápido, de uma vez só. Aos pouquinhos, a espuma sai fraca.",
   "foto": "vulcão de massinha marrom numa bandeja com espuma vermelha escorrendo, criança sorrindo ao fundo",
-  "naocoma": true
+  "naocoma": true,
+  "temas": [
+   "cie4-3"
+  ]
  },
  {
   "slug": "ovo-que-flutua",
@@ -1446,7 +1583,11 @@
   "turbine": "Encha meio copo com água bem salgada e, por cima, despeje devagar água comum com uma colher. Coloque o ovo: ele para no meio!",
   "seg": "Ovo cru pode ter bactérias: lave as mãos depois de pegar nele e não coma o ovo usado.",
   "dica": "Mexa bem até o sal sumir. Sal parado no fundo não ajuda o ovo a subir.",
-  "foto": "dois copos de água lado a lado, ovo no fundo de um e boiando no outro, colher e pote de sal na mesa"
+  "foto": "dois copos de água lado a lado, ovo no fundo de um e boiando no outro, colher e pote de sal na mesa",
+  "temas": [
+   "cie4-3",
+   "cie1-3"
+  ]
  },
  {
   "slug": "telefone-de-lata",
@@ -1483,7 +1624,10 @@
   "turbine": "Troque o barbante por linha de pesca ou por fio de lã. Qual leva melhor a voz? E se o fio passar encostado numa cadeira?",
   "seg": "Se usar lata, o adulto confere se a borda não corta e passa fita. Só o adulto fura o fundo.",
   "dica": "Fio bem esticado e sem encostar em nada. É o segredo da ligação sem chiado!",
-  "foto": "duas crianças em lados opostos de um quintal segurando copos de papel ligados por um barbante esticado, uma falando e a outra ouvindo"
+  "foto": "duas crianças em lados opostos de um quintal segurando copos de papel ligados por um barbante esticado, uma falando e a outra ouvindo",
+  "temas": [
+   "cie3-2"
+  ]
  },
  {
   "slug": "xilofone-de-copos",
@@ -1519,7 +1663,10 @@
   "turbine": "Agora sopre pela boca de garrafas com água em vez de bater. A ordem do grave ao agudo fica igual ou ao contrário? Por quê?",
   "seg": "Bata de leve: vidro pode trincar. Se trincar, o adulto recolhe. Para os pequenos, use garrafas de plástico.",
   "dica": "Ajuste a água com colherada a colherada. Um pouquinho muda a nota!",
-  "foto": "fila de copos de vidro com água colorida em alturas diferentes, como um arco-íris, colher batendo de leve num deles"
+  "foto": "fila de copos de vidro com água colorida em alturas diferentes, como um arco-íris, colher batendo de leve num deles",
+  "temas": [
+   "cie3-2"
+  ]
  },
  {
   "slug": "terrario-em-pote",
@@ -1557,7 +1704,13 @@
   "turbine": "Faça um diário do terrário: desenhe uma vez por semana. Apareceu algo novo? Se as paredes ficarem muito embaçadas, o que você faria?",
   "seg": "Vidro quebra e corta: o adulto ajuda a carregar e a lavar o pote. Lave as mãos depois de mexer na terra.",
   "dica": "Sol direto no pote vira estufa quente demais. Claridade sim, sol batendo não!",
-  "foto": "pote de vidro grande fechado com camadas de pedrinhas, carvão e terra, plantinhas verdes e musgo, gotas nas paredes"
+  "foto": "pote de vidro grande fechado com camadas de pedrinhas, carvão e terra, plantinhas verdes e musgo, gotas nas paredes",
+  "temas": [
+   "cie3-3",
+   "cie5-2",
+   "cie2-1",
+   "cie2-2"
+  ]
  },
  {
   "slug": "fases-da-lua-com-biscoito",
@@ -1592,7 +1745,11 @@
   "turbine": "Faça um calendário da Lua: desenhe como ela está toda noite por duas semanas. Depois compare com os biscoitos.",
   "seg": "Esta atividade pode ser comida! Lave as mãos antes. Atenção a quem tem alergia aos ingredientes do biscoito.",
   "dica": "Raspe devagar com a lateral do palito. Recheio gelado sai mais certinho!",
-  "foto": "oito biscoitos recheados abertos em roda com o recheio branco raspado em formatos das fases da Lua, desenho da Terra no centro"
+  "foto": "oito biscoitos recheados abertos em roda com o recheio branco raspado em formatos das fases da Lua, desenho da Terra no centro",
+  "temas": [
+   "cie3-4",
+   "cie1-4"
+  ]
  },
  {
   "slug": "criar-lagartas-em-pote",
@@ -1630,7 +1787,11 @@
   "turbine": "Pesquise que espécie era a sua, com fotos. Que planta ela comia? Plante essa planta no quintal para atrair mais.",
   "seg": "NUNCA toque em lagartas peludas ou com espinhos (taturanas): algumas causam queimaduras graves. Use só lagartas lisas, pegas pelo galho e nunca com a mão. Na dúvida, só observe na planta. Lave as mãos.",
   "dica": "Folha velha e murcha não alimenta. Troque todo dia, sempre fresquinha!",
-  "foto": "pote de vidro transparente com tampa de tule, galhos com folhas verdes e uma crisálida pendurada, caderno de observação ao lado"
+  "foto": "pote de vidro transparente com tampa de tule, galhos com folhas verdes e uma crisálida pendurada, caderno de observação ao lado",
+  "temas": [
+   "cie3-1",
+   "cie2-4"
+  ]
  },
  {
   "slug": "observar-formigas",
@@ -1666,7 +1827,12 @@
   "turbine": "Passe o dedo atravessando a trilha (sem tocar nas formigas) e observe: elas se perdem? O que isso mostra sobre o cheirinho?",
   "seg": "Não mexa no formigueiro e não toque nas formigas: algumas picam forte, como a lava-pés. Observe de calçado fechado. Recolha os restos de comida no final.",
   "dica": "Sente quietinho e respire devagar. Formiga trabalha melhor sem plateia barulhenta!",
-  "foto": "tampinhas com açúcar, pão e fruta perto de uma trilha de formigas na calçada, criança observando com lupa"
+  "foto": "tampinhas com açúcar, pão e fruta perto de uma trilha de formigas na calçada, criança observando com lupa",
+  "temas": [
+   "cie3-1",
+   "cie2-4",
+   "mat3-4"
+  ]
  },
  {
   "slug": "permeabilidade-do-solo",
@@ -1705,7 +1871,10 @@
   "turbine": "Plante uma semente em cada tipo de solo. Em qual ela cresce melhor? Por quê?",
   "seg": "O adulto corta as garrafas e passa fita nas bordas. Lave as mãos depois de mexer na terra.",
   "dica": "Mesma quantidade de solo e de água em todos. Senão a comparação não vale!",
-  "foto": "três funis de garrafa pet com areia, terra e argila lado a lado, água pingando em quantidades diferentes nos recipientes de baixo"
+  "foto": "três funis de garrafa pet com areia, terra e argila lado a lado, água pingando em quantidades diferentes nos recipientes de baixo",
+  "temas": [
+   "cie3-3"
+  ]
  },
  {
   "slug": "visita-a-um-planetario",
@@ -1739,7 +1908,11 @@
   "turbine": "Desenhe uma constelação que você conseguiu ver em casa e invente uma história para ela, como os povos antigos faziam.",
   "seg": "No passeio, sempre com o adulto. Para observar à noite, fique em lugar seguro e conhecido.",
   "dica": "Os olhos levam uns 15 minutos para se acostumar com o escuro. Espere antes de desistir!",
-  "foto": "cúpula de planetário com projeção de céu estrelado e constelações, plateia de família olhando para cima"
+  "foto": "cúpula de planetário com projeção de céu estrelado e constelações, plateia de família olhando para cima",
+  "temas": [
+   "cie3-4",
+   "cie5-3"
+  ]
  },
  {
   "slug": "indicador-de-repolho-roxo",
@@ -1779,7 +1952,10 @@
   "seg": "Água quente e liquidificador são só com o adulto. Não use água sanitária nem produtos de limpeza fortes. Nada dos copos é para beber.",
   "dica": "Use copos transparentes e uma folha branca atrás. As cores aparecem bem melhor.",
   "foto": "fila de seis copos transparentes com líquidos do rosa ao verde passando pelo roxo e azul, repolho roxo cortado ao lado",
-  "naocoma": true
+  "naocoma": true,
+  "temas": [
+   "cie4-3"
+  ]
  },
  {
   "slug": "torre-de-densidade",
@@ -1818,7 +1994,10 @@
   "seg": "Nada da torre é para beber. Se usar álcool, só o adulto despeja, longe do fogão e de qualquer chama.",
   "dica": "O segredo é a colher: deixe o líquido escorrer por ela, bem devagar, encostada no vidro.",
   "foto": "copo alto com cinco camadas coloridas de líquidos bem separadas, uva parada no meio, colher ao lado",
-  "naocoma": true
+  "naocoma": true,
+  "temas": [
+   "cie4-3"
+  ]
  },
  {
   "slug": "cristais-de-acucar",
@@ -1859,7 +2038,10 @@
   "turbine": "Faça dois potes: um em lugar quente e um na geladeira. Em qual os cristais crescem maiores?",
   "seg": "Calda quente queima muito: só o adulto mexe no fogão e despeja. Não coma os cristais que ficaram expostos dias no pote.",
   "dica": "Não mexa no pote! Cristal gosta de sossego para crescer bonito.",
-  "foto": "pote de vidro com barbante coberto de cristais de açúcar transparentes, lápis atravessado na boca do pote, lupa ao lado"
+  "foto": "pote de vidro com barbante coberto de cristais de açúcar transparentes, lápis atravessado na boca do pote, lupa ao lado",
+  "temas": [
+   "cie4-3"
+  ]
  },
  {
   "slug": "cromatografia-com-canetinha",
@@ -1895,7 +2077,10 @@
   "turbine": "Teste canetinhas pretas de marcas diferentes. Elas têm as mesmas cores escondidas? Com isso, dá para descobrir qual caneta fez um bilhete misterioso!",
   "seg": "Use só água. A tesoura fica com quem já sabe usar com cuidado.",
   "dica": "A bolinha de tinta nunca pode encostar na água, senão a tinta se dissolve no copo em vez de subir.",
-  "foto": "tiras de filtro de café penduradas em copos com faixas de cores separadas, rosa, azul e amarelo, canetinhas ao lado"
+  "foto": "tiras de filtro de café penduradas em copos com faixas de cores separadas, rosa, azul e amarelo, canetinhas ao lado",
+  "temas": [
+   "cie4-3"
+  ]
  },
  {
   "slug": "balao-que-enche-com-fermento",
@@ -1934,7 +2119,10 @@
   "turbine": "Faça duas garrafas: uma com água morna e outra com água gelada. Qual balão enche primeiro? Por quê?",
   "seg": "Água morna, nunca quente. Balão murcho ou estourado é risco de sufocação para crianças menores de 8 anos: o adulto prende e recolhe os pedaços.",
   "dica": "Água quente demais mata as leveduras. Teste no pulso: morna como água de banho.",
-  "foto": "garrafa pet com líquido bege espumante e balão colorido meio cheio preso no gargalo, sobre balcão de cozinha"
+  "foto": "garrafa pet com líquido bege espumante e balão colorido meio cheio preso no gargalo, sobre balcão de cozinha",
+  "temas": [
+   "cie4-2"
+  ]
  },
  {
   "slug": "composteira-em-garrafa",
@@ -1973,7 +2161,12 @@
   "turbine": "Coloque também um pedacinho de plástico e um de papel. Depois de 4 semanas, o que mudou em cada um? O que isso diz sobre o lixo?",
   "seg": "Não coloque carne, leite nem comida gordurosa: atraem bichos e cheiram mal. Lave as mãos depois. Só o adulto corta e fura a garrafa.",
   "dica": "Cascas picadinhas viram terra bem mais rápido do que cascas inteiras.",
-  "foto": "garrafa pet cortada com camadas de terra escura, cascas de frutas coloridas e folhas secas, fita marcando a altura com a data"
+  "foto": "garrafa pet cortada com camadas de terra escura, cascas de frutas coloridas e folhas secas, fita marcando a altura com a data",
+  "temas": [
+   "cie4-1",
+   "cie5-5",
+   "cie4-2"
+  ]
  },
  {
   "slug": "relogio-de-sol",
@@ -2009,7 +2202,12 @@
   "turbine": "Faça a mesma marcação daqui a um mês. As sombras continuam passando nas mesmas pedras? O que mudou?",
   "seg": "Nunca olhe diretamente para o Sol, nem de óculos escuros: machuca os olhos. Use boné e protetor solar.",
   "dica": "Não mude a vareta de lugar! Se ela sair do lugar, o relógio inteiro desacerta.",
-  "foto": "vareta fincada num quintal ensolarado com sombra comprida e pedras pintadas com horários em arco no chão"
+  "foto": "vareta fincada num quintal ensolarado com sombra comprida e pedras pintadas com horários em arco no chão",
+  "temas": [
+   "cie4-4",
+   "cie2-3",
+   "mat2-4"
+  ]
  },
  {
   "slug": "teia-alimentar-com-barbante",
@@ -2043,7 +2241,10 @@
   "turbine": "Desenhe a teia no papel, com setas mostrando para onde vai a energia. Onde entram os fungos e as bactérias?",
   "seg": "Não enrole o barbante no pescoço ou nos dedos.",
   "dica": "A seta vai de quem é comido para quem come. Ela mostra o caminho da energia!",
-  "foto": "família em roda segurando um barbante cruzado formando uma teia, cartões com nomes de animais presos nas roupas"
+  "foto": "família em roda segurando um barbante cruzado formando uma teia, cartões com nomes de animais presos nas roupas",
+  "temas": [
+   "cie4-1"
+  ]
  },
  {
   "slug": "pao-mofando",
@@ -2079,7 +2280,10 @@
   "turbine": "Faça um quarto saco com o pão tocado por mãos sem lavar. Ele mofa mais rápido?",
   "seg": "NUNCA abra os sacos nem cheire o mofo: esporos podem fazer mal, principalmente para quem tem alergia ou asma. No fim, o adulto joga os sacos fechados no lixo.",
   "dica": "Fecho bem fechado e uma fita por cima. O experimento acontece todo lá dentro!",
-  "foto": "três saquinhos plásticos fechados com fatias de pão em diferentes estágios de mofo, etiquetas escritas à mão, lupa ao lado"
+  "foto": "três saquinhos plásticos fechados com fatias de pão em diferentes estágios de mofo, etiquetas escritas à mão, lupa ao lado",
+  "temas": [
+   "cie4-2"
+  ]
  },
  {
   "slug": "bussola-de-agulha-e-rolha",
@@ -2118,7 +2322,10 @@
   "turbine": "Aproxime um ímã do prato. O que acontece com a agulha? Descubra onde fica o norte da sua casa e faça uma rosa dos ventos na parede.",
   "seg": "A agulha fura: só o adulto imanta e prende. Ímãs pequenos são perigosos se engolidos. Recolha tudo no final.",
   "dica": "Longe de celular, panela e geladeira! Metal por perto confunde a bússola.",
-  "foto": "prato branco com água e uma rodela de rolha boiando com agulha em cima, bússola de celular ao lado mostrando o norte"
+  "foto": "prato branco com água e uma rodela de rolha boiando com agulha em cima, bússola de celular ao lado mostrando o norte",
+  "temas": [
+   "cie4-4"
+  ]
  },
  {
   "slug": "ciclo-da-agua-no-saco",
@@ -2154,7 +2361,10 @@
   "turbine": "Cole um segundo saco numa janela sem sol. O ciclo acontece igual? Mais rápido ou mais devagar?",
   "seg": "Saco plástico não é brinquedo para crianças pequenas: risco de sufocação. Depois, recolha o saco.",
   "dica": "Feche bem o fecho e passe uma fita por cima. Vazamento na janela não é chuva de verdade!",
-  "foto": "saco plástico transparente colado em janela ensolarada com sol e nuvem desenhados, água azul no fundo e gotas no alto"
+  "foto": "saco plástico transparente colado em janela ensolarada com sol e nuvem desenhados, água azul no fundo e gotas no alto",
+  "temas": [
+   "cie5-2"
+  ]
  },
  {
   "slug": "filtro-de-agua",
@@ -2194,7 +2404,12 @@
   "turbine": "Troque a ordem das camadas ou tire o carvão. A água sai mais limpa ou mais suja? Qual camada faz mais diferença?",
   "seg": "A água filtrada NÃO é para beber: ela ainda pode ter germes. O adulto corta a garrafa e cobre a borda com fita para não cortar a mão.",
   "dica": "Lave bem a areia e o carvão antes. Senão a primeira água sai mais suja do que entrou!",
-  "foto": "filtro de garrafa pet com camadas visíveis de cascalho, areia, carvão e algodão, copo de água barrenta ao lado de copo de água clara"
+  "foto": "filtro de garrafa pet com camadas visíveis de cascalho, areia, carvão e algodão, copo de água barrenta ao lado de copo de água clara",
+  "temas": [
+   "cie5-2",
+   "cie3-3",
+   "cie4-3"
+  ]
  },
  {
   "slug": "pulmao-de-garrafa",
@@ -2235,7 +2450,10 @@
   "turbine": "Coloque a mão na sua barriga e respire fundo. O que sobe e desce? Compare com o modelo e explique para alguém da família.",
   "seg": "Bordas de garrafa cortada machucam: só o adulto corta e a fita cobre a borda. Pedaços de balão: recolha, risco de sufocação para menores de 8 anos.",
   "dica": "Se o balão de dentro não enche, tem ar escapando. Aperte a massinha em volta do canudo.",
-  "foto": "garrafa pet cortada com um balão vermelho dentro preso a um canudo e uma membrana de balão esticada no fundo, mão puxando a membrana"
+  "foto": "garrafa pet cortada com um balão vermelho dentro preso a um canudo e uma membrana de balão esticada no fundo, mão puxando a membrana",
+  "temas": [
+   "cie5-1"
+  ]
  },
  {
   "slug": "estetoscopio-caseiro",
@@ -2271,7 +2489,11 @@
   "turbine": "Faça uma tabela com todo mundo da casa: em repouso e depois de pular. Quem tem o coração mais rápido? E o mais devagar?",
   "seg": "Nunca enfie a mangueira dentro do ouvido. Só encoste perto. Quem tem problema no coração não faz a parte de pular.",
   "dica": "Fique em silêncio total na hora de ouvir. Até a TV ligada atrapalha!",
-  "foto": "criança encostando um funil plástico preso a mangueira no peito de um adulto, ponta da mangueira perto da orelha"
+  "foto": "criança encostando um funil plástico preso a mangueira no peito de um adulto, ponta da mangueira perto da orelha",
+  "temas": [
+   "cie5-1",
+   "cie3-2"
+  ]
  },
  {
   "slug": "circuito-com-pilha-e-led",
@@ -2306,7 +2528,10 @@
   "turbine": "Faça um interruptor com papel alumínio e um prendedor de roupa: quando aperta, acende. Onde você usaria um alarme assim?",
   "seg": "Nunca use tomada: ela mata. Não use bateria de botão (pilha redondinha): se uma criança engolir, é emergência grave. Se a pilha esquentar, solte os fios na hora.",
   "dica": "Perna comprida do LED com o lado + da pilha. Não acendeu? Vire o LED antes de achar que queimou.",
-  "foto": "suporte de duas pilhas AA com fios vermelho e preto ligados a um LED aceso, clipes, borracha e papel alumínio espalhados na mesa"
+  "foto": "suporte de duas pilhas AA com fios vermelho e preto ligados a um LED aceso, clipes, borracha e papel alumínio espalhados na mesa",
+  "temas": [
+   "cie5-4"
+  ]
  },
  {
   "slug": "catavento",
@@ -2345,7 +2570,10 @@
   "turbine": "Faça um cata-vento de papel mais grosso e outro de papel mais fino. Qual gira mais fácil? E se as pás forem maiores?",
   "seg": "O alfinete fura: só o adulto prende. Corte a ponta do palito de churrasco antes de brincar.",
   "dica": "O canudinho entre o papel e o palito deixa a roda folgada. Roda apertada não gira!",
-  "foto": "cata-vento de papel colorido preso num palito girando em frente a uma janela aberta, criança soprando"
+  "foto": "cata-vento de papel colorido preso num palito girando em frente a uma janela aberta, criança soprando",
+  "temas": [
+   "cie5-4"
+  ]
  },
  {
   "slug": "sistema-solar-em-escala",
@@ -2380,7 +2608,11 @@
   "turbine": "Na mesma escala, a estrela mais próxima do Sol ficaria a uns 68 quilômetros de papel. Quantos rolos de 30 metros seriam necessários?",
   "seg": "Prenda o papel no chão com fita para ninguém escorregar ao passar.",
   "dica": "Conte as folhas em voz alta, de 5 em 5. Fica mais rápido e ninguém se perde!",
-  "foto": "rolo de papel higiênico desenrolado num corredor comprido com planetas desenhados em folhas distantes, sol desenhado na primeira"
+  "foto": "rolo de papel higiênico desenrolado num corredor comprido com planetas desenhados em folhas distantes, sol desenhado na primeira",
+  "temas": [
+   "cie5-3",
+   "mat5-2"
+  ]
  },
  {
   "slug": "constelacao-em-lata",
@@ -2419,7 +2651,11 @@
   "turbine": "Faça outras latas com constelações diferentes e descubra em que época do ano cada uma aparece no céu de onde você mora.",
   "seg": "Prego e martelo só com o adulto. Passe fita na borda da lata se tiver rebarba. Não aponte a lanterna para os olhos.",
   "dica": "Fure as estrelas mais brilhantes com o prego mais grosso. Fica parecido com o céu de verdade!",
-  "foto": "lata com furos em formato de constelação projetando pontinhos de luz no teto de um quarto escuro, lanterna dentro"
+  "foto": "lata com furos em formato de constelação projetando pontinhos de luz no teto de um quarto escuro, lanterna dentro",
+  "temas": [
+   "cie5-3",
+   "cie3-4"
+  ]
  },
  {
   "slug": "caca-ao-numero-na-rua",
@@ -2453,7 +2689,10 @@
   "turbine": "Nas casas de uma rua, de um lado os números são pares e do outro ímpares. Será? Confira!",
   "seg": "Na rua, a criança fica sempre ao lado do adulto, longe do meio-fio.",
   "dica": "Número de casa sobe ou desce conforme você anda. Descubra para que lado!",
-  "foto": "criança pequena com prancheta apontando para o número de uma casa num muro colorido, adulto ao lado na calçada"
+  "foto": "criança pequena com prancheta apontando para o número de uma casa num muro colorido, adulto ao lado na calçada",
+  "temas": [
+   "mat1-1"
+  ]
  },
  {
   "slug": "gaveta-organizada-por-criterio",
@@ -2486,7 +2725,10 @@
   "turbine": "Faça uma fila das meias da menor para a maior. Ou separe por duas regras juntas: azuis e listradas.",
   "seg": "Botões e tampinhas longe de crianças menores de 3 anos.",
   "dica": "Achar par de meia também é matemática. Quantas ficaram sozinhas?",
-  "foto": "meias coloridas separadas em grupos por cor sobre um tapete, criança pequena colocando uma meia num pote"
+  "foto": "meias coloridas separadas em grupos por cor sobre um tapete, criança pequena colocando uma meia num pote",
+  "temas": [
+   "mat1-2"
+  ]
  },
  {
   "slug": "boliche-de-garrafas",
@@ -2522,7 +2764,11 @@
   "turbine": "Escreva números maiores (5, 10, 20) nas garrafas. Ou dê pontos para os pinos que ficaram em pé e descubra pela subtração.",
   "seg": "Jogue em espaço livre, longe de vidros e da escada. Tampe bem as garrafas.",
   "dica": "Use os dedos ou tampinhas para contar se a conta ficar grande. Vale!",
-  "foto": "garrafas pet com números escritos em fita crepe arrumadas em triângulo no chão de casa, bola rolando em direção a elas"
+  "foto": "garrafas pet com números escritos em fita crepe arrumadas em triângulo no chão de casa, bola rolando em direção a elas",
+  "temas": [
+   "mat1-3",
+   "mat1-1"
+  ]
  },
  {
   "slug": "colagem-de-formas",
@@ -2558,7 +2804,10 @@
   "turbine": "Monte a mesma figura usando só triângulos. Ou desafie alguém a descobrir quantas formas tem na sua colagem.",
   "seg": "Tesoura sem ponta. Cola não vai à boca.",
   "dica": "Dois triângulos juntos podem virar um quadrado. Teste!",
-  "foto": "colagem de papel colorido em formato de robô feita com quadrados, triângulos e círculos sobre folha branca, tesoura sem ponta ao lado"
+  "foto": "colagem de papel colorido em formato de robô feita com quadrados, triângulos e círculos sobre folha branca, tesoura sem ponta ao lado",
+  "temas": [
+   "mat1-4"
+  ]
  },
  {
   "slug": "colares-de-padrao",
@@ -2593,7 +2842,10 @@
   "turbine": "Faça um padrão que cresce: 1 azul, 2 vermelhos, 3 azuis, 4 vermelhos. Qual é a próxima?",
   "seg": "Contas e macarrão são pequenos: longe de crianças menores de 3 anos. Colar não se coloca apertado no pescoço.",
   "dica": "Fale o padrão em voz alta enquanto monta: azul, vermelho, azul… Ajuda a não errar!",
-  "foto": "colares de macarrão pintado em padrão de cores alternadas sobre uma mesa, potes de tinta e barbante"
+  "foto": "colares de macarrão pintado em padrão de cores alternadas sobre uma mesa, potes de tinta e barbante",
+  "temas": [
+   "mat1-4"
+  ]
  },
  {
   "slug": "mercadinho-em-casa",
@@ -2629,7 +2881,12 @@
   "turbine": "Faça uma promoção: leve 3, pague 2. Ou coloque preços com centavos, como R$ 2,50. A conta fica mais difícil?",
   "seg": "Use só embalagens limpas, sem bordas cortantes. Nada de embalagens de produtos de limpeza.",
   "dica": "Comece com preços inteiros. Centavos ficam para quando o troco já estiver fácil.",
-  "foto": "mesa arrumada como mercadinho com caixas e potes vazios com etiquetas de preço escritas por criança, notas de brinquedo e uma criança no caixa"
+  "foto": "mesa arrumada como mercadinho com caixas e potes vazios com etiquetas de preço escritas por criança, notas de brinquedo e uma criança no caixa",
+  "temas": [
+   "mat1-1",
+   "mat2-3",
+   "mat2-2"
+  ]
  },
  {
   "slug": "solidos-com-palito-e-massinha",
@@ -2663,7 +2920,10 @@
   "turbine": "Invente uma figura nova, conte vértices e arestas e dê um nome para ela. Dica: triângulos deixam a construção mais firme.",
   "seg": "Palito com ponta machuca: o adulto corta as pontas com alicate ou use palitos sem ponta.",
   "dica": "Bolinha pequena e massinha firme. Bolona mole deixa o cubo desabar!",
-  "foto": "cubo, pirâmide e prisma feitos de palitos e bolinhas de massinha coloridas sobre uma mesa, tabela de contagem ao lado"
+  "foto": "cubo, pirâmide e prisma feitos de palitos e bolinhas de massinha coloridas sobre uma mesa, tabela de contagem ao lado",
+  "temas": [
+   "mat2-5"
+  ]
  },
  {
   "slug": "banco-da-familia",
@@ -2698,7 +2958,11 @@
   "turbine": "Crie a nota de 100: troque 10 notas de 10 por ela. Quem chega primeiro aos 100?",
   "seg": "Tampinhas e moedas longe de crianças menores de 3 anos.",
   "dica": "Arrume as moedas em fileiras de 10. Fica fácil de ver a hora de trocar!",
-  "foto": "mesa com tampinhas organizadas em fileiras de dez, notas de brinquedo desenhadas à mão e um dado, criança contando"
+  "foto": "mesa com tampinhas organizadas em fileiras de dez, notas de brinquedo desenhadas à mão e um dado, criança contando",
+  "temas": [
+   "mat2-1",
+   "mat2-3"
+  ]
  },
  {
   "slug": "lanche-com-orcamento",
@@ -2732,7 +2996,11 @@
   "turbine": "Planeje o lanche da festa de aniversário para 10 pessoas com R$ 100.",
   "seg": "No mercado, a criança fica sempre ao lado do adulto.",
   "dica": "Arredonde os preços para estimar antes: R$ 4,90 é quase R$ 5.",
-  "foto": "encarte de supermercado aberto com itens circulados, folha com conta de adição armada escrita por criança"
+  "foto": "encarte de supermercado aberto com itens circulados, folha com conta de adição armada escrita por criança",
+  "temas": [
+   "mat2-2",
+   "mat2-3"
+  ]
  },
  {
   "slug": "cofrinho-com-registro",
@@ -2767,7 +3035,12 @@
   "turbine": "Calcule quantos meses faltam para chegar ao objetivo se continuar no mesmo ritmo.",
   "seg": "Moedas longe de crianças menores de 3 anos. Lave as mãos depois de contar dinheiro.",
   "dica": "Duas moedas de 50 centavos valem uma de 1 real. Troque e conte mais rápido!",
-  "foto": "pote transparente com moedas e etiqueta escrita à mão, ao lado folha quadriculada com gráfico de barras mensal"
+  "foto": "pote transparente com moedas e etiqueta escrita à mão, ao lado folha quadriculada com gráfico de barras mensal",
+  "temas": [
+   "mat2-3",
+   "mat3-4",
+   "mat4-3"
+  ]
  },
  {
   "slug": "rotina-ilustrada-do-dia",
@@ -2802,7 +3075,10 @@
   "turbine": "Calcule quanto tempo dura cada atividade. Qual ocupa mais tempo do seu dia?",
   "seg": "Sem cuidados especiais.",
   "dica": "Ponteiro grande no 12 é hora certinha. No 6, é e meia!",
-  "foto": "cartolina na parede com quadros desenhados da rotina do dia, cada um com um relógio de ponteiros e o horário escrito"
+  "foto": "cartolina na parede com quadros desenhados da rotina do dia, cada um com um relógio de ponteiros e o horário escrito",
+  "temas": [
+   "mat2-4"
+  ]
  },
  {
   "slug": "ampulheta-de-garrafa",
@@ -2841,7 +3117,10 @@
   "turbine": "Ajuste a quantidade de areia até a sua ampulheta marcar exatamente 1 minuto. Use para medir a escovação dos dentes!",
   "seg": "Prego e martelo só com o adulto. A areia precisa estar seca e a ampulheta bem fechada para não derramar.",
   "dica": "Areia úmida entope o furo. Seque a areia no sol antes!",
-  "foto": "ampulheta feita de duas garrafas pet pequenas unidas pela tampa com fita, areia colorida caindo, cronômetro ao lado"
+  "foto": "ampulheta feita de duas garrafas pet pequenas unidas pela tampa com fita, areia colorida caindo, cronômetro ao lado",
+  "temas": [
+   "mat2-4"
+  ]
  },
  {
   "slug": "cidade-de-sucata",
@@ -2877,7 +3156,11 @@
   "turbine": "Desenhe a cidade vista de cima. O cilindro visto de cima vira o quê? E o cubo?",
   "seg": "Latas só sem rebarba, conferidas pelo adulto. Nada de embalagem de produto de limpeza.",
   "dica": "Prédio alto precisa de base larga. Construa de baixo para cima!",
-  "foto": "cidade de brinquedo feita de caixas e rolos de papelão pintados sobre papelão com ruas desenhadas"
+  "foto": "cidade de brinquedo feita de caixas e rolos de papelão pintados sobre papelão com ruas desenhadas",
+  "temas": [
+   "mat2-5",
+   "cie5-5"
+  ]
  },
  {
   "slug": "receita-medida",
@@ -2915,7 +3198,12 @@
   "turbine": "Invente uma receita sua com pelo menos 4 ingredientes e medidas. Escreva o passo a passo para outra pessoa conseguir fazer sem sua ajuda.",
   "seg": "Faca e liquidificador só com o adulto. Lave as mãos e as frutas antes. Atenção a alergias.",
   "dica": "Medida rasa é passar a faca sem corte por cima da colher. Colher cheia demais muda a receita!",
-  "foto": "criança medindo iogurte num copo medidor sobre bancada com tigela de frutas picadas, colheres de medida e receita escrita à mão"
+  "foto": "criança medindo iogurte num copo medidor sobre bancada com tigela de frutas picadas, colheres de medida e receita escrita à mão",
+  "temas": [
+   "mat3-3",
+   "mat3-5",
+   "por4-1"
+  ]
  },
  {
   "slug": "pesquisa-e-grafico-da-familia",
@@ -2950,7 +3238,10 @@
   "turbine": "Faça a mesma pergunta para crianças e para adultos em gráficos separados. As respostas mudam? Por quê?",
   "seg": "Combine com a família antes de ligar para parentes ou vizinhos.",
   "dica": "Pergunta boa tem poucas respostas. Pergunta aberta vira lista sem fim!",
-  "foto": "gráfico de barras colorido desenhado em papel quadriculado com frutas desenhadas embaixo de cada barra, prancheta com risquinhos de contagem"
+  "foto": "gráfico de barras colorido desenhado em papel quadriculado com frutas desenhadas embaixo de cada barra, prancheta com risquinhos de contagem",
+  "temas": [
+   "mat3-4"
+  ]
  },
  {
   "slug": "caixa-de-ovos-da-tabuada",
@@ -2985,7 +3276,10 @@
   "turbine": "Com a caixa de 30, monte a tabuada do 6 inteira. Que padrão aparece nos resultados?",
   "seg": "Grãos e tampinhas longe de crianças menores de 3 anos. Feijão cru não é para comer.",
   "dica": "Fileiras da caixa de ovos já são grupos prontos. Use!",
-  "foto": "caixa de ovos aberta com feijões distribuídos em algumas casinhas, folha com multiplicações escritas à mão ao lado"
+  "foto": "caixa de ovos aberta com feijões distribuídos em algumas casinhas, folha com multiplicações escritas à mão ao lado",
+  "temas": [
+   "mat3-1"
+  ]
  },
  {
   "slug": "mudas-em-fileiras",
@@ -3021,7 +3315,11 @@
   "turbine": "Se 2 sementes de cada fileira não nascerem, quantas mudas você terá? Faça a conta antes de contar.",
   "seg": "Lave as mãos depois de mexer na terra. Não coma as sementes.",
   "dica": "Marque as fileiras com palitos antes de plantar. Fileira torta confunde a conta!",
-  "foto": "bandeja de papelão de ovos com terra e pequenas mudas verdes em fileiras organizadas, etiquetas em palitos"
+  "foto": "bandeja de papelão de ovos com terra e pequenas mudas verdes em fileiras organizadas, etiquetas em palitos",
+  "temas": [
+   "mat3-1",
+   "cie2-2"
+  ]
  },
  {
   "slug": "dividir-a-pizza",
@@ -3058,7 +3356,11 @@
   "turbine": "E se chegar mais uma visita? Planeje como cortar para 5 pessoas.",
   "seg": "Faca só com o adulto. Comida quente: espere amornar.",
   "dica": "Distribuir um para cada, em roda, é o jeito mais justo de dividir!",
-  "foto": "pizza caseira cortada em oito fatias numa tábua de madeira, desenho de círculo com divisões feito à mão ao lado"
+  "foto": "pizza caseira cortada em oito fatias numa tábua de madeira, desenho de círculo com divisões feito à mão ao lado",
+  "temas": [
+   "mat3-2",
+   "mat3-5"
+  ]
  },
  {
   "slug": "figurinhas-em-pacotes",
@@ -3092,7 +3394,10 @@
   "turbine": "Descubra um tamanho de pacote que não deixa nenhuma sobrando. Existem outros?",
   "seg": "Peças pequenas longe de crianças menores de 3 anos.",
   "dica": "Antes de montar, chute o resultado. Depois confira se chegou perto!",
-  "foto": "figurinhas organizadas em pequenos montes presos com elásticos sobre a mesa, papel com conta de divisão escrita à mão"
+  "foto": "figurinhas organizadas em pequenos montes presos com elásticos sobre a mesa, papel com conta de divisão escrita à mão",
+  "temas": [
+   "mat3-2"
+  ]
  },
  {
   "slug": "regua-de-crescimento",
@@ -3128,7 +3433,10 @@
   "turbine": "Meça de novo daqui a 3 meses. Quantos centímetros você cresceu? Meça também o seu palmo e o seu passo em centímetros.",
   "seg": "Sem cuidados especiais.",
   "dica": "Sempre descalço e com os calcanhares na parede. Medida justa é medida igual para todos!",
-  "foto": "régua de papel colada na parede da casa com marcas de altura, nomes e datas, criança descalça encostada sendo medida"
+  "foto": "régua de papel colada na parede da casa com marcas de altura, nomes e datas, criança descalça encostada sendo medida",
+  "temas": [
+   "mat3-3"
+  ]
  },
  {
   "slug": "pluviometro-e-grafico-de-chuva",
@@ -3167,7 +3475,12 @@
   "turbine": "Compare seus dados com a previsão do tempo da sua cidade. Ou meça por um mês e descubra qual semana choveu mais.",
   "seg": "O adulto corta a garrafa e passa fita na borda. Troque a água parada a cada medição, para não juntar mosquito.",
   "dica": "Meça sempre no mesmo horário. Assim dá para comparar os dias!",
-  "foto": "pluviômetro de garrafa pet com régua colada ao lado num quintal, com um pouco de água acumulada, gráfico de barras desenhado ao lado"
+  "foto": "pluviômetro de garrafa pet com régua colada ao lado num quintal, com um pouco de água acumulada, gráfico de barras desenhado ao lado",
+  "temas": [
+   "mat3-4",
+   "mat3-3",
+   "cie5-2"
+  ]
  },
  {
   "slug": "flores-por-cor-no-grafico",
@@ -3202,7 +3515,11 @@
   "turbine": "Faça a mesma contagem em outro lugar ou outra estação do ano. O resultado muda?",
   "seg": "Olhe sem arrancar. Atenção a abelhas: observe de longe. Não mexa em pedras com a mão.",
   "dica": "Risquinho de 5 em 5 é um feixinho com um traço atravessado. Conta rapidinho!",
-  "foto": "criança agachada contando flores amarelas num jardim com prancheta, folha com risquinhos de contagem agrupados de cinco em cinco"
+  "foto": "criança agachada contando flores amarelas num jardim com prancheta, folha com risquinhos de contagem agrupados de cinco em cinco",
+  "temas": [
+   "mat3-4",
+   "cie2-2"
+  ]
  },
  {
   "slug": "fracoes-do-lanche",
@@ -3237,7 +3554,10 @@
   "turbine": "Divida o sanduíche em 3 partes iguais. É mais difícil do que em 2 ou 4? Por quê?",
   "seg": "Faca com ponta só com o adulto. Lave as mãos. Atenção a alergias.",
   "dica": "Partes só valem como fração se forem iguais. Pedaço gigante não vale!",
-  "foto": "tábua de madeira com sanduíche cortado em metades e outro em quartos, laranja aberta em gomos, papel com frações escritas"
+  "foto": "tábua de madeira com sanduíche cortado em metades e outro em quartos, laranja aberta em gomos, papel com frações escritas",
+  "temas": [
+   "mat3-5"
+  ]
  },
  {
   "slug": "geoplano-caseiro",
@@ -3277,7 +3597,11 @@
   "turbine": "Faça a maior área possível com um contorno de 12. E a menor? Que formato ganha?",
   "seg": "Martelo e pregos são só do adulto. Depois de pronto, confira se nenhuma cabeça de prego está solta. Elástico não se puxa na direção do rosto.",
   "dica": "Prego torto prende mal o elástico. Martele bem reto, de leve, várias vezes.",
-  "foto": "tábua de madeira com grade de pregos e elásticos coloridos formando quadrado, triângulo e retângulo, papel quadriculado ao lado"
+  "foto": "tábua de madeira com grade de pregos e elásticos coloridos formando quadrado, triângulo e retângulo, papel quadriculado ao lado",
+  "temas": [
+   "mat4-4",
+   "mat1-4"
+  ]
  },
  {
   "slug": "caca-ao-tesouro-com-mapa",
@@ -3313,7 +3637,12 @@
   "turbine": "Faça o mapa em escala de verdade: meça os cômodos em passos e use 1 quadradinho para cada passo. Faça também a rosa dos ventos com o Norte.",
   "seg": "Não esconda o tesouro em lugar alto, dentro de eletrodomésticos ou perto de tomadas.",
   "dica": "Os passos de criança e de adulto são diferentes! Combine de quem serão os passos das pistas.",
-  "foto": "mapa de casa desenhado à mão visto de cima com cômodos, setas e um X vermelho, criança segurando o mapa na sala"
+  "foto": "mapa de casa desenhado à mão visto de cima com cômodos, setas e um X vermelho, criança segurando o mapa na sala",
+  "temas": [
+   "mat4-5",
+   "mat5-5",
+   "por2-4"
+  ]
  },
  {
   "slug": "compras-do-mes-com-encarte",
@@ -3347,7 +3676,10 @@
   "turbine": "Compare o encarte de dois mercados. Em qual a compra do mês sai mais barata? Quanto a família economizaria?",
   "seg": "Sem cuidados especiais.",
   "dica": "Escreva a conta em colunas: item, quantidade, preço, total. Fica fácil de conferir!",
-  "foto": "encarte de supermercado aberto ao lado de lista de compras organizada em colunas escrita por criança, calculadora sobre a mesa"
+  "foto": "encarte de supermercado aberto ao lado de lista de compras organizada em colunas escrita por criança, calculadora sobre a mesa",
+  "temas": [
+   "mat4-1"
+  ]
  },
  {
   "slug": "pizza-de-papel-das-fracoes",
@@ -3383,7 +3715,11 @@
   "turbine": "Monte uma pizza com 4 sabores diferentes em frações diferentes, e escreva a fração de cada sabor. Somam um inteiro?",
   "seg": "Tesoura com cuidado.",
   "dica": "Dobrar o círculo ao meio e de novo ao meio dá quartos perfeitos, sem régua!",
-  "foto": "pizzas de papel coloridas divididas em metades, quartos e oitavos sobre uma mesa, pedaços sobrepostos para comparar"
+  "foto": "pizzas de papel coloridas divididas em metades, quartos e oitavos sobre uma mesa, pedaços sobrepostos para comparar",
+  "temas": [
+   "mat4-2",
+   "mat3-5"
+  ]
  },
  {
   "slug": "preco-por-quilo",
@@ -3417,7 +3753,10 @@
   "turbine": "Procure na etiqueta o preço por quilo que o mercado mostra e confira se a sua conta bateu.",
   "seg": "No mercado, sempre ao lado do adulto.",
   "dica": "500 gramas é meio quilo. Para achar o preço do quilo, é só dobrar!",
-  "foto": "prateleira de supermercado com pacotes de café de tamanhos diferentes, mão de criança segurando caderninho com contas"
+  "foto": "prateleira de supermercado com pacotes de café de tamanhos diferentes, mão de criança segurando caderninho com contas",
+  "temas": [
+   "mat4-3"
+  ]
  },
  {
   "slug": "planta-baixa-do-quarto",
@@ -3452,7 +3791,10 @@
   "turbine": "Planeje uma nova arrumação do quarto: recorte os móveis em escala e teste posições na planta antes de mudar de verdade.",
   "seg": "Não suba em móveis para medir. Peça ajuda para segurar a trena.",
   "dica": "Meça sempre de parede a parede, rente ao chão. Rodapé engana!",
-  "foto": "planta baixa de quarto desenhada em papel quadriculado com cama e armário coloridos, trena e régua ao lado"
+  "foto": "planta baixa de quarto desenhada em papel quadriculado com cama e armário coloridos, trena e régua ao lado",
+  "temas": [
+   "mat4-4"
+  ]
  },
  {
   "slug": "area-do-canteiro",
@@ -3488,7 +3830,11 @@
   "turbine": "Se você aumentar o canteiro em 20 cm de cada lado, quantas mudas a mais cabem?",
   "seg": "Use luvas para mexer na terra. Atenção a bichos escondidos no quintal: não coloque a mão em buracos.",
   "dica": "Transforme tudo em centímetros antes de calcular. Misturar metro e centímetro bagunça a conta!",
-  "foto": "canteiro retangular marcado com estacas e barbante num quintal, mudas pequenas plantadas em fileiras, trena esticada"
+  "foto": "canteiro retangular marcado com estacas e barbante num quintal, mudas pequenas plantadas em fileiras, trena esticada",
+  "temas": [
+   "mat4-4",
+   "cie2-2"
+  ]
  },
  {
   "slug": "borboletas-de-tinta",
@@ -3524,7 +3870,10 @@
   "turbine": "Procure pela casa objetos simétricos e não simétricos. Desenhe metade de um rosto e peça para alguém completar a outra metade.",
   "seg": "Forre a mesa e use roupa velha. Tinta guache sai com água.",
   "dica": "Pouca tinta, perto da dobra. Tinta demais vira lagoa!",
-  "foto": "pinturas de borboleta simétricas feitas com tinta guache em papéis dobrados secando sobre jornal"
+  "foto": "pinturas de borboleta simétricas feitas com tinta guache em papéis dobrados secando sobre jornal",
+  "temas": [
+   "mat4-5"
+  ]
  },
  {
   "slug": "somas-com-dois-dados",
@@ -3559,7 +3908,10 @@
   "turbine": "Escreva todas as 36 combinações possíveis dos dois dados numa tabela. Compare com o seu gráfico. Ficou parecido?",
   "seg": "Dados são pequenos: longe de crianças menores de 3 anos.",
   "dica": "Quanto mais lances, mais o gráfico fica parecido com a conta. Com 10 lances, a sorte ainda manda!",
-  "foto": "dois dados sobre folha com números de 2 a 12 e muitos risquinhos de contagem, gráfico em forma de montanha ao lado"
+  "foto": "dois dados sobre folha com números de 2 a 12 e muitos risquinhos de contagem, gráfico em forma de montanha ao lado",
+  "temas": [
+   "mat5-4"
+  ]
  },
  {
   "slug": "pesquisa-de-precos-com-desconto",
@@ -3593,7 +3945,10 @@
   "turbine": "Uma loja dá 20% e depois mais 10% em cima. Outra dá 30% de uma vez. Qual é melhor? Faça as contas.",
   "seg": "Sem cuidados especiais.",
   "dica": "10% é andar a vírgula uma casa para a esquerda: 10% de 80,0 é 8,0!",
-  "foto": "anúncios de promoção recortados com porcentagens circuladas, folha com contas de desconto e calculadora"
+  "foto": "anúncios de promoção recortados com porcentagens circuladas, folha com contas de desconto e calculadora",
+  "temas": [
+   "mat5-1"
+  ]
  },
  {
   "slug": "grafico-de-setores-do-dia",
@@ -3628,7 +3983,11 @@
   "turbine": "Faça o gráfico de um dia de semana e de um dia de fim de semana. O que muda? Transforme as frações em porcentagem.",
   "seg": "Sem cuidados especiais.",
   "dica": "Dobre o círculo em 4 e depois cada quarto em 6. Dá 24 fatias sem transferidor!",
-  "foto": "gráfico de pizza desenhado à mão dividido em fatias coloridas com legendas de atividades do dia"
+  "foto": "gráfico de pizza desenhado à mão dividido em fatias coloridas com legendas de atividades do dia",
+  "temas": [
+   "mat5-1",
+   "mat2-4"
+  ]
  },
  {
   "slug": "estimar-graos-no-pote",
@@ -3663,7 +4022,10 @@
   "turbine": "Faça o mesmo com arroz. Quantos grãos tem num pacote de 1 kg? Estime pesando 10 gramas, se tiver balança.",
   "seg": "Grãos pequenos longe de crianças menores de 3 anos. Grão cru não é para comer.",
   "dica": "Conte os grãos de verdade em montinhos de 10. Fica fácil não se perder!",
-  "foto": "pote transparente cheio de feijões, colher de sopa com grãos e montinhos de dez grãos organizados sobre a mesa"
+  "foto": "pote transparente cheio de feijões, colher de sopa com grãos e montinhos de dez grãos organizados sobre a mesa",
+  "temas": [
+   "mat5-2"
+  ]
  },
  {
   "slug": "caixa-de-1-litro",
@@ -3699,7 +4061,11 @@
   "turbine": "Construa um cubo de 5 cm de lado. Quantos cubos pequenos cabem dentro do grande? (Dica: não é 2!)",
   "seg": "Use arroz se não quiser molhar. Tesoura com cuidado; o adulto corta o papelão grosso.",
   "dica": "Meça cada quadrado com a régua. Um lado torto e a caixa não fecha!",
-  "foto": "cubo de papelão de dez centímetros aberto cheio de arroz até a boca, garrafa de um litro vazia ao lado e régua"
+  "foto": "cubo de papelão de dez centímetros aberto cheio de arroz até a boca, garrafa de um litro vazia ao lado e régua",
+  "temas": [
+   "mat5-3",
+   "mat2-5"
+  ]
  },
  {
   "slug": "mapa-do-bairro-em-malha",
@@ -3733,7 +4099,11 @@
   "turbine": "Escreva instruções de caminho usando só coordenadas e direções: saia de C4, ande 3 quadras para o leste…",
   "seg": "Para conferir o mapa na rua, sempre com o adulto.",
   "dica": "Primeiro a letra (coluna), depois o número (linha). Combine e nunca troque!",
-  "foto": "mapa de bairro desenhado em papel quadriculado com letras e números nas bordas, ruas coloridas e casas marcadas"
+  "foto": "mapa de bairro desenhado em papel quadriculado com letras e números nas bordas, ruas coloridas e casas marcadas",
+  "temas": [
+   "mat5-5",
+   "mat4-5"
+  ]
  },
  {
   "slug": "desafio-dos-35-camelos",
@@ -3767,7 +4137,11 @@
   "turbine": "Invente um problema parecido com 17 camelos: metade, um terço e um nono. Precisa emprestar quantos?",
   "seg": "Peças pequenas longe de crianças menores de 3 anos.",
   "dica": "Some as frações antes de dividir. A resposta do mistério está nessa conta!",
-  "foto": "tampinhas organizadas em três montes de dezoito, doze e quatro e mais duas separadas sobre uma mesa, livro antigo ao lado"
+  "foto": "tampinhas organizadas em três montes de dezoito, doze e quatro e mais duas separadas sobre uma mesa, livro antigo ao lado",
+  "temas": [
+   "mat5-5",
+   "mat3-5"
+  ]
  },
  {
   "slug": "livro-do-alfabeto-da-familia",
@@ -3803,7 +4177,10 @@
   "turbine": "Depois do livro pronto, faça uma página nova para cada letra com o nome de uma pessoa da família ou de um bichinho.",
   "seg": "Tesoura sem ponta e com um adulto por perto.",
   "dica": "Para letras difíceis, vale nome de gente! Xuxa, Kelly, Wagner…",
-  "foto": "livro artesanal aberto com uma letra B gigante, foto colada de bola e palavra escrita à mão por criança pequena"
+  "foto": "livro artesanal aberto com uma letra B gigante, foto colada de bola e palavra escrita à mão por criança pequena",
+  "temas": [
+   "por1-2"
+  ]
  },
  {
   "slug": "caca-as-letras-na-rua",
@@ -3837,7 +4214,10 @@
   "turbine": "Escolha uma letra do dia e procure palavras que comecem com ela. Ou tire foto de uma placa e copie a palavra em casa.",
   "seg": "Na rua, a criança fica sempre ao lado do adulto, longe do meio-fio. Atenção ao atravessar.",
   "dica": "Letras grandes de fachada são as mais fáceis. Comece por elas!",
-  "foto": "criança pequena com prancheta apontando para letreiro de padaria numa rua de bairro, adulto ao lado"
+  "foto": "criança pequena com prancheta apontando para letreiro de padaria numa rua de bairro, adulto ao lado",
+  "temas": [
+   "por1-2"
+  ]
  },
  {
   "slug": "caixa-de-rimas",
@@ -3872,7 +4252,10 @@
   "turbine": "Invente uma frase maluca com os pares: o gato de sapato comeu no prato. Desenhe a frase!",
   "seg": "Objetos pequenos longe de crianças menores de 3 anos. Nada cortante na caixa.",
   "dica": "Fale a última parte da palavra mais devagar: sa-PATO, ga-TO. O ouvido acha a rima sozinho!",
-  "foto": "caixa de sapato aberta com pares de objetos que rimam lado a lado, como meia e teia de brinquedo, mão de criança segurando um gatinho de pelúcia e um pato de borracha"
+  "foto": "caixa de sapato aberta com pares de objetos que rimam lado a lado, como meia e teia de brinquedo, mão de criança segurando um gatinho de pelúcia e um pato de borracha",
+  "temas": [
+   "por1-1"
+  ]
  },
  {
   "slug": "parlenda-da-familia",
@@ -3906,7 +4289,11 @@
   "turbine": "Faça um gesto para cada linha da parlenda nova e grave em vídeo. Ou ensine a parlenda para um avô ou avó por chamada.",
   "seg": "Combine com a família antes de enviar o áudio para alguém.",
   "dica": "Bata palmas em cada sílaba. Se a palma sobrar, a linha precisa de ajuste!",
-  "foto": "família sentada no sofá batendo palmas, celular gravando sobre a mesa, folha com parlenda escrita à mão"
+  "foto": "família sentada no sofá batendo palmas, celular gravando sobre a mesa, folha com parlenda escrita à mão",
+  "temas": [
+   "por1-1",
+   "por1-4"
+  ]
  },
  {
   "slug": "letras-com-massinha",
@@ -3940,7 +4327,11 @@
   "turbine": "Monte palavras curtas trocando só uma letra: BOLA, MOLA, COLA. O que muda?",
   "seg": "Massinha não é para comer. Lave as mãos depois.",
   "dica": "Rolinho fininho fica mais bonito nas curvas. Role devagar!",
-  "foto": "letras de massinha colorida formando um nome de criança sobre uma mesa de madeira, cartões com letras escritas ao lado"
+  "foto": "letras de massinha colorida formando um nome de criança sobre uma mesa de madeira, cartões com letras escritas ao lado",
+  "temas": [
+   "por1-2",
+   "por1-3"
+  ]
  },
  {
   "slug": "etiquetar-objetos-da-casa",
@@ -3974,7 +4365,10 @@
   "turbine": "Tire as etiquetas, misture e desafie a criança a colar cada uma no lugar certo só lendo.",
   "seg": "Fita crepe sai fácil das paredes; não use cola em móveis.",
   "dica": "Letra grande e de forma. Etiqueta que dá para ler de longe ensina mais!",
-  "foto": "geladeira e porta de cozinha com etiquetas de papel escritas à mão por criança, letras grandes de forma"
+  "foto": "geladeira e porta de cozinha com etiquetas de papel escritas à mão por criança, letras grandes de forma",
+  "temas": [
+   "por1-3"
+  ]
  },
  {
   "slug": "varal-de-poesias",
@@ -4010,7 +4404,11 @@
   "turbine": "Escreva um poema seu, de 4 versos, e pendure no meio dos outros. Será que alguém descobre qual é o seu?",
   "seg": "Prenda o barbante longe da altura do pescoço das crianças e de passagens.",
   "dica": "Troque um poema por semana. Varal que muda chama a gente para ler de novo!",
-  "foto": "varal de barbante na janela da sala com folhas de poemas ilustrados presas por prendedores de roupa coloridos"
+  "foto": "varal de barbante na janela da sala com folhas de poemas ilustrados presas por prendedores de roupa coloridos",
+  "temas": [
+   "por1-4",
+   "por3-4"
+  ]
  },
  {
   "slug": "livrinho-dobrado-de-cantiga",
@@ -4047,7 +4445,10 @@
   "turbine": "Faça um livrinho com uma cantiga inventada pela família ou com a história do seu dia.",
   "seg": "Tesoura com ponta só com o adulto.",
   "dica": "Dobras bem marcadas com a unha deixam o livrinho reto. Capriche!",
-  "foto": "livrinho de papel dobrado em 8 páginas aberto, com versos de cantiga escritos e desenhos coloridos de criança"
+  "foto": "livrinho de papel dobrado em 8 páginas aberto, com versos de cantiga escritos e desenhos coloridos de criança",
+  "temas": [
+   "por1-4"
+  ]
  },
  {
   "slug": "teatro-de-fantoches",
@@ -4083,7 +4484,10 @@
   "turbine": "Escreva o roteiro como peça de teatro, com o nome do personagem antes de cada fala. Grave a apresentação e assista junto.",
   "seg": "Botões e peças pequenas bem colados: longe de crianças menores de 3 anos.",
   "dica": "Cada personagem com uma voz bem diferente. Assim a plateia nunca se perde!",
-  "foto": "três fantoches de meia coloridos com olhos de botão e cabelo de lã aparecendo atrás de uma caixa de papelão decorada como palco"
+  "foto": "três fantoches de meia coloridos com olhos de botão e cabelo de lã aparecendo atrás de uma caixa de papelão decorada como palco",
+  "temas": [
+   "por2-3"
+  ]
  },
  {
   "slug": "correio-da-familia",
@@ -4118,7 +4522,12 @@
   "turbine": "Escreva uma carta para alguém que mora longe e mande pelo correio de verdade. Aprenda a escrever o endereço e o CEP.",
   "seg": "Só o adulto faz a fenda na caixa com estilete.",
   "dica": "Responder rápido anima. Adulto que responde toda carta faz a criança querer escrever mais!",
-  "foto": "caixa de sapato decorada como caixa de correio com fenda na tampa, envelopes coloridos escritos à mão saindo dela"
+  "foto": "caixa de sapato decorada como caixa de correio com fenda na tampa, envelopes coloridos escritos à mão saindo dela",
+  "temas": [
+   "por1-3",
+   "por2-4",
+   "por4-1"
+  ]
  },
  {
   "slug": "fabrica-de-palavras",
@@ -4153,7 +4562,11 @@
   "turbine": "Troque as sílabas por outras mais difíceis: BRA, CHA, NHO, QUE. Ou crie um terceiro dado para formar palavras de 3 sílabas.",
   "seg": "Dados de papelão são pequenos: longe de crianças menores de 3 anos.",
   "dica": "Vale ler de trás para a frente: LA-BO não existe, mas BO-LA sim!",
-  "foto": "dois dados de papelão com sílabas escritas nas faces sobre uma mesa, folha com lista de palavras escritas por criança"
+  "foto": "dois dados de papelão com sílabas escritas nas faces sobre uma mesa, folha com lista de palavras escritas por criança",
+  "temas": [
+   "por2-1",
+   "por1-1"
+  ]
  },
  {
   "slug": "caca-palavras-para-o-irmao",
@@ -4188,7 +4601,11 @@
   "turbine": "Faça um caça-palavras sem a lista: só com uma dica para cada palavra, como uma adivinha.",
   "seg": "Sem cuidados especiais.",
   "dica": "Use lápis primeiro e canetinha só no fim. Assim dá para corrigir sem bagunçar!",
-  "foto": "caça-palavras feito à mão em papel quadriculado com algumas palavras circuladas em lápis de cor"
+  "foto": "caça-palavras feito à mão em papel quadriculado com algumas palavras circuladas em lápis de cor",
+  "temas": [
+   "por2-1",
+   "por3-1"
+  ]
  },
  {
   "slug": "teatro-de-leitura-com-gibi",
@@ -4221,7 +4638,11 @@
   "turbine": "Gravem só as vozes, como uma radionovela, com sons feitos em casa: porta batendo, passos, chuva.",
   "seg": "Sem cuidados especiais.",
   "dica": "Olhe o formato do balão: nuvem é pensamento, pontudo é grito, tracejado é cochicho!",
-  "foto": "criança e adulto lendo um gibi juntos no sofá, falas marcadas com lápis de cor, criança fazendo cara de personagem"
+  "foto": "criança e adulto lendo um gibi juntos no sofá, falas marcadas com lápis de cor, criança fazendo cara de personagem",
+  "temas": [
+   "por2-2",
+   "por3-2"
+  ]
  },
  {
   "slug": "gravar-a-leitura-em-video",
@@ -4255,7 +4676,10 @@
   "turbine": "Faça uma leitura com voz de contador de histórias, com pausas e suspense. Use o teste de fluência do Atlas para acompanhar o mês.",
   "seg": "Não publique o vídeo na internet sem a família combinar antes.",
   "dica": "Comece elogiando o que ficou bom. Leitor confiante lê melhor!",
-  "foto": "criança lendo um livro em voz alta enquanto um adulto segura o celular gravando, sala iluminada"
+  "foto": "criança lendo um livro em voz alta enquanto um adulto segura o celular gravando, sala iluminada",
+  "temas": [
+   "por2-2"
+  ]
  },
  {
   "slug": "mapa-da-historia",
@@ -4290,7 +4714,10 @@
   "turbine": "Invente um caminho diferente: e se a Chapeuzinho fosse por outra trilha? Desenhe o novo final.",
   "seg": "Sem cuidados especiais.",
   "dica": "Use setas no caminho. Assim ninguém se perde na história!",
-  "foto": "papel pardo grande no chão com caminho desenhado em giz de cera ligando casinhas e floresta, criança movendo um bonequinho"
+  "foto": "papel pardo grande no chão com caminho desenhado em giz de cera ligando casinhas e floresta, criança movendo um bonequinho",
+  "temas": [
+   "por2-3"
+  ]
  },
  {
   "slug": "cardapio-do-jantar",
@@ -4324,7 +4751,10 @@
   "turbine": "Escreva uma descrição apetitosa para cada prato, com dois adjetivos: arroz soltinho e cheiroso.",
   "seg": "Se for ajudar a cozinhar, fogão e faca só com o adulto.",
   "dica": "Inventar nomes chiques para comida de casa é a parte mais divertida!",
-  "foto": "cardápio artesanal colorido escrito à mão por criança apoiado num prato numa mesa de jantar posta"
+  "foto": "cardápio artesanal colorido escrito à mão por criança apoiado num prato numa mesa de jantar posta",
+  "temas": [
+   "por2-4"
+  ]
  },
  {
   "slug": "detetive-da-ortografia",
@@ -4358,7 +4788,10 @@
   "turbine": "Faça um cartaz com as 5 descobertas do detetive: palavra errada riscada e certa ao lado, com a regra.",
   "seg": "Na rua, sempre ao lado do adulto. Não corrija o cartaz de ninguém: o detetive só anota!",
   "dica": "Nem tudo que parece erro é erro. Nomes de lojas às vezes erram de propósito!",
-  "foto": "criança com lupa de brinquedo e caderninho olhando um cartaz de loja na rua, adulto ao lado"
+  "foto": "criança com lupa de brinquedo e caderninho olhando um cartaz de loja na rua, adulto ao lado",
+  "temas": [
+   "por3-1"
+  ]
  },
  {
   "slug": "dicionario-ilustrado-da-familia",
@@ -4393,7 +4826,11 @@
   "turbine": "Quando tiver 20 palavras, faça um quiz para a família: leia a definição e veja quem adivinha a palavra.",
   "seg": "Sem cuidados especiais.",
   "dica": "Empatou na primeira letra? Olhe a segunda! CA-S-A vem antes de CA-V-ALO.",
-  "foto": "caderno aberto com página da letra C, palavras escritas com significado e desenhos coloridos, dicionário ao lado"
+  "foto": "caderno aberto com página da letra C, palavras escritas com significado e desenhos coloridos, dicionário ao lado",
+  "temas": [
+   "por3-1",
+   "por3-5"
+  ]
  },
  {
   "slug": "historia-em-quadrinhos-de-4-quadros",
@@ -4428,7 +4865,10 @@
   "turbine": "Faça a mesma HQ duas vezes, mudando só a pontuação dos balões. A história muda?",
   "seg": "Sem cuidados especiais.",
   "dica": "Desenhe o balão depois de escrever a fala. Assim a frase não fica espremida!",
-  "foto": "folha com história em quadrinhos de 4 quadros desenhada por criança, balões com falas e sinais de pontuação, lápis de cor ao lado"
+  "foto": "folha com história em quadrinhos de 4 quadros desenhada por criança, balões com falas e sinais de pontuação, lápis de cor ao lado",
+  "temas": [
+   "por3-2"
+  ]
  },
  {
   "slug": "leitura-dramatica",
@@ -4462,7 +4902,11 @@
   "turbine": "Pegue um texto sem pontuação, preparado pelo adulto, e pontue você mesmo. Depois leia em voz alta.",
   "seg": "Não publique a gravação sem combinar com a família.",
   "dica": "Respire nos pontos! Pontuação também serve para o leitor não ficar sem ar.",
-  "foto": "texto impresso com vírgulas e pontos destacados em cores diferentes, criança lendo em voz alta com celular gravando"
+  "foto": "texto impresso com vírgulas e pontos destacados em cores diferentes, criança lendo em voz alta com celular gravando",
+  "temas": [
+   "por3-2",
+   "por2-2"
+  ]
  },
  {
   "slug": "fabula-da-familia",
@@ -4496,7 +4940,10 @@
   "turbine": "Encene a fábula com máscaras de animais ou fantoches para a família.",
   "seg": "Sem cuidados especiais.",
   "dica": "Moral curtinha, que cabe numa linha. A história é que explica o resto!",
-  "foto": "folhas com fábula escrita à mão e ilustrações de tartaruga e coelho coloridas por criança, livro de fábulas aberto ao lado"
+  "foto": "folhas com fábula escrita à mão e ilustrações de tartaruga e coelho coloridas por criança, livro de fábulas aberto ao lado",
+  "temas": [
+   "por3-3"
+  ]
  },
  {
   "slug": "mascaras-de-animais",
@@ -4535,7 +4982,11 @@
   "turbine": "Invente uma cena nova que não está no livro e encene. O que os animais diriam?",
   "seg": "Buracos dos olhos grandes, para enxergar bem. O adulto corta os olhos. Elástico não pode apertar.",
   "dica": "Faça os buracos dos olhos bem maiores do que acha. Ator que tropeça perde a cena!",
-  "foto": "crianças com máscaras de prato de papel de raposa e cegonha encenando na sala, cortina improvisada ao fundo"
+  "foto": "crianças com máscaras de prato de papel de raposa e cegonha encenando na sala, cortina improvisada ao fundo",
+  "temas": [
+   "por3-3",
+   "por2-3"
+  ]
  },
  {
   "slug": "sarau-em-casa",
@@ -4571,7 +5022,10 @@
   "turbine": "Faça um sarau temático (só poemas de bichos, ou de um mesmo autor) e apresente um poema de cor.",
   "seg": "Chá quente só servido pelo adulto, e já morno para as crianças.",
   "dica": "Olhe para a plateia no fim de cada verso. Parece mágica, mas todo mundo presta mais atenção!",
-  "foto": "sala aconchegante com almofadas no chão, criança lendo poema em pé perto de abajur, família com xícaras de chá ouvindo"
+  "foto": "sala aconchegante com almofadas no chão, criança lendo poema em pé perto de abajur, família com xícaras de chá ouvindo",
+  "temas": [
+   "por3-4"
+  ]
  },
  {
   "slug": "caixa-misteriosa",
@@ -4605,7 +5059,11 @@
   "turbine": "Regra nova: é proibido falar cor! Ou descreva usando só três adjetivos.",
   "seg": "Nada cortante, pontudo, quente ou vivo dentro da caixa.",
   "dica": "Use os cinco sentidos que dá: tem cheiro? Faz barulho se chacoalhar?",
-  "foto": "caixa de papelão decorada com um furo redondo, mão de criança entrando, objetos de texturas diferentes ao lado sobre a mesa"
+  "foto": "caixa de papelão decorada com um furo redondo, mão de criança entrando, objetos de texturas diferentes ao lado sobre a mesa",
+  "temas": [
+   "por3-5",
+   "cie1-1"
+  ]
  },
  {
   "slug": "cartaz-de-adjetivos",
@@ -4640,7 +5098,11 @@
   "turbine": "Descreva uma flor só com adjetivos e peça para alguém adivinhar qual é.",
   "seg": "Não cheire nem toque plantas desconhecidas que soltam seiva. Lave as mãos depois.",
   "dica": "Proibido usar bonita! Vale qualquer outra palavra.",
-  "foto": "cartolina com desenhos de flores coloridas e adjetivos escritos à mão em volta, flores de verdade num copo ao lado"
+  "foto": "cartolina com desenhos de flores coloridas e adjetivos escritos à mão em volta, flores de verdade num copo ao lado",
+  "temas": [
+   "por3-5",
+   "cie2-2"
+  ]
  },
  {
   "slug": "jornal-da-familia",
@@ -4675,7 +5137,10 @@
   "turbine": "Acrescente uma seção nova: previsão do tempo da semana, entrevista com um avô ou avó ou uma tirinha.",
   "seg": "Combine antes com a família o que pode ir para o jornal e o que é segredo de casa.",
   "dica": "Manchete boa cabe em uma linha. Corte as palavras que não fazem falta!",
-  "foto": "página de jornal artesanal em cartolina com nome do jornal, manchetes escritas à mão, fotos da família coladas e colunas desenhadas"
+  "foto": "página de jornal artesanal em cartolina com nome do jornal, manchetes escritas à mão, fotos da família coladas e colunas desenhadas",
+  "temas": [
+   "por4-1"
+  ]
  },
  {
   "slug": "receita-escrita-pela-crianca",
@@ -4711,7 +5176,11 @@
   "turbine": "Escreva a receita para um alienígena que não conhece nada da Terra. Quanto detalhe precisa?",
   "seg": "Fogão, forno e faca só com o adulto. Lave as mãos. Atenção a alergias.",
   "dica": "O adulto pode fazer de propósito tudo literal. Se não está escrito, não faz!",
-  "foto": "folha com receita escrita à mão por criança com título e lista de ingredientes, ao lado de tábua com sanduíche sendo montado"
+  "foto": "folha com receita escrita à mão por criança com título e lista de ingredientes, ao lado de tábua com sanduíche sendo montado",
+  "temas": [
+   "por4-1",
+   "mat3-3"
+  ]
  },
  {
   "slug": "linha-do-tempo-da-vida",
@@ -4745,7 +5214,10 @@
   "turbine": "Faça a linha do tempo de alguém da família, entrevistando essa pessoa.",
   "seg": "Para algumas crianças, falar do passado pode trazer lembranças difíceis. A criança escolhe o que quer contar.",
   "dica": "Pinte os verbos de cores diferentes: passado azul, presente verde, futuro laranja.",
-  "foto": "faixa comprida de papel pardo na parede com linha do tempo, fotos coladas, anos marcados e frases escritas à mão"
+  "foto": "faixa comprida de papel pardo na parede com linha do tempo, fotos coladas, anos marcados e frases escritas à mão",
+  "temas": [
+   "por4-2"
+  ]
  },
  {
   "slug": "capsula-do-tempo",
@@ -4780,7 +5252,11 @@
   "turbine": "Combine com a família: cada um faz a sua cápsula, e abrem todas juntas no mesmo dia.",
   "seg": "Sem cuidados especiais.",
   "dica": "Anote no calendário do celular do adulto a data para abrir. Ninguém esquece!",
-  "foto": "pote de vidro com tampa contendo carta enrolada, foto e desenhos, etiqueta escrito abrir em com data"
+  "foto": "pote de vidro com tampa contendo carta enrolada, foto e desenhos, etiqueta escrito abrir em com data",
+  "temas": [
+   "por4-2",
+   "por4-1"
+  ]
  },
  {
   "slug": "batida-da-silaba-forte",
@@ -4814,7 +5290,10 @@
   "turbine": "Fale uma palavra com a sílaba forte no lugar errado (SA-BA-DÔ) e veja quem descobre a palavra.",
   "seg": "Batida de tambor forte perto do ouvido incomoda: toque a um palmo de distância.",
   "dica": "Chame a palavra como se a pessoa estivesse longe: CA-FÉÉÉ! A sílaba forte aparece sozinha.",
-  "foto": "criança batendo numa panela virada com colher de pau, folha com três colunas de palavras ao lado"
+  "foto": "criança batendo numa panela virada com colher de pau, folha com três colunas de palavras ao lado",
+  "temas": [
+   "por4-3"
+  ]
  },
  {
   "slug": "clube-do-livro-em-familia",
@@ -4848,7 +5327,10 @@
   "turbine": "Escrevam juntos um capítulo extra para o livro, contando o que aconteceu depois do final.",
   "seg": "Sem cuidados especiais.",
   "dica": "Pergunta boa não tem resposta de sim ou não. Comece com por que ou e se!",
-  "foto": "família sentada à mesa com um livro aberto, lanche temático colorido e papéis com perguntas escritas"
+  "foto": "família sentada à mesa com um livro aberto, lanche temático colorido e papéis com perguntas escritas",
+  "temas": [
+   "por4-4"
+  ]
  },
  {
   "slug": "caixa-de-objetos-da-historia",
@@ -4883,7 +5365,11 @@
   "turbine": "Mostre a caixa para alguém que não leu o livro e veja se a pessoa entende a história só com os objetos.",
   "seg": "Objetos pequenos longe de crianças menores de 3 anos.",
   "dica": "Objeto bom faz lembrar de uma cena inteira. Uma chave pode guardar um capítulo todo!",
-  "foto": "caixa de sapato decorada como capa de livro aberta com pequenos objetos e etiquetas escritas à mão dentro"
+  "foto": "caixa de sapato decorada como capa de livro aberta com pequenos objetos e etiquetas escritas à mão dentro",
+  "temas": [
+   "por4-4",
+   "por2-3"
+  ]
  },
  {
   "slug": "minipodcast",
@@ -4918,7 +5404,10 @@
   "turbine": "Faça um episódio com entrevista: prepare 5 perguntas e entreviste alguém da família ou um vizinho.",
   "seg": "Não publique a voz, o nome ou a imagem da criança na internet sem a família combinar antes.",
   "dica": "Grave perto de um cobertor ou dentro do guarda-roupa aberto. Pano engole o eco!",
-  "foto": "criança falando ao celular apoiado num suporte, folha de roteiro escrita à mão na mesa, cobertor ao fundo"
+  "foto": "criança falando ao celular apoiado num suporte, folha de roteiro escrita à mão na mesa, cobertor ao fundo",
+  "temas": [
+   "por5-4"
+  ]
  },
  {
   "slug": "campanha-economizar-agua",
@@ -4953,7 +5442,11 @@
   "turbine": "Faça um placar da semana: quem fechar a torneira ao escovar os dentes ganha um ponto. A conta do mês mudou?",
   "seg": "Não desperdice a água do teste: use para regar plantas ou lavar o quintal.",
   "dica": "Frase de campanha boa cabe num dedo de cartaz. Curta e com verbo!",
-  "foto": "cartaz de cartolina colado perto de uma pia com frase de campanha, desenho de gota e dicas escritas à mão por criança"
+  "foto": "cartaz de cartolina colado perto de uma pia com frase de campanha, desenho de gota e dicas escritas à mão por criança",
+  "temas": [
+   "por5-1",
+   "cie5-2"
+  ]
  },
  {
   "slug": "assembleia-da-casa",
@@ -4988,7 +5481,10 @@
   "turbine": "Façam uma assembleia por mês e releiam a ata da última: o que foi cumprido?",
   "seg": "Combinem uma regra: ninguém interrompe quem está falando.",
   "dica": "Comece pelos assuntos fáceis. Assembleia que começa com acordo termina melhor!",
-  "foto": "mesa de cozinha com família reunida, criança com folha de pauta e lápis na mão, cronômetro do celular na mesa"
+  "foto": "mesa de cozinha com família reunida, criança com folha de pauta e lápis na mão, cronômetro do celular na mesa",
+  "temas": [
+   "por5-1"
+  ]
  },
  {
   "slug": "editora-da-familia",
@@ -5023,7 +5519,10 @@
   "turbine": "Faça a ficha do livro na última página: autor, ilustrador, revisor, data e número de exemplares. E escreva a orelha com um resumo.",
   "seg": "Grampeador com cuidado com os dedos.",
   "dica": "Leia o texto em voz alta na revisão. O ouvido acha erro que o olho pulou!",
-  "foto": "livrinho artesanal grampeado com capa ilustrada, título e nome do autor, rascunho riscado com correções ao lado"
+  "foto": "livrinho artesanal grampeado com capa ilustrada, título e nome do autor, rascunho riscado com correções ao lado",
+  "temas": [
+   "por5-2"
+  ]
  },
  {
   "slug": "caderno-de-cronicas",
@@ -5057,7 +5556,10 @@
   "turbine": "Escreva a mesma cena do ponto de vista de outra pessoa da casa, ou do cachorro!",
   "seg": "Combine com a família antes de ler crônicas sobre alguém para outras pessoas.",
   "dica": "Detalhe pequeno faz crônica grande: o cheiro do café, o chinelo trocado.",
-  "foto": "caderno aberto com crônica escrita à mão e título sublinhado, xícara de café ao lado na mesa da cozinha"
+  "foto": "caderno aberto com crônica escrita à mão e título sublinhado, xícara de café ao lado na mesa da cozinha",
+  "temas": [
+   "por5-3"
+  ]
  },
  {
   "slug": "visita-a-biblioteca",
@@ -5091,7 +5593,11 @@
   "turbine": "Faça a carteirinha da biblioteca e visite uma vez por mês. Ou monte a biblioteca da casa organizada por assunto.",
   "seg": "Na rua e na biblioteca, sempre com o adulto.",
   "dica": "Bibliotecária é uma ótima ajudante de missão. Pergunte sem vergonha!",
-  "foto": "criança procurando livros em estante de biblioteca pública com caderninho na mão, estantes coloridas ao fundo"
+  "foto": "criança procurando livros em estante de biblioteca pública com caderninho na mão, estantes coloridas ao fundo",
+  "temas": [
+   "por5-4",
+   "por5-3"
+  ]
  },
  {
   "slug": "cartaz-de-apresentacao",
@@ -5126,6 +5632,9 @@
   "turbine": "Prepare 3 perguntas de quiz no fim da apresentação para conferir se a plateia aprendeu.",
   "seg": "Pesquisa na internet sempre com o adulto por perto.",
   "dica": "Cartaz é lembrete, não redação. Escreva pouco e fale muito!",
-  "foto": "criança apresentando um cartaz de cartolina sobre o sistema solar para a família sentada no sofá"
+  "foto": "criança apresentando um cartaz de cartolina sobre o sistema solar para a família sentada no sofá",
+  "temas": [
+   "por5-4"
+  ]
  }
 ]

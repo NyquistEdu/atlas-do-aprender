@@ -14,6 +14,8 @@ export type Atividade = {
   idade: string; tm: string; nivel: 1 | 2 | 3; adulto: string; sujeira: string; ideia: string;
   mat: string[]; comprar: string; palpite: string; st: string[]; ad: number[];
   como: string; turbine: string; seg: string; dica: string; foto: string; naocoma?: boolean;
+  /** Temas das trilhas com que a atividade se relaciona: "cie2-3" = Ciências, 2º ano, tema 3 (contando de 1). */
+  temas: string[];
 };
 
 export const ATIVIDADES = raw as Atividade[];
