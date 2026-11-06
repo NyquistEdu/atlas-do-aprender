@@ -1,43 +1,79 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { ANOS, EXPERIMENTOS, MATERIAS, anoCurto } from "@/lib/data";
-import { ParaDiario } from "@/components/Registrar";
+import { ANOS, anoCurto } from "@/lib/data";
+import { ESTACOES, NIVEIS, ORDEM_ESTACOES, caminhoFoto, type Cartao, type Estacao } from "@/lib/maoNaMassaInfo";
 import { ConviteConta } from "@/components/Acesso";
+import Caixote from "@/components/Caixote";
 
-export default function Mao() {
-  const [a, setA] = useState("all");
+export default function Mao({ itens }: { itens: Cartao[] }) {
+  const [e, setE] = useState<"all" | Estacao>("all");
   const [y, setY] = useState("all");
-  const xs = EXPERIMENTOS.filter((x) => (a === "all" || x.a === a) && (y === "all" || x.y === y)).sort((p, q) => +p.y - +q.y);
+  const xs = itens.filter((x) => (e === "all" || x.est === e) && (y === "all" || +x.y <= +y));
+  const grupos = ORDEM_ESTACOES.map((k) => [k, xs.filter((x) => x.est === k)] as const).filter(([, l]) => l.length);
   return (
     <div className="wrap largo">
-      <h1>Mão na massa</h1>
-      <p className="lead">Experimentos e atividades práticas com material de casa. Primeiro a criança prevê o que vai acontecer, depois testa, observa e explica com as próprias palavras.</p>
+      <div className="mm-topo">
+        <div>
+          <h1>Mão na massa</h1>
+          <p className="lead">{itens.length} experimentos, invenções e atividades com material de casa. Cada uma tem a sua página: palpite antes de começar, passo a passo, a explicação de como funciona e um desafio para criar a própria versão.</p>
+        </div>
+        <Caixote size={96} />
+      </div>
+
+      <ol className="mm-metodo" aria-label="Como funciona cada atividade">
+        <li><b>1. Palpite</b><span>A criança diz o que acha que vai acontecer.</span></li>
+        <li><b>2. Construa e teste</b><span>Passos numerados; os do adulto vêm marcados.</span></li>
+        <li><b>3. Descubra</b><span>A grande ideia explicada em palavras simples.</span></li>
+        <li><b>4. Turbine</b><span>Um desafio para mudar algo e criar a própria versão.</span></li>
+      </ol>
+
       <ConviteConta origem="mao-na-massa" titulo="Guarde o que a criança descobriu"
         texto="Anote as frases e perguntas dela em um minuto e releia quando quiser."
         acao="Ver como funciona o diário" href="/diario" />
-      <div className="seg subj">
-        {[["all", "Todas"], ...Object.entries(MATERIAS)].map(([v, l]) => <button key={v} type="button" data-s={v} aria-pressed={a === v} onClick={() => setA(v)}>{l}</button>)}
+
+      <div className="seg mm-est" role="group" aria-label="Estação">
+        {([["all", "Todas"], ...ORDEM_ESTACOES.map((k) => [k, ESTACOES[k].curto])] as [string, string][]).map(([v, l]) => (
+          <button key={v} type="button" data-e={v} aria-pressed={e === v} onClick={() => setE(v as "all" | Estacao)}>{l}</button>
+        ))}
       </div>
-      <div className="seg yr">
-        {[["all", "Todos os anos"], ...ANOS.map(([v, l]) => [v, anoCurto(l)])].map(([v, l]) => <button key={v} type="button" aria-pressed={y === v} onClick={() => setY(v)}>{l}</button>)}
+      <div className="seg yr" role="group" aria-label="Ano escolar">
+        {[["all", "Todos os anos"], ...ANOS.map(([v, l]) => [v, `para o ${anoCurto(l)}`])].map(([v, l]) => (
+          <button key={v} type="button" aria-pressed={y === v} onClick={() => setY(v)}>{l}</button>
+        ))}
       </div>
-      {a === "all" && y === "all" && <p className="dica">Para começar nesta semana: o Leite mágico, logo abaixo, leva 15 minutos e usa o que tem na cozinha.</p>}
-      <div className="grid2">
-        {xs.length ? xs.map((x) => (
-          <article className="card" key={x.n}>
-            <h3>{x.n}</h3>
-            <div className="tags"><span className={`tag ${x.a}`}>{MATERIAS[x.a]}</span><span className="meta">a partir do {x.y}º ano · {x.tm}</span></div>
-            <dl>
-              <dt>Materiais</dt><dd>{x.mat.join(" · ")}</dd>
-              <dt>Como fazer</dt><dd><ol>{x.st.map((s) => <li key={s}>{s}</li>)}</ol></dd>
-              <dt>O que aprende</dt><dd>{x.l}</dd>
-            </dl>
-            {x.c && <p className="warn"><b>Cuidado:</b> {x.c}</p>}
-            <div><ParaDiario area={x.a} tipo="Experimento" titulo={x.n} texto="Guardar a descoberta no diário" /></div>
-          </article>
-        )) : <div className="empty">Nenhuma atividade com esse filtro.</div>}
-      </div>
+      {e === "all" && y === "all" && <p className="dica">Para começar nesta semana: construa o <Link href="/mao-na-massa/caixote-o-robo-de-caixa">Caixote, o robô de caixa</Link>, ou faça o <Link href="/mao-na-massa/leite-magico">Leite mágico</Link>, que leva 15 minutos.</p>}
+
+      {grupos.length ? grupos.map(([k, lista]) => (
+        <section key={k} className="mm-grupo" data-e={k}>
+          <div className="mm-grupo-t">
+            <h2>{ESTACOES[k].nome}</h2>
+            <p className="meta">{ESTACOES[k].desc} · {lista.length} atividades</p>
+          </div>
+          <div className="mm-grid">
+            {lista.map((x) => (
+              <Link key={x.slug} href={`/mao-na-massa/${x.slug}`} className="mm-card" data-e={x.est}>
+                <div className="mm-card-img">
+                  {x.foto
+                    // eslint-disable-next-line @next/next/no-img-element
+                    ? <img src={caminhoFoto(x.slug)} alt="" loading="lazy" width={400} height={300} />
+                    : <span className="mm-card-num" aria-hidden="true">{x.num}</span>}
+                </div>
+                <div className="mm-card-txt">
+                  <h3>{x.n}</h3>
+                  <p>{x.sub}</p>
+                  <div className="tags">
+                    <span className="tag mm-tag">{x.idade}</span>
+                    <span className="tag mm-tag-n">{x.tm}</span>
+                    <span className="tag mm-tag-n">{NIVEIS[x.nivel]}</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )) : <div className="empty">Nenhuma atividade com esse filtro.</div>}
     </div>
   );
 }

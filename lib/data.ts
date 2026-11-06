@@ -7,7 +7,6 @@ export type Tema = {
   l?: Livro[];
 };
 export type Jogo = { n: string; s: string; i: string; k: string[]; w: string; y: string; h: string };
-export type Experimento = { n: string; a: "por" | "mat" | "cie"; y: string; tm: string; mat: string[]; st: string[]; l: string; c: string };
 export type Materia = "por" | "mat" | "cie";
 
 const d = raw as unknown as {
@@ -17,7 +16,6 @@ const d = raw as unknown as {
   SK: Record<string, string>;
   STAGES: [string, string, string][];
   G: Jogo[];
-  X: Experimento[];
   SHELF: [string, Livro[]][];
 };
 
@@ -27,7 +25,7 @@ export const TRILHAS = d.T;
 export const HABILIDADES = d.SK;
 export const ESTAGIOS = d.STAGES;
 export const JOGOS = d.G;
-export const EXPERIMENTOS = d.X;
+export { ATIVIDADES as EXPERIMENTOS } from "./maoNaMassa";
 export const ESTANTE = d.SHELF;
 
 export const SLUG: Record<Materia, string> = { por: "portugues", mat: "matematica", cie: "ciencias" };
