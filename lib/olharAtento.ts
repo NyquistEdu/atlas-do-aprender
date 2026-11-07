@@ -1,4 +1,4 @@
-// Kit de Observação em Casa: fichas e jogos de observação pedagógica para famílias.
+// Olhar Atento: fichas e jogos de observação pedagógica para famílias.
 // Todos os itens são originais do Atlas (não reproduzem instrumentos clínicos publicados).
 // Não é diagnóstico: orienta o treino no Atlas e quando procurar um profissional.
 

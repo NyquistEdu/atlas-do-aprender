@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    return [{ source: "/kit-observacao", destination: "/olhar-atento", permanent: true }];
+  },
   async headers() {
     return [
       {

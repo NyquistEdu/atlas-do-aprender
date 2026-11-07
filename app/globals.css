@@ -1057,7 +1057,7 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
   .mm-alto:has(.vazia) .mm-info{grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 
-/* ---------- Kit de Observação em Casa ---------- */
+/* ---------- Olhar Atento (classes kit-*) ---------- */
 .kit{display:grid;gap:16px;margin-top:8px}
 .kit select{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
 .kit-crianca label.f{min-width:200px}

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { COMANDOS, CORES, ESCALA, FICHAS, itemText, type Ficha } from "@/lib/kit";
+import { COMANDOS, CORES, ESCALA, FICHAS, itemText, type Ficha } from "@/lib/olharAtento";
 
 type Stroop = { t1?: number; e1?: number; t2?: number; e2?: number };
 type Jogos = { digDireta?: number; digInversa?: number; stroop?: Stroop; comandos?: Record<string, boolean> };
@@ -65,7 +65,7 @@ function avaliar(f: Ficha, S: Estado): Aval {
 
 function textoResumo(S: Estado) {
   const serie = SERIES.find((s) => s[0] === S.serie)?.[1];
-  const l: string[] = ["Kit de Observação em Casa · Atlas do Aprender", `Criança: ${S.nome || "(sem nome)"}${serie ? " · " + serie : ""}`, `Data: ${new Date().toLocaleDateString("pt-BR")}`, "Observação feita pela família. Não é diagnóstico.", ""];
+  const l: string[] = ["Olhar Atento · Atlas do Aprender", `Criança: ${S.nome || "(sem nome)"}${serie ? " · " + serie : ""}`, `Data: ${new Date().toLocaleDateString("pt-BR")}`, "Observação feita pela família. Não é diagnóstico.", ""];
   FICHAS.forEach((f) => {
     const a = avaliar(f, S); if (!a.r) return;
     if (f.tipo === "ditado") l.push(`• ${f.titulo}: ${a.faixa} (${a.som} erros de som, ${a.regra} de regra)`);
@@ -86,7 +86,7 @@ function textoResumo(S: Estado) {
   return l.join("\n");
 }
 
-export default function Kit() {
+export default function OlharAtento() {
   const [S, setS] = useState<Estado>(VAZIO);
   const [aba, setAba] = useState<Aba>("fichas");
   const [ficha, setFicha] = useState<string | null>(null);
@@ -114,7 +114,7 @@ export default function Kit() {
             </select>
           </label>
         </div>
-        <p className="note" style={{ margin: 0 }}><b>Isto não é um diagnóstico.</b> O kit ajuda a família a organizar o que observa. Autismo, TDAH, dislexia, discalculia e outras condições só podem ser diagnosticados por profissionais habilitados. As respostas ficam guardadas só neste navegador.</p>
+        <p className="note" style={{ margin: 0 }}><b>Isto não é um diagnóstico.</b> O Olhar Atento ajuda a família a organizar o que observa. Autismo, TDAH, dislexia, discalculia e outras condições só podem ser diagnosticados por profissionais habilitados. As respostas ficam guardadas só neste navegador.</p>
       </section>
 
       <div className="seg kit-abas" role="tablist">
@@ -471,7 +471,7 @@ function Ajuda() {
             <tbody>{QUEM.map(([a, b]) => <tr key={a}><td>{a}</td><td>{b}</td></tr>)}</tbody></table>
         </section>
         <p>Os profissionais usam instrumentos próprios, padronizados e com normas para cada idade. Alguns exemplos: o <b>M-CHAT-R/F</b>, aplicado pelo pediatra entre 16 e 30 meses para rastrear sinais de autismo; escalas de atenção respondidas por pais e professores, como o <b>SNAP-IV</b>; a avaliação do processamento auditivo, feita pelo fonoaudiólogo; e a avaliação neuropsicológica. No Brasil, testes psicológicos só podem ser aplicados por psicólogos.</p>
-        <p>Leve o <b>Resumo</b> deste kit e as folhas de escrita e ditado com data. Exemplos concretos ajudam muito na consulta.</p>
+        <p>Leve o <b>Resumo</b> do Olhar Atento e as folhas de escrita e ditado com data. Exemplos concretos ajudam muito na consulta.</p>
       </div>
       <aside className="card kit-res">
         <h3>Antes de tudo, confira</h3>
