@@ -3,21 +3,38 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { COMANDOS, CORES, ESCALA, FICHAS, itemText, type Ficha } from "@/lib/olharAtento";
+import { useAtlas } from "@/components/Providers";
 
 type Stroop = { t1?: number; e1?: number; t2?: number; e2?: number };
 type Jogos = { digDireta?: number; digInversa?: number; stroop?: Stroop; comandos?: Record<string, boolean> };
-type Estado = { nome: string; serie: string; resp: Record<string, Record<string, number>>; notas: Record<string, string>; ditado: Record<string, number>; jogos: Jogos };
+type Estado = { id: string; nome: string; serie: string; resp: Record<string, Record<string, number>>; notas: Record<string, string>; ditado: Record<string, number>; jogos: Jogos };
+type Store = { v: 2; ativa: string; lista: Estado[]; importou?: boolean };
 type Nivel = "none" | "ok" | "warn" | "alert" | "info";
 type Aval = { r: number; n: number; soma: number; max: number; pct: number; fortes: string[]; flag: boolean; nivel: Nivel; rotulo: string; faixa?: string; parcial?: boolean; som?: number; regra?: number };
+type Muda = (fn: (s: Estado) => Estado) => void;
 
+// Mesma chave da primeira versão: quem já tinha respostas de uma criança não perde nada.
 const CHAVE = "atlas-kit-observacao";
-const VAZIO: Estado = { nome: "", serie: "", resp: {}, notas: {}, ditado: {}, jogos: {} };
+const novaCrianca = (nome = ""): Estado => ({ id: Math.random().toString(36).slice(2, 10), nome, serie: "", resp: {}, notas: {}, ditado: {}, jogos: {} });
 const SERIES: [string, string][] = [["0", "Educação infantil"], ["1", "1º ano"], ["2", "2º ano"], ["3", "3º ano"], ["4", "4º ano"], ["5", "5º ano"], ["6", "6º ano ou mais"]];
-type Aba = "fichas" | "jogos" | "resumo" | "ajuda";
-const ABAS: [Aba, string][] = [["fichas", "Fichas"], ["jogos", "Jogos de observação"], ["resumo", "Resumo"], ["ajuda", "Quando procurar ajuda"]];
+type Aba = "fichas" | "jogos" | "relatorio" | "ajuda";
+const ABAS: [Aba, string][] = [["fichas", "Fichas"], ["jogos", "Jogos de observação"], ["relatorio", "Relatório"], ["ajuda", "Quando procurar ajuda"]];
+const COR: Record<Nivel, string> = { alert: "var(--por)", warn: "var(--jog)", ok: "var(--cie)", info: "var(--mat)", none: "var(--line)" };
 
 const total = (f: Ficha) => (f.tipo === "ditado" ? f.erros!.length : f.itens!.length);
 const fmt = (ms: number) => (ms / 1000).toFixed(1).replace(".", ",") + " s";
+const vazia = (c: Estado) => !c.nome.trim() && !Object.keys(c.resp).length && !Object.keys(c.ditado).length && !Object.keys(c.jogos).length;
+const nomeDe = (c: Estado) => c.nome.trim() || "Sem nome";
+
+function ler(): Store {
+  try {
+    const o = JSON.parse(localStorage.getItem(CHAVE) || "null");
+    if (o && o.v === 2 && Array.isArray(o.lista) && o.lista.length) return o;
+    if (o && typeof o === "object" && o.resp) { const c = { ...novaCrianca(), ...o, id: novaCrianca().id }; return { v: 2, ativa: c.id, lista: [c] }; }
+  } catch {}
+  const c = novaCrianca();
+  return { v: 2, ativa: c.id, lista: [c] };
+}
 
 function avaliar(f: Ficha, S: Estado): Aval {
   const n = total(f);
@@ -63,67 +80,84 @@ function avaliar(f: Ficha, S: Estado): Aval {
   return out;
 }
 
-function textoResumo(S: Estado) {
-  const serie = SERIES.find((s) => s[0] === S.serie)?.[1];
-  const l: string[] = ["Olhar Atento · Atlas do Aprender", `Criança: ${S.nome || "(sem nome)"}${serie ? " · " + serie : ""}`, `Data: ${new Date().toLocaleDateString("pt-BR")}`, "Observação feita pela família. Não é diagnóstico.", ""];
-  FICHAS.forEach((f) => {
-    const a = avaliar(f, S); if (!a.r) return;
-    if (f.tipo === "ditado") l.push(`• ${f.titulo}: ${a.faixa} (${a.som} erros de som, ${a.regra} de regra)`);
-    else if (f.tipo === "pref") {
-      const res = S.resp[f.id] || {}, top = f.itens!.filter((_, i) => res[i] === 2).map((it) => (typeof it === "object" ? it.cat : ""));
-      l.push(`• ${f.titulo}: ${top.length ? top.join(", ") : "sem preferência forte marcada"}`);
-    } else {
-      l.push(`• ${f.titulo}: ${a.parcial ? `incompleta (${a.r}/${a.n})` : a.faixa} · ${a.soma}/${a.max} pontos`);
-      a.fortes.forEach((t) => l.push(`   - quase sempre: ${t}`));
-    }
-    if (S.notas[f.id]) l.push(`   Anotações: ${S.notas[f.id].replace(/\s+/g, " ")}`);
-  });
-  const J = S.jogos;
-  if (J.digDireta || J.digInversa) l.push(`• Memória de números: mesma ordem ${J.digDireta || "—"}, de trás para frente ${J.digInversa || "—"}`);
-  if (J.stroop?.t1 && J.stroop?.t2) l.push(`• Cores trocadas: rodada 1 ${fmt(J.stroop.t1)} (${J.stroop.e1 || 0} erros), rodada 2 ${fmt(J.stroop.t2)} (${J.stroop.e2 || 0} erros)`);
-  const c = J.comandos || {};
-  if (Object.keys(c).length) l.push(`• Siga o comando: ${Object.values(c).filter(Boolean).length} de ${Object.keys(c).length} corretos`);
-  return l.join("\n");
-}
 
 export default function OlharAtento() {
-  const [S, setS] = useState<Estado>(VAZIO);
+  const [store, setStore] = useState<Store | null>(null);
   const [aba, setAba] = useState<Aba>("fichas");
   const [ficha, setFicha] = useState<string | null>(null);
-  const carregado = useRef(false);
+  const [remover, setRemover] = useState(false);
+  const { criancas } = useAtlas();
+  const nomeRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => { setStore(ler()); }, []);
+  useEffect(() => { if (store) { try { localStorage.setItem(CHAVE, JSON.stringify(store)); } catch {} } }, [store]);
+  // Quem tem conta no Atlas já vê as crianças cadastradas aqui (uma vez só, sem duplicar nomes).
   useEffect(() => {
-    try { const o = JSON.parse(localStorage.getItem(CHAVE) || "null"); if (o && typeof o === "object") setS({ ...VAZIO, ...o }); } catch {}
-    carregado.current = true;
-  }, []);
-  useEffect(() => { if (carregado.current) { try { localStorage.setItem(CHAVE, JSON.stringify(S)); } catch {} } }, [S]);
+    if (!store || store.importou || !criancas.length) return;
+    setStore((st) => {
+      if (!st) return st;
+      let lista = [...st.lista];
+      const tem = (n: string) => lista.some((c) => c.nome.trim().toLowerCase() === n.trim().toLowerCase());
+      const novos = criancas.filter((n) => !tem(n)).map((n) => novaCrianca(n));
+      if (lista.length === 1 && vazia(lista[0]) && novos.length) lista = novos; else lista = [...lista, ...novos];
+      return { ...st, lista, ativa: lista.some((c) => c.id === st.ativa) ? st.ativa : lista[0].id, importou: true };
+    });
+  }, [store, criancas]);
 
-  const muda = (fn: (s: Estado) => Estado) => setS((s) => fn(s));
-  const abrir = (id: string) => { setAba("fichas"); setFicha(id); topo(); };
+  if (!store) return <div className="kit"><p className="meta">Carregando…</p></div>;
+  const S = store.lista.find((c) => c.id === store.ativa) || store.lista[0];
+  const muda: Muda = (fn) => setStore((st) => st && ({ ...st, lista: st.lista.map((c) => (c.id === (st.ativa || st.lista[0].id) ? fn(c) : c)) }));
+  const escolher = (id: string) => { setStore((st) => st && ({ ...st, ativa: id })); setRemover(false); };
+  const adicionar = () => {
+    const c = novaCrianca();
+    setStore((st) => st && ({ ...st, lista: [...st.lista, c], ativa: c.id }));
+    setRemover(false); setFicha(null);
+    setTimeout(() => nomeRef.current?.focus(), 50);
+  };
+  const removerAtiva = () => {
+    setStore((st) => {
+      if (!st || st.lista.length < 2) return st;
+      const lista = st.lista.filter((c) => c.id !== S.id);
+      return { ...st, lista, ativa: lista[0].id };
+    });
+    setRemover(false);
+  };
   const topo = () => { const el = document.getElementById("kit"); if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: "smooth" }); };
+  const abrir = (id: string) => { setAba("fichas"); setFicha(id); topo(); };
 
   return (
     <div className="kit" id="kit">
-      <section className="card kit-crianca">
+      <section className="card kit-crianca no-print">
+        <div className="kit-kids" role="group" aria-label="Criança observada">
+          <span className="eyebrow-i">Criança</span>
+          {store.lista.map((c) => {
+            const feitas = FICHAS.filter((f) => avaliar(f, c).r > 0).length;
+            return <button key={c.id} type="button" className="chip" aria-pressed={c.id === S.id} onClick={() => escolher(c.id)}>{nomeDe(c)}{feitas ? <small> · {feitas}/{FICHAS.length}</small> : null}</button>;
+          })}
+          <button type="button" className="chip kit-add" onClick={adicionar}>+ Adicionar criança</button>
+        </div>
         <div className="row" style={{ alignItems: "end", gap: 14 }}>
-          <label className="f">Nome ou apelido da criança (opcional)<input maxLength={30} value={S.nome} onChange={(e) => { const v = e.target.value; muda((s) => ({ ...s, nome: v })); }} placeholder="Ex.: Lia" /></label>
+          <label className="f">Nome ou apelido<input ref={nomeRef} maxLength={30} value={S.nome} onChange={(e) => { const v = e.target.value; muda((s) => ({ ...s, nome: v })); }} placeholder="Ex.: Lia" /></label>
           <label className="f">Ano escolar
             <select value={S.serie} onChange={(e) => { const v = e.target.value; muda((s) => ({ ...s, serie: v })); }}>
               <option value="">Escolha</option>
               {SERIES.map(([k, l]) => <option key={k} value={k}>{l}</option>)}
             </select>
           </label>
+          {store.lista.length > 1 && (remover
+            ? <span className="row"><button type="button" className="btn danger small" onClick={removerAtiva}>Remover {nomeDe(S)} e as respostas</button><button type="button" className="link-btn meta" onClick={() => setRemover(false)}>Cancelar</button></span>
+            : <button type="button" className="link-btn meta" onClick={() => setRemover(true)}>Remover esta criança</button>)}
         </div>
         <p className="note" style={{ margin: 0 }}><b>Isto não é um diagnóstico.</b> O Olhar Atento ajuda a família a organizar o que observa. Autismo, TDAH, dislexia, discalculia e outras condições só podem ser diagnosticados por profissionais habilitados. As respostas ficam guardadas só neste navegador.</p>
       </section>
 
-      <div className="seg kit-abas" role="tablist">
+      <div className="seg kit-abas no-print" role="tablist">
         {ABAS.map(([k, l]) => <button key={k} role="tab" type="button" aria-pressed={aba === k} aria-selected={aba === k} onClick={() => { setAba(k); if (k === "fichas") setFicha(null); }}>{l}</button>)}
       </div>
 
-      {aba === "fichas" && (ficha ? <FichaView f={FICHAS.find((x) => x.id === ficha)!} S={S} muda={muda} voltar={() => setFicha(null)} abrir={abrir} /> : <Grade S={S} abrir={abrir} />)}
-      {aba === "jogos" && <JogosView S={S} muda={muda} />}
-      {aba === "resumo" && <Resumo S={S} muda={muda} abrir={abrir} />}
+      {aba === "fichas" && (ficha ? <FichaView key={S.id} f={FICHAS.find((x) => x.id === ficha)!} S={S} muda={muda} voltar={() => setFicha(null)} abrir={abrir} /> : <Grade S={S} abrir={abrir} />)}
+      {aba === "jogos" && <JogosView key={S.id} S={S} muda={muda} />}
+      {aba === "relatorio" && <Relatorio S={S} muda={muda} abrir={abrir} />}
       {aba === "ajuda" && <Ajuda />}
     </div>
   );
@@ -150,7 +184,7 @@ function Grade({ S, abrir }: { S: Estado; abrir: (id: string) => void }) {
   );
 }
 
-function FichaView({ f, S, muda, voltar, abrir }: { f: Ficha; S: Estado; muda: (fn: (s: Estado) => Estado) => void; voltar: () => void; abrir: (id: string) => void }) {
+function FichaView({ f, S, muda, voltar, abrir }: { f: Ficha; S: Estado; muda: Muda; voltar: () => void; abrir: (id: string) => void }) {
   const idx = FICHAS.indexOf(f), prox = FICHAS[idx + 1];
   const serie = S.serie === "" ? null : Number(S.serie);
   const res = S.resp[f.id] || {};
@@ -265,7 +299,7 @@ function sortearCores() {
   return { blocos, palavras };
 }
 
-function JogosView({ S, muda }: { S: Estado; muda: (fn: (s: Estado) => Estado) => void }) {
+function JogosView({ S, muda }: { S: Estado; muda: Muda }) {
   return (
     <>
       <p className="meta" style={{ margin: 0 }}>Brincadeiras curtas para fazer junto. Anote e repita daqui a alguns meses para comparar com ela mesma, sem buscar um número ideal.</p>
@@ -278,7 +312,7 @@ function JogosView({ S, muda }: { S: Estado; muda: (fn: (s: Estado) => Estado) =
   );
 }
 
-function Digitos({ S, muda }: { S: Estado; muda: (fn: (s: Estado) => Estado) => void }) {
+function Digitos({ S, muda }: { S: Estado; muda: Muda }) {
   const [modo, setModo] = useState<"direta" | "inversa">("direta");
   const [voz, setVoz] = useState(false);
   const [len, setLen] = useState(2);
@@ -339,7 +373,7 @@ function Digitos({ S, muda }: { S: Estado; muda: (fn: (s: Estado) => Estado) => 
   );
 }
 
-function Cores({ S, muda }: { S: Estado; muda: (fn: (s: Estado) => Estado) => void }) {
+function Cores({ S, muda }: { S: Estado; muda: Muda }) {
   const [itens, setItens] = useState<ReturnType<typeof sortearCores> | null>(null);
   const [rodando, setRodando] = useState<null | "1" | "2">(null);
   const [agora, setAgora] = useState(0);
@@ -383,7 +417,7 @@ function Cores({ S, muda }: { S: Estado; muda: (fn: (s: Estado) => Estado) => vo
   );
 }
 
-function Comandos({ S, muda }: { S: Estado; muda: (fn: (s: Estado) => Estado) => void }) {
+function Comandos({ S, muda }: { S: Estado; muda: Muda }) {
   const cm = S.jogos.comandos || {};
   const marca = (i: number, v: boolean) => muda((s) => {
     const c = { ...(s.jogos.comandos || {}) };
@@ -411,39 +445,145 @@ function Comandos({ S, muda }: { S: Estado; muda: (fn: (s: Estado) => Estado) =>
   );
 }
 
-/* ---------- Resumo e ajuda ---------- */
+/* ---------- Relatório ---------- */
 
-function Resumo({ S, muda, abrir }: { S: Estado; muda: (fn: (s: Estado) => Estado) => void; abrir: (id: string) => void }) {
-  const [msg, setMsg] = useState("");
+const AREAS = ["leitura", "escrita", "matematica", "atencao", "social", "convivencia", "escuta"];
+
+function Relatorio({ S, muda, abrir }: { S: Estado; muda: Muda; abrir: (id: string) => void }) {
   const [confirma, setConfirma] = useState(false);
-  const texto = textoResumo(S);
-  const copiar = async () => { try { await navigator.clipboard.writeText(texto); setMsg("Copiado."); } catch { setMsg("Não consegui copiar. Selecione o texto e copie."); } };
+  const nome = S.nome.trim() || "a criança";
+  const serie = SERIES.find((s) => s[0] === S.serie)?.[1];
+  const hoje = new Date().toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" });
+  const fichas = FICHAS.map((f) => ({ f, a: avaliar(f, S) }));
+  const areas = fichas.filter(({ f }) => AREAS.includes(f.id));
+  const feitas = fichas.filter(({ a }) => a.r > 0);
+  const dit = fichas.find(({ f }) => f.id === "ditado")!;
+  const tal = fichas.find(({ f }) => f.id === "talentos")!;
+  const pref = fichas.find(({ f }) => f.id === "preferencias")!;
+  const passos = fichas.filter(({ f, a }) => !a.parcial && a.r > 0 && (a.nivel === "alert" || a.nivel === "warn") && f.tipo !== "pref" && !f.positivo);
+  const J = S.jogos, cm = J.comandos || {};
+  const temJogo = !!(J.digDireta || J.digInversa || J.stroop?.t1 || J.stroop?.t2 || Object.keys(cm).length);
+  const imprimir = () => { (document as Document & { fonts?: FontFaceSet }).fonts?.ready.then(() => window.print()) ?? window.print(); };
+
   return (
-    <div className="kit-layout">
-      <div style={{ display: "grid", gap: 10, minWidth: 0 }}>
-        <h2>Resumo de {S.nome.trim() || "seu filho"}</h2>
-        {FICHAS.map((f, i) => {
-          const a = avaliar(f, S);
-          const det = f.tipo === "ditado" && a.r ? `${a.som} erros de som · ${a.regra} de regra` : f.tipo !== "pref" && a.r ? `${a.soma} de ${a.max} pontos · ${a.r}/${a.n} itens` : f.sub;
-          return (
-            <button key={f.id} type="button" className="card kit-sum" onClick={() => abrir(f.id)}>
-              <span><b>{i + 1}. {f.titulo}</b><span className="meta" style={{ display: "block" }}>{det}</span></span>
-              <span className={`kit-chip ${a.nivel}`}>{a.rotulo}</span>
-            </button>
-          );
-        })}
-      </div>
-      <aside className="card kit-res">
-        <h3>Texto para levar</h3>
-        <p className="meta">Cole numa mensagem para a escola ou mostre na consulta.</p>
-        <textarea readOnly rows={12} value={texto} onFocus={(e) => e.target.select()} />
-        <div className="row"><button type="button" className="btn small" onClick={copiar}>Copiar resumo</button><span className="meta">{msg}</span></div>
-        <div className="row">
-          {confirma
-            ? <><button type="button" className="btn danger small" onClick={() => { muda(() => VAZIO); setConfirma(false); }}>Sim, apagar tudo</button><button type="button" className="link-btn meta" onClick={() => setConfirma(false)}>Cancelar</button></>
-            : <button type="button" className="btn ghost small" onClick={() => setConfirma(true)}>Apagar todas as respostas</button>}
+    <div className="oa-rel">
+      <header className="oa-cab">
+        <div>
+          <p className="eyebrow-i">Olhar Atento · Atlas do Aprender</p>
+          <h2>Relatório de observação de {nome}</h2>
+          <p className="meta">{serie ? `${serie} · ` : ""}{hoje} · {feitas.length} de {FICHAS.length} fichas preenchidas</p>
         </div>
-      </aside>
+        <button type="button" className="btn no-print" onClick={imprimir} disabled={!feitas.length && !temJogo}>Gerar PDF</button>
+      </header>
+      <p className="oa-aviso">Observação feita pela família, em casa. <b>Não é diagnóstico.</b> Serve para conversar com a escola e com profissionais de saúde.</p>
+
+      {!feitas.length && !temJogo ? (
+        <section className="card no-print"><p>Ainda não há respostas para {nome}. Comece pelas <button type="button" className="link-btn" onClick={() => abrir(FICHAS[0].id)}>fichas</button>: o relatório se monta sozinho conforme você marca.</p></section>
+      ) : (
+        <>
+          <section className="card oa-bloco">
+            <h3>Visão geral</h3>
+            <p className="meta">Quanto mais longa a barra, mais sinais foram marcados na área.</p>
+            <div className="oa-graf">
+              {areas.map(({ f, a }) => {
+                const pct = Math.round(a.pct * 100);
+                return (
+                  <div key={f.id} className="oa-linha">
+                    <span className="oa-nome">{f.titulo}</span>
+                    <span className="oa-trilho">
+                      <span className="oa-faixa" style={{ left: "30%" }} /><span className="oa-faixa" style={{ left: "55%" }} />
+                      {a.r > 0 && <i style={{ width: `${Math.max(pct, 2)}%`, background: a.parcial ? "var(--soft)" : COR[a.nivel] }} />}
+                    </span>
+                    <span className="oa-val">{a.r === 0 ? "não preenchida" : a.parcial ? `${pct}% · incompleta` : `${pct}%`}</span>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="oa-legenda">
+              <span><i style={{ background: "var(--cie)" }} />Até 30%: poucos sinais</span>
+              <span><i style={{ background: "var(--jog)" }} />30% a 55%: acompanhe de perto</span>
+              <span><i style={{ background: "var(--por)" }} />Acima de 55%: converse com um profissional</span>
+            </div>
+          </section>
+
+          {passos.length > 0 && (
+            <section className="card oa-bloco">
+              <h3>Próximos passos</h3>
+              <ol className="oa-passos">
+                {passos.sort((x, y) => (x.a.nivel === "alert" ? 0 : 1) - (y.a.nivel === "alert" ? 0 : 1)).map(({ f, a }) => (
+                  <li key={f.id}><span className={`kit-chip ${a.nivel}`}>{f.titulo}</span> {a.nivel === "alert" ? f.quem : f.atlas}</li>
+                ))}
+              </ol>
+            </section>
+          )}
+
+          <div className="oa-duas">
+            {dit.a.r > 0 && (
+              <section className="card oa-bloco">
+                <h3>Ditado</h3>
+                <div className="oa-stats">
+                  <div><b>{dit.a.som}</b><span>erros de som</span></div>
+                  <div><b>{dit.a.regra}</b><span>erros de regra</span></div>
+                </div>
+                <span className={`kit-chip ${dit.a.nivel}`}>{dit.a.faixa}</span>
+                <p className="meta">Erros de regra são comuns até o 5º ano. Erros de som depois do 3º ano merecem atenção.</p>
+              </section>
+            )}
+            {(tal.a.r > 0 || pref.a.r > 0) && (
+              <section className="card oa-bloco">
+                <h3>Pontos fortes</h3>
+                {tal.a.r > 0 && <><p><span className={`kit-chip ${tal.a.parcial ? "none" : tal.a.nivel}`}>{tal.a.parcial ? "Talentos: incompleta" : tal.a.faixa}</span></p>
+                  {tal.a.fortes.length > 0 && <ul className="oa-lista">{tal.a.fortes.map((t) => <li key={t}>{t}</li>)}</ul>}</>}
+                {pref.a.r > 0 && <><p className="meta">Como {nome} gosta de aprender</p><div className="kit-pref">{pref.f.itens!.map((it, i) => ({ cat: typeof it === "object" ? it.cat : "", v: (S.resp.preferencias || {})[i] ?? 0 })).filter((x) => x.v > 0).sort((x, y) => y.v - x.v).map((x) => (
+                  <div key={x.cat}><span>{x.cat}</span><span className="bar"><i style={{ width: `${x.v * 50}%`, background: "var(--mat)" }} /></span></div>
+                ))}</div></>}
+              </section>
+            )}
+            {temJogo && (
+              <section className="card oa-bloco">
+                <h3>Jogos de observação</h3>
+                <div className="oa-stats">
+                  {(J.digDireta || J.digInversa) ? <div><b>{J.digDireta || "—"} / {J.digInversa || "—"}</b><span>números lembrados (mesma ordem / de trás para frente)</span></div> : null}
+                  {J.stroop?.t1 && J.stroop?.t2 ? <div><b>{fmt(J.stroop.t1)} / {fmt(J.stroop.t2)}</b><span>cores trocadas (blocos / palavras), {(J.stroop.e1 || 0) + (J.stroop.e2 || 0)} erros</span></div> : null}
+                  {Object.keys(cm).length ? <div><b>{Object.values(cm).filter(Boolean).length} de {Object.keys(cm).length}</b><span>comandos seguidos corretamente</span></div> : null}
+                </div>
+              </section>
+            )}
+          </div>
+
+          <section className="oa-det">
+            <h3>Detalhes por área</h3>
+            <div className="oa-cards">
+              {areas.filter(({ a }) => a.r > 0).map(({ f, a }) => (
+                <article key={f.id} className="card oa-card" style={{ borderTop: `5px solid ${a.parcial ? "var(--line)" : COR[a.nivel]}` }}>
+                  <div className="oa-card-cab"><h4>{f.titulo}</h4><span className={`kit-chip ${a.parcial ? "none" : a.nivel}`}>{a.parcial ? `${a.r} de ${a.n} itens` : a.faixa}</span></div>
+                  <p className="meta">{a.soma} de {a.max} pontos · {f.sub}</p>
+                  {a.flag && <p><b>Perdeu habilidades que já tinha: procurar o pediatra logo.</b></p>}
+                  {a.fortes.length > 0 ? <><p className="oa-mini">Acontece quase sempre</p><ul className="oa-lista">{a.fortes.map((t) => <li key={t}>{t}</li>)}</ul></> : <p className="meta">Nenhum item marcado como quase sempre.</p>}
+                  {S.notas[f.id] && <><p className="oa-mini">Anotações da família</p><p className="oa-nota">{S.notas[f.id]}</p></>}
+                </article>
+              ))}
+            </div>
+            {(["ditado", "talentos", "preferencias"] as const).some((id) => S.notas[id]) && (
+              <div className="card oa-bloco" style={{ marginTop: 12 }}>
+                <p className="oa-mini">Outras anotações</p>
+                {(["ditado", "talentos", "preferencias"] as const).filter((id) => S.notas[id]).map((id) => <p key={id}><b>{FICHAS.find((f) => f.id === id)!.titulo}:</b> {S.notas[id]}</p>)}
+              </div>
+            )}
+          </section>
+        </>
+      )}
+
+      <div className="oa-rod">
+        <span>Olhar Atento · Atlas do Aprender · atlasdoaprender.com.br/olhar-atento</span>
+        <span>Criado por Stephanie Kamarry. Material gratuito de observação pedagógica; não substitui avaliação profissional.</span>
+      </div>
+
+      <div className="row no-print">
+        {confirma
+          ? <><button type="button" className="btn danger small" onClick={() => { muda((s) => ({ ...s, resp: {}, notas: {}, ditado: {}, jogos: {} })); setConfirma(false); }}>Sim, apagar as respostas de {nome}</button><button type="button" className="link-btn meta" onClick={() => setConfirma(false)}>Cancelar</button></>
+          : <button type="button" className="btn ghost small" onClick={() => setConfirma(true)}>Apagar as respostas de {nome}</button>}
+      </div>
     </div>
   );
 }
