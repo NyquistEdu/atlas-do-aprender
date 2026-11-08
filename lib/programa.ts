@@ -23,6 +23,11 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Nível B · Tirar e comparar (folhas 11 a 20)", itens: ["Riscar e contar", "Tirar no quadro de dez", "Pular para trás na reta numérica", "Menos 1 e menos 2", "Subtrações até 10", "Quantos a mais", "Quanto falta", "Problemas de tirar e de comparar"] },
     { titulo: "Nível C · Amigos do 10 e problemas (folhas 21 a 30)", itens: ["Quanto falta para 10", "Os amigos do 10", "Mais ou menos?", "O número escondido", "Passando do 10", "Família de contas", "Que conta eu faço?", "Desafio final: o mercadinho"] },
   ] },
+  "treino-ontem-hoje-e-amanha": { blocos: [
+    { titulo: "Nível A · Reconhecer (folhas 1 a 10)", itens: ["Achar o verbo", "Ação, estado ou fenômeno", "O infinitivo", "-AR, -ER ou -IR", "Quem faz a ação", "O verbo combina (concordância)", "Ontem, hoje ou amanhã", "Dançar nos três tempos", "A palavra de tempo"] },
+    { titulo: "Nível B · Conjugar e escolher (folhas 11 a 20)", itens: ["Conjugar no presente, no passado e no futuro", "Brinquei ou brincava?", "Quando o vovô era menino (imperfeito)", "Irregulares: ser, estar, ter, ir", "Irregulares: fazer, ver, dizer, trazer", "Cantaram ou cantarão?", "-AM ou -ÃO?"] },
+    { titulo: "Nível C · Usar no texto (folhas 21 a 30)", itens: ["Passar para o passado e para o futuro", "O verbo fora do tempo", "Completar a história", "O que eu fiz ontem", "Como era antigamente", "Planos para as férias", "Troque o “disse”", "Desafio final: diário de três dias"] },
+  ] },
   "treino-separar-e-comparar": { blocos: [
     { titulo: "Nível A · Separar (folhas 1 a 10)", itens: ["Contar por cor", "Reconhecer cores e formas (círculo, quadrado, triângulo, retângulo)", "Contar as formas", "Grande ou pequeno", "Achar o intruso e a forma intrusa", "Descobrir a regra do grupo: cor, forma ou tamanho", "Desenhar um que combina"] },
     { titulo: "Nível B · Comparar (folhas 11 a 20)", itens: ["Mais, menos ou igual, ligando um a um", "Qual grupo tem mais e qual tem menos", "É igual? Sim ou não", "Juntinho ou espalhado: a quantidade não muda", "Desenhar a mesma quantidade", "Quantos a mais", "Desenhar ou riscar para ficar igual"] },

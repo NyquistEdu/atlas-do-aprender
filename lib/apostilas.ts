@@ -392,6 +392,23 @@ const TODOS_GRATUITOS: Gratuito[] = [
     materia: "por", ano: "4", tema: 1, apostila: "textos-do-dia-a-dia",
   },
   {
+    slug: "treino-ontem-hoje-e-amanha",
+    titulo: "Treino Diário · Ontem, Hoje e Amanhã",
+    subtitulo: "30 folhas de verbos e tempos verbais, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-ontem-hoje-e-amanha.pdf",
+    nomeArquivo: "Treino-Diario-Ontem-Hoje-e-Amanha-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com correção até acertar tudo. Começa achando o verbo, o infinitivo, os grupos -AR, -ER e -IR e a concordância; passa por conjugar no passado, no presente e no futuro, escolher entre brinquei e brincava, os verbos irregulares e o -AM ou -ÃO; e termina usando os tempos no texto: corrigir verbos fora do tempo, completar histórias e escrever um diário de três dias.",
+    dentro: ["30 folhas em 3 níveis, de 3 a 12 minutos cada", "Reconhecer: verbo, infinitivo, grupos, quem faz a ação e os três tempos", "Conjugar: tabelas, perfeito e imperfeito, irregulares e -AM ou -ÃO", "Usar no texto: reescrever, corrigir, completar histórias e escrever diários", "Registro de progresso, certificado e gabarito"],
+    amostras: ["Ação, estado ou fenômeno?", "Conjugar no passado", "Cantaram ou cantarão?", "O verbo fora do tempo"],
+    publico: "4º ano",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos, de preferência no mesmo horário. Peça que a criança leia as frases em voz alta: o ouvido percebe quando o verbo está fora do lugar.",
+      "Passe para a próxima folha quando ela fizer com no máximo 1 erro. Se não deu, volte à parte da apostila sobre aquele assunto e refaça a folha em outro dia.",
+    ],
+    materia: "por", ano: "4", tema: 2, apostila: "ontem-hoje-e-amanha",
+  },
+  {
     slug: "treino-separar-e-comparar",
     titulo: "Treino Diário · Separar e Comparar",
     subtitulo: "30 folhas para separar, comparar e ordenar, uma por dia",
