@@ -53,7 +53,7 @@ export default function Loja() {
               </p>
               <div className="row">
                 {p.mercadoLivre && <BotaoLoja slug={p.slug} loja="mercadolivre" href={p.mercadoLivre} rotulo="Ver no Mercado Livre" />}
-                {p.shopee && <BotaoLoja slug={p.slug} loja="shopee" href={p.shopee} rotulo="Ver na Shopee" ghost />}
+                {p.shopee && <BotaoLoja slug={p.slug} loja="shopee" href={p.shopee} rotulo="Ver na Shopee" ghost={!!p.mercadoLivre} />}
               </div>
             </div>
           </article>

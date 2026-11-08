@@ -75,6 +75,19 @@ export const LOJA: ProdutoLoja[] = [
     temas: [["cie", "1", 1], ["cie", "5", 1]],
     mercadoLivre: `https://www.mercadolivre.com.br/quebracabeca-corpo-humano-esqueleto-3d/up/MLBU5569140592${ML}`,
   },
+  {
+    slug: "quebra-cabeca-deslizante-natal",
+    nome: "Kit 2 Quebra-Cabeças Deslizantes de Natal 3×3",
+    emoji: "🎅",
+    area: "mat",
+    idade: "a partir de 6 anos",
+    resumo: "Dois quebra-cabeças deslizantes 3×3, um de Papai Noel e outro de elfo natalino, cada um com seu próprio tabuleiro. O desafio é mover as peças pelo espaço vazio até reconstruir o personagem. Um presente de Natal que treina a cabeça e rende momentos de desafio em família.",
+    trabalha: ["Planejamento de movimentos", "Raciocínio lógico e resolução de problemas", "Percepção visual e orientação espacial", "Atenção, persistência e coordenação olho-mão"],
+    comoUsar: "Embaralhe deslizando as peças e entregue para a criança remontar, uma peça por vez para o espaço vazio. Monte junto nas primeiras vezes e pergunte em voz alta: qual peça precisa sair do lugar primeiro? Valorize a persistência, não a velocidade. Com dois kits, dá para fazer desafio em dupla: cada um embaralha o do outro.",
+    fotos: 2,
+    temas: [["mat", "1", 4]],
+    shopee: "https://shopee.com.br/product/1933090137/58222545876/",
+  },
 ];
 
 export const jogosDoTema = (m: Materia, ano: string, tema: number) =>
