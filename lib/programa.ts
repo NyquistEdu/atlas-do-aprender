@@ -38,6 +38,11 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Nível B · Formas no mundo e figuras (folhas 11 a 20)", itens: ["Formas nos objetos", "O carimbo", "O trem e o foguete de formas", "Que forma aparece?", "Desmontar formas", "Copiar na malha", "Completar a forma", "Desafios do Tangram"] },
     { titulo: "Nível C · Padrões (folhas 21 a 30)", itens: ["Padrão AB", "Padrões AAB, ABB e ABC", "Padrões de posição", "A parte que se repete", "Ache o erro", "O que falta no meio?", "Padrões que crescem", "Sons, letras e números", "Desafio final"] },
   ] },
+  "treino-alem-do-ba-be-bi": { blocos: [
+    { titulo: "Nível A · Encontros com R e L (folhas 1 a 10)", itens: ["BR, PR, TR, CR, DR, FR, GR", "Ponha um R", "R ou L?", "BL, CL, FL, GL, PL", "Juntar as sílabas", "Qual está certa?", "Sílabas embaralhadas", "Ditado de encontros"] },
+    { titulo: "Nível B · NH, LH e CH (folhas 11 a 20)", itens: ["NH, LH e CH", "NH ou LH?", "Uma letra muda tudo", "Separar as sílabas", "Desafio: CH ou X?", "A galinha Chiquinha", "Ditado de NH, LH e CH"] },
+    { titulo: "Nível C · Finalzinho e regras (folhas 21 a 30)", itens: ["Não esqueça o finalzinho", "M ou N?", "R ou RR?", "S ou SS?", "QU ou GU?", "Separar e contar", "Fábrica de palavras", "Corrija o Duda", "Desafio final"] },
+  ] },
   "treino-separar-e-comparar": { blocos: [
     { titulo: "Nível A · Separar (folhas 1 a 10)", itens: ["Contar por cor", "Reconhecer cores e formas (círculo, quadrado, triângulo, retângulo)", "Contar as formas", "Grande ou pequeno", "Achar o intruso e a forma intrusa", "Descobrir a regra do grupo: cor, forma ou tamanho", "Desenhar um que combina"] },
     { titulo: "Nível B · Comparar (folhas 11 a 20)", itens: ["Mais, menos ou igual, ligando um a um", "Qual grupo tem mais e qual tem menos", "É igual? Sim ou não", "Juntinho ou espalhado: a quantidade não muda", "Desenhar a mesma quantidade", "Quantos a mais", "Desenhar ou riscar para ficar igual"] },

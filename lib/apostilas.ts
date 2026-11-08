@@ -478,6 +478,23 @@ const TODOS_GRATUITOS: Gratuito[] = [
     materia: "mat", ano: "1", tema: 4, apostila: "formas-e-padroes",
   },
   {
+    slug: "treino-alem-do-ba-be-bi",
+    titulo: "Treino Diário · Além do Ba-Be-Bi",
+    subtitulo: "30 folhas de sílabas complexas e ortografia, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-alem-do-ba-be-bi.pdf",
+    nomeArquivo: "Treino-Diario-Alem-do-Ba-Be-Bi-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com correção até acertar tudo. Começa com os encontros com R e L (prato, dragão, flor, planta), passa por NH, LH e CH, com pares que mudam o sentido (minha e milha, tenha e telha), e termina com a consoante no fim da sílaba e as primeiras regras: M antes de P e B, R ou RR, S ou SS, QU e GU. Com ditados prontos para o adulto.",
+    dentro: ["30 folhas em 3 níveis, de 3 a 12 minutos cada", "Encontros com R e L: completar, R ou L, sílabas embaralhadas e ditado", "NH, LH e CH: pares que mudam o sentido, separar sílabas, CH ou X e leitura", "Finalzinho e regras: M ou N, R ou RR, S ou SS, QU ou GU, fábrica de palavras", "Registro de progresso, certificado e gabarito"],
+    amostras: ["BR, PR, TR e companhia", "Uma letra muda tudo", "R ou RR?", "Corrija o Duda"],
+    publico: "2º ano",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos, de preferência no mesmo horário. Peça que a criança fale a palavra em voz alta antes de escrever; nos ditados, fale cada palavra duas vezes, devagar.",
+      "Passe para a próxima folha quando ela fizer com no máximo 1 erro. Se não deu, volte à parte da apostila sobre aquele assunto e refaça a folha em outro dia.",
+    ],
+    materia: "por", ano: "2", tema: 1, apostila: "alem-do-ba-be-bi",
+  },
+  {
     slug: "treino-separar-e-comparar",
     titulo: "Treino Diário · Separar e Comparar",
     subtitulo: "30 folhas para separar, comparar e ordenar, uma por dia",
