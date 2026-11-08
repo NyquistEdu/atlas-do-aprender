@@ -409,6 +409,23 @@ const TODOS_GRATUITOS: Gratuito[] = [
     materia: "mat", ano: "1", tema: 2, apostila: "separar-e-comparar",
   },
   {
+    slug: "treino-juntar-e-tirar",
+    titulo: "Treino Diário · Juntar e Tirar",
+    subtitulo: "30 folhas de soma e subtração até 10, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-juntar-e-tirar.pdf",
+    nomeArquivo: "Treino-Diario-Juntar-e-Tirar-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com correção até acertar tudo. Começa juntando grupos com figuras e com o quadro de dez, guardando o maior na cabeça e pulando na reta numérica; passa por tirar, quantos a mais e quanto falta; e termina com os amigos do 10, o número escondido, a família de contas e problemas em que a criança decide se a conta é de mais ou de menos.",
+    dentro: ["30 folhas em 3 níveis, de 3 a 10 minutos cada", "Juntar e acrescentar: quadro de dez, guardar o maior na cabeça, reta numérica, dobros", "Tirar e comparar: riscar, pular para trás, quantos a mais e quanto falta", "Amigos do 10, número escondido, família de contas e o mercadinho", "Registro de progresso, certificado e gabarito"],
+    amostras: ["Somar no quadro de dez", "Pular para trás", "Os amigos do 10", "Família de contas"],
+    publico: "Alfabetização",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos, de preferência no mesmo horário. Os dedos são permitidos, assim como tampinhas, o quadro de dez e a reta numérica da apostila.",
+      "Passe para a próxima folha quando ela fizer com no máximo 1 erro e sem muita ajuda. Se não deu, faça primeiro com objetos de verdade e depois refaça a folha em outro dia.",
+    ],
+    materia: "mat", ano: "1", tema: 3, apostila: "juntar-e-tirar",
+  },
+  {
     slug: "treino-medir-o-mundo",
     titulo: "Treino Diário · Medir o Mundo",
     subtitulo: "30 folhas de medidas e conversões, uma por dia",

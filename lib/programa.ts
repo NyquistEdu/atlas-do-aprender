@@ -18,6 +18,11 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Nível B · Ler e analisar (folhas 11 a 20)", itens: ["Lendo uma notícia: o lide", "A melhor manchete", "Lendo uma carta e cartas em ordem", "O envelope: remetente e destinatário", "Lendo uma receita, passos em ordem e medidas", "Gênero e pista"] },
     { titulo: "Nível C · Escrever (folhas 21 a 30)", itens: ["Faça a manchete e escreva o lide", "Tire a opinião", "Complete a carta e deixe a carta formal", "Escreva os passos e monte a receita", "Um assunto, três textos", "Desafio final: o jornal da minha casa"] },
   ] },
+  "treino-juntar-e-tirar": { blocos: [
+    { titulo: "Nível A · Juntar e acrescentar (folhas 1 a 10)", itens: ["Juntar dois grupos", "Somar no quadro de dez", "Guardar o maior na cabeça", "Pular para a frente na reta numérica", "Mais 1 e mais 2", "A ordem não muda", "Os dobros", "Somas até 10", "Problemas de juntar"] },
+    { titulo: "Nível B · Tirar e comparar (folhas 11 a 20)", itens: ["Riscar e contar", "Tirar no quadro de dez", "Pular para trás na reta numérica", "Menos 1 e menos 2", "Subtrações até 10", "Quantos a mais", "Quanto falta", "Problemas de tirar e de comparar"] },
+    { titulo: "Nível C · Amigos do 10 e problemas (folhas 21 a 30)", itens: ["Quanto falta para 10", "Os amigos do 10", "Mais ou menos?", "O número escondido", "Passando do 10", "Família de contas", "Que conta eu faço?", "Desafio final: o mercadinho"] },
+  ] },
   "treino-separar-e-comparar": { blocos: [
     { titulo: "Nível A · Separar (folhas 1 a 10)", itens: ["Contar por cor", "Reconhecer cores e formas (círculo, quadrado, triângulo, retângulo)", "Contar as formas", "Grande ou pequeno", "Achar o intruso e a forma intrusa", "Descobrir a regra do grupo: cor, forma ou tamanho", "Desenhar um que combina"] },
     { titulo: "Nível B · Comparar (folhas 11 a 20)", itens: ["Mais, menos ou igual, ligando um a um", "Qual grupo tem mais e qual tem menos", "É igual? Sim ou não", "Juntinho ou espalhado: a quantidade não muda", "Desenhar a mesma quantidade", "Quantos a mais", "Desenhar ou riscar para ficar igual"] },
