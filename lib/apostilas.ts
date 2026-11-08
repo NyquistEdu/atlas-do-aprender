@@ -103,6 +103,18 @@ export const APOSTILAS: Apostila[] = [
   },
 
   {
+    slug: "formas-e-padroes",
+    titulo: "Formas e Padrões",
+    subtitulo: "Círculo, quadrado, triângulo e retângulo, e as sequências que se repetem",
+    materia: "mat", ano: "1", tema: 4, nomeTema: "Formas geométricas e padrões",
+    paginas: 32, preco: "Grátis", checkout: "",
+    arquivo: "/apostilas-pdf/formas-e-padroes.pdf", nomeArquivo: "Formas-e-Padroes-Atlas-do-Aprender.pdf",
+    resumo: "A criança aprende a reconhecer o círculo, o quadrado, o triângulo e o retângulo em qualquer posição, contando lados e pontas. Descobre que o quadrado “de ponta” continua quadrado, diferencia quadrado de retângulo, caça formas pela casa, monta figuras juntando formas e brinca com o Tangram. Depois aprende a achar a parte que se repete num padrão para continuar, corrigir e criar os seus, com cores, formas, sons e movimentos.",
+    dentro: ["7 partes com explicação e exercícios: as quatro formas, girou continua igual, quadrado ou retângulo, formas na casa, juntar e desmontar, padrões e criar padrões", "Para o adulto: o que a criança aprende e uma observação inicial com formas de papel", "Erros que são pistas, exercícios guiados e 5 treinos diários", "Leitura O robô de formas da Nina e Tangram para recortar com desafios", "Jogos, mão na massa (colagem, colar de padrão, carimbo), certificado e gabarito"],
+    amostras: ["Girou, continua igual", "Juntar e desmontar formas", "Padrões: o que se repete", "O seu Tangram"],
+  },
+
+  {
     slug: "medir-o-mundo",
     titulo: "Medir o Mundo",
     subtitulo: "Medidas e conversões sem travar",

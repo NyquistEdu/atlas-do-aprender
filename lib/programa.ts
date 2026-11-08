@@ -126,6 +126,10 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Partes da apostila", itens: ["Para o adulto · O que a criança aprende e a observação inicial", "Parte 1 · De que é feito? Objeto e material", "Parte 2 · Natural ou fabricado? E a reciclagem", "Parte 3 · Sentir com as mãos: duro, liso, pesado", "Parte 4 · Ver através, quebrar, dobrar e molhar", "Parte 5 · Flutua ou afunda?", "Parte 6 · O que o ímã atrai?", "Parte 7 · O material certo para cada uso"] },
     { titulo: "Para praticar", itens: ["Erros que são pistas e exercícios guiados", "5 treinos diários", "Leitura: Os três porquinhos e os materiais", "16 cartas e 6 placas para recortar e 4 jogos", "Mão na massa e gabarito"] },
   ] },
+  "formas-e-padroes": { blocos: [
+    { titulo: "Partes da apostila", itens: ["Para o adulto · O que a criança aprende e a observação inicial", "Parte 1 · As quatro formas: lados e pontas", "Parte 2 · Girou, continua igual", "Parte 3 · Quadrado ou retângulo?", "Parte 4 · Formas na casa", "Parte 5 · Juntar e desmontar formas", "Parte 6 · Padrões: o que se repete", "Parte 7 · Criar padrões"] },
+    { titulo: "Para praticar", itens: ["Erros que são pistas e exercícios guiados", "5 treinos diários", "Leitura: O robô de formas da Nina", "Tangram para recortar, desafios e jogos", "Mão na massa e gabarito"] },
+  ] },
   "separar-e-comparar": { blocos: [
     { titulo: "Partes da apostila", itens: ["Para o adulto · O que a criança aprende e a observação inicial", "Parte 1 · Separar por cor", "Parte 2 · Separar por forma e tamanho", "Parte 3 · Qual é a regra? O intruso", "Parte 4 · Mais, menos ou igual, ligando um a um", "Parte 5 · Colocar em ordem", "Parte 6 · Quantos a mais? Deixar igual"] },
     { titulo: "Para praticar", itens: ["Erros que são pistas e exercícios guiados", "5 treinos diários", "Leitura: A gaveta bagunçada", "24 peças para separar e jogo Batalha dos números", "Arrumar a casa por critério e gabarito"] },
