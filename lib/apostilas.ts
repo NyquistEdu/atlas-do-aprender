@@ -113,6 +113,18 @@ export const APOSTILAS: Apostila[] = [
     amostras: ["Conversões", "Comprimento", "Treino diário", "Jogo da memória"],
   },
   {
+    slug: "de-que-e-feito",
+    titulo: "De Que É Feito?",
+    subtitulo: "Materiais do dia a dia e o jeito de cada um",
+    materia: "cie", ano: "1", tema: 3, nomeTema: "Materiais do dia a dia",
+    paginas: 32, preco: "Grátis", checkout: "",
+    arquivo: "/apostilas-pdf/de-que-e-feito.pdf", nomeArquivo: "De-Que-e-Feito-Atlas-do-Aprender.pdf",
+    resumo: "Tudo o que existe é feito de algum material. A criança aprende a diferença entre objeto e material, separa coisas de madeira, metal, plástico, vidro, tecido e papel, descobre de onde vêm os materiais e como separar o lixo para reciclar. Depois investiga como um cientista: duro ou mole, transparente ou opaco, absorve água ou não, flutua ou afunda, o ímã atrai ou não. Sempre prevendo antes de testar.",
+    dentro: ["7 partes com explicação e exercícios: objeto e material, natural ou fabricado, sentir com as mãos, olhar e testar, flutua ou afunda, o ímã e o material certo para cada uso", "Para o adulto: o que a criança aprende e uma observação inicial com 8 objetos", "Experiências com registro de previsão e resultado, erros que são pistas e 5 treinos diários", "Leitura Os três porquinhos e os materiais, 16 cartas e 6 placas para recortar e 4 jogos", "Mão na massa (bacia, ímã, caixa dos sentidos, barquinho de massinha), certificado e gabarito"],
+    amostras: ["Objeto e material", "Flutua ou afunda?", "O que o ímã atrai?", "Cientista em casa"],
+  },
+
+  {
     slug: "ouvir-o-mundo",
     titulo: "Ouvir o Mundo",
     subtitulo: "Som e vibração: de onde vem o som e como ele viaja",
