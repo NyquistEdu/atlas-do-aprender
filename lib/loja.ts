@@ -88,6 +88,19 @@ export const LOJA: ProdutoLoja[] = [
     temas: [["mat", "1", 4]],
     shopee: "https://shopee.com.br/product/1933090137/58222545876/",
   },
+  {
+    slug: "quebra-cabeca-deslizante-numeros-e-letras",
+    nome: "Quebra-Cabeça Deslizante Dupla Face 4×5: Números e Letras",
+    emoji: "🔢",
+    area: "mat",
+    idade: "a partir de 6 anos",
+    resumo: "Dois desafios em um único quebra-cabeça: um tabuleiro com grade 4×5 que tem números na frente e letras do alfabeto no verso. A criança vira o jogo para escolher o desafio e desliza as peças pelo espaço vazio até deixar os números em ordem crescente ou as letras em ordem alfabética. Feito em impressão 3D; as cores seguem a opção escolhida no anúncio.",
+    trabalha: ["Reconhecimento de números e letras", "Ordem numérica e alfabética", "Planejamento de movimentos e raciocínio lógico", "Atenção, percepção espacial e persistência"],
+    comoUsar: "Escolha um lado, embaralhe deslizando as peças e desafie a criança a pôr tudo em ordem, uma peça por vez para o espaço vazio. Comece pelo lado dos números, que é mais fácil de conferir, e vire para as letras quando ela já souber o alfabeto. Peça que diga em voz alta o número ou a letra que está procurando. Valorize a persistência e a troca de estratégia quando travar, não a velocidade.",
+    fotos: 3,
+    temas: [["mat", "1", 1], ["mat", "1", 2], ["por", "1", 2]],
+    shopee: "https://shopee.com.br/product/1933090137/58272570483/",
+  },
 ];
 
 export const jogosDoTema = (m: Materia, ano: string, tema: number) =>
