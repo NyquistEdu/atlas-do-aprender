@@ -28,6 +28,11 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Nível B · Conjugar e escolher (folhas 11 a 20)", itens: ["Conjugar no presente, no passado e no futuro", "Brinquei ou brincava?", "Quando o vovô era menino (imperfeito)", "Irregulares: ser, estar, ter, ir", "Irregulares: fazer, ver, dizer, trazer", "Cantaram ou cantarão?", "-AM ou -ÃO?"] },
     { titulo: "Nível C · Usar no texto (folhas 21 a 30)", itens: ["Passar para o passado e para o futuro", "O verbo fora do tempo", "Completar a história", "O que eu fiz ontem", "Como era antigamente", "Planos para as férias", "Troque o “disse”", "Desafio final: diário de três dias"] },
   ] },
+  "treino-olhar-o-ceu": { blocos: [
+    { titulo: "Nível A · O céu, o Sol e o dia (folhas 1 a 10)", itens: ["De dia ou de noite?", "Luz própria ou reflete?", "Verdadeiro ou falso sobre o Sol", "Leste ou oeste?", "Sombra comprida ou curta", "Rotação e translação", "Onde é dia, onde é noite", "Explicar com as próprias palavras"] },
+    { titulo: "Nível B · A Lua (folhas 11 a 20)", itens: ["A luz da Lua", "Qual é a fase?", "A roda das fases", "O calendário da Lua", "Crescente ou minguante?", "Onde está a Lua?", "O diário da Bia", "Desenhar as fases"] },
+    { titulo: "Nível C · Estrelas e constelações (folhas 21 a 30)", itens: ["Estrela ou planeta?", "Por que as estrelas piscam", "Cruzeiro do Sul e Três Marias", "Ligar as estrelas e inventar uma constelação", "Do olho ao telescópio", "Linha do tempo do céu", "Palavras do céu", "Desafio final: noite de observação"] },
+  ] },
   "treino-separar-e-comparar": { blocos: [
     { titulo: "Nível A · Separar (folhas 1 a 10)", itens: ["Contar por cor", "Reconhecer cores e formas (círculo, quadrado, triângulo, retângulo)", "Contar as formas", "Grande ou pequeno", "Achar o intruso e a forma intrusa", "Descobrir a regra do grupo: cor, forma ou tamanho", "Desenhar um que combina"] },
     { titulo: "Nível B · Comparar (folhas 11 a 20)", itens: ["Mais, menos ou igual, ligando um a um", "Qual grupo tem mais e qual tem menos", "É igual? Sim ou não", "Juntinho ou espalhado: a quantidade não muda", "Desenhar a mesma quantidade", "Quantos a mais", "Desenhar ou riscar para ficar igual"] },

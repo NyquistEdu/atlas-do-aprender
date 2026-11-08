@@ -421,6 +421,23 @@ const TODOS_GRATUITOS: Gratuito[] = [
     materia: "por", ano: "4", tema: 2, apostila: "ontem-hoje-e-amanha",
   },
   {
+    slug: "treino-olhar-o-ceu",
+    titulo: "Treino Diário · Olhar o Céu",
+    subtitulo: "30 folhas sobre o Sol, a Lua e as estrelas, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-olhar-o-ceu.pdf",
+    nomeArquivo: "Treino-Diario-Olhar-o-Ceu-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com correção até acertar tudo. Começa com o Sol, as sombras, o leste e o oeste e o dia e a noite; passa pelas fases da Lua, com o calendário da Lua e o jeito de diferenciar crescente e minguante aqui no Brasil; e termina com estrelas e planetas, o Cruzeiro do Sul e as Três Marias, os instrumentos de observação e uma noite de observação com a família.",
+    dentro: ["30 folhas em 3 níveis, de 3 a 12 minutos cada", "O céu, o Sol e o dia: luz própria, leste e oeste, sombras, rotação e translação", "A Lua: nomes e ordem das fases, calendário, crescente ou minguante e diário da Lua", "Estrelas e constelações: estrela ou planeta, Cruzeiro do Sul, Três Marias e instrumentos", "Registro de progresso, certificado e gabarito"],
+    amostras: ["Onde é dia? Onde é noite?", "Qual é a fase?", "Crescente ou minguante?", "Cruzeiro do Sul e Três Marias"],
+    publico: "3º ano",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos, de preferência no mesmo horário. Sempre que der, olhem o céu de verdade: a sombra no quintal, a Lua da janela, as estrelas num lugar escuro.",
+      "Passe para a próxima folha quando ela fizer com no máximo 1 erro. Nunca olhem diretamente para o Sol, e observações à noite são sempre com um adulto.",
+    ],
+    materia: "cie", ano: "3", tema: 4, apostila: "olhar-o-ceu",
+  },
+  {
     slug: "treino-separar-e-comparar",
     titulo: "Treino Diário · Separar e Comparar",
     subtitulo: "30 folhas para separar, comparar e ordenar, uma por dia",
