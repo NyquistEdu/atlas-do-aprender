@@ -158,6 +158,17 @@ export const APOSTILAS: Apostila[] = [
     amostras: ["As fases da Lua", "Estrelas", "Revisão diária", "Jogo da memória do céu"],
   },
   {
+    slug: "alem-do-ba-be-bi",
+    titulo: "Além do Ba-Be-Bi",
+    subtitulo: "Sílabas complexas e ortografia inicial: BR, PL, NH, LH, CH e mais",
+    materia: "por", ano: "2", tema: 1, nomeTema: "Sílabas complexas e ortografia inicial",
+    paginas: 32, preco: "Grátis", checkout: "",
+    arquivo: "/apostilas-pdf/alem-do-ba-be-bi.pdf", nomeArquivo: "Alem-do-Ba-Be-Bi-Atlas-do-Aprender.pdf",
+    resumo: "Depois do ba-be-bi vêm as sílabas que dão trabalho. A criança aprende a ler e escrever palavras com encontros (prato, dragão, flor, planta), com NH, LH e CH (galinha, folha, chave), com consoante no fim da sílaba (porta, calça, lesma) e as primeiras regras de ortografia: M antes de P e B, R ou RR, S ou SS, QU e GU. Tudo com palmas, trava-línguas, ditados de pares e uma fábrica de palavras.",
+    dentro: ["7 partes com explicação e exercícios: sílabas simples e complexas, encontros com R e com L, NH, LH e CH, consoante no fim, primeiras regras e brincar com sílabas", "Para o adulto: o que a criança aprende e um ditado inicial de 8 palavras", "Erros que são pistas, exercícios guiados, ditados e 5 treinos diários", "Leitura Bráulio, o dragão que espirrava, 40 fichas de sílabas e 4 jogos", "Mão na massa (caça-palavras, mural das famílias, ditado maluco), certificado e gabarito"],
+    amostras: ["Encontros com R", "NH, LH e CH", "Consoante no fim e M antes de P e B", "Fichas de sílabas"],
+  },
+  {
     slug: "nomear-e-descrever",
     titulo: "Nomear e Descrever",
     subtitulo: "Substantivos e adjetivos para dar nome e cor às coisas",

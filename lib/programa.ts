@@ -135,6 +135,10 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Partes da apostila", itens: ["Para o adulto · O que a criança aprende e a observação inicial", "Parte 1 · As quatro formas: lados e pontas", "Parte 2 · Girou, continua igual", "Parte 3 · Quadrado ou retângulo?", "Parte 4 · Formas na casa", "Parte 5 · Juntar e desmontar formas", "Parte 6 · Padrões: o que se repete", "Parte 7 · Criar padrões"] },
     { titulo: "Para praticar", itens: ["Erros que são pistas e exercícios guiados", "5 treinos diários", "Leitura: O robô de formas da Nina", "Tangram para recortar, desafios e jogos", "Mão na massa e gabarito"] },
   ] },
+  "alem-do-ba-be-bi": { blocos: [
+    { titulo: "Partes da apostila", itens: ["Para o adulto · O que a criança aprende e o ditado inicial", "Parte 1 · Nem toda sílaba é ba-be-bi", "Parte 2 · Encontros com R: BR, CR, DR, FR, GR, PR, TR, VR", "Parte 3 · Encontros com L: BL, CL, FL, GL, PL", "Parte 4 · NH, LH e CH: duas letras, um som", "Parte 5 · Consoante no fim da sílaba e M antes de P e B", "Parte 6 · R ou RR, S ou SS, QU e GU", "Parte 7 · Separar, contar e trocar sílabas"] },
+    { titulo: "Para praticar", itens: ["Erros que são pistas e exercícios guiados", "5 treinos diários", "Leitura: Bráulio, o dragão que espirrava", "40 fichas de sílabas e jogos", "Mão na massa e gabarito"] },
+  ] },
   "separar-e-comparar": { blocos: [
     { titulo: "Partes da apostila", itens: ["Para o adulto · O que a criança aprende e a observação inicial", "Parte 1 · Separar por cor", "Parte 2 · Separar por forma e tamanho", "Parte 3 · Qual é a regra? O intruso", "Parte 4 · Mais, menos ou igual, ligando um a um", "Parte 5 · Colocar em ordem", "Parte 6 · Quantos a mais? Deixar igual"] },
     { titulo: "Para praticar", itens: ["Erros que são pistas e exercícios guiados", "5 treinos diários", "Leitura: A gaveta bagunçada", "24 peças para separar e jogo Batalha dos números", "Arrumar a casa por critério e gabarito"] },
