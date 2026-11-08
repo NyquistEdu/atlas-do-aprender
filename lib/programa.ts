@@ -13,6 +13,11 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Nível B · Números até 100 (folhas 11 a 20)", itens: ["Escrever os números de 31 a 100", "O quadro dos 100", "Antes, depois e entre dois números", "Virar a dezena (29, 30, 31…)", "Dezenas e unidades"] },
     { titulo: "Nível C · Contar em saltos e comparar (folhas 21 a 30)", itens: ["Contar de 10 em 10, de 5 em 5 e de 2 em 2", "Descobrir a regra de uma sequência", "Maior e menor, do menor para o maior", "Separar dezena e unidade", "Andar no quadro dos 100", "Desafio final: escrever de 1 a 100"] },
   ] },
+  "treino-textos-do-dia-a-dia": { blocos: [
+    { titulo: "Nível A · Reconhecer (folhas 1 a 10)", itens: ["Que gênero é? Para que serve? Onde aparece?", "As partes da notícia, da carta e da receita", "Fato ou opinião?", "O jeito de receita: verbos que dão ordem", "Formal ou informal?"] },
+    { titulo: "Nível B · Ler e analisar (folhas 11 a 20)", itens: ["Lendo uma notícia: o lide", "A melhor manchete", "Lendo uma carta e cartas em ordem", "O envelope: remetente e destinatário", "Lendo uma receita, passos em ordem e medidas", "Gênero e pista"] },
+    { titulo: "Nível C · Escrever (folhas 21 a 30)", itens: ["Faça a manchete e escreva o lide", "Tire a opinião", "Complete a carta e deixe a carta formal", "Escreva os passos e monte a receita", "Um assunto, três textos", "Desafio final: o jornal da minha casa"] },
+  ] },
   "treino-separar-e-comparar": { blocos: [
     { titulo: "Nível A · Separar (folhas 1 a 10)", itens: ["Contar por cor", "Reconhecer cores e formas (círculo, quadrado, triângulo, retângulo)", "Contar as formas", "Grande ou pequeno", "Achar o intruso e a forma intrusa", "Descobrir a regra do grupo: cor, forma ou tamanho", "Desenhar um que combina"] },
     { titulo: "Nível B · Comparar (folhas 11 a 20)", itens: ["Mais, menos ou igual, ligando um a um", "Qual grupo tem mais e qual tem menos", "É igual? Sim ou não", "Juntinho ou espalhado: a quantidade não muda", "Desenhar a mesma quantidade", "Quantos a mais", "Desenhar ou riscar para ficar igual"] },

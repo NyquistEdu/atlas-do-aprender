@@ -363,6 +363,23 @@ const TODOS_GRATUITOS: Gratuito[] = [
     materia: "mat", ano: "1", tema: 1, apostila: "contar-ate-cem",
   },
   {
+    slug: "treino-textos-do-dia-a-dia",
+    titulo: "Treino Diário · Textos do Dia a Dia",
+    subtitulo: "30 folhas de notícia, carta e receita, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-textos-do-dia-a-dia.pdf",
+    nomeArquivo: "Treino-Diario-Textos-do-Dia-a-Dia-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com correção até acertar tudo. Começa reconhecendo o gênero, a função e as partes de cada texto (fato e opinião, formal e informal, jeito de receita), passa por ler e analisar notícias, cartas, envelopes e receitas de verdade, e termina escrevendo manchetes, lides, cartas, passos de receita e um mini jornal da família.",
+    dentro: ["30 folhas em 3 níveis, de 3 a 12 minutos cada", "Reconhecer: gênero, função, partes, fato e opinião, formal e informal", "Ler e analisar: lide, manchete, cartas, envelope, receitas e medidas", "Escrever: manchete, lide, carta, passos de receita e um mini jornal", "Registro de progresso, certificado e gabarito"],
+    amostras: ["Que gênero é?", "Fato ou opinião?", "Lendo uma notícia", "Escreva o lide"],
+    publico: "4º ano",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos, de preferência no mesmo horário. A criança já lê sozinha; o adulto acompanha e corrige junto, com o gabarito.",
+      "Passe para a próxima folha quando ela fizer com no máximo 1 erro. No nível C (escrever), há mais de uma resposta certa: confira se o texto tem as partes do gênero.",
+    ],
+    materia: "por", ano: "4", tema: 1, apostila: "textos-do-dia-a-dia",
+  },
+  {
     slug: "treino-separar-e-comparar",
     titulo: "Treino Diário · Separar e Comparar",
     subtitulo: "30 folhas para separar, comparar e ordenar, uma por dia",
