@@ -103,6 +103,10 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Partes da apostila", itens: ["Para o adulto · Como a criança lê antes de ler, com leitura inicial", "Parte 1 · Ler o que eu sei de cor: o dedo junto com a voz", "Parte 2 · Onde está escrito? As pistas da primeira letra, do tamanho e do final", "Parte 3 · Versos em ordem: Ciranda e O sapo não lava o pé", "Parte 4 · Rimas que ajudam a ler: Um, dois, feijão com arroz", "Parte 5 · Listas: uma palavra embaixo da outra", "Parte 6 · Ler sozinho frases curtas"] },
     { titulo: "Para praticar", itens: ["Erros que são pistas e exercícios guiados", "5 treinos diários", "Dominó de palavra e figura, memória e tiras de versos para recortar", "Varal de poesias e livrinho dobrado", "Gabarito"] },
   ] },
+  "juntar-e-tirar": { blocos: [
+    { titulo: "Partes da apostila", itens: ["Para o adulto · O que a criança aprende e a observação inicial", "Parte 1 · Juntar: os sinais + e =", "Parte 2 · Acrescentar: guardar o maior na cabeça e a reta numérica", "Parte 3 · Tirar: riscar e o sinal −", "Parte 4 · Comparar: quantos a mais e quanto falta", "Parte 5 · Os amigos do 10", "Parte 6 · Problemas: que conta eu faço?"] },
+    { titulo: "Para praticar", itens: ["Erros que são pistas e exercícios guiados", "5 treinos diários", "Leitura: O piquenique da Formiga Fifi", "Quadros de dez, cartas e reta numérica para recortar", "Jogo Corrida até 20, mão na massa e gabarito"] },
+  ] },
   "separar-e-comparar": { blocos: [
     { titulo: "Partes da apostila", itens: ["Para o adulto · O que a criança aprende e a observação inicial", "Parte 1 · Separar por cor", "Parte 2 · Separar por forma e tamanho", "Parte 3 · Qual é a regra? O intruso", "Parte 4 · Mais, menos ou igual, ligando um a um", "Parte 5 · Colocar em ordem", "Parte 6 · Quantos a mais? Deixar igual"] },
     { titulo: "Para praticar", itens: ["Erros que são pistas e exercícios guiados", "5 treinos diários", "Leitura: A gaveta bagunçada", "24 peças para separar e jogo Batalha dos números", "Arrumar a casa por critério e gabarito"] },

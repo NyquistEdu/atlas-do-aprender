@@ -91,6 +91,18 @@ export const APOSTILAS: Apostila[] = [
   },
 
   {
+    slug: "juntar-e-tirar",
+    titulo: "Juntar e Tirar",
+    subtitulo: "Adição e subtração com objetos, desenhos e a reta numérica",
+    materia: "mat", ano: "1", tema: 3, nomeTema: "Adição e subtração com material",
+    paginas: 30, preco: "Grátis", checkout: "",
+    arquivo: "/apostilas-pdf/juntar-e-tirar.pdf", nomeArquivo: "Juntar-e-Tirar-Atlas-do-Aprender.pdf",
+    resumo: "Somar e subtrair começa com as mãos. Aqui a criança vive as quatro situações das contas: juntar dois grupos, acrescentar, tirar e comparar. Aprende a guardar o número maior na cabeça e contar só o resto, pula na reta numérica para a frente e para trás, conhece os amigos do 10 e descobre, lendo um problema, se a conta é de mais ou de menos.",
+    dentro: ["6 partes com explicação e exercícios: juntar, acrescentar, tirar, comparar, os amigos do 10 e problemas", "Para o adulto: o que a criança aprende e uma observação inicial com tampinhas", "Erros que são pistas, exercícios guiados e 5 treinos diários", "Leitura O piquenique da Formiga Fifi, quadros de dez, cartas e reta numérica para recortar", "Jogo Corrida até 20, mão na massa (boliche de garrafas, reta no chão, mercadinho), certificado e gabarito"],
+    amostras: ["Juntar", "Os amigos do 10", "Problemas: que conta eu faço?", "Corrida até 20"],
+  },
+
+  {
     slug: "medir-o-mundo",
     titulo: "Medir o Mundo",
     subtitulo: "Medidas e conversões sem travar",
