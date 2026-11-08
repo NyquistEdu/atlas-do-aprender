@@ -70,6 +70,10 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Partes da apostila", itens: ["Parte 1 · Tudo tem um nome", "Parte 2 · Nome de todos e nome de um só (comum e próprio)", "Parte 3 · Um ou muitos? Masculino ou feminino?", "Parte 4 · Como é? O adjetivo", "Parte 5 · O adjetivo combina com o substantivo (concordância)", "Parte 6 · Descrever: pintar com palavras"] },
     { titulo: "Para praticar", itens: ["Leitura original", "Treino diário de 5 dias", "Jogo Quem sou eu? e caixa misteriosa", "Gabarito"] },
   ] },
+  "textos-do-dia-a-dia": { blocos: [
+    { titulo: "Partes da apostila", itens: ["Parte 1 · Cada texto tem um jeito: o que é gênero textual", "Parte 2 · A notícia: manchete, lide, corpo, legenda, fato e opinião", "Parte 3 · A carta: local e data, saudação, corpo, despedida, assinatura e envelope", "Parte 4 · A receita: ingredientes, modo de preparo e verbos que dão ordem", "Parte 5 · Os três lado a lado", "Parte 6 · Escrever: minha notícia, minha carta e minha receita"] },
+    { titulo: "Para praticar", itens: ["Erros comuns e exercícios guiados", "Treino diário de 5 dias", "Leitura: o jornal da família", "Jogo Que gênero é? e mão na massa", "Gabarito"] },
+  ] },
   "detetives-de-dados": { blocos: [
     { titulo: "Partes da apostila", itens: ["Parte 1 · Perguntar e contar: a pesquisa e os risquinhos de 5 em 5", "Parte 2 · Organizar em tabela: título, linhas, colunas e total", "Parte 3 · Ler um gráfico de barras", "Parte 4 · Fazer um gráfico de barras na malha", "Parte 5 · Pictograma e escala de 2 em 2", "Parte 6 · Tabela de dupla entrada", "Parte 7 · Gráficos e tabelas no dia a dia"] },
     { titulo: "Para praticar", itens: ["Erros comuns, exercícios guiados e problemas", "5 treinos diários", "Leitura: A horta da escola", "Malha para gráficos e jogo Corrida dos dados", "Pesquisas para fazer em casa e gabarito"] },

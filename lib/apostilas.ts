@@ -132,6 +132,17 @@ export const APOSTILAS: Apostila[] = [
     amostras: ["Tudo tem um nome", "O adjetivo", "Treino diário", "Jogo Quem sou eu?"],
   },
   {
+    slug: "textos-do-dia-a-dia",
+    titulo: "Textos do Dia a Dia",
+    subtitulo: "Notícia, carta e receita: para que serve e como se organiza cada gênero",
+    materia: "por", ano: "4", tema: 1, nomeTema: "Gêneros do cotidiano: notícia, carta e receita",
+    paginas: 34, preco: "Grátis", checkout: "",
+    arquivo: "/apostilas-pdf/textos-do-dia-a-dia.pdf", nomeArquivo: "Textos-do-Dia-a-Dia-Atlas-do-Aprender.pdf",
+    resumo: "Cada texto nasce para resolver uma necessidade e, por isso, tem um formato. A criança descobre o que é gênero textual e conhece de perto três textos da vida real: a notícia (manchete, lide, fato e opinião), a carta (partes, linguagem formal e informal, envelope) e a receita (ingredientes, passos numerados e verbos que dão ordem). Compara os três e termina escrevendo uma notícia, uma carta e uma receita da própria família.",
+    dentro: ["5 partes com explicação, exemplos comentados e exercícios", "Notícia, carta e receita anotadas parte por parte", "Produção de texto: minha notícia, minha carta e minha receita", "Treino diário de 5 dias, leitura do jornal da família e jogo Que gênero é?", "Mão na massa, certificado e gabarito"],
+    amostras: ["Cada texto tem um jeito", "Uma notícia por dentro", "Uma receita por dentro", "Treino diário"],
+  },
+  {
     slug: "detetives-de-dados",
     titulo: "Detetives de Dados",
     subtitulo: "Pesquisar, organizar em tabela e fazer gráfico de barras",
