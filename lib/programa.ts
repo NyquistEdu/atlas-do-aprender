@@ -144,6 +144,10 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Partes da apostila", itens: ["Para o adulto · O que a criança aprende e o ditado inicial", "Parte 1 · Nem toda sílaba é ba-be-bi", "Parte 2 · Encontros com R: BR, CR, DR, FR, GR, PR, TR, VR", "Parte 3 · Encontros com L: BL, CL, FL, GL, PL", "Parte 4 · NH, LH e CH: duas letras, um som", "Parte 5 · Consoante no fim da sílaba e M antes de P e B", "Parte 6 · R ou RR, S ou SS, QU e GU", "Parte 7 · Separar, contar e trocar sílabas"] },
     { titulo: "Para praticar", itens: ["Erros que são pistas e exercícios guiados", "5 treinos diários", "Leitura: Bráulio, o dragão que espirrava", "40 fichas de sílabas e jogos", "Mão na massa e gabarito"] },
   ] },
+  "ler-bonito": { blocos: [
+    { titulo: "Partes da apostila", itens: ["Para o adulto · O que a criança aprende e a observação de 1 minuto", "Parte 1 · O que é ler bem", "Parte 2 · Ler em blocos e leitura em eco", "Parte 3 · A pontuação manda na voz", "Parte 4 · A voz dos personagens e teatro de leitura", "Parte 5 · Ler e entender: quem, onde, quando, o que aconteceu", "Parte 6 · Palavras novas pelas pistas do texto", "Parte 7 · Ler de novo e melhorar, com gráfico da leitura por minuto"] },
+    { titulo: "Para praticar", itens: ["Erros que são pistas e exercícios guiados", "5 treinos diários com leitura repetida", "Leitura: A sopa de pedra", "Cartões de voz, régua de leitura e jogos", "Mão na massa e gabarito"] },
+  ] },
   "separar-e-comparar": { blocos: [
     { titulo: "Partes da apostila", itens: ["Para o adulto · O que a criança aprende e a observação inicial", "Parte 1 · Separar por cor", "Parte 2 · Separar por forma e tamanho", "Parte 3 · Qual é a regra? O intruso", "Parte 4 · Mais, menos ou igual, ligando um a um", "Parte 5 · Colocar em ordem", "Parte 6 · Quantos a mais? Deixar igual"] },
     { titulo: "Para praticar", itens: ["Erros que são pistas e exercícios guiados", "5 treinos diários", "Leitura: A gaveta bagunçada", "24 peças para separar e jogo Batalha dos números", "Arrumar a casa por critério e gabarito"] },

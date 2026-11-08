@@ -169,6 +169,17 @@ export const APOSTILAS: Apostila[] = [
     amostras: ["Encontros com R", "NH, LH e CH", "Consoante no fim e M antes de P e B", "Fichas de sílabas"],
   },
   {
+    slug: "ler-bonito",
+    titulo: "Ler Bonito",
+    subtitulo: "Leitura fluente: ritmo, entonação e entender o que leu",
+    materia: "por", ano: "2", tema: 2, nomeTema: "Leitura fluente de frases e pequenos textos",
+    paginas: 32, preco: "Grátis", checkout: "",
+    arquivo: "/apostilas-pdf/ler-bonito.pdf", nomeArquivo: "Ler-Bonito-Atlas-do-Aprender.pdf",
+    resumo: "Ler bem não é ler rápido: é ler como quem conta uma história. A criança aprende a ler em blocos, a mudar a voz conforme a pontuação, a dar voz aos personagens e a responder quem, onde, quando e o que aconteceu. Com o método da leitura repetida (o adulto lê, leem juntos, a criança lê sozinha), textos originais com contagem de palavras e um gráfico para acompanhar a leitura por minuto.",
+    dentro: ["7 partes com explicação e exercícios: ler bem, ler em blocos, pontuação e voz, personagens, ler e entender, palavras novas e leitura repetida", "Para o adulto: o que a criança aprende, observação de 1 minuto e a referência do CAEd para o 2º ano", "Gráfico da leitura cronometrada, erros que são pistas, exercícios guiados e 5 treinos diários", "Leitura A sopa de pedra, cartões de voz, régua de leitura e 4 jogos", "Mão na massa (teatro com gibi, gravar a leitura), certificado e gabarito"],
+    amostras: ["Ler em blocos", "A pontuação manda na voz", "A voz dos personagens", "Minha leitura cronometrada"],
+  },
+  {
     slug: "nomear-e-descrever",
     titulo: "Nomear e Descrever",
     subtitulo: "Substantivos e adjetivos para dar nome e cor às coisas",
