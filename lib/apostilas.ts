@@ -450,6 +450,23 @@ const TODOS_GRATUITOS: Gratuito[] = [
     materia: "cie", ano: "3", tema: 4, apostila: "olhar-o-ceu",
   },
   {
+    slug: "treino-formas-e-padroes",
+    titulo: "Treino Diário · Formas e Padrões",
+    subtitulo: "30 folhas de formas geométricas e padrões, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-formas-e-padroes.pdf",
+    nomeArquivo: "Treino-Diario-Formas-e-Padroes-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com correção até acertar tudo. Começa reconhecendo círculo, quadrado, triângulo e retângulo em qualquer posição, contando lados e pontas; passa por formas nos objetos, contar formas em desenhos, juntar e desmontar, copiar na malha de pontos e desafios do Tangram; e termina com padrões AB, AAB, ABC, de posição, que crescem, de sons e de letras.",
+    dentro: ["30 folhas em 3 níveis, de 3 a 10 minutos cada", "Reconhecer: nomes, lados e pontas, formas giradas, quadrado ou retângulo, o intruso", "Formas no mundo: objetos, carimbos, trem e foguete de formas, juntar, desmontar e Tangram", "Padrões: continuar, achar a parte que se repete, o erro e o que falta, padrões que crescem", "Registro de progresso, certificado e gabarito"],
+    amostras: ["Qual é o nome?", "Que forma aparece?", "Copie na malha", "Ache o erro"],
+    publico: "Alfabetização",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos, de preferência no mesmo horário. Deixe por perto formas de papel, o Tangram da apostila e tampinhas coloridas: pegar e girar ajuda muito.",
+      "Passe para a próxima folha quando ela fizer com no máximo 1 erro e sem muita ajuda. Se não deu, faça primeiro com formas de papel ou tampinhas e depois refaça a folha em outro dia.",
+    ],
+    materia: "mat", ano: "1", tema: 4, apostila: "formas-e-padroes",
+  },
+  {
     slug: "treino-separar-e-comparar",
     titulo: "Treino Diário · Separar e Comparar",
     subtitulo: "30 folhas para separar, comparar e ordenar, uma por dia",

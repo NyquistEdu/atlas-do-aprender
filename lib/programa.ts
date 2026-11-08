@@ -33,6 +33,11 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Nível B · A Lua (folhas 11 a 20)", itens: ["A luz da Lua", "Qual é a fase?", "A roda das fases", "O calendário da Lua", "Crescente ou minguante?", "Onde está a Lua?", "O diário da Bia", "Desenhar as fases"] },
     { titulo: "Nível C · Estrelas e constelações (folhas 21 a 30)", itens: ["Estrela ou planeta?", "Por que as estrelas piscam", "Cruzeiro do Sul e Três Marias", "Ligar as estrelas e inventar uma constelação", "Do olho ao telescópio", "Linha do tempo do céu", "Palavras do céu", "Desafio final: noite de observação"] },
   ] },
+  "treino-formas-e-padroes": { blocos: [
+    { titulo: "Nível A · Reconhecer (folhas 1 a 10)", itens: ["Qual é o nome?", "Contar lados e pontas", "Pintar e contar", "Ache os triângulos", "Ache os quadrados", "Quadrado ou retângulo?", "Adivinhas", "O intruso"] },
+    { titulo: "Nível B · Formas no mundo e figuras (folhas 11 a 20)", itens: ["Formas nos objetos", "O carimbo", "O trem e o foguete de formas", "Que forma aparece?", "Desmontar formas", "Copiar na malha", "Completar a forma", "Desafios do Tangram"] },
+    { titulo: "Nível C · Padrões (folhas 21 a 30)", itens: ["Padrão AB", "Padrões AAB, ABB e ABC", "Padrões de posição", "A parte que se repete", "Ache o erro", "O que falta no meio?", "Padrões que crescem", "Sons, letras e números", "Desafio final"] },
+  ] },
   "treino-separar-e-comparar": { blocos: [
     { titulo: "Nível A · Separar (folhas 1 a 10)", itens: ["Contar por cor", "Reconhecer cores e formas (círculo, quadrado, triângulo, retângulo)", "Contar as formas", "Grande ou pequeno", "Achar o intruso e a forma intrusa", "Descobrir a regra do grupo: cor, forma ou tamanho", "Desenhar um que combina"] },
     { titulo: "Nível B · Comparar (folhas 11 a 20)", itens: ["Mais, menos ou igual, ligando um a um", "Qual grupo tem mais e qual tem menos", "É igual? Sim ou não", "Juntinho ou espalhado: a quantidade não muda", "Desenhar a mesma quantidade", "Quantos a mais", "Desenhar ou riscar para ficar igual"] },
