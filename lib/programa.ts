@@ -43,6 +43,11 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Nível B · NH, LH e CH (folhas 11 a 20)", itens: ["NH, LH e CH", "NH ou LH?", "Uma letra muda tudo", "Separar as sílabas", "Desafio: CH ou X?", "A galinha Chiquinha", "Ditado de NH, LH e CH"] },
     { titulo: "Nível C · Finalzinho e regras (folhas 21 a 30)", itens: ["Não esqueça o finalzinho", "M ou N?", "R ou RR?", "S ou SS?", "QU ou GU?", "Separar e contar", "Fábrica de palavras", "Corrija o Duda", "Desafio final"] },
   ] },
+  "treino-ler-bonito": { blocos: [
+    { titulo: "Nível A · Frases e textos curtos (folhas 1 a 10)", itens: ["Leitura em eco por blocos", "A voz sobe, desce ou fica forte", "Colocar a pontuação", "Ordem dos acontecimentos", "Bilhete e convite", "Poema com rimas"] },
+    { titulo: "Nível B · Diálogos e compreensão (folhas 11 a 20)", itens: ["Falas de personagens", "Fábula", "Quem, quando e onde", "Palavras novas", "Receita", "Teatro de leitura", "Notícia", "Verdadeiro ou falso", "Carta"] },
+    { titulo: "Nível C · Textos maiores (folhas 21 a 30)", itens: ["Conto", "Fábula", "Texto informativo", "Poema", "Palavras novas", "Diário", "Instruções de um jogo", "Mistério", "Conto de “por que”", "Desafio final com reconto"] },
+  ] },
   "treino-separar-e-comparar": { blocos: [
     { titulo: "Nível A · Separar (folhas 1 a 10)", itens: ["Contar por cor", "Reconhecer cores e formas (círculo, quadrado, triângulo, retângulo)", "Contar as formas", "Grande ou pequeno", "Achar o intruso e a forma intrusa", "Descobrir a regra do grupo: cor, forma ou tamanho", "Desenhar um que combina"] },
     { titulo: "Nível B · Comparar (folhas 11 a 20)", itens: ["Mais, menos ou igual, ligando um a um", "Qual grupo tem mais e qual tem menos", "É igual? Sim ou não", "Juntinho ou espalhado: a quantidade não muda", "Desenhar a mesma quantidade", "Quantos a mais", "Desenhar ou riscar para ficar igual"] },

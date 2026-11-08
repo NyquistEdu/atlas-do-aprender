@@ -506,6 +506,23 @@ const TODOS_GRATUITOS: Gratuito[] = [
     materia: "por", ano: "2", tema: 1, apostila: "alem-do-ba-be-bi",
   },
   {
+    slug: "treino-ler-bonito",
+    titulo: "Treino Diário · Ler Bonito",
+    subtitulo: "30 textos curtos para ler com ritmo e entender, um por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-ler-bonito.pdf",
+    nomeArquivo: "Treino-Diario-Ler-Bonito-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com o método da leitura repetida: o adulto lê, leem juntos e a criança lê sozinha, anotando o tempo de cada leitura. São 30 textos originais que crescem a cada nível, de frases em blocos a bilhetes, convites, poemas, fábulas, receitas, notícias, diários e instruções, sempre com perguntas de compreensão e uma tarefa de expressão.",
+    dentro: ["30 folhas em 3 níveis, de 3 a 12 minutos cada", "Frases e textos curtos: leitura em eco por blocos, pontuação, bilhete, convite e poema", "Diálogos e compreensão: personagens, fábula, palavras novas, receita, teatro de leitura e notícia", "Textos maiores: informativo, diário, instruções, mistério e desafio final com reconto", "Registro de progresso, certificado e gabarito"],
+    amostras: ["O gato Mingau", "A cigarra e a formiga", "Teatro de leitura", "Como os pássaros fazem ninhos"],
+    publico: "2º ano",
+    comoUsar: [
+      "Uma folha por dia, de 5 a 10 minutos. Leia o texto três vezes: primeiro o adulto lê e a criança acompanha com o dedo, depois leem juntos, por fim a criança lê sozinha. Anote o tempo de cada leitura e depois ela responde às perguntas.",
+      "Passe para a próxima folha quando, na 3ª leitura, ela ler sem tropeçar em quase nenhuma palavra e acertar as perguntas. Se não deu, leia o mesmo texto de novo no dia seguinte.",
+    ],
+    materia: "por", ano: "2", tema: 2, apostila: "ler-bonito",
+  },
+  {
     slug: "treino-separar-e-comparar",
     titulo: "Treino Diário · Separar e Comparar",
     subtitulo: "30 folhas para separar, comparar e ordenar, uma por dia",
