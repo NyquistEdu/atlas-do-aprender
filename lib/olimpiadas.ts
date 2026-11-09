@@ -312,5 +312,15 @@ export const MATERIAIS: MaterialOlimpiada[] = [
     nomeArquivo: "Enquanto-Ana-Espera-Olimpiada-Atlas-do-Aprender.pdf",
     resumo: "Para quem já lê: as quatro visitas de Ana à Grande Árvore, com perguntas para responder conferindo no livro.",
     dentro: ["Mapa das quatro visitas e uma página por visita", "Ana e Eliseu, o fruto e o caminho, ordem da história", "Palavras do livro, jeito de contar e reflexão", "3 simulados de 10 questões e gabarito"],
+  },  {
+    slug: "enquanto-ana-espera-simulado-30",
+    titulo: "Enquanto Ana Espera · Simulado de 30 questões",
+    competicao: "Olimpíada de Literatura 2026 · Candura 16",
+    autor: "livro de Fernanda Witwytzky",
+    paginas: 10,
+    arquivo: "/olimpiadas/enquanto-ana-espera-simulado-30.pdf",
+    nomeArquivo: "Simulado-30-Questoes-Enquanto-Ana-Espera-Atlas-do-Aprender.pdf",
+    resumo: "Simulado completo para a reta final: 10 questões fáceis, 10 médias e 10 difíceis, no formato da prova, com gabarito comentado.",
+    dentro: ["10 fáceis, 10 médias e 10 difíceis", "Múltipla escolha, verdadeiro ou falso e ligar", "Folha de respostas com acertos por nível", "Gabarito comentado"],
   },
 ];

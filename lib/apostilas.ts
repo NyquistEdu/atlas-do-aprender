@@ -640,6 +640,22 @@ const TODOS_GRATUITOS: Gratuito[] = [
     ],
   },
   {
+    slug: "olimpiada-enquanto-ana-espera-simulado-30",
+    titulo: "Simulado de 30 questões · Enquanto Ana Espera",
+    subtitulo: "Olimpíada de Literatura, Candura 16 (2026): 10 fáceis, 10 médias e 10 difíceis",
+    paginas: 10,
+    arquivo: "/olimpiadas/enquanto-ana-espera-simulado-30.pdf",
+    nomeArquivo: "Simulado-30-Questoes-Enquanto-Ana-Espera-Atlas-do-Aprender.pdf",
+    resumo: "Um simulado completo para a reta final da Olimpíada de Literatura com o livro Enquanto Ana Espera, de Fernanda Witwytzky. São 30 questões no formato da prova (múltipla escolha, verdadeiro ou falso e ligar), separadas por nível: das perguntas sobre quem é quem até as que pedem para pensar sobre a história e o jeito de contar. Material independente, sem ligação com a organização da olimpíada.",
+    dentro: ["10 questões fáceis: personagens e acontecimentos", "10 médias: detalhes das visitas, palavras do livro e jeito de contar", "10 difíceis: ordem da história, interpretação e reflexão", "Folha de respostas com acertos por nível e gabarito comentado"],
+    amostras: ["Questões 1 a 5", "Questões 11 a 15", "Questões 21 a 24", "Folha de respostas"],
+    publico: "1º ao 3º ano",
+    comoUsar: [
+      "Faça depois de a criança ter lido o livro e, de preferência, depois da apostila de preparação. Marque 1 hora no relógio e deixe o livro por perto: na prova, pode consultar.",
+      "O adulto pode ler o enunciado junto, mas a criança responde sozinha. Depois de corrigir, volte ao livro em cada erro e encontre o trecho com a resposta certa.",
+    ],
+  },
+  {
     slug: "bruxa-matilda",
     foraDoAr: true, // Halloween: volta em outubro
     titulo: "O Feitiço da Bruxa Matilda",
