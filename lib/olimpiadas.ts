@@ -322,5 +322,15 @@ export const MATERIAIS: MaterialOlimpiada[] = [
     nomeArquivo: "Simulado-30-Questoes-Enquanto-Ana-Espera-Atlas-do-Aprender.pdf",
     resumo: "Simulado completo para a reta final: 10 questões fáceis, 10 médias e 10 difíceis, no formato da prova, com gabarito comentado.",
     dentro: ["10 fáceis, 10 médias e 10 difíceis", "Múltipla escolha, verdadeiro ou falso e ligar", "Folha de respostas com acertos por nível", "Gabarito comentado"],
+  },  {
+    slug: "enquanto-ana-espera-simulado-40",
+    titulo: "Enquanto Ana Espera · Simulado de 40 questões",
+    competicao: "Olimpíada de Literatura 2026 · Candura 16",
+    autor: "livro de Fernanda Witwytzky",
+    paginas: 12,
+    arquivo: "/olimpiadas/enquanto-ana-espera-simulado-40.pdf",
+    nomeArquivo: "Simulado-40-Questoes-Enquanto-Ana-Espera-Atlas-do-Aprender.pdf",
+    resumo: "O simulado mais longo: 10 questões fáceis, 20 médias e 10 difíceis, diferentes das do simulado de 30, com gabarito comentado.",
+    dentro: ["10 fáceis, 20 médias e 10 difíceis", "Múltipla escolha, verdadeiro ou falso e ligar", "Folha de respostas com acertos por nível", "Gabarito comentado"],
   },
 ];
