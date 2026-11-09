@@ -7,7 +7,7 @@ export default function ChefaoTema({ c, largo = false }: { c: Chefao; largo?: bo
       <i aria-hidden="true">{c.emoji}</i>
       <div>
         <b>Enfrentar o chefão da fase: {c.chefe}</b>
-        <span>Avaliação grátis em forma de batalha: 5 golpes, 5 corações. Venceu? Pode passar de fase.</span>
+        <span>Avaliação grátis em forma de batalha: aquecimento, fúria do chefão e golpe final. Venceu? Pode passar de fase.</span>
       </div>
       <em>Baixar grátis</em>
     </a>
