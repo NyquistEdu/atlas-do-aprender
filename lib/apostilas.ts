@@ -624,6 +624,22 @@ const TODOS_GRATUITOS: Gratuito[] = [
     ],
   },
   {
+    slug: "olimpiada-gato-de-botas-simulado-30",
+    titulo: "Simulado de 30 questões · O Gato de Botas",
+    subtitulo: "Olimpíada de Literatura, Candura 17 (2026): 10 fáceis, 10 médias e 10 difíceis",
+    paginas: 10,
+    arquivo: "/olimpiadas/gato-de-botas-simulado-30.pdf",
+    nomeArquivo: "Simulado-30-Questoes-Gato-de-Botas-Atlas-do-Aprender.pdf",
+    resumo: "Um simulado completo para a reta final da Olimpíada de Literatura com o conto O Gato de Botas, de Charles Perrault. Feito para quem está aprendendo a ler: o adulto lê as perguntas e as alternativas, e cada alternativa tem uma figura. São 30 questões no formato da prova (múltipla escolha, sim ou não e ligar), separadas por nível. Material independente, sem ligação com a organização da olimpíada.",
+    dentro: ["10 questões fáceis: personagens e acontecimentos", "10 médias: detalhes do conto e palavras difíceis", "10 difíceis: ordem da história, interpretação, jeito de contar e moral", "Folha de respostas com acertos por nível e gabarito comentado"],
+    amostras: ["Questões 1 a 5", "Questões 11 a 15", "Questões 21 a 24", "Folha de respostas"],
+    publico: "Alfabetização e 1º ano",
+    comoUsar: [
+      "Faça depois de a criança ter ouvido e lido o conto e, de preferência, depois da apostila de preparação. O adulto lê cada pergunta e as alternativas em voz alta, sem dar dicas. Deixe o conto por perto: na prova, pode consultar.",
+      "Se cansar, divida em dois dias: fáceis e médias num dia, difíceis no outro. Depois de corrigir, releia junto o trecho do conto de cada erro.",
+    ],
+  },
+  {
     slug: "olimpiada-enquanto-ana-espera",
     titulo: "Olimpíada de Literatura · Enquanto Ana Espera",
     subtitulo: "Preparação para a Candura 16 (2026), para quem já lê",

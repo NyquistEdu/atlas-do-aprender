@@ -303,6 +303,17 @@ export const MATERIAIS: MaterialOlimpiada[] = [
     dentro: ["A história em 6 partes, com conversa e atividade", "Personagens, ordem da história e palavras do conto", "Jeito de contar, moral e jogos", "3 simulados no formato da prova e gabarito"],
   },
   {
+    slug: "gato-de-botas-simulado-30",
+    titulo: "O Gato de Botas · Simulado de 30 questões",
+    competicao: "Olimpíada de Literatura 2026 · Candura 17",
+    autor: "conto de Charles Perrault",
+    paginas: 10,
+    arquivo: "/olimpiadas/gato-de-botas-simulado-30.pdf",
+    nomeArquivo: "Simulado-30-Questoes-Gato-de-Botas-Atlas-do-Aprender.pdf",
+    resumo: "Simulado completo para a reta final, para quem está aprendendo a ler: o adulto lê e cada alternativa tem uma figura. 10 fáceis, 10 médias e 10 difíceis, com gabarito comentado.",
+    dentro: ["10 fáceis, 10 médias e 10 difíceis", "Alternativas com figuras", "Múltipla escolha, sim ou não e ligar", "Folha de respostas e gabarito comentado"],
+  },
+  {
     slug: "enquanto-ana-espera",
     titulo: "Enquanto Ana Espera",
     competicao: "Olimpíada de Literatura 2026 · Candura 16",
