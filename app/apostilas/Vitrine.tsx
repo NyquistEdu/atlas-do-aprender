@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { chefaoDoTema } from "@/lib/chefoes";
+import ChefaoTema from "@/components/ChefaoTema";
 import { useEffect, useState } from "react";
 import { APOSTILAS, GRATUITOS, KITS, anoNome, type Apostila, type Gratuito } from "@/lib/apostilas";
 import { ANOS, DE_SLUG, MATERIAS, SLUG, anoDeSlug, anoSlug, type Materia } from "@/lib/data";
@@ -112,12 +114,14 @@ export default function Vitrine() {
         ))}
         {lista.map((a) => {
           const t = treinos.find((x) => x.apostila === a.slug);
-          if (!t) return <CartaoApostila key={a.slug} a={a} />;
+          const ch = chefaoDoTema(a.materia, a.ano, a.tema);
+          if (!t && !ch) return <CartaoApostila key={a.slug} a={a} />;
           return (
             <div className="par" key={a.slug} style={{ ["--sc" as string]: `var(--${a.materia})` }}>
-              <p className="par-t"><b>Use junto:</b> a apostila explica e aprofunda; o treino diário fixa, um pouquinho por dia.</p>
+              <p className="par-t"><b>Use junto:</b> a apostila explica e aprofunda{t ? "; o treino diário fixa, um pouquinho por dia" : ""}{ch ? "; o chefão mostra se a criança já pode passar de fase" : ""}.</p>
               <CartaoApostila a={a} />
-              <CartaoTreino t={t} />
+              {t && <CartaoTreino t={t} />}
+              {ch && <ChefaoTema c={ch} largo />}
             </div>
           );
         })}

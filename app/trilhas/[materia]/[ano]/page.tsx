@@ -12,6 +12,8 @@ import { AmazonLivro } from "@/components/Amazon";
 import { apostilaDoTema, treinoDoTema } from "@/lib/apostilas";
 import { fichaDoItem, fichasDoTema } from "@/lib/maoNaMassaTemas";
 import { jogosDoTema } from "@/lib/loja";
+import { chefaoDoTema } from "@/lib/chefoes";
+import ChefaoTema from "@/components/ChefaoTema";
 import { url, jsonLd } from "@/lib/seo";
 
 type P = { params: { materia: string; ano: string } };
@@ -76,6 +78,7 @@ export default function Trilha({ params }: P) {
           const ap = apostilaDoTema(s, y, i + 1);
           const jgs = jogosDoTema(s, y, i + 1);
           const tr = treinoDoTema(s, y, i + 1);
+          const ch = chefaoDoTema(s, y, i + 1);
           return (
               <div className="tbody" key={id}>
 
@@ -129,6 +132,7 @@ export default function Trilha({ params }: P) {
                   })}
                 </div>
                 <Dicas tema={id} titulo={th.t} />
+                {ch && <ChefaoTema c={ch} />}
                 <div className="row">
                   <Marcar chave={"andamento|" + id} rotulo={["Estamos trabalhando neste tema", "Tirar de “em andamento”"]} origem="trilhas" />
                   <Marcar chave={id} rotulo={["Marcar tema como concluído", "Desmarcar tema"]} origem="trilhas" />
