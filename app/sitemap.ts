@@ -5,6 +5,7 @@ import { TEMATICAS } from "@/lib/tematicas";
 import { url } from "@/lib/seo";
 import { DUVIDAS } from "@/lib/duvidas";
 import { ATIVIDADES } from "@/lib/maoNaMassa";
+import { LOJA } from "@/lib/loja";
 import { PEDIR_CONSENTIMENTO } from "@/lib/consentimento";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -18,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...fixo.map(([p, priority, changeFrequency]) => ({ url: url(p), lastModified: agora, changeFrequency, priority })),
     ...trilhas.map((p) => ({ url: url(p), lastModified: agora, changeFrequency: "monthly" as const, priority: 0.9 })),
     ...[...KITS, ...GRATUITOS, ...APOSTILAS].map((a) => ({ url: url(`/apostilas/${a.slug}`), lastModified: agora, changeFrequency: "monthly" as const, priority: 0.8 })),
+    ...LOJA.map((p) => ({ url: url(`/loja/${p.slug}`), lastModified: agora, changeFrequency: "monthly" as const, priority: 0.8 })),
     ...ATIVIDADES.map((x) => ({ url: url(`/mao-na-massa/${x.slug}`), lastModified: agora, changeFrequency: "monthly" as const, priority: 0.7 })),
     ...DUVIDAS.map((d) => ({ url: url(`/duvidas/${d.slug}`), lastModified: agora, changeFrequency: "monthly" as const, priority: 0.8 })),
     ...TEMATICAS.map((t) => ({ url: url(`/tematicas/${t.slug}`), lastModified: agora, changeFrequency: "yearly" as const, priority: 0.7 })),
