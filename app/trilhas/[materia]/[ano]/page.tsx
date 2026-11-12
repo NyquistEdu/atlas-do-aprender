@@ -97,7 +97,7 @@ export default function Trilha({ params }: P) {
                   </Link>
                 )}
                 {jgs.map((j) => (
-                  <Link className="jogo-tema" key={j.slug} href={`/loja#${j.slug}`}>
+                  <Link className="jogo-tema" key={j.slug} href={`/loja/${j.slug}`}>
                     <i aria-hidden="true">{j.emoji}</i>
                     <div><b>Jogo para este tema: {j.nome}</b><span>Feito pelo Atlas, à venda no Mercado Livre · ver como usar</span></div>
                   </Link>

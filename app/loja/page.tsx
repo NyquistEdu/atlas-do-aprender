@@ -38,7 +38,7 @@ export default function Loja() {
             {(p.fotos || 0) > 1 && <p className="meta loja-dica">Arraste a foto para o lado: são {p.fotos} fotos →</p>}
             <div className="produto-info">
               <span className="meta">{MATERIAS[p.area]} · {p.idade}</span>
-              <h3>{p.nome}</h3>
+              <h3><Link href={`/loja/${p.slug}`}>{p.nome}</Link></h3>
               <p style={{ margin: 0 }}>{p.resumo}</p>
               <ul className="dentro">{p.trabalha.map((t) => <li key={t}>{t}</li>)}</ul>
               <p className="meta" style={{ margin: 0 }}><b>Como aproveitar:</b> {p.comoUsar}</p>

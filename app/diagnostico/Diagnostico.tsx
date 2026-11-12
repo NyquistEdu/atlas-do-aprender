@@ -159,7 +159,7 @@ function Extras({ m, ano, tema }: { m: Area; ano: string; tema: number }) {
     <>
       {tr && <Link className="btn small ghost" href={`/apostilas/${tr.slug}`}>Treino diário grátis</Link>}
       {ap && <Link className="btn small ghost" href={`/apostilas/${ap.slug}`}>Apostila: {ap.titulo}</Link>}
-      {jgs.map((j) => <Link key={j.slug} className="btn small ghost" href={`/loja#${j.slug}`}>Jogo: {j.nome}</Link>)}
+      {jgs.map((j) => <Link key={j.slug} className="btn small ghost" href={`/loja/${j.slug}`}>Jogo: {j.nome}</Link>)}
     </>
   );
 }

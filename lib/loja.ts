@@ -19,6 +19,12 @@ export type ProdutoLoja = {
   mercadoLivre?: string;
   shopee?: string;
   fotos?: number;
+  /** Título (curto, diz o que é e para quem) e descrição que aparecem no Google. */
+  seo: { titulo: string; descricao: string };
+  /** Habilidades da BNCC que o jogo trabalha (código + resumo). Confira os códigos antes de publicar. */
+  bncc?: { codigo: string; texto: string }[];
+  /** Preço em reais, ex.: "71,90". Se preenchido, entra nos dados estruturados do Google; deve bater com o anúncio. */
+  preco?: string;
 };
 
 const ML = "?pdp_filters=seller_id%3A214831539";
@@ -26,6 +32,15 @@ const ML = "?pdp_filters=seller_id%3A214831539";
 export const LOJA: ProdutoLoja[] = [
   {
     slug: "jogo-de-fracoes",
+    seo: {
+      titulo: "Jogo de frações 3D para 3º ao 5º ano",
+      descricao: "Tabuleiro de encaixe com o inteiro, metades, terços, quartos, quintos e sextos para a criança ver, pegar e comparar frações. Para o 3º ao 5º ano, com guia de uso ligado às trilhas de Matemática.",
+    },
+    bncc: [
+      { codigo: "EF03MA09", texto: "Associar a divisão por 2, 3, 4, 5, 6… às ideias de metade, terça, quarta, quinta e sexta parte." },
+      { codigo: "EF04MA09", texto: "Reconhecer as frações unitárias mais usuais (1/2, 1/3, 1/4, 1/5, 1/10 e 1/100) como unidades de medida menores que a unidade." },
+      { codigo: "EF05MA04", texto: "Identificar frações equivalentes." },
+    ],
     nome: "Jogo de Frações",
     emoji: "🍕",
     area: "mat",
@@ -39,6 +54,14 @@ export const LOJA: ProdutoLoja[] = [
   },
   {
     slug: "domino-matematico",
+    seo: {
+      titulo: "Dominó matemático de somar e subtrair (1º ao 3º ano)",
+      descricao: "Dominó em que cada lado da peça é uma conta de somar ou subtrair até 10. A criança calcula para encaixar e treina o cálculo mental jogando. Para o 1º ao 3º ano.",
+    },
+    bncc: [
+      { codigo: "EF01MA06", texto: "Construir fatos básicos da adição e usá-los no cálculo para resolver problemas." },
+      { codigo: "EF02MA05", texto: "Construir fatos básicos da adição e da subtração e usá-los no cálculo mental ou escrito." },
+    ],
     nome: "Dominó Matemático Math Match",
     emoji: "🎲",
     area: "mat",
@@ -52,6 +75,13 @@ export const LOJA: ProdutoLoja[] = [
   },
   {
     slug: "giragenio",
+    seo: {
+      titulo: "GiraGênio: spinner da tabuada (multiplicar e dividir)",
+      descricao: "Discos de engrenagens que giram e mostram uma conta: a criança diz o resultado e treina a tabuada em rodadas rápidas. Para o 1º ao 3º ano, junto com as trilhas de Matemática.",
+    },
+    bncc: [
+      { codigo: "EF03MA03", texto: "Construir e usar fatos básicos da adição e da multiplicação no cálculo mental ou escrito." },
+    ],
     nome: "GiraGênio: spinner matemático",
     emoji: "🌀",
     area: "mat",
@@ -65,6 +95,13 @@ export const LOJA: ProdutoLoja[] = [
   },
   {
     slug: "esqueleto-3d",
+    seo: {
+      titulo: "Quebra-cabeça 3D do esqueleto humano para crianças",
+      descricao: "Esqueleto para montar peça por peça: a criança descobre onde fica cada osso e como as partes do corpo se encaixam. A partir de 6 anos, ligado às trilhas de Ciências.",
+    },
+    bncc: [
+      { codigo: "EF01CI02", texto: "Localizar, nomear e representar partes do corpo humano e explicar suas funções." },
+    ],
     nome: "Quebra-cabeça 3D do Esqueleto Humano",
     emoji: "🦴",
     area: "cie",
@@ -77,6 +114,10 @@ export const LOJA: ProdutoLoja[] = [
   },
   {
     slug: "quebra-cabeca-deslizante-natal",
+    seo: {
+      titulo: "Kit de 2 quebra-cabeças deslizantes de Natal 3×3",
+      descricao: "Dois quebra-cabeças deslizantes 3×3, Papai Noel e elfo, para treinar raciocínio lógico e atenção. Presente de Natal educativo, a partir de 6 anos.",
+    },
     nome: "Kit 2 Quebra-Cabeças Deslizantes de Natal 3×3",
     emoji: "🎅",
     area: "mat",
@@ -90,6 +131,14 @@ export const LOJA: ProdutoLoja[] = [
   },
   {
     slug: "quebra-cabeca-deslizante-numeros-e-letras",
+    seo: {
+      titulo: "Quebra-cabeça deslizante de números e letras (dupla face)",
+      descricao: "Tabuleiro 4×5 com números de um lado e letras do outro: a criança desliza as peças até pôr tudo em ordem crescente ou alfabética. Para o início da alfabetização, a partir de 6 anos.",
+    },
+    bncc: [
+      { codigo: "EF01MA05", texto: "Comparar números naturais de até duas ordens." },
+      { codigo: "EF01LP04", texto: "Distinguir as letras do alfabeto de outros sinais gráficos." },
+    ],
     nome: "Quebra-Cabeça Deslizante Dupla Face 4×5: Números e Letras",
     emoji: "🔢",
     area: "mat",
@@ -105,3 +154,5 @@ export const LOJA: ProdutoLoja[] = [
 
 export const jogosDoTema = (m: Materia, ano: string, tema: number) =>
   LOJA.filter((p) => p.temas.some(([a, b, c]) => a === m && b === ano && c === tema));
+
+export const produtoPorSlug = (slug: string) => LOJA.find((p) => p.slug === slug);
