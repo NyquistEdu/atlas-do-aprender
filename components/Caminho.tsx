@@ -29,7 +29,7 @@ export default function Caminho() {
 
   useEffect(() => {
     if (!supabase || !a.user) return;
-    supabase.from("planos").select("dados").eq("ativo", true).order("criado_em", { ascending: false }).limit(1)
+    supabase.from("planos").select("dados").eq("email", (a.user.email || "").toLowerCase()).eq("ativo", true).order("criado_em", { ascending: false }).limit(1)
       .then(({ data }) => setPlano((data?.[0]?.dados as Plano) || null), () => {});
   }, [a.user]);
 
