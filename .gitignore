@@ -8,3 +8,9 @@ out
 .env.test.local
 .env.production.local
 *.tsbuildinfo
+
+# Capacitor
+android/app/build/
+android/.gradle/
+ios/App/Pods/
+ios/App/build/
