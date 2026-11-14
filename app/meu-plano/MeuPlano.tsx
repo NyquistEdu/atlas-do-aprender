@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useAtlas } from "@/components/Providers";
 import { FormAcesso, SELO_CONTA } from "@/components/Acesso";
@@ -11,6 +11,8 @@ import {
 } from "@/lib/plano";
 import { anoNome } from "@/lib/apostilas";
 import { abrirImpressao } from "@/lib/imprimir";
+import { rastrear } from "@/lib/rastreio";
+import { criarPlanoDoDiagnostico, lerDiagnostico, limparPedidoDePlano, pedidoDePlanoPendente } from "@/lib/planoAutomatico";
 
 const CORES = ["#1f6f78", "#c4672a", "#a8456e", "#2a5db0"];
 const COR_JUNTOS = "#6b4fa0";
@@ -22,27 +24,63 @@ export default function MeuPlano() {
   const [estado, setEstado] = useState<"carregando" | "ok" | "sem" | "erro">("carregando");
   const [dia, setDia] = useState(() => iso(new Date()));
 
+  const [aviso, setAviso] = useState<"" | "criado" | "local" | "sem-diagnostico">("");
+  const criando = useRef(false);
+  const criancasProntas = a.criancas.length > 0;
+
   useEffect(() => {
     if (!supabase || !a.user) return;
+    // Chegou de "quero o plano de 30 dias" no diagnóstico? (?novo=1, ou o pedido guardado no navegador)
+    const pedido = pedidoDePlanoPendente();
+    if (pedido && !criancasProntas) return; // espera as crianças da conta carregarem
     let vivo = true;
-    supabase.from("planos").select("dados").eq("ativo", true).order("criado_em", { ascending: false }).limit(6)
-      .then(({ data, error }) => {
-        if (!vivo) return;
-        if (error) { setEstado("erro"); return; }
-        // o plano que cobre hoje; senão o próximo a começar; senão o mais recente
-        const hojeISO = iso(new Date());
-        const lista = (data || []).map((x) => x.dados as Plano);
-        const p = lista.find((x) => x.inicio <= hojeISO && hojeISO <= fimDoPlano(x))
-          || lista.filter((x) => x.inicio > hojeISO).sort((a, b) => a.inicio.localeCompare(b.inicio))[0]
-          || lista[0];
-        if (!p) { setEstado("sem"); return; }
-        setPlano(p); setEstado("ok");
-        const hoje = iso(new Date());
-        // fora do período, abre no primeiro ou no último dia do plano
-        if (hoje < p.inicio) setDia(p.inicio); else if (hoje > fimDoPlano(p)) setDia(fimDoPlano(p));
-      });
+    (async () => {
+      let local: Plano | null = null;
+      if (pedido && !criando.current) {
+        criando.current = true;
+        limparPedidoDePlano();
+        const dg = lerDiagnostico();
+        if (!dg) setAviso("sem-diagnostico");
+        else {
+          const digitado = dg.nome.trim();
+          let nome = a.criancas[0];
+          if (digitado) { if (!a.criancas.includes(digitado)) await a.addCrianca(digitado); nome = digitado; }
+          const r = await criarPlanoDoDiagnostico(a.user!.email || "", nome);
+          if (r && !r.jaTinha) {
+            rastrear("PlanoCriado", { tipo: r.guardado ? "guardado" : "so_neste_aparelho" });
+            setAviso(r.guardado ? "criado" : "local");
+            if (!r.guardado) local = r.plano;
+          }
+        }
+        try { const u = new URL(window.location.href); u.searchParams.delete("novo"); window.history.replaceState(null, "", u.pathname + u.search + u.hash); } catch {}
+      }
+      const { data, error } = await supabase!.from("planos").select("dados").eq("ativo", true).order("criado_em", { ascending: false }).limit(6);
+      if (!vivo) return;
+      if (error) { setEstado("erro"); return; }
+      // o plano que cobre hoje; senão o próximo a começar; senão o mais recente
+      const hojeISO = iso(new Date());
+      const lista = (data || []).map((x) => x.dados as Plano);
+      const p = lista.find((x) => x.inicio <= hojeISO && hojeISO <= fimDoPlano(x))
+        || lista.filter((x) => x.inicio > hojeISO).sort((a, b) => a.inicio.localeCompare(b.inicio))[0]
+        || lista[0]
+        || local;
+      if (!p) { setEstado("sem"); return; }
+      setPlano(p); setEstado("ok");
+      const hoje = iso(new Date());
+      // fora do período, abre no primeiro ou no último dia do plano
+      if (hoje < p.inicio) setDia(p.inicio); else if (hoje > fimDoPlano(p)) setDia(fimDoPlano(p));
+    })();
     return () => { vivo = false; };
-  }, [a.user]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [a.user, criancasProntas]);
+
+  const AvisoPlano = () => aviso ? (
+    <p className="diag-aviso" role="status">
+      {aviso === "criado" && "Pronto! Criamos o seu plano de 30 dias a partir do diagnóstico. Comece pelas tarefas de hoje e marque cada uma quando fizer."}
+      {aviso === "local" && "Criamos o seu plano, mas não consegui guardá-lo na sua conta agora: por enquanto ele fica disponível só neste aparelho."}
+      {aviso === "sem-diagnostico" && <>Não encontrei o seu diagnóstico neste navegador. Abra o link no mesmo aparelho em que fez o diagnóstico, ou <Link href="/diagnostico">refaça o diagnóstico</Link> (4 a 6 minutos) e peça o plano no final.</>}
+    </p>
+  ) : null;
 
   const cores = useMemo(() => {
     const m: Record<string, string> = { [JUNTOS]: COR_JUNTOS };
@@ -67,6 +105,7 @@ export default function MeuPlano() {
     return (
       <div className="wrap" style={{ maxWidth: 680 }}>
         <h1>Meu plano de estudos</h1>
+        <AvisoPlano />
         <div className="card">
           <h3 style={{ margin: 0 }}>Você ainda não tem um plano aqui</h3>
           <p style={{ margin: 0 }}>Quando você faz o planejamento gratuito, o plano da sua família aparece nesta página: o que fazer em cada dia, com cada criança, e os temas com livros, filmes e jogos.</p>
@@ -121,6 +160,7 @@ export default function MeuPlano() {
 
   return (
     <div className="wrap">
+      <AvisoPlano />
       <p className="eyebrow-i">Meu plano de estudos</p>
       <h1 className="hero-t">{p.familia}</h1>
       <p className="lead">{ddmm(p.inicio)} a {ddmm(fim)}/{fim.slice(0, 4)} · {hoje < p.inicio ? "começa em breve" : hoje > fim ? "plano concluído" : `dia ${nDia} de ${total}`}</p>

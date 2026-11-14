@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SERIES, atual, inicio, perguntadas, responder, resultado, type Area, type Estado, type Resposta, type Resultado } from "@/lib/diagnostico";
 import { MATERIAS, SLUG, TRILHAS, anoSlug } from "@/lib/data";
@@ -9,6 +10,7 @@ import { jogosDoTema } from "@/lib/loja";
 import { rastrear } from "@/lib/rastreio";
 import { useAtlas } from "@/components/Providers";
 import { FormAcesso, SELO_CONTA } from "@/components/Acesso";
+import { marcarPedidoDePlano } from "@/lib/planoAutomatico";
 
 const ORDEM: Area[] = ["por", "mat", "cie"];
 type Estados = Partial<Record<Area, Estado>>;
@@ -63,7 +65,7 @@ export default function Diagnostico() {
         <div className="row">
           <button className="btn" type="button" disabled={!serie} onClick={() => { rastrear("DiagnosticoIniciado", { tipo: serie }); ir({ etapa: "perguntas", m: "por", es: { por: inicio("por", serie) } }); }}>Começar o diagnóstico</button>
         </div>
-        <p className="note" style={{ margin: 0 }}>Se a criança tiver lacunas de anos anteriores, o diagnóstico percebe e volta na trilha sozinho. Nada do que você responde sai do seu aparelho: o resultado fica guardado só neste navegador.</p>
+        <p className="note" style={{ margin: 0 }}>Se a criança tiver lacunas de anos anteriores, o diagnóstico percebe e volta na trilha sozinho. Nada do que você responde sai do seu aparelho: o resultado fica guardado só neste navegador, a não ser que você peça o plano de 30 dias no final.</p>
       </section>
     );
   }
@@ -117,7 +119,6 @@ export default function Diagnostico() {
     return `${MATERIAS[a]}: ${r.trabalhar.map((i) => `${anoNome(i.h.ano)} tema ${i.h.tema}${i.r === "ajuda" ? " (com ajuda)" : ""}`).join(", ")}`;
   })].join(" · ");
   const paraPlanejamento = () => { try { sessionStorage.setItem("atlas-diagnostico-resumo", resumo); } catch {} };
-  const primeiro = ORDEM.map((a) => rs[a].trabalhar[0] && linkTema(a, rs[a].trabalhar[0].h.ano, rs[a].trabalhar[0].h.tema)).find(Boolean) || "/trilhas/portugues/1-ano";
   const lacunas = ORDEM.reduce((t, a) => t + rs[a].trabalhar.length, 0);
   const anterior = ORDEM.some((a) => rs[a].trabalhar.some((i) => SERIES.find((s) => s[0] === serie) && Number(i.h.ano) < Number(SERIES.find((s) => s[0] === serie)![3])));
 
@@ -139,10 +140,10 @@ export default function Diagnostico() {
         <div className="diag-res">{ORDEM.map((a) => <CartaoResultado key={a} m={a} r={rs[a]} />)}</div>
       </section>
 
-      <Cadastro volta={primeiro} />
+      <PlanoTrintaDias nome={nome.trim()} />
 
       <section className="card" style={{ borderTop: "5px solid var(--cie)" }}>
-        <h3 style={{ margin: 0 }}>Quer um plano feito para a sua criança?</h3>
+        <h3 style={{ margin: 0 }}>Prefere um plano feito junto comigo, por vídeo?</h3>
         <p style={{ margin: 0 }}>O diagnóstico mostra o ponto de partida. No <b>Planejamento gratuito</b>, eu converso com você por vídeo, conheço a criança e a rotina da família e monto um plano de estudos semana a semana. O resultado deste diagnóstico já vai junto no formulário.</p>
         <div className="row">
           <Link className="btn" href="/planejamento" onClick={paraPlanejamento}>Quero o planejamento gratuito</Link>
@@ -265,14 +266,38 @@ function CartaoResultado({ m, r }: { m: Area; r: Resultado }) {
   );
 }
 
-function Cadastro({ volta }: { volta: string }) {
+/** Pergunta se a família quer o plano de 30 dias; se sim, pede o e-mail (a conta guarda o plano) e leva a /meu-plano, onde ele é criado. */
+function PlanoTrintaDias({ nome }: { nome: string }) {
   const { user, configurado } = useAtlas();
-  if (!configurado || user) return null;
+  const router = useRouter();
+  const [etapa, setEtapa] = useState<"pergunta" | "email" | "nao">("pergunta");
+  if (!configurado || etapa === "nao") return null;
+
+  const querPlano = () => {
+    rastrear("PlanoPedido", { origem: user ? "logada" : "nova" });
+    marcarPedidoDePlano();
+    if (user) router.push("/meu-plano?novo=1");
+    else setEtapa("email");
+  };
+
   return (
     <section className="card" style={{ borderTop: "5px solid var(--por)" }}>
-      <h3 style={{ margin: 0 }}>Guarde o caminho e marque cada fase vencida</h3>
-      <p className="meta" style={{ margin: 0 }}><b>{SELO_CONTA}.</b> Com a conta, você marca cada tema concluído, registra o que a criança fez no diário e acompanha a evolução.</p>
-      <FormAcesso volta={volta} origem="diagnostico" botao="Criar minha conta grátis" />
+      <h3 style={{ margin: 0 }}>Quer um plano de ação de 30 dias{nome ? ` para ${nome}` : ""}?</h3>
+      <p style={{ margin: 0 }}>Eu monto, no modelo do Atlas, o que fazer em cada dia: <b>15 minutos por dia</b>, começando pelas fases do resultado acima, com a apostila, o treino e uma atividade para a semana. Você marca o que foi feito e tudo fica registrado no diário.</p>
+      {etapa === "pergunta" ? (
+        <>
+          <div className="row">
+            <button type="button" className="btn" onClick={querPlano}>Sim, quero o plano de 30 dias</button>
+            <button type="button" className="btn ghost" onClick={() => setEtapa("nao")}>Agora não</button>
+          </div>
+          <p className="meta" style={{ margin: 0 }}>{user ? "O plano é criado na sua conta." : <><b>{SELO_CONTA}.</b> Para guardar o plano, só preciso do seu e-mail.</>}</p>
+        </>
+      ) : (
+        <>
+          <p className="meta" style={{ margin: 0 }}>Digite seu e-mail: enviamos um link e, ao abri-lo <b>neste mesmo aparelho e navegador</b>, seu plano é criado. Ficam guardados na sua conta o plano e o nome (ou apelido) da criança.</p>
+          <FormAcesso volta="/meu-plano?novo=1" origem="plano" botao="Receber meu plano por e-mail" />
+        </>
+      )}
     </section>
   );
 }
