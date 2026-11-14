@@ -128,12 +128,14 @@ export default function Diagnostico() {
         <h2 style={{ margin: 0 }}>O caminho de {nome.trim() || "estudo"}</h2>
         <p style={{ margin: 0 }}>{lacunas ? <>Encontramos <b>{lacunas} {lacunas === 1 ? "lacuna" : "lacunas"}</b> para trabalhar. Cada uma é uma fase no mapa da trilha, e elas aparecem abaixo na ordem certa.</> : <>Nenhuma lacuna nos temas perguntados. Abaixo está a próxima fase de cada matéria.</>}</p>
         <ol className="diag-como">
-          <li><b>Abra a primeira fase</b> de cada matéria no mapa da trilha.</li>
+          <li><b>Comece hoje</b>: faça a atividade de 15 minutos logo abaixo, sem preparar nada.</li>
           <li><b>15 minutos por dia</b>, alternando as matérias: um treino diário, uma página da apostila, um livro ou um jogo da fase.</li>
           <li><b>Quando a fase ficar firme</b>, passe para a próxima da lista.</li>
         </ol>
         <p className="meta" style={{ margin: 0 }}>As fases marcadas “com ajuda” costumam andar mais rápido.</p>
         {anterior && <p className="diag-aviso">Algumas lacunas são de anos anteriores ao da série. Isso é comum e não é motivo de preocupação: firmar a base é o caminho mais rápido para alcançar a turma.</p>}
+        <PrimeiraAtividade rs={rs} quem={quem} />
+        <h3 style={{ margin: "6px 0 0" }}>O mapa completo, por matéria</h3>
         <div className="diag-res">{ORDEM.map((a) => <CartaoResultado key={a} m={a} r={rs[a]} />)}</div>
       </section>
 
@@ -148,6 +150,57 @@ export default function Diagnostico() {
         </div>
       </section>
     </div>
+  );
+}
+
+/** Primeira atividade de 15 minutos, montada com o tema da primeira lacuna (ou a próxima fase) da matéria escolhida. */
+function PrimeiraAtividade({ rs, quem }: { rs: Record<Area, Resultado>; quem: string }) {
+  const alvo = (a: Area) => (rs[a].trabalhar[0] ? { ano: rs[a].trabalhar[0].h.ano, tema: rs[a].trabalhar[0].h.tema } : rs[a].proximo ? { ano: rs[a].proximo!.ano, tema: rs[a].proximo!.tema } : null);
+  const disponiveis = ORDEM.filter((a) => alvo(a));
+  const [m, setM] = useState<Area | null>(disponiveis.find((a) => rs[a].trabalhar.length) || disponiveis[0] || null);
+  if (!m) return null;
+  const t = alvo(m)!;
+  const tema = TRILHAS[m][t.ano]?.[t.tema - 1];
+  if (!tema) return null;
+  const treino = treinoDoTema(m, t.ano, t.tema);
+  const exercicios = (tema.e || []).slice(0, 2);
+  const brincar = tema.j?.[0] ? { rot: "Jogo", txt: tema.j[0] } : tema.p?.[0] ? { rot: "Mão na massa", txt: tema.p[0] } : tema.l?.[0] ? { rot: "Para ler junto", txt: tema.l[0][0] } : null;
+  const aoClicar = (acao: string) => rastrear("PrimeiraAtividade", { tipo: `${m}${t.ano}-${t.tema}:${acao}` });
+
+  return (
+    <section className="diag-hoje" style={{ ["--sc" as string]: `var(--${m})` }} aria-label="Primeira atividade de 15 minutos">
+      <p className="eyebrow-i" style={{ margin: 0, color: `var(--${m})` }}>Comece hoje · 15 minutos</p>
+      <h3 style={{ margin: 0 }}>{tema.t} <small className="diag-onde">{anoNome(t.ano)}, tema {t.tema}</small></h3>
+      {disponiveis.length > 1 && (
+        <div className="seg" role="group" aria-label="Escolha a matéria de hoje">
+          {disponiveis.map((a) => <button key={a} type="button" aria-pressed={m === a} onClick={() => setM(a)}>{MATERIAS[a]}</button>)}
+        </div>
+      )}
+      <ol className="diag-passos">
+        <li><span className="diag-min">2 min</span><div><b>Conversar</b><p>Diga a {quem}: “hoje a gente vai trabalhar isto”. {tema.o}</p></div></li>
+        <li>
+          <span className="diag-min">8 min</span>
+          <div>
+            <b>Treinar</b>
+            {treino ? (
+              <>
+                <p>Imprima (ou abra no celular) o treino diário gratuito e faça só a <b>primeira folha</b>. Se não acabar, termina amanhã.</p>
+                <a className="btn small" href={treino.arquivo} download={treino.nomeArquivo} onClick={() => aoClicar("treino")}>Baixar o treino grátis</a>
+              </>
+            ) : exercicios.length ? (
+              <ul>{exercicios.map((e) => <li key={e}>{e}</li>)}</ul>
+            ) : <p>Releia junto a página da fase no mapa e escolha uma atividade.</p>}
+          </div>
+        </li>
+        {brincar && (
+          <li><span className="diag-min">5 min</span><div><b>Brincar</b><p>{brincar.rot}: {brincar.txt}</p></div></li>
+        )}
+      </ol>
+      <div className="row">
+        <Link className="btn" href={linkTema(m, t.ano, t.tema)} onClick={() => aoClicar("mapa")}>Ver a fase completa no mapa</Link>
+      </div>
+      <p className="meta" style={{ margin: 0 }}>Amanhã, mais 15 minutos: é pouco tempo, mas é todo dia que a criança evolui. Guarde sua conta logo abaixo para marcar o que já fez.</p>
+    </section>
   );
 }
 
