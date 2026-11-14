@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Atlas do Aprender</string>
+    <string name="title_activity_main">Atlas do Aprender</string>
+    <string name="package_name">br.com.atlasdoaprender.app</string>
+    <string name="custom_url_scheme">br.com.atlasdoaprender.app</string>
+</resources>
