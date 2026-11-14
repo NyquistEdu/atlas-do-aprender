@@ -1185,3 +1185,10 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .chefao-tema:hover{filter:brightness(1.08)}
 .chefao-tema.largo{grid-column:1/-1}
 @media (max-width:560px){.chefao-tema em{display:none}}
+
+.diag-hoje{border:2px solid var(--sc,var(--por));border-radius:14px;padding:16px;display:grid;gap:10px;background:color-mix(in srgb,var(--sc,var(--por)) 6%,var(--card))}
+.diag-passos{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.diag-passos>li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
+.diag-passos p,.diag-passos ul{margin:2px 0 6px}
+.diag-passos ul{padding-left:18px}
+.diag-min{display:inline-block;min-width:56px;text-align:center;padding:3px 8px;border-radius:999px;background:var(--sc,var(--por));color:#fff;font-weight:700;font-size:.8rem}
