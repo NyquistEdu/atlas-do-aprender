@@ -20,6 +20,8 @@ export type Plano = {
   extras?: ExtraPlano[];
   eventos?: EventoPlano[];
   agenda?: Agenda;
+  /** "diagnostico": plano que a própria família gerou a partir do diagnóstico do site. */
+  origem?: string;
 };
 
 /** Uma tarefa do dia. area/tipo/minutos são usados para registrar no diário quando a tarefa é marcada. */
