@@ -89,7 +89,7 @@ export async function criarPlanoDoDiagnostico(email: string, nomeCrianca: string
   const inicio = iso(new Date());
   const plano = planoDoDiagnostico(s, nomeCrianca, inicio);
   const fim = fimDoPlano(plano);
-  const { data: ativos } = await supabase.from("planos").select("dados").eq("ativo", true);
+  const { data: ativos } = await supabase.from("planos").select("dados").eq("email", email.trim().toLowerCase()).eq("ativo", true);
   const sobrepoe = (ativos || []).map((x) => x.dados as Plano).find((d) => d.inicio <= fim && somaDias(d.inicio, (d.dias || 30) - 1) >= inicio);
   if (sobrepoe) return { plano: sobrepoe, guardado: true, jaTinha: true };
   const { error } = await supabase.from("planos").insert({ email: email.trim().toLowerCase(), dados: plano, ativo: true });

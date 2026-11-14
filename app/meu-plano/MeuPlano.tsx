@@ -54,7 +54,7 @@ export default function MeuPlano() {
         }
         try { const u = new URL(window.location.href); u.searchParams.delete("novo"); window.history.replaceState(null, "", u.pathname + u.search + u.hash); } catch {}
       }
-      const { data, error } = await supabase!.from("planos").select("dados").eq("ativo", true).order("criado_em", { ascending: false }).limit(6);
+      const { data, error } = await supabase!.from("planos").select("dados").eq("email", (a.user!.email || "").toLowerCase()).eq("ativo", true).order("criado_em", { ascending: false }).limit(6);
       if (!vivo) return;
       if (error) { setEstado("erro"); return; }
       // o plano que cobre hoje; senão o próximo a começar; senão o mais recente
