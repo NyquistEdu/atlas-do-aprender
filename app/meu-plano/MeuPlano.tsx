@@ -21,6 +21,9 @@ const primeiro = (l?: string[]) => (l || []).map((x) => x.replace(/\s+—\s+.*$/
 export default function MeuPlano() {
   const a = useAtlas();
   const [plano, setPlano] = useState<Plano | null>(null);
+  // plano em vigor e o próximo já publicado (que começa depois que este termina)
+  const [principal, setPrincipal] = useState<Plano | null>(null);
+  const [proximo, setProximo] = useState<Plano | null>(null);
   const [estado, setEstado] = useState<"carregando" | "ok" | "sem" | "erro">("carregando");
   const [dia, setDia] = useState(() => iso(new Date()));
 
@@ -74,7 +77,8 @@ export default function MeuPlano() {
       // o plano guardado na conta vale mais que o do aparelho
       if (lista.length) try { localStorage.removeItem(CHAVE_PLANO_PROPRIO); } catch {}
       if (!p) { setEstado("sem"); return; }
-      setPlano(p); setEstado("ok");
+      setPlano(p); setPrincipal(p); setEstado("ok");
+      setProximo(lista.filter((x) => x !== p && x.inicio > fimDoPlano(p)).sort((a, b) => a.inicio.localeCompare(b.inicio))[0] || null);
       const hoje = iso(new Date());
       // fora do período, abre no primeiro ou no último dia do plano
       if (hoje < p.inicio) setDia(p.inicio); else if (hoje > fimDoPlano(p)) setDia(fimDoPlano(p));
@@ -172,6 +176,17 @@ export default function MeuPlano() {
   return (
     <div className="wrap">
       <AvisoPlano />
+      {proximo && principal && (plano === proximo ? (
+        <p className="diag-aviso row" role="status" style={{ justifyContent: "space-between", gap: 10 }}>
+          <span>Você está vendo o <b>próximo plano</b>, que começa em {ddmm(proximo.inicio)}.</span>
+          <button type="button" className="btn small ghost" onClick={() => { setPlano(principal); const f = fimDoPlano(principal); setDia(hoje < principal.inicio ? principal.inicio : hoje > f ? f : hoje); }}>Voltar ao plano atual</button>
+        </p>
+      ) : (
+        <p className="note row" style={{ justifyContent: "space-between", gap: 10 }}>
+          <span>Próximo plano começa em <b>{ddmm(proximo.inicio)}</b>{(() => { const n = Math.round((+new Date(proximo.inicio) - +new Date(hoje)) / 864e5); return n > 0 ? ` (daqui a ${n} ${n === 1 ? "dia" : "dias"})` : ""; })()}.</span>
+          <button type="button" className="btn small ghost" onClick={() => { setPlano(proximo); setDia(proximo.inicio); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Ver o próximo plano</button>
+        </p>
+      ))}
       <p className="eyebrow-i">Meu plano de estudos</p>
       <h1 className="hero-t">{p.familia}</h1>
       <p className="lead">{ddmm(p.inicio)} a {ddmm(fim)}/{fim.slice(0, 4)} · {hoje < p.inicio ? "começa em breve" : hoje > fim ? "plano concluído" : `dia ${nDia} de ${total}`}</p>
