@@ -3,9 +3,12 @@
  * Fica na tabela public.planos, ligado ao e-mail da conta. A página /meu-plano mostra o dia, a semana e os temas.
  */
 import { TRILHAS, SLUG, anoSlug, type Materia, type Tema } from "@/lib/data";
-import { apostilaDoTema, type Apostila } from "@/lib/apostilas";
+import { apostilaDoTema, treinoDoTema, type Apostila, type Gratuito } from "@/lib/apostilas";
 
-export type TemaPlano = { materia: Materia; ano: string; tema: number };
+/** O que a criança faz no tema: a apostila, o treino diário ou os dois. */
+export type Faz = "apostila" | "treino" | "ambos";
+export const FAZ_NOME: Record<Faz, string> = { apostila: "Apostila", treino: "Treino diário", ambos: "Os dois" };
+export type TemaPlano = { materia: Materia; ano: string; tema: number; faz?: Faz };
 export type CriancaPlano = { nome: string; ano?: string; idade?: number; temas: TemaPlano[]; reforcar?: string };
 export type ExtraPlano = { quem: string; texto: string; icone?: string; dias: string[]; de?: string; ate?: string; link?: string };
 export type EventoPlano = { data: string; quem: string; texto: string; icone?: string; link?: string };
@@ -74,19 +77,30 @@ export const ddmm = (s: string) => s.split("-").reverse().slice(0, 2).join("/");
 export const diaSemana = (s: string) => (deISO(s).getDay() + 6) % 7;
 export const fimDoPlano = (p: Plano) => somaDias(p.inicio, (p.dias || 30) - 1);
 
-export function infoTema(t: TemaPlano): { tema: Tema | undefined; apostila: Apostila | undefined; link: string; nome: string } {
+export function infoTema(t: TemaPlano): { tema: Tema | undefined; apostila: Apostila | undefined; treino: Gratuito | undefined; faz: Faz; link: string; nome: string } {
   const tema = TRILHAS[t.materia]?.[t.ano]?.[t.tema - 1];
   const apostila = apostilaDoTema(t.materia, t.ano, t.tema);
+  const treino = treinoDoTema(t.materia, t.ano, t.tema);
   return {
-    tema, apostila,
+    tema, apostila, treino, faz: fazDe(t),
     link: `/trilhas/${SLUG[t.materia]}/${anoSlug(t.ano)}#tema-${t.tema}`,
     nome: apostila ? `Apostila ${apostila.titulo}` : `Trilha: ${tema?.t || "tema"}`,
   };
 }
 
-const itemTema = (quem: string, t: TemaPlano): Item => {
+/** O que a criança faz no tema, considerando o que existe: sem treino diário, fica a apostila (ou a trilha). */
+export function fazDe(t: TemaPlano): Faz {
+  if (!treinoDoTema(t.materia, t.ano, t.tema)) return "apostila";
+  return t.faz || "apostila";
+}
+
+/** Tarefas de um tema nos dias da matéria: a apostila (ou a trilha), o treino diário, ou os dois. */
+const itensTema = (quem: string, t: TemaPlano): Item[] => {
   const i = infoTema(t);
-  return item(quem, MAT_INFO[t.materia][1], i.nome, { link: i.apostila ? `/apostilas/${i.apostila.slug}` : i.link, area: t.materia, tipo: i.apostila ? "Exercício" : "Estudo da trilha" });
+  const out: Item[] = [];
+  if (i.faz !== "treino") out.push(item(quem, MAT_INFO[t.materia][1], i.nome, { link: i.apostila ? `/apostilas/${i.apostila.slug}` : i.link, area: t.materia, tipo: i.apostila ? "Exercício" : "Estudo da trilha" }));
+  if (i.faz !== "apostila" && i.treino) out.push(item(quem, MAT_INFO[t.materia][1], `${i.treino.titulo}: uma folha`, { link: `/apostilas/${i.treino.slug}`, area: t.materia, tipo: "Exercício", minutos: 10 }));
+  return out;
 };
 
 /** O que fazer num dia: apostilas do padrão da semana, extras, eventos com data e as atividades de fim de semana. */
@@ -97,8 +111,8 @@ export function itensDoDia(p: Plano, data: string): Item[] {
   const ag = { ...AGENDA_PADRAO, ...(p.agenda || {}) };
   const d = DS[wd];
   for (const m of (["por", "mat", "cie"] as Materia[]).filter((x) => ag[x].includes(d))) {
-    for (const c of p.criancas) for (const t of c.temas) if (t.materia === m) out.push(itemTema(c.nome, t));
-    for (const t of p.juntos || []) if (t.materia === m) out.push(itemTema(JUNTOS, t));
+    for (const c of p.criancas) for (const t of c.temas) if (t.materia === m) out.push(...itensTema(c.nome, t));
+    for (const t of p.juntos || []) if (t.materia === m) out.push(...itensTema(JUNTOS, t));
   }
   for (const e of p.extras || []) {
     if (!e.dias.includes(DS[wd])) continue;
@@ -107,7 +121,8 @@ export function itensDoDia(p: Plano, data: string): Item[] {
     out.push(item(e.quem, e.icone || "⭐", e.texto, { link: e.link }));
   }
   for (const [k, ic, tx, link] of ROTINA) if (ag[k].includes(d)) out.push(item(JUNTOS, ic, tx, link ? { link } : undefined));
-  return out;
+  // a mesma tarefa para a mesma pessoa só uma vez (ex.: treino do tema e o mesmo treino como extra)
+  return out.filter((x, k) => out.findIndex((y) => y.quem === x.quem && y.id === x.id) === k);
 }
 
 /** Temas (individuais e de todos juntos) de uma criança. */

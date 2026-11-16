@@ -8,7 +8,7 @@ import { useAtlas } from "@/components/Providers";
 import { ADMIN_EMAIL } from "@/lib/admin";
 import { TRILHAS, type Materia } from "@/lib/data";
 import { anoNome } from "@/lib/apostilas";
-import { AGENDA_PADRAO, DIAS_NOME, DS, JUNTOS, MAT_INFO, ROTINA, ddmm, diaSemana, infoTema, iso, itensDoDia, somaDias, type ExtraPlano, type Plano, type TemaPlano } from "@/lib/plano";
+import { AGENDA_PADRAO, DIAS_NOME, DS, JUNTOS, MAT_INFO, ROTINA, ddmm, diaSemana, infoTema, iso, itensDoDia, somaDias, FAZ_NOME, fazDe, type Faz, type ExtraPlano, type Plano, type TemaPlano } from "@/lib/plano";
 import {
   COM_A_CRIANCA, CONVERSA, FECHAMENTO, LEITURA, MATEMATICA, NIVEIS, anoTrilha, diasPorExtenso, fichaDoPlano, novaCrianca, proximoTema, sugereLeitura, sugereMat, sugerir,
   type Ficha, type FichaCrianca, type Nivel, type SugCrianca, type Tarefa,
@@ -65,7 +65,10 @@ export function montarPlano(f: Ficha): Plano {
     como: como || undefined,
     criancas: f.criancas.filter((c) => c.nome.trim()).map((c) => ({
       nome: c.nome.trim(), ano: c.ano || undefined, idade: Number(c.idade) || undefined,
-      temas: [c.por, c.matT, juntos ? null : c.cie].filter(ok) as TemaPlano[],
+      temas: (() => {
+        const l = [c.por, c.matT, juntos ? null : c.cie, ...(c.outros || [])].filter(ok) as TemaPlano[];
+        return l.filter((t, k) => l.findIndex((x) => x.materia === t.materia && x.ano === t.ano && x.tema === t.tema) === k);
+      })(),
       reforcar: c.reforcar.replace(/^Formulário:\s*/, "").trim() || undefined,
     })),
     juntos: (() => {
@@ -300,7 +303,16 @@ export default function Montar() {
               {(f.materias || ["por", "mat", "cie"]).includes("mat") && <EscolheTema m="mat" v={c.matT} muda={(t) => upC(i, { matT: t })} />}
               {(f.materias || ["por", "mat", "cie"]).includes("cie") && <EscolheTema m="cie" v={c.cie} muda={(t) => upC(i, { cie: t })} />}
             </div>
-            <p className="meta" style={{ margin: 0 }}>Ciências não precisa de teste: escolha o tema do ano que mais combina com o que a criança gosta. Deixe “nenhum” em qualquer matéria que não vai entrar agora.</p>
+            <p className="meta" style={{ margin: 0 }}>Ciências não precisa de teste: escolha o tema do ano que mais combina com o que a criança gosta. Deixe “nenhum” em qualquer matéria que não vai entrar agora. Em cada tema, escolha se ela faz a apostila, o treino diário ou os dois.</p>
+            <h3 className="mt-h">Mais temas ao mesmo tempo <span className="meta">ex.: uma lacuna da alfabetização e o tema do ano dela, na mesma matéria</span></h3>
+            {(c.outros || []).map((t, k) => (
+              <div key={k} className="mt-item">
+                <select value={t.materia} style={{ width: "auto" }} onChange={(e) => upC(i, { outros: (c.outros || []).map((x, j) => (j === k ? { materia: e.target.value as Materia, ano: x.ano, tema: 1 } : x)) })}>{(["por", "mat", "cie"] as Materia[]).map((m) => <option key={m} value={m}>{MAT_INFO[m][0]}</option>)}</select>
+                <div style={{ flex: 1 }}><EscolheTema m={t.materia} v={t} muda={(n) => upC(i, { outros: (c.outros || []).map((x, j) => (j === k ? n || x : x)) })} /></div>
+                <button type="button" className="link-btn" onClick={() => upC(i, { outros: (c.outros || []).filter((_, j) => j !== k) })}>tirar</button>
+              </div>
+            ))}
+            <div className="row"><button type="button" className="btn small ghost" onClick={() => upC(i, { outros: [...(c.outros || []), { materia: "mat", ano: anoTrilha(c.ano), tema: 1 }] })}>+ Outro tema</button></div>
           </section>
         );
       })}
@@ -431,9 +443,9 @@ export default function Montar() {
         </div>
         <div className="mt-temas">
           {plano.criancas.map((c) => (
-            <p key={c.nome} style={{ margin: 0 }}><b>{c.nome}</b>: {c.temas.map((t) => `${MAT_INFO[t.materia][0]} · ${infoTema(t).tema?.t || "?"} (${anoNome(t.ano)})`).join(" · ") || "sem temas"}</p>
+            <p key={c.nome} style={{ margin: 0 }}><b>{c.nome}</b>: {c.temas.map((t) => `${MAT_INFO[t.materia][0]} · ${infoTema(t).tema?.t || "?"} (${anoNome(t.ano)}, ${FAZ_NOME[fazDe(t)].toLowerCase()})`).join(" · ") || "sem temas"}</p>
           ))}
-          {plano.juntos?.map((t) => <p key={t.materia + t.ano + t.tema} style={{ margin: 0 }}><b>Juntos</b>: {MAT_INFO[t.materia][0]} · {infoTema(t).tema?.t} ({anoNome(t.ano)})</p>)}
+          {plano.juntos?.map((t) => <p key={t.materia + t.ano + t.tema} style={{ margin: 0 }}><b>Juntos</b>: {MAT_INFO[t.materia][0]} · {infoTema(t).tema?.t} ({anoNome(t.ano)}, {FAZ_NOME[fazDe(t)].toLowerCase()})</p>)}
         </div>
         {problemas.length > 0 && <p className="warn" style={{ margin: 0 }}>Falta preencher: {problemas.join(", ")}.</p>}
         {aviso && <p className="note" style={{ margin: 0 }}>{aviso}</p>}
@@ -478,9 +490,10 @@ function Sugestao({ s, atual, usar }: { s: { tema: TemaPlano; porque: string }; 
 
 function EscolheTema({ m, v, muda }: { m: Materia; v: TemaPlano | null; muda: (t: TemaPlano | null) => void }) {
   const val = v ? `${v.ano}|${v.tema}` : "";
+  const i = v ? infoTema(v) : null;
   return (
     <label className="f">{MAT_INFO[m][1]} {MAT_INFO[m][0]}
-      <select value={val} onChange={(e) => { const [a, t] = e.target.value.split("|"); muda(e.target.value ? { materia: m, ano: a, tema: Number(t) } : null); }}>
+      <select value={val} onChange={(e) => { const [a, t] = e.target.value.split("|"); muda(e.target.value ? { materia: m, ano: a, tema: Number(t), faz: v?.faz } : null); }}>
         <option value="">nenhum agora</option>
         {Object.entries(TRILHAS[m] || {}).map(([ano, temas]) => (
           <optgroup key={ano} label={anoNome(ano)}>
@@ -488,7 +501,16 @@ function EscolheTema({ m, v, muda }: { m: Materia; v: TemaPlano | null; muda: (t
           </optgroup>
         ))}
       </select>
-      {v && <button type="button" className="link-btn" style={{ justifySelf: "start", fontSize: ".82rem" }} onClick={(e) => { e.preventDefault(); muda(proximoTema(v)); }}>próximo →</button>}
+      {v && i && (
+        i.treino ? (
+          <div className="seg" role="group" aria-label="O que a criança faz neste tema">
+            {(["apostila", "treino", "ambos"] as Faz[]).map((x) => (
+              <button key={x} type="button" aria-pressed={i.faz === x} onClick={(e) => { e.preventDefault(); muda({ ...v, faz: x }); }}>{x === "apostila" && !i.apostila ? "Trilha" : FAZ_NOME[x]}</button>
+            ))}
+          </div>
+        ) : <small className="meta">{i.apostila ? "Faz a apostila (este tema ainda não tem treino diário)." : "Estuda pela trilha (sem apostila nem treino diário)."}</small>
+      )}
+      {v && <button type="button" className="link-btn" style={{ justifySelf: "start", fontSize: ".82rem" }} onClick={(e) => { e.preventDefault(); muda({ ...proximoTema(v), faz: v.faz }); }}>próximo →</button>}
     </label>
   );
 }

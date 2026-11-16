@@ -238,7 +238,8 @@ export default function MeuPlano() {
                     <p className="k">{MAT_INFO[t.materia][1]} {MAT_INFO[t.materia][0]} · {anoNome(t.ano)} · tema {t.tema}{juntos ? " · juntos" : ""}</p>
                     <h4>{i.tema?.t}</h4>
                     <div className="row">
-                      {i.apostila && <Link className="btn small" href={`/apostilas/${i.apostila.slug}`}>Apostila {i.apostila.titulo}</Link>}
+                      {i.apostila && i.faz !== "treino" && <Link className="btn small" href={`/apostilas/${i.apostila.slug}`}>Apostila {i.apostila.titulo}</Link>}
+                      {i.treino && i.faz !== "apostila" && <Link className="btn small" href={`/apostilas/${i.treino.slug}`}>{i.treino.titulo}</Link>}
                       <Link className="btn small ghost" href={i.link}>Abrir o tema</Link>
                     </div>
                     <ul className="pl-portas">

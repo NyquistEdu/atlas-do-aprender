@@ -103,6 +103,7 @@ export type FichaCrianca = {
   mat: Nivel[]; matNota: string;
   fortes: string; gosta: string; reforcar: string;
   por: TemaPlano | null; matT: TemaPlano | null; cie: TemaPlano | null;
+  outros?: TemaPlano[]; // mais temas ao mesmo tempo (ex.: uma lacuna da alfabetização e o tema do ano)
 };
 
 export type Ficha = {
@@ -180,8 +181,10 @@ export function sugerir(f: Ficha): Sugestao {
 
     const sl = sugereLeitura(c.leitura, c.ano), sm = sugereMat(c.mat);
     const tem = (m: Materia) => (f.materias || ["por", "mat", "cie"]).includes(m);
-    const por = tem("por") ? sl?.tema || c.por || { materia: "por", ano, tema: 1 } : null;
-    const mat = tem("mat") ? sm?.tema || c.matT || { materia: "mat", ano, tema: 1 } : null;
+    // mantém o “faz” (apostila, treino ou os dois) quando a sugestão é o mesmo tema da ficha
+    const comFaz = (n: TemaPlano | undefined, v: TemaPlano | null) => (n && v && n.ano === v.ano && n.tema === v.tema ? { ...n, faz: v.faz } : n);
+    const por = tem("por") ? comFaz(sl?.tema, c.por) || c.por || { materia: "por", ano, tema: 1 } : null;
+    const mat = tem("mat") ? comFaz(sm?.tema, c.matT) || c.matT || { materia: "mat", ano, tema: 1 } : null;
     const sc = cieDoInteresse(ano, c.gosta);
     const cie = tem("cie") ? c.cie || sc.tema : null;
 
@@ -256,6 +259,7 @@ export function fichaDoPlano(email: string, p: Plano, id: string): Ficha {
     criancas: p.criancas.map((c) => novaCrianca({
       nome: c.nome, ano: c.ano || "", idade: c.idade ? String(c.idade) : "", reforcar: c.reforcar || "",
       por: de(c.temas, "por"), matT: de(c.temas, "mat"), cie: de(c.temas, "cie"),
+      outros: c.temas.filter((t) => t !== de(c.temas, t.materia)),
     })),
     cieJuntos: false,
     juntosTemas: p.juntos || [],

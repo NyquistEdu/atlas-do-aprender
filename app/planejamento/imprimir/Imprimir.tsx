@@ -142,8 +142,8 @@ function Semana({ p }: { p: Plano }) {
               const i = infoTema(t);
               return (
                 <div key={j} className="imp-liv">
-                  {i.apostila ? <img src={`/apostilas/${i.apostila.slug}/capa.webp`} alt="" /> : <span className="imp-capa">{MAT_INFO[t.materia][1]}</span>}
-                  <div><b>{i.apostila ? i.apostila.titulo : i.tema?.t}</b><span>{MAT_INFO[t.materia][0]}</span></div>
+                  {i.faz === "treino" && i.treino ? <img src={`/apostilas/${i.treino.slug}/capa.webp`} alt="" /> : i.apostila ? <img src={`/apostilas/${i.apostila.slug}/capa.webp`} alt="" /> : <span className="imp-capa">{MAT_INFO[t.materia][1]}</span>}
+                  <div><b>{i.faz === "treino" && i.treino ? i.treino.titulo : i.apostila ? i.apostila.titulo : i.tema?.t}</b><span>{MAT_INFO[t.materia][0]}{i.faz === "ambos" && i.treino ? ` · + ${i.treino.titulo}` : ""}</span></div>
                 </div>
               );
             })}
@@ -236,17 +236,18 @@ function Temas({ p }: { p: Plano }) {
         const cards = [
           ...temas.map(({ t, junto }) => {
             const i = infoTema(t); const tm = i.tema;
+            const treinoTema = i.faz !== "apostila" && i.treino ? i.treino.titulo : "";
             const treino = (p.extras || []).find((e) => (e.quem === c.nome || e.quem === JUNTOS) && /^treino di[áa]rio/i.test(e.texto) && i.apostila && e.link?.includes(i.apostila.slug.split("-").slice(-2).join("-")));
             return (
               <Cartao key={`${t.materia}${t.ano}${t.tema}`} cor={COR_MAT[t.materia]} kick={`${MAT_INFO[t.materia][0]} · ${anoNome(t.ano)} · tema ${t.tema}`} tit={tm?.t || ""} junto={junto}
-                capa={i.apostila ? `/apostilas/${i.apostila.slug}/capa.webp` : undefined} ap={i.apostila?.titulo}
+                capa={i.faz === "treino" && i.treino ? `/apostilas/${i.treino.slug}/capa.webp` : i.apostila ? `/apostilas/${i.apostila.slug}/capa.webp` : undefined} ap={i.faz === "treino" && i.treino ? i.treino.titulo : i.apostila?.titulo}
                 linhas={[
                   ["📚", "Livros", (tm?.l || []).slice(0, 2).map((x) => x[0])],
                   ["🎬", "Filme ou série", primeiros(tm?.f).map(limpa)],
                   ["🎧", "Áudio", primeiros(tm?.a).map(limpa)],
                   ["🎲", "Jogo", primeiros(tm?.j, 2).map(limpa)],
                   ["🧪", "Mão na massa", primeiros(tm?.p, 2).map(limpa)],
-                  ["✏️", "Treino", treino ? [treino.texto.replace(/:.*$/, "")] : []],
+                  ["✏️", "Treino", treinoTema && i.faz === "ambos" ? [treinoTema] : treino ? [treino.texto.replace(/:.*$/, "")] : []],
                 ]} />
             );
           }),
