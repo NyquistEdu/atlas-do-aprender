@@ -5,12 +5,13 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { abrirImpressao } from "@/lib/imprimir";
 import { useAtlas } from "@/components/Providers";
+import { EditorAgenda, EscolheTema, MaisTemas } from "@/components/EditorPlano";
 import { ADMIN_EMAIL } from "@/lib/admin";
 import { TRILHAS, type Materia } from "@/lib/data";
 import { anoNome } from "@/lib/apostilas";
 import { AGENDA_PADRAO, DIAS_NOME, DS, JUNTOS, MAT_INFO, ROTINA, ddmm, diaSemana, infoTema, iso, itensDoDia, somaDias, FAZ_NOME, fazDe, type Faz, type ExtraPlano, type Plano, type TemaPlano } from "@/lib/plano";
 import {
-  COM_A_CRIANCA, CONVERSA, FECHAMENTO, LEITURA, MATEMATICA, NIVEIS, anoTrilha, diasPorExtenso, fichaDoPlano, novaCrianca, proximoTema, sugereLeitura, sugereMat, sugerir,
+  COM_A_CRIANCA, CONVERSA, FECHAMENTO, LEITURA, MATEMATICA, NIVEIS, anoTrilha, montarPlano, diasPorExtenso, fichaDoPlano, novaCrianca, proximoTema, sugereLeitura, sugereMat, sugerir,
   type Ficha, type FichaCrianca, type Nivel, type SugCrianca, type Tarefa,
 } from "@/lib/roteiro";
 
@@ -47,38 +48,6 @@ function doPedido(p: Pedido): Ficha {
       fortes: c.facilidades || "", gosta: c.interesses || "", reforcar: c.dificuldades ? `Formulário: ${c.dificuldades}` : "",
       cie: { materia: "cie", ano: anoTrilha(c.ano || ""), tema: 1 },
     })),
-  };
-}
-
-/** Monta o plano que vai para a tabela planos (o mesmo formato de lib/plano.ts). */
-export function montarPlano(f: Ficha): Plano {
-  const ms = f.materias || ["por", "mat", "cie"];
-  const ok = (t: TemaPlano | null) => !!t && ms.includes(t.materia);
-  const juntos = f.cieJuntos && f.criancas.length > 1 && ms.includes("cie");
-  const cieJ: TemaPlano[] = [];
-  if (juntos) for (const c of f.criancas) if (c.cie && !cieJ.some((t) => t.ano === c.cie!.ano && t.tema === c.cie!.tema)) cieJ.push(c.cie);
-  const como = [f.como.trim(), f.acompanha.trim() && `Quem acompanha: ${f.acompanha.trim()}.`].filter(Boolean).join(" ");
-  return {
-    familia: f.familia.trim() || "Meu plano",
-    inicio: f.inicio, dias: f.dias || 30,
-    objetivo: f.objetivo.trim() || undefined,
-    como: como || undefined,
-    criancas: f.criancas.filter((c) => c.nome.trim()).map((c) => ({
-      nome: c.nome.trim(), ano: c.ano || undefined, idade: Number(c.idade) || undefined,
-      temas: (() => {
-        const l = [c.por, c.matT, juntos ? null : c.cie, ...(c.outros || [])].filter(ok) as TemaPlano[];
-        return l.filter((t, k) => l.findIndex((x) => x.materia === t.materia && x.ano === t.ano && x.tema === t.tema) === k);
-      })(),
-      reforcar: c.reforcar.replace(/^Formulário:\s*/, "").trim() || undefined,
-    })),
-    juntos: (() => {
-      const l = [...cieJ.slice(0, 1), ...(f.juntosTemas || [])].filter(ok);
-      const u = l.filter((t, k) => l.findIndex((x) => x.materia === t.materia && x.ano === t.ano && x.tema === t.tema) === k);
-      return u.length ? u : undefined;
-    })(),
-    extras: f.extras.filter((e) => e.texto.trim() && e.dias.length),
-    eventos: (f.eventos || []).filter((e) => e.texto.trim()),
-    agenda: f.agenda,
   };
 }
 
@@ -305,14 +274,7 @@ export default function Montar() {
             </div>
             <p className="meta" style={{ margin: 0 }}>Ciências não precisa de teste: escolha o tema do ano que mais combina com o que a criança gosta. Deixe “nenhum” em qualquer matéria que não vai entrar agora. Em cada tema, escolha se ela faz a apostila, o treino diário ou os dois.</p>
             <h3 className="mt-h">Mais temas ao mesmo tempo <span className="meta">ex.: uma lacuna da alfabetização e o tema do ano dela, na mesma matéria</span></h3>
-            {(c.outros || []).map((t, k) => (
-              <div key={k} className="mt-item">
-                <select value={t.materia} style={{ width: "auto" }} onChange={(e) => upC(i, { outros: (c.outros || []).map((x, j) => (j === k ? { materia: e.target.value as Materia, ano: x.ano, tema: 1 } : x)) })}>{(["por", "mat", "cie"] as Materia[]).map((m) => <option key={m} value={m}>{MAT_INFO[m][0]}</option>)}</select>
-                <div style={{ flex: 1 }}><EscolheTema m={t.materia} v={t} muda={(n) => upC(i, { outros: (c.outros || []).map((x, j) => (j === k ? n || x : x)) })} /></div>
-                <button type="button" className="link-btn" onClick={() => upC(i, { outros: (c.outros || []).filter((_, j) => j !== k) })}>tirar</button>
-              </div>
-            ))}
-            <div className="row"><button type="button" className="btn small ghost" onClick={() => upC(i, { outros: [...(c.outros || []), { materia: "mat", ano: anoTrilha(c.ano), tema: 1 }] })}>+ Outro tema</button></div>
+            <MaisTemas temas={c.outros || []} ano={anoTrilha(c.ano)} muda={(outros) => upC(i, { outros })} rotulo="+ Outro tema" />
           </section>
         );
       })}
@@ -327,38 +289,10 @@ export default function Montar() {
           <label className="mt-check"><input type="checkbox" checked={f.cieJuntos} onChange={(e) => up({ cieJuntos: e.target.checked })} /> Ciências com os irmãos juntos (usa o tema de Ciências da primeira criança)</label>
         )}
         <h3 className="mt-h">Matérias e dias deste plano <span className="meta">cada família e cada mês do seu jeito</span></h3>
-        {(() => {
-          const ms = f.materias || ["por", "mat", "cie"];
-          const ag = { ...AGENDA_PADRAO, ...(f.agenda || {}) };
-          const setDias = (k: keyof typeof AGENDA_PADRAO, d: string) => up({ agenda: { ...ag, [k]: ag[k].includes(d) ? ag[k].filter((x) => x !== d) : DS.filter((x) => x === d || ag[k].includes(x)) } });
-          return (
-            <div className="mt-agenda">
-              <div className="mt-item"><b>Matérias</b><div className="seg">{(["por", "mat", "cie"] as Materia[]).map((m) => (
-                <button key={m} type="button" aria-pressed={ms.includes(m)} onClick={() => up({ materias: ms.includes(m) ? ms.filter((x) => x !== m) : (["por", "mat", "cie"] as Materia[]).filter((x) => x === m || ms.includes(x)) })}>{MAT_INFO[m][1]} {MAT_INFO[m][0]}</button>
-              ))}</div></div>
-              {(["por", "mat", "cie"] as Materia[]).filter((m) => ms.includes(m)).map((m) => (
-                <div key={m} className="mt-item"><span>{MAT_INFO[m][1]} {MAT_INFO[m][0]}</span><div className="seg">{DS.map((d) => <button key={d} type="button" aria-pressed={ag[m].includes(d)} onClick={() => setDias(m, d)}>{d}</button>)}</div></div>
-              ))}
-              {ROTINA.map(([k, ic, tx]) => (
-                <div key={k} className="mt-item"><span>{ic} {(() => { const t = tx.replace("À noite: ", ""); return t[0].toUpperCase() + t.slice(1) + (tx.startsWith("À noite") ? " (à noite)" : ""); })()}</span><div className="seg">{DS.map((d) => <button key={d} type="button" aria-pressed={ag[k].includes(d)} onClick={() => setDias(k, d)}>{d}</button>)}</div></div>
-              ))}
-              <div className="row" style={{ gap: 10 }}>
-                <button type="button" className="link-btn" onClick={() => up({ agenda: undefined, materias: undefined })}>Voltar ao padrão do Atlas</button>
-                <span className="meta">Dia sem marcação = não entra. Desmarque todos os dias de um momento da rotina para tirá-lo.</span>
-              </div>
-            </div>
-          );
-        })()}
+        <EditorAgenda materias={f.materias} agenda={f.agenda} muda={(materias, agenda) => up({ materias, agenda })} />
 
         <h3 className="mt-h">Temas que fazem juntos <span className="meta">aparecem para todos, nos dias da matéria</span></h3>
-        {(f.juntosTemas || []).map((t, k) => (
-          <div key={k} className="mt-item">
-            <select value={t.materia} style={{ width: "auto" }} onChange={(e) => up({ juntosTemas: (f.juntosTemas || []).map((x, j) => (j === k ? { materia: e.target.value as Materia, ano: x.ano, tema: 1 } : x)) })}>{(["por", "mat", "cie"] as Materia[]).map((m) => <option key={m} value={m}>{MAT_INFO[m][0]}</option>)}</select>
-            <div style={{ flex: 1 }}><EscolheTema m={t.materia} v={t} muda={(n) => up({ juntosTemas: (f.juntosTemas || []).map((x, j) => (j === k ? n || x : x)) })} /></div>
-            <button type="button" className="link-btn" onClick={() => up({ juntosTemas: (f.juntosTemas || []).filter((_, j) => j !== k) })}>tirar</button>
-          </div>
-        ))}
-        <div className="row"><button type="button" className="btn small ghost" onClick={() => up({ juntosTemas: [...(f.juntosTemas || []), { materia: "cie", ano: "1", tema: 1 }] })}>+ Tema juntos</button></div>
+        <MaisTemas temas={f.juntosTemas || []} ano="1" materiaNova="cie" muda={(juntosTemas) => up({ juntosTemas })} rotulo="+ Tema juntos" />
 
         <h3 className="mt-h">Extras com dia fixo <span className="meta">olimpíada, livro da escola, prova, treino diário…</span></h3>
         {f.extras.map((e, i) => (
@@ -488,29 +422,3 @@ function Sugestao({ s, atual, usar }: { s: { tema: TemaPlano; porque: string }; 
   );
 }
 
-function EscolheTema({ m, v, muda }: { m: Materia; v: TemaPlano | null; muda: (t: TemaPlano | null) => void }) {
-  const val = v ? `${v.ano}|${v.tema}` : "";
-  const i = v ? infoTema(v) : null;
-  return (
-    <label className="f">{MAT_INFO[m][1]} {MAT_INFO[m][0]}
-      <select value={val} onChange={(e) => { const [a, t] = e.target.value.split("|"); muda(e.target.value ? { materia: m, ano: a, tema: Number(t), faz: v?.faz } : null); }}>
-        <option value="">nenhum agora</option>
-        {Object.entries(TRILHAS[m] || {}).map(([ano, temas]) => (
-          <optgroup key={ano} label={anoNome(ano)}>
-            {temas.map((t, k) => <option key={k} value={`${ano}|${k + 1}`}>{k + 1}. {t.t}</option>)}
-          </optgroup>
-        ))}
-      </select>
-      {v && i && (
-        i.treino ? (
-          <div className="seg" role="group" aria-label="O que a criança faz neste tema">
-            {(["apostila", "treino", "ambos"] as Faz[]).map((x) => (
-              <button key={x} type="button" aria-pressed={i.faz === x} onClick={(e) => { e.preventDefault(); muda({ ...v, faz: x }); }}>{x === "apostila" && !i.apostila ? "Trilha" : FAZ_NOME[x]}</button>
-            ))}
-          </div>
-        ) : <small className="meta">{i.apostila ? "Faz a apostila (este tema ainda não tem treino diário)." : "Estuda pela trilha (sem apostila nem treino diário)."}</small>
-      )}
-      {v && <button type="button" className="link-btn" style={{ justifySelf: "start", fontSize: ".82rem" }} onClick={(e) => { e.preventDefault(); muda({ ...proximoTema(v), faz: v.faz }); }}>próximo →</button>}
-    </label>
-  );
-}

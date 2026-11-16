@@ -12,6 +12,8 @@ import { diasPorExtenso, novaCrianca, sugerir, type Ficha } from "@/lib/roteiro"
 /** Mesma chave e formato que o diagnóstico grava no navegador (app/diagnostico/Diagnostico.tsx). */
 const CHAVE_DIAGNOSTICO = "atlas-diagnostico";
 const CHAVE_PLANO_PENDENTE = "atlas-plano-pendente";
+/** Plano que a família montou sozinha e o banco ainda não aceitou guardar: fica neste aparelho. */
+export const CHAVE_PLANO_PROPRIO = "atlas-plano-proprio";
 const VALIDADE_PEDIDO = 7 * 86400000;
 /** Guarda no navegador que a família pediu o plano, para criá-lo quando ela voltar pelo link do e-mail. */
 export const marcarPedidoDePlano = () => { try { localStorage.setItem(CHAVE_PLANO_PENDENTE, String(Date.now())); } catch {} };

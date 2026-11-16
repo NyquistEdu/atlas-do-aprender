@@ -17,6 +17,10 @@ export default function Planejamento() {
       <p className="lead">Eu me ofereço para conversar com você por videochamada, entender onde a criança está e montar um planejamento possível para a rotina da sua família, usando as trilhas, os livros, os jogos e as apostilas do Atlas. Foi assim que organizei o estudo dos meus filhos, e quero fazer o mesmo por quem precisar.</p>
       <p className="meta">Quer adiantar? Faça antes o <Link href="/diagnostico">diagnóstico grátis</Link> (5 minutos): o resultado vem junto no formulário.</p>
       <p className="meta" style={{ marginTop: -6 }}>Stephanie Kamarry, criadora do Atlas do Aprender</p>
+      <div className="note row" style={{ justifyContent: "space-between", gap: 10 }}>
+        <span><b>Prefere montar você mesma?</b> Comece pelo formato do Atlas e ajuste os temas, a apostila ou o treino diário e os dias da semana.</span>
+        <Link className="btn small" href="/meu-plano/montar">Montar meu plano agora</Link>
+      </div>
 
       <div className="passos-plan">
         <div><b>1</b><span>Você preenche o formulário abaixo, sobre a família, a criança e os horários livres.</span></div>

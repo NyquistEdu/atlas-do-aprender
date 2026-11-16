@@ -281,3 +281,36 @@ export function diasPorExtenso(dias: string[]): string {
   const n = ord.map((d) => EXTENSO[d]);
   return n.length === 1 ? `${/^(s[áa]bado|domingo)$/.test(n[0]) ? "no" : "na"} ${n[0]}` : `${n.slice(0, -1).join(", ")} e ${n[n.length - 1]}`;
 }
+
+/** Monta o plano que vai para a tabela planos (o mesmo formato de lib/plano.ts). */
+export function montarPlano(f: Ficha): Plano {
+  const ms = f.materias || ["por", "mat", "cie"];
+  const ok = (t: TemaPlano | null) => !!t && ms.includes(t.materia);
+  const juntos = f.cieJuntos && f.criancas.length > 1 && ms.includes("cie");
+  const cieJ: TemaPlano[] = [];
+  if (juntos) for (const c of f.criancas) if (c.cie && !cieJ.some((t) => t.ano === c.cie!.ano && t.tema === c.cie!.tema)) cieJ.push(c.cie);
+  const como = [f.como.trim(), f.acompanha.trim() && `Quem acompanha: ${f.acompanha.trim()}.`].filter(Boolean).join(" ");
+  return {
+    familia: f.familia.trim() || "Meu plano",
+    inicio: f.inicio, dias: f.dias || 30,
+    objetivo: f.objetivo.trim() || undefined,
+    como: como || undefined,
+    criancas: f.criancas.filter((c) => c.nome.trim()).map((c) => ({
+      nome: c.nome.trim(), ano: c.ano || undefined, idade: Number(c.idade) || undefined,
+      temas: (() => {
+        const l = [c.por, c.matT, juntos ? null : c.cie, ...(c.outros || [])].filter(ok) as TemaPlano[];
+        return l.filter((t, k) => l.findIndex((x) => x.materia === t.materia && x.ano === t.ano && x.tema === t.tema) === k);
+      })(),
+      reforcar: c.reforcar.replace(/^Formulário:\s*/, "").trim() || undefined,
+    })),
+    juntos: (() => {
+      const l = [...cieJ.slice(0, 1), ...(f.juntosTemas || [])].filter(ok);
+      const u = l.filter((t, k) => l.findIndex((x) => x.materia === t.materia && x.ano === t.ano && x.tema === t.tema) === k);
+      return u.length ? u : undefined;
+    })(),
+    extras: f.extras.filter((e) => e.texto.trim() && e.dias.length),
+    eventos: (f.eventos || []).filter((e) => e.texto.trim()),
+    agenda: f.agenda,
+  };
+}
+

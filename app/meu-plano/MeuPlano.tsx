@@ -12,7 +12,7 @@ import {
 import { anoNome } from "@/lib/apostilas";
 import { abrirImpressao } from "@/lib/imprimir";
 import { rastrear } from "@/lib/rastreio";
-import { criarPlanoDoDiagnostico, lerDiagnostico, limparPedidoDePlano, pedidoDePlanoPendente } from "@/lib/planoAutomatico";
+import { CHAVE_PLANO_PROPRIO, criarPlanoDoDiagnostico, lerDiagnostico, limparPedidoDePlano, pedidoDePlanoPendente } from "@/lib/planoAutomatico";
 
 const CORES = ["#1f6f78", "#c4672a", "#a8456e", "#2a5db0"];
 const COR_JUNTOS = "#6b4fa0";
@@ -24,7 +24,7 @@ export default function MeuPlano() {
   const [estado, setEstado] = useState<"carregando" | "ok" | "sem" | "erro">("carregando");
   const [dia, setDia] = useState(() => iso(new Date()));
 
-  const [aviso, setAviso] = useState<"" | "criado" | "local" | "sem-diagnostico">("");
+  const [aviso, setAviso] = useState<"" | "criado" | "local" | "sem-diagnostico" | "montado">("");
   const criando = useRef(false);
   const criancasProntas = a.criancas.length > 0;
 
@@ -36,6 +36,12 @@ export default function MeuPlano() {
     let vivo = true;
     (async () => {
       let local: Plano | null = null;
+      // veio de “Monte o seu plano”?
+      const montado = new URLSearchParams(window.location.search).get("montado");
+      if (montado) {
+        setAviso(montado === "local" ? "local" : "montado");
+        try { const u = new URL(window.location.href); u.searchParams.delete("montado"); window.history.replaceState(null, "", u.pathname + u.search + u.hash); } catch {}
+      }
       if (pedido && !criando.current) {
         criando.current = true;
         limparPedidoDePlano();
@@ -63,7 +69,10 @@ export default function MeuPlano() {
       const p = lista.find((x) => x.inicio <= hojeISO && hojeISO <= fimDoPlano(x))
         || lista.filter((x) => x.inicio > hojeISO).sort((a, b) => a.inicio.localeCompare(b.inicio))[0]
         || lista[0]
-        || local;
+        || local
+        || (() => { try { const x = JSON.parse(localStorage.getItem(CHAVE_PLANO_PROPRIO) || "null") as Plano | null; return x && x.inicio ? x : null; } catch { return null; } })();
+      // o plano guardado na conta vale mais que o do aparelho
+      if (lista.length) try { localStorage.removeItem(CHAVE_PLANO_PROPRIO); } catch {}
       if (!p) { setEstado("sem"); return; }
       setPlano(p); setEstado("ok");
       const hoje = iso(new Date());
@@ -76,6 +85,7 @@ export default function MeuPlano() {
 
   const AvisoPlano = () => aviso ? (
     <p className="diag-aviso" role="status">
+      {aviso === "montado" && "Pronto! O seu plano está montado. Comece pelas tarefas de hoje e marque cada uma quando fizer."}
       {aviso === "criado" && "Pronto! Criamos o seu plano de 30 dias a partir do diagnóstico. Comece pelas tarefas de hoje e marque cada uma quando fizer."}
       {aviso === "local" && "Criamos o seu plano, mas não consegui guardá-lo na sua conta agora: por enquanto ele fica disponível só neste aparelho."}
       {aviso === "sem-diagnostico" && <>Não encontrei o seu diagnóstico neste navegador. Abra o link no mesmo aparelho em que fez o diagnóstico, ou <Link href="/diagnostico">refaça o diagnóstico</Link> (4 a 6 minutos) e peça o plano no final.</>}
@@ -108,8 +118,9 @@ export default function MeuPlano() {
         <AvisoPlano />
         <div className="card">
           <h3 style={{ margin: 0 }}>Você ainda não tem um plano aqui</h3>
-          <p style={{ margin: 0 }}>Quando você faz o planejamento gratuito, o plano da sua família aparece nesta página: o que fazer em cada dia, com cada criança, e os temas com livros, filmes e jogos.</p>
-          <div className="row"><Link className="btn" href="/planejamento">Quero meu planejamento gratuito</Link><Link className="btn ghost" href="/trilhas/portugues/1-ano">Ver as trilhas</Link></div>
+          <p style={{ margin: 0 }}>O plano da sua família aparece nesta página: o que fazer em cada dia, com cada criança, e os temas com livros, filmes e jogos. Você pode montar o seu agora ou pedir o planejamento gratuito comigo, por videochamada.</p>
+          <div className="row"><Link className="btn" href="/meu-plano/montar">Montar meu plano agora</Link><Link className="btn ghost" href="/planejamento">Quero o planejamento com a Stephanie</Link></div>
+          <p className="meta" style={{ margin: 0 }}>Montando você mesma, já começa no formato do Atlas (um tema de cada matéria do ano escolar e a semana organizada) e ajusta o que quiser.</p>
         </div>
       </div>
     );
@@ -169,6 +180,7 @@ export default function MeuPlano() {
       <div className="row pl-pdf" style={{ gap: 8, marginTop: 10 }}>
         <button type="button" className="btn small ghost" onClick={() => abrirImpressao(p, "semana")}>🗓️ Quadro da semana (PDF)</button>
         <button type="button" className="btn small ghost" onClick={() => abrirImpressao(p, "temas")}>📚 Os temas de cada um (PDF)</button>
+        <Link className="btn small ghost" href="/meu-plano/montar">✏️ Ajustar ou montar outro plano</Link>
       </div>
 
       <div className="pl-nav">
