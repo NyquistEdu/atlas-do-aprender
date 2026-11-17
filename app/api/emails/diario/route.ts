@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { admin, enviar, linkDescadastro, proximaFase, ENVIO_LIGADO, LIMITE_DIARIO, SO_PARA } from "@/lib/emails/servidor";
-import { boasVindas, dia2, dia5, dia10, mensal, saudade, type Email } from "@/lib/emails/modelos";
+import { boasVindas, convitePlano, dia2, dia5, dia10, mensal, saudade, type Email } from "@/lib/emails/modelos";
 import { desafioAtual } from "@/lib/desafios";
 import { NOVIDADES } from "@/lib/novidades";
 
@@ -8,6 +8,8 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
 const DIA = 86400000;
+/** Convite único do plano de 30 dias: só para contas criadas antes desta data e que ainda não têm plano. */
+const CONVITE_PLANO_ANTES_DE = "2026-11-18";
 const dataFortaleza = (d = new Date()) => new Date(d.toLocaleString("en-US", { timeZone: "America/Fortaleza" }));
 const iso = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 const diasDesde = (s: string | null | undefined, agora: number) => (s ? Math.floor((agora - new Date(s).getTime()) / DIA) : Infinity);
@@ -34,6 +36,8 @@ export async function GET(req: Request) {
     data?.users.forEach((u) => usuarios.set(u.id, { email: u.email, created_at: u.created_at, last_sign_in_at: u.last_sign_in_at }));
     if (!data || data.users.length < 1000) break;
   }
+  const { data: comPlano } = await db.from("planos").select("email").eq("ativo", true);
+  const emailsComPlano = new Set((comPlano || []).map((x) => String(x.email).toLowerCase()));
   const ids = prefs.map((p) => p.user_id);
   const [{ data: criancas }, { data: progresso }, { data: diario }] = await Promise.all([
     db.from("criancas").select("user_id,nome,criado_em").in("user_id", ids).order("criado_em"),
@@ -76,6 +80,7 @@ export async function GET(req: Request) {
 
     const desdeBV = diasDesde(env.boas_vindas, agora); // a sequência conta a partir das boas-vindas
     if (!env.boas_vindas && dias <= 30) { tipo = "boas_vindas"; email = boasVindas(desc, antiga); }
+    else if (!env.convite_plano && u.created_at < CONVITE_PLANO_ANTES_DE && !emailsComPlano.has(u.email.toLowerCase())) { tipo = "convite_plano"; email = convitePlano(desc); }
     else if (hojeF.getDate() <= 5 && !env[`mensal_${mesId}`] && desdeBV >= 3) { tipo = `mensal_${mesId}`; email = mensal(await prepararMensal(), desc); }
     else if (!env.d2 && desdeBV >= 2 && desdeBV <= 20) { tipo = "d2"; email = dia2(desc); }
     else if (env.d2 && !env.d5 && desdeBV >= 5 && desdeBV <= 25) { tipo = "d5"; email = dia5(desc); }

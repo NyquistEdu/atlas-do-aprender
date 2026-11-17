@@ -69,6 +69,23 @@ ${botao("Fazer o diagnóstico agora", "/diagnostico", tipo)}`;
     : { assunto: "Bem-vindos ao Atlas do Aprender 💛", previa, html: base({ tipo, previa, kicker: "que bom ter vocês aqui", titulo: "Bem-vindos ao Atlas do Aprender", corpo, descadastro }) };
 }
 
+/** Convite único para quem já tem conta: pedir o plano de 30 dias (o primeiro, sem custo). */
+export function convitePlano(descadastro: string): Email {
+  const tipo = "convite_plano";
+  const previa = "15 minutos por dia, a partir do diagnóstico. Em uns 5 minutos o plano está pronto.";
+  const corpo = `${p("Uma coisa que eu escuto muito das mães: <b>“eu sei que tem lacunas, mas não sei o que fazer em cada dia”</b>. Foi por isso que criei o plano de 30 dias.")}
+${p("Você faz o diagnóstico (uns 5 minutos) e o Atlas monta, no mesmo modelo que eu uso com os meus filhos, o que fazer a cada dia: <b>15 minutos</b>, começando pelas lacunas que apareceram, com apostila, treino para imprimir e uma atividade para o fim de semana. Você marca o que foi feito e tudo vai para o diário.")}
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+${bloco("🧭", "1. Faça (ou refaça) o diagnóstico", "Leva uns 5 minutos e mostra por onde começar.", "/diagnostico", tipo)}
+${bloco("📅", "2. Peça o plano de 30 dias", "No fim do resultado, toque em “Sim, quero o plano de 30 dias”.", "/diagnostico", tipo)}
+${bloco("🌱", "3. Siga os 15 minutos do dia", "Em “Meu plano” você vê a tarefa de hoje e marca quando fizer.", "/meu-plano", tipo)}
+</table>
+${p("O <b>primeiro plano é por minha conta</b>, sem custo e sem compromisso. Quando os 30 dias terminarem, eu volto aqui para contar como foi e o que vem depois.")}
+${botao("Quero o meu plano de 30 dias", "/diagnostico", tipo)}
+${p("Se bater qualquer dúvida, é só responder este e-mail. Eu leio.")}`;
+  return { assunto: "Um plano de 30 dias para a sua criança, por minha conta 💛", previa, html: base({ tipo, previa, kicker: "um convite", titulo: "Seu plano de 30 dias, pronto pelo Atlas", corpo, descadastro }) };
+}
+
 export function dia2(descadastro: string): Email {
   const tipo = "seq_d2";
   const previa = "Cinco minutos para saber exatamente por onde começar com a sua criança.";
