@@ -201,6 +201,17 @@ export const APOSTILAS: Apostila[] = [
     amostras: ["Cada texto tem um jeito", "Uma notícia por dentro", "Uma receita por dentro", "Treino diário"],
   },
   {
+    slug: "divide-ai",
+    titulo: "Divide Aí!",
+    subtitulo: "Repartir em partes iguais, formar grupos e descobrir o que sobra",
+    materia: "mat", ano: "3", tema: 2, nomeTema: "Divisão como repartir e agrupar",
+    paginas: 32, preco: "Grátis", checkout: "",
+    arquivo: "/apostilas-pdf/divide-ai.pdf", nomeArquivo: "Divide-Ai-Atlas-do-Aprender.pdf",
+    resumo: "Dividir começa com tampinhas e pratinhos. A criança reparte em partes iguais, descobre quantos grupos cabem numa quantidade, escreve a conta com o sinal ÷ e usa a tabuada para dividir e conferir. Depois entende o que fazer quando sobra (o resto), divide números maiores separando dezenas e unidades e resolve problemas do dia a dia.",
+    dentro: ["7 partes com explicação e exercícios: repartir, agrupar, o sinal da divisão, divisão e multiplicação, resto, números maiores e dia a dia", "Erros comuns, exercícios guiados e tabuada para consultar", "5 treinos diários e a leitura O piquenique dos primos", "Pratinhos e fichas para recortar e tabuleiro do jogo Mancala", "Mão na massa, certificado e gabarito"],
+    amostras: ["Repartir em partes iguais", "Quantos grupos cabem?", "Divisão com resto", "Jogo: Mancala"],
+  },
+  {
     slug: "detetives-de-dados",
     titulo: "Detetives de Dados",
     subtitulo: "Pesquisar, organizar em tabela e fazer gráfico de barras",

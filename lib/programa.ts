@@ -113,6 +113,10 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Partes da apostila", itens: ["Parte 1 · Perguntar e contar: a pesquisa e os risquinhos de 5 em 5", "Parte 2 · Organizar em tabela: título, linhas, colunas e total", "Parte 3 · Ler um gráfico de barras", "Parte 4 · Fazer um gráfico de barras na malha", "Parte 5 · Pictograma e escala de 2 em 2", "Parte 6 · Tabela de dupla entrada", "Parte 7 · Gráficos e tabelas no dia a dia"] },
     { titulo: "Para praticar", itens: ["Erros comuns, exercícios guiados e problemas", "5 treinos diários", "Leitura: A horta da escola", "Malha para gráficos e jogo Corrida dos dados", "Pesquisas para fazer em casa e gabarito"] },
   ] },
+  "divide-ai": { blocos: [
+    { titulo: "Partes da apostila", itens: ["Parte 1 · Repartir em partes iguais", "Parte 2 · Agrupar: quantos grupos cabem?", "Parte 3 · O sinal da divisão: uma conta, duas histórias", "Parte 4 · Divisão e multiplicação são parceiras (família de contas, reta numérica e tabuada)", "Parte 5 · Divisão com resto e o que fazer com o que sobra", "Parte 6 · Dividir números maiores separando dezenas e unidades", "Parte 7 · Divisão no dia a dia"] },
+    { titulo: "Para praticar", itens: ["Erros comuns, exercícios guiados e problemas", "Treino diário de 5 dias", "Leitura: O piquenique dos primos", "Pratinhos e fichas para recortar e jogo Mancala", "Mão na massa, certificado e gabarito"] },
+  ] },
   "pedaco-por-pedaco": { blocos: [
     { titulo: "Partes da apostila", itens: ["Parte 1 · Repartir de um jeito justo (partes iguais)", "Parte 2 · A metade", "Parte 3 · Terço, quarto e outras partes", "Parte 4 · Qual pedaço é maior? (comparar frações)", "Parte 5 · Metade de uma quantidade", "Parte 6 · Terça, quarta, quinta e décima parte de uma quantidade", "Parte 7 · Frações no dia a dia: meia dúzia, meio litro, meia hora"] },
     { titulo: "Para praticar", itens: ["Treino diário de 5 dias", "Barra e discos de frações para recortar", "Dominó de frações e receitas pela metade", "Gabarito"] },
