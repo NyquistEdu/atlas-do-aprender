@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const agora = new Date();
   const fixo: [string, number, MetadataRoute.Sitemap[number]["changeFrequency"]][] = [
     ["/", 1, "weekly"], ["/livros", 0.9, "monthly"], ["/jogos", 0.8, "monthly"], ["/mao-na-massa", 0.8, "monthly"],
-    ["/apostilas", 0.9, "weekly"], ["/vivas", 0.8, "monthly"], ["/vivas/divide-ai", 0.8, "monthly"], ["/vivas/olhar-o-ceu", 0.8, "monthly"], ["/vivas/medir-o-mundo", 0.8, "monthly"], ["/loja", 0.8, "monthly"], ["/olimpiadas", 0.8, "monthly"], ["/tematicas", 0.8, "monthly"], ["/duvidas", 0.8, "monthly"], ["/planejamento", 0.9, "monthly"], ["/diagnostico", 0.9, "monthly"], ["/fluencia", 0.9, "monthly"], ["/olhar-atento", 0.8, "monthly"], ["/guia", 0.5, "yearly"], ...(PEDIR_CONSENTIMENTO ? [["/privacidade", 0.2, "yearly"] as [string, number, "yearly"]] : []),
+    ["/apostilas", 0.9, "weekly"], ["/vivas", 0.8, "monthly"], ["/vivas/divide-ai", 0.8, "monthly"], ["/vivas/olhar-o-ceu", 0.8, "monthly"], ["/vivas/medir-o-mundo", 0.8, "monthly"], ["/vivas/contar-ate-cem", 0.8, "monthly"], ["/loja", 0.8, "monthly"], ["/olimpiadas", 0.8, "monthly"], ["/tematicas", 0.8, "monthly"], ["/duvidas", 0.8, "monthly"], ["/planejamento", 0.9, "monthly"], ["/diagnostico", 0.9, "monthly"], ["/fluencia", 0.9, "monthly"], ["/olhar-atento", 0.8, "monthly"], ["/guia", 0.5, "yearly"], ...(PEDIR_CONSENTIMENTO ? [["/privacidade", 0.2, "yearly"] as [string, number, "yearly"]] : []),
   ];
   const trilhas = (Object.keys(SLUG) as Materia[]).flatMap((s) => ANOS.map(([y]) => `/trilhas/${SLUG[s]}/${anoSlug(y)}`));
   return [

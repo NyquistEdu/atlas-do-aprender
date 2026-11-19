@@ -18,6 +18,21 @@ export function Regua({ rotulo, cor, v, min, max, muda, mostra }: { rotulo: stri
   );
 }
 
+/** Lê o texto em voz alta (para quem ainda está aprendendo a ler). */
+export function falar(texto: string) {
+  try {
+    const sy = window.speechSynthesis; if (!sy) return;
+    sy.cancel();
+    const f = new SpeechSynthesisUtterance(texto); f.lang = "pt-BR"; f.rate = 0.92;
+    const voz = sy.getVoices().find((v) => v.lang?.toLowerCase().startsWith("pt-br")) || sy.getVoices().find((v) => v.lang?.toLowerCase().startsWith("pt"));
+    if (voz) f.voice = voz;
+    sy.speak(f);
+  } catch {}
+}
+export function Ouvir({ texto, claro = false }: { texto: string; claro?: boolean }) {
+  return <button type="button" className={`viva-ouvir ${claro ? "claro" : ""}`} onClick={() => falar(texto)} aria-label={`Ouvir: ${texto}`} title="Ouvir">🔊 ouvir</button>;
+}
+
 export type RodadaTexto = { enunciado: React.ReactNode; opcoes: string[]; certa: string; explica: string };
 
 /** Jogo relâmpago de alternativas, com rodadas infinitas, sequência, ampliar e "Valendo!". */
@@ -68,7 +83,7 @@ export function JogoTexto({ id, titulo, sub, icone, hab, gerar }: { id: string; 
 
 export type Questao = { cena: string; texto: string; op: string[]; certa: number; passos: string[]; hab: string };
 
-export function Desafio({ chefe, emoji, sub, questoes, minimo = 4, tela = 6 }: { chefe: string; emoji: string; sub: string; questoes: Questao[]; minimo?: number; tela?: number }) {
+export function Desafio({ chefe, emoji, sub, questoes, minimo = 4, tela = 6, ouvir = false }: { chefe: string; emoji: string; sub: string; questoes: Questao[]; minimo?: number; tela?: number; ouvir?: boolean }) {
   const v = useViva();
   const [i, setI] = useState(0);
   const [esc, setEsc] = useState<number | null>(null);
@@ -116,7 +131,7 @@ export function Desafio({ chefe, emoji, sub, questoes, minimo = 4, tela = 6 }: {
                 : <button type="button" className="viva-btn mini" onClick={() => setValendo(true)}>Valendo! (90 s)</button>)}
             </div>
             <div className="viva-q-cena" aria-hidden="true">{q.cena}</div>
-            <p className="viva-q-texto">{q.texto}</p>
+            <p className="viva-q-texto">{q.texto}{ouvir && <> <Ouvir texto={q.texto} claro /></>}</p>
             <div className="viva-alts">
               {q.op.map((o, k) => (
                 <button key={o} type="button" onClick={() => responder(k)} className={esc === null ? "" : k === q.certa ? "certa" : k === esc ? "errada" : "apaga"}><i>{"ABCD"[k]}</i>{o}</button>

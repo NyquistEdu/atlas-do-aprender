@@ -79,6 +79,7 @@ export const APOSTILAS: Apostila[] = [
     resumo: "Contar de verdade não é falar os números de cor. A criança aprende as regras da contagem, escreve os números, compara quantidades, forma dezenas com palitos e material dourado, conta em saltos e descobre os padrões do quadro dos 100.",
     dentro: ["7 partes com explicação e exercícios", "Quadro de dez, reta numérica e material dourado desenhados", "Traçado dos números de 0 a 9", "5 revisões diárias, bingo, memória e mercadinho com dinheiro de brincadeira", "Certificado e gabarito"],
     amostras: ["Os números de 0 a 10", "Dezenas e unidades", "O quadro dos 100", "Revisão diária"],
+    viva: "/vivas/contar-ate-cem",
   },  {
     slug: "separar-e-comparar",
     titulo: "Separar e Comparar",

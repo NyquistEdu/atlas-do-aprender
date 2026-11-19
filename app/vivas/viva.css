@@ -339,3 +339,27 @@
 
 .viva-jarra-box{width:100%;border-radius:12px;overflow:hidden;color:#c7cfe2;text-align:center}
 .viva-jarra-box small{display:block;padding:4px}
+
+/* ===== Contar até Cem ===== */
+.viva-ouvir{border:1.5px solid var(--v-navy,#1d2433);background:#fff;color:var(--v-navy,#1d2433);border-radius:99px;padding:2px 9px;font-size:.76rem;font-weight:800;vertical-align:middle;white-space:nowrap;line-height:1.4}
+.viva-ouvir:hover{background:var(--v-amarelo,#f6d35b)}
+.viva-dez{display:grid;gap:3px;justify-content:center;font-size:clamp(1rem,2.6vw,1.3rem);line-height:1.1;margin:4px 0}
+.viva-dez div{display:flex}
+.viva-dez i{font-style:normal;width:1.35em;text-align:center}
+.viva-dez i:nth-child(5){margin-right:.45em}
+.viva-mini-dourado{display:flex;gap:5px;align-items:flex-end;justify-content:center;flex-wrap:wrap;min-height:104px;margin:4px 0}
+.viva-mini-dourado .b{width:13px;height:100px;background:repeating-linear-gradient(#f2b33d 0 9px,#b9831c 9px 10px);border:1.5px solid #1d2433;border-radius:2px}
+.viva-mini-dourado .us{display:grid;grid-template-columns:repeat(5,13px);gap:3px;margin-left:12px}
+.viva-mini-dourado .u{width:13px;height:13px;background:#6f93e0;border:1.5px solid #1d2433;border-radius:2px}
+.viva-cem{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;background:#fbf6ea;padding:6px;border-radius:12px}
+.viva-cem button{aspect-ratio:1;border:1px solid #d9d3c4;background:#fff;border-radius:6px;font-size:clamp(.6rem,1.5vw,.88rem);font-weight:800;color:#1d2433;padding:0;transition:transform .15s}
+.viva-cem button:disabled{opacity:1;cursor:default}
+.viva-cem button:nth-child(10n){background:#f3ead2}
+.viva-cem button.pint{background:#bfe7cf;border-color:#2f9a5e}
+.viva-cem button.on{background:#f6d35b;border:2px solid #1d2433;transform:scale(1.15);position:relative;z-index:1}
+.viva-cem button.erro{background:#ffd6d1;border-color:#d9483b;animation:viva-treme .35s}
+@keyframes viva-treme{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.viva-numero-grande{font-family:Georgia,serif;font-size:clamp(3rem,8vw,4.4rem);font-weight:700;text-align:center;line-height:1;margin:6px 0 0;display:grid;gap:6px}
+.viva-numero-grande small{font-family:var(--f-body);font-size:1rem;font-weight:700;color:#56607a}
+.viva-pedido{background:#fff6d6;border:2px dashed #c9935a;border-radius:12px;padding:8px 12px;margin:0;font-weight:700}
+.viva-saltos-fig{display:flex;flex-wrap:wrap;gap:4px;font-size:1.4rem;min-height:1.6em}
