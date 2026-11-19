@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const VIVAS = [
   { slug: "divide-ai", titulo: "Divide Aí!", tema: "Matemática · 3º ano · Fase 2", desc: "Repartir, agrupar e o que sobra", e: "🍪", livre: true },
   { slug: "olhar-o-ceu", titulo: "Olhar o Céu", tema: "Ciências · 3º ano · Fase 4", desc: "Sol, Lua, sombras e estrelas", e: "🌙", livre: true },
-  { slug: "", titulo: "Pedaço por Pedaço", tema: "Matemática · 3º ano · Fase 5", desc: "Metade, terço, quarto e frações", e: "🍕", livre: false },
+  { slug: "pedaco-por-pedaco", titulo: "Pedaço por Pedaço", tema: "Matemática · 3º ano · Fase 5", desc: "Metade, terço, quarto e frações", e: "🍕", livre: true },
   { slug: "medir-o-mundo", titulo: "Medir o Mundo", tema: "Matemática · 3º ano · Fase 3", desc: "Comprimento, massa e capacidade", e: "📏", livre: true },
   { slug: "contar-ate-cem", titulo: "Contar até Cem", tema: "Matemática · Alfabetização · Fase 1", desc: "Contagem e números até 100", e: "🔢", livre: true },
 ];

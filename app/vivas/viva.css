@@ -363,3 +363,20 @@
 .viva-numero-grande small{font-family:var(--f-body);font-size:1rem;font-weight:700;color:#56607a}
 .viva-pedido{background:#fff6d6;border:2px dashed #c9935a;border-radius:12px;padding:8px 12px;margin:0;font-weight:700}
 .viva-saltos-fig{display:flex;flex-wrap:wrap;gap:4px;font-size:1.4rem;min-height:1.6em}
+
+/* ===== Pedaço por Pedaço ===== */
+.viva-frac{display:inline-grid;text-align:center;vertical-align:middle;font-family:Georgia,serif;font-weight:700;line-height:1.05;margin:0 .15em}
+.viva-frac b:first-child{border-bottom:2.5px solid currentColor;padding:0 .2em}
+.viva-frac.grande{font-size:clamp(2.4rem,6vw,3.4rem)}
+.viva-frac-linha{display:flex;gap:16px;align-items:center;margin:6px 0}
+.viva-frac-linha p{margin:0 0 4px;font-size:1.1rem}
+.viva-frac-linha small{color:#56607a;font-weight:600}
+.viva-figs{display:flex;justify-content:center;align-items:center;gap:22px;flex-wrap:wrap;margin:4px 0}
+.viva-figs.dois>span{display:grid;justify-items:center;gap:4px;font-size:1.3rem}
+.viva-grupos{display:grid;gap:3px;justify-content:center;font-size:1.2rem;margin:4px 0}
+.viva-grupos i{font-style:normal;text-align:center}
+.viva-ovos{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;background:#d7b27a;border:3px solid #8a5a3b;border-radius:14px;padding:10px;max-width:420px}
+.viva-ovos button{aspect-ratio:1;border-radius:50%;border:2px solid #8a5a3b;background:#f3e3c3;font-size:clamp(1.3rem,4vw,1.9rem);transition:transform .15s,opacity .15s}
+.viva-ovos button.pego{transform:translateY(-6px) scale(1.08);background:#fff6d6;border-color:#1d2433;box-shadow:0 4px 0 #1d2433}
+.viva-notas{display:flex;gap:10px}
+.viva-notas span{background:#bfe7cf;border:2.5px solid #2f9a5e;border-radius:8px;padding:14px 18px;font-weight:800;font-size:1.2rem;color:#1d4d31}
