@@ -320,3 +320,17 @@
 .viva-regua{grid-template-columns:96px 38px 1fr 38px minmax(54px,auto)}
 .viva-regua output{white-space:nowrap;padding-inline:8px}
 @media (max-width:640px){.viva-regua{grid-template-columns:70px 34px 1fr 34px minmax(46px,auto)}}
+
+/* barra em duas linhas: as 7 telas sempre visíveis em cima, controles embaixo */
+.viva-barra{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 12px;align-items:center}
+.viva-telas{flex-wrap:wrap;overflow:visible;justify-content:flex-start}
+.viva-ctrl{grid-column:1/-1;justify-content:flex-end;border-top:1.5px dashed #d8d0bd;padding-top:8px}
+.viva-ctrl .viva-quem{margin-right:auto}
+@media (max-width:640px){
+  .viva-barra{grid-template-columns:1fr}
+  .viva-telas{justify-content:space-between}
+  .viva-ctrl{justify-content:flex-start}
+  .viva-ctrl .viva-quem{margin-right:0;width:100%;justify-content:space-between}
+}
+.viva-quem span{white-space:nowrap}
+@media (max-width:640px){.viva-xp{grid-template-columns:auto 1fr;flex:1}.viva-ctrl{gap:6px}}
