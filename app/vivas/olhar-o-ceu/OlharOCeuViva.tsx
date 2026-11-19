@@ -51,7 +51,7 @@ export default function OlharOCeuViva() {
           {t === 3 && <Treino />}
           {t === 4 && <RelogioSol />}
           {t === 5 && <CeuNoite />}
-          {t === 6 && <Desafio chefe="a Nuvem Tapa-Céu" emoji="⛈️" sub="Ela cobre o céu para ninguém conseguir observar." questoes={QUESTOES} />}
+          {t === 6 && <Desafio chefe="a Nuvem Tapa-Céu" emoji="⛈️" sub="Ela cobre o céu para ninguém conseguir observar." questoes={QUESTOES} ouvir />}
           {t === 7 && <Resumo titulo="Olhar o Céu" itens={ITENS} pegadinhas={PEGADINHAS} habs={HABS} totalMissoes={6}
             links={[["/apostilas/olhar-o-ceu", "📘 Apostila Olhar o Céu (com o diário da Lua de 15 noites)"], ["/trilhas/ciencias/3-ano#tema-4", "🗺️ A fase 4 na trilha de Ciências do 3º ano"], ["/vivas", "✨ Outras Fases Vivas"]]} />}
         </>

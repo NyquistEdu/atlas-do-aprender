@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { useViva, Cronometro, type Tela } from "@/components/viva/Shell";
-import { JogoTexto, Regua, type RodadaTexto } from "@/components/viva/Comuns";
+import { JogoTexto, Ouvir, Regua, type RodadaTexto } from "@/components/viva/Comuns";
 import { embaralhar, sorteio } from "@/lib/viva";
 import type { EstrelaCeu } from "@/components/viva/CeuNoite3D";
 import { DIA_LUA, Lua, SolPalito, TerraDN, momento, nomeFase, sombra, type NomeFase } from "./ceu";
@@ -106,7 +106,7 @@ export function Laboratorio() {
                 <button key={x.id} type="button" className={`${v.e.missoes[x.id] ? "feita" : ""} ${i === mi ? "atual" : ""}`} onClick={() => { setMi(i); setDica(false); }} aria-label={`Missão ${i + 1}`}>{v.e.missoes[x.id] ? "★" : i + 1}</button>
               ))}
             </div>
-            <p className="viva-missao"><b>Missão {mi + 1}/{MISSOES.length}</b> · {missao.txt}</p>
+            <p className="viva-missao"><b>Missão {mi + 1}/{MISSOES.length}</b> · {missao.txt} <Ouvir texto={missao.txt} /></p>
             {dica && <p className="viva-dica-box">💡 {missao.dica}</p>}
             <div className="viva-row">
               <button type="button" className="viva-btn" onClick={enviar}>Enviar ✓</button>
@@ -134,7 +134,7 @@ export function Laboratorio() {
             <div><small className="viva-kick" style={{ color: "#56607a" }}>A LUA VISTA DAQUI DO BRASIL</small>
               {escondida ? (
                 <>
-                  <p className="viva-missao">Que fase é? Olhe onde a Lua está na cena 3D.</p>
+                  <p className="viva-missao">Que fase é? Olhe onde a Lua está na cena 3D. <Ouvir texto="Que fase é? Olhe onde a Lua está na cena 3D." /></p>
                   <div className="viva-opcoes txt">
                     {(["Nova", "Crescente", "Cheia", "Minguante"] as NomeFase[]).map((o) => (
                       <button key={o} type="button" onClick={() => { setPalpite(o); if (o === nome) v.acertou("fases", 15, "Previu certinho!"); else v.errou("fases", `Não é ${o.toLowerCase()}.`); }}>{o}</button>
@@ -167,23 +167,23 @@ const gerar = {
   dia: (): RodadaTexto => {
     const ang = [0, 30, 45, 135, 150, 180, 210, 225, 315, 330][sorteio(0, 9)];
     const dia = Math.cos((ang * Math.PI) / 180) < 0;
-    return { enunciado: <><TerraDN ang={ang} /><p className="viva-pergunta">Na casinha amarela é dia ou noite?</p></>, opcoes: ["Dia ☀️", "Noite 🌙"], certa: dia ? "Dia ☀️" : "Noite 🌙",
+    return { enunciado: <><TerraDN ang={ang} /><p className="viva-pergunta">Na casinha amarela é dia ou noite? <Ouvir texto="Na casinha amarela é dia ou noite?" /></p></>, opcoes: ["Dia ☀️", "Noite 🌙"], certa: dia ? "Dia ☀️" : "Noite 🌙",
       explica: dia ? "A casinha está no lado virado para o Sol: é dia." : "A casinha está no lado de costas para o Sol: é noite." };
   },
   fase: (): RodadaTexto => {
     const [f, n] = FASES[sorteio(0, FASES.length - 1)];
-    return { enunciado: <><Lua f={f} r={46} /><p className="viva-pergunta">Que fase da Lua é esta?</p></>, opcoes: ["Nova", "Crescente", "Cheia", "Minguante"], certa: n,
+    return { enunciado: <><Lua f={f} r={46} /><p className="viva-pergunta">Que fase da Lua é esta? <Ouvir texto="Que fase da Lua é esta?" /></p></>, opcoes: ["Nova", "Crescente", "Cheia", "Minguante"], certa: n,
       explica: n === "Nova" ? "Na Lua Nova, o lado iluminado está de costas para nós: quase não a vemos." : n === "Cheia" ? "Redondinha e toda iluminada: é a Lua Cheia." : n === "Crescente" ? "Aqui no Brasil, a crescente tem o lado iluminado à esquerda, e ela vai crescendo até a cheia." : "Aqui no Brasil, a minguante tem o lado iluminado à direita, e ela vai diminuindo até a nova." };
   },
   sombra: (): RodadaTexto => {
     const h = [7, 8, 9, 12, 15, 16, 17][sorteio(0, 6)];
     const certa = h === 12 ? "Curtinha, quase embaixo" : h < 12 ? "Comprida, para o oeste" : "Comprida, para o leste";
-    return { enunciado: <><SolPalito h={h} w={240} alto={124} semSombra /><p className="viva-pergunta">São {h}h. Como fica a sombra do palito?</p></>, opcoes: ["Comprida, para o oeste", "Curtinha, quase embaixo", "Comprida, para o leste"], certa,
+    return { enunciado: <><SolPalito h={h} w={240} alto={124} semSombra /><p className="viva-pergunta">São {h}h. Como fica a sombra do palito? <Ouvir texto={`São ${h} horas. Como fica a sombra do palito?`} /></p></>, opcoes: ["Comprida, para o oeste", "Curtinha, quase embaixo", "Comprida, para o leste"], certa,
       explica: h === 12 ? "Perto do meio-dia o Sol está alto: a sombra fica curtinha." : `A sombra aponta para o lado oposto ao Sol. Às ${h}h o Sol está no ${h < 12 ? "leste" : "oeste"}, então a sombra vai para o ${h < 12 ? "oeste" : "leste"}.` };
   },
   corpo: (): RodadaTexto => {
     const [e, n, c] = CORPOS[sorteio(0, CORPOS.length - 1)];
-    return { enunciado: <><p className="viva-conta" style={{ fontSize: "3rem" }}>{e}</p><p className="viva-pergunta">{n} é…</p></>, opcoes: ["Estrela", "Planeta", "Satélite"], certa: c, explica: `${n} é ${c.toLowerCase()}. ${EXPL[c]}` };
+    return { enunciado: <><p className="viva-conta" style={{ fontSize: "3rem" }}>{e}</p><p className="viva-pergunta">{n} é… <Ouvir texto={`${n} é estrela, planeta ou satélite?`} /></p></>, opcoes: ["Estrela", "Planeta", "Satélite"], certa: c, explica: `${n} é ${c.toLowerCase()}. ${EXPL[c]}` };
   },
 };
 
@@ -234,7 +234,7 @@ export function RelogioSol() {
       <header className="viva-th">
         <p className="viva-kick">Tela 4 · a ciência num lugar de verdade</p>
         <h2>Jogo de contexto: o relógio de sol do quintal</h2>
-        <p className="viva-sub">A Nina fincou um cabo de vassoura no quintal. Quando o bolo saiu do forno, ela pôs uma <b>pedrinha</b> na ponta da sombra. Mexa a hora, veja o Sol andar e descubra que horas eram. Arraste a cena para olhar de outro lado.</p>
+        <p className="viva-sub">A Nina fincou um cabo de vassoura no quintal. Quando o bolo saiu do forno, ela pôs uma <b>pedrinha</b> na ponta da sombra. Mexa a hora, veja o Sol andar e descubra que horas eram. Arraste a cena para olhar de outro lado. <Ouvir texto="A Nina fincou um cabo de vassoura no quintal. Quando o bolo saiu do forno, ela pôs uma pedrinha na ponta da sombra. Mexa a hora, veja o Sol andar e descubra que horas eram." /></p>
       </header>
       <div className="viva-van">
         <div className="viva-card escuro sem-pad" style={{ position: "relative" }}>
@@ -246,7 +246,7 @@ export function RelogioSol() {
           <div className="viva-jogo-topo"><span className="viva-jogo-ic">🕰️</span><div><b>Relógio de sol</b><small>Mexa a hora até a sombra tocar a pedrinha.</small></div></div>
           <Regua rotulo="Hora" cor="var(--v-laranja)" v={h} min={7} max={17} muda={(n) => { setH(n); setMsg(null); }} mostra={`${h}h`} />
           <button type="button" className="viva-btn grande" onClick={msg?.ok ? nova : conferir}>{msg?.ok ? "Nova pedrinha" : "Era essa hora!"}</button>
-          {msg && <p className={`viva-feed ${msg.ok ? "ok" : "erro"}`}><b>{msg.ok ? "Acertou!" : "Ainda não."}</b> {msg.txt}</p>}
+          {msg && <p className={`viva-feed ${msg.ok ? "ok" : "erro"}`}><b>{msg.ok ? "Acertou!" : "Ainda não."}</b> {msg.txt} <Ouvir texto={msg.txt} /></p>}
           <div className="viva-tracejado">
             <small>DICAS DO CÉU</small>
             <p style={{ margin: "4px 0 0", fontSize: ".92rem" }}>A sombra aponta para o lado <b>oposto</b> ao Sol. Ela é <b>comprida</b> quando o Sol está baixo (cedo ou no fim da tarde) e <b>curtinha</b> perto do meio-dia.</p>
@@ -330,7 +330,7 @@ export function CeuNoite() {
       <header className="viva-th">
         <p className="viva-kick">Tela 5 · cadê isso na vida</p>
         <h2>No mundo: o céu da noite</h2>
-        <p className="viva-sub">Saia no quintal numa noite sem nuvens. Arraste para olhar o céu em volta e toque nas estrelas para achar o <b>Cruzeiro do Sul</b> (4 estrelas em cruz, olhando para o sul) e as <b>Três Marias</b> (3 estrelas em fila, para o leste).</p>
+        <p className="viva-sub">Saia no quintal numa noite sem nuvens. Arraste para olhar o céu em volta e toque nas estrelas para achar o <b>Cruzeiro do Sul</b> (4 estrelas em cruz, olhando para o sul) e as <b>Três Marias</b> (3 estrelas em fila, para o leste). <Ouvir texto="Saia no quintal numa noite sem nuvens. Arraste para olhar o céu em volta e toque nas estrelas para achar o Cruzeiro do Sul, 4 estrelas em cruz, olhando para o sul, e as Três Marias, 3 estrelas em fila, para o leste." /></p>
       </header>
       <div className="viva-lab">
         <div className="viva-col">
