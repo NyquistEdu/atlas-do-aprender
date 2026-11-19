@@ -32,6 +32,7 @@ export default function Shell({ chave, titulo, telas, children, rodape }: {
   const [e, setE] = useState<EstadoViva>(ESTADO_INICIAL);
   const [pronto, setPronto] = useState(false);
   const [tela, setTela] = useState(1);
+  const [versao, setVersao] = useState(0);
   const [toast, setToast] = useState<{ txt: string; tipo: string; id: number } | null>(null);
   const palco = useRef<HTMLDivElement>(null);
 
@@ -90,7 +91,7 @@ export default function Shell({ chave, titulo, telas, children, rodape }: {
     missao: (id, estrelas) => setE((x) => ({ ...x, missoes: { ...x.missoes, [id]: Math.max(estrelas, x.missoes[id] || 0) } })),
     sequencia: (jogo, n) => setE((x) => (n > (x.melhor[jogo] || 0) ? { ...x, melhor: { ...x.melhor, [jogo]: n } } : x)),
     zerarPlacar: () => setE((x) => ({ ...x, placar: { sol: 0, lua: 0 }, vez: "sol" })),
-    recomecar: () => setE({ ...ESTADO_INICIAL, modo: e.modo, som: e.som }),
+    recomecar: () => { setE({ ...ESTADO_INICIAL, modo: e.modo, som: e.som }); setVersao((x) => x + 1); },
     toggleSom: () => setE((x) => ({ ...x, som: !x.som })),
   };
 
@@ -146,6 +147,9 @@ export default function Shell({ chave, titulo, telas, children, rodape }: {
                 ))}
               </div>
             )}
+            <button type="button" className="viva-ico viva-reset" onClick={() => {
+              if (window.confirm("Recomeçar a fase do zero? Isso apaga XP, missões, estrelas, sequências e placar neste aparelho.")) { api.recomecar(); setTela(1); api.aviso("Fase zerada. Bom jogo!", "info"); }
+            }} aria-label="Recomeçar a fase do zero" title="Recomeçar do zero">↺</button>
             <button type="button" className="viva-ico" onClick={api.toggleSom} aria-label={e.som ? "Desligar som" : "Ligar som"}>{e.som ? "🔊" : "🔇"}</button>
             <button type="button" className="viva-ico" onClick={telaCheia} aria-label="Tela cheia">⛶</button>
           </div>
@@ -158,7 +162,7 @@ export default function Shell({ chave, titulo, telas, children, rodape }: {
           </div>
         )}
 
-        <div className="viva-palco">{children(tela)}</div>
+        <div className="viva-palco" key={versao}>{children(tela)}</div>
 
         <div className="viva-nav">
           <button type="button" className="viva-seta" onClick={() => irPara(tela - 1)} disabled={tela === 1} aria-label="Tela anterior">‹</button>

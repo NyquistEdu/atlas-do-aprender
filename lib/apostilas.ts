@@ -153,6 +153,7 @@ export const APOSTILAS: Apostila[] = [
     titulo: "Olhar o Céu",
     subtitulo: "O Sol, a Lua, as estrelas e as constelações",
     materia: "cie", ano: "3", tema: 4, nomeTema: "O céu e as estrelas",
+    viva: "/vivas/olhar-o-ceu",
     paginas: 31, preco: "R$ 9,90", checkout: "https://pay.kiwify.com.br/3L5H7BS",
     resumo: "Observar, registrar e entender o céu: o caminho do Sol e as sombras, o dia e a noite, as fases da Lua, as estrelas, o Cruzeiro do Sul e as Três Marias. Com diário da Lua de 15 noites e experimentos com lanterna e biscoito.",
     dentro: ["6 partes com observação, explicação e experimentos", "Diário da Lua para 15 noites", "5 revisões diárias", "Caça-palavras, jogo da memória e constelação na lata", "Certificado e gabarito"],

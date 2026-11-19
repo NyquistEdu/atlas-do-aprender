@@ -286,3 +286,5 @@
 .viva-raiox b.mini{font-family:var(--f-disp);font-weight:800;font-size:1.2rem}
 .viva-noite{touch-action:manipulation}
 @media (max-width:640px){.viva-lua-card{grid-template-columns:1fr;justify-items:center;text-align:center}.viva-raiox{grid-template-columns:1fr}}
+
+.viva-reset{font-size:1.15rem;font-weight:800}
