@@ -297,3 +297,26 @@
 .viva-times input,.viva-times select{border:2.5px solid var(--tc);border-radius:10px;padding:5px 9px;font:inherit;font-weight:700;width:150px;background:#fff;color:var(--v-navy)}
 .viva-placar small{font-size:.72rem;font-weight:700}
 .viva-placar span.vez small{color:#fff}
+
+.viva-portao{max-width:640px;margin:20px auto;background:var(--v-creme);color:var(--v-navy);border-radius:20px;border:3px solid var(--v-navy);box-shadow:0 6px 0 #000;padding:24px;display:grid;gap:12px;text-align:center;justify-items:center}
+.viva-portao h2{font-family:var(--f-disp);font-weight:800;font-size:1.5rem;margin:0;color:var(--v-navy)}
+.viva-portao .viva-kick{color:#56607a}
+.viva-portao .viva-sub{color:#3b4355}
+.viva-portao-e{font-size:2.6rem;margin:0}
+.viva-portao-form{display:grid;gap:8px;width:100%;text-align:left}
+
+.viva-chip{border:2px solid var(--v-navy);background:#fff;color:var(--v-navy);border-radius:99px;padding:4px 11px;font-weight:700;font-size:.82rem}
+.viva-chip.on{background:var(--v-navy);color:#fff}
+.viva-cozinha{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:end;background:linear-gradient(#2b3756 0 70%,#8a5a3b 70%);border-radius:14px;padding:14px}
+.viva-receita-card{background:#fffdf3;color:var(--v-navy);border-radius:6px;padding:12px;transform:rotate(-2deg);box-shadow:0 6px 12px rgba(0,0,0,.35);align-self:start}
+.viva-receita-card ul{margin:6px 0;padding-left:0;list-style:none;display:grid;gap:4px;font-size:.92rem}
+.viva-receita-card small{font-family:var(--f-hand);font-size:1.1rem;color:#56607a}
+.viva-jarra-box{display:grid;justify-items:center}
+.viva-balanca-dig{display:grid;justify-items:center;gap:4px;color:#c7cfe2}
+.viva-tigela{font-size:1.6rem;background:#f3ead8;border-radius:0 0 60px 60px;width:120px;height:56px;display:grid;place-items:center;border:3px solid #1d2433;letter-spacing:-6px}
+.viva-visor{background:#0f2a1a;color:#7dff9b;font-family:ui-monospace,monospace;font-size:1.5rem;font-weight:800;border-radius:8px;padding:4px 16px;border:4px solid #c9cfd8;min-width:120px;text-align:center}
+@media (max-width:640px){.viva-cozinha{grid-template-columns:1fr 1fr}.viva-receita-card{grid-column:1/3}}
+
+.viva-regua{grid-template-columns:96px 38px 1fr 38px minmax(54px,auto)}
+.viva-regua output{white-space:nowrap;padding-inline:8px}
+@media (max-width:640px){.viva-regua{grid-template-columns:70px 34px 1fr 34px minmax(46px,auto)}}

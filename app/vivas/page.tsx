@@ -12,7 +12,7 @@ const VIVAS = [
   { slug: "divide-ai", titulo: "Divide Aí!", tema: "Matemática · 3º ano · Fase 2", desc: "Repartir, agrupar e o que sobra", e: "🍪", livre: true },
   { slug: "olhar-o-ceu", titulo: "Olhar o Céu", tema: "Ciências · 3º ano · Fase 4", desc: "Sol, Lua, sombras e estrelas", e: "🌙", livre: true },
   { slug: "", titulo: "Pedaço por Pedaço", tema: "Matemática · 3º ano · Fase 5", desc: "Metade, terço, quarto e frações", e: "🍕", livre: false },
-  { slug: "", titulo: "Medir o Mundo", tema: "Matemática · 3º ano · Fase 3", desc: "Comprimento, massa e capacidade", e: "📏", livre: false },
+  { slug: "medir-o-mundo", titulo: "Medir o Mundo", tema: "Matemática · 3º ano · Fase 3", desc: "Comprimento, massa e capacidade", e: "📏", livre: true },
   { slug: "", titulo: "Contar até Cem", tema: "Matemática · Alfabetização · Fase 1", desc: "Contagem e números até 100", e: "🔢", livre: false },
 ];
 
@@ -32,7 +32,7 @@ export default function Page() {
       <div>
         <p className="viva-kick" style={{ color: "var(--por)" }}>● Fases Vivas</p>
         <h1 className="hero-t">A fase da trilha que <span className="marca-amarela">ganhou vida</span>.</h1>
-        <p className="lead">Cada tema da trilha vira 7 telas para mexer, jogar e resolver. A criança prevê pela conta antes de ver a cena confirmar. No celular, no computador ou na TV, sem instalar nada.</p>
+        <p className="lead">Cada tema da trilha vira 7 telas para mexer, jogar e resolver. A criança prevê pela conta antes de ver a cena confirmar. No celular, no computador ou na TV, sem instalar nada. A capa e o laboratório são abertos; do treino em diante, basta entrar na conta grátis do Atlas.</p>
       </div>
       <div className="vivas-lista">
         {VIVAS.map((v) => {

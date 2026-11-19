@@ -120,6 +120,7 @@ export const APOSTILAS: Apostila[] = [
     titulo: "Medir o Mundo",
     subtitulo: "Medidas e conversões sem travar",
     materia: "mat", ano: "3", tema: 3, nomeTema: "Medidas: comprimento, massa e capacidade",
+    viva: "/vivas/medir-o-mundo",
     paginas: 32, preco: "R$ 9,90", checkout: "https://pay.kiwify.com.br/hj87on5",
     resumo: "Comprimento, massa e capacidade, com foco nas conversões, onde muita criança trava. A explicação começa pelo que ela já conhece, o dinheiro: se 1 real vale 100 centavos, 1 metro vale 100 centímetros.",
     dentro: ["Explicação passo a passo de cada medida", "Quadro das trocas para as conversões", "5 treinos diários em que a ajuda vai diminuindo", "Jogo da memória das medidas e mão na massa na cozinha", "Certificado e gabarito"],

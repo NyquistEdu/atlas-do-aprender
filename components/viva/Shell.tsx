@@ -2,6 +2,7 @@
 /** Moldura da Fase Viva: barra com as 7 telas, modo, XP ou placar, som e tela cheia. */
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useAtlas } from "@/components/Providers";
+import { FormAcesso, SELO_CONTA } from "@/components/Acesso";
 import { ESTADO_INICIAL, TIMES, carregar, nivelDe, quemTime, salvar, som, type EstadoViva, type Modo, type Time } from "@/lib/viva";
 
 type Api = {
@@ -148,6 +149,8 @@ export default function Shell({ chave: chaveBase, titulo, telas, children, rodap
   };
 
   const nv = nivelDe(e.xp);
+  // capa e laboratório abertos; do treino em diante, só com a conta do Atlas
+  const bloqueada = tela >= 3 && a.configurado && !a.carregando && !a.user;
   const modo = e.modo || "sozinho";
 
   return (
@@ -231,7 +234,19 @@ export default function Shell({ chave: chaveBase, titulo, telas, children, rodap
             })}
           </div>
         )}
-        <div className="viva-palco" key={versao}>{children(tela)}</div>
+        <div className="viva-palco" key={versao}>{bloqueada ? (
+          <div className="viva-portao">
+            <p className="viva-portao-e">🔒</p>
+            <p className="viva-kick">Telas 1 e 2 liberadas para todos</p>
+            <h2>Para continuar no {telas[tela - 1]?.nome.toLowerCase()}, entre na sua conta</h2>
+            <p className="viva-sub">A conta do Atlas é grátis. Com ela, o progresso fica salvo para cada criança, e a vitória sobre o chefão vai para o diário.</p>
+            <div className="viva-portao-form">
+              <p className="meta" style={{ margin: 0 }}><b>{SELO_CONTA}.</b> Enviamos um link para o seu e-mail; ao abrir, você volta para esta fase.</p>
+              <FormAcesso volta={typeof window !== "undefined" ? window.location.pathname : "/vivas"} origem="fase-viva" botao="Receber link e continuar" />
+            </div>
+            <button type="button" className="viva-btn ghost" onClick={() => irPara(2)}>Voltar ao laboratório</button>
+          </div>
+        ) : children(tela)}</div>
 
         <div className="viva-nav">
           <button type="button" className="viva-seta" onClick={() => irPara(tela - 1)} disabled={tela === 1} aria-label="Tela anterior">‹</button>
