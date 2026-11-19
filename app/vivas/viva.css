@@ -273,3 +273,16 @@
   .vivas-telas li small{grid-column:2}
   .viva-cartao{grid-template-columns:84px 1fr}
 }
+
+/* textos nas alternativas e peças do céu */
+.viva-opcoes.txt{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+.viva-opcoes.txt button{font-size:1rem;padding:10px 6px;line-height:1.2}
+.viva-jogo.grande .viva-opcoes.txt button{font-size:1.4rem}
+.viva-lua-card{grid-template-columns:1fr auto;align-items:center}
+.viva-fase-nome{margin:6px 0 0;font-size:1.5rem;display:grid}
+.viva-fase-nome b{font-family:var(--f-disp);font-size:2rem}
+.viva-fase-nome small{font-size:.85rem;color:#56607a}
+.viva-lua-oculta{width:132px;height:132px;border-radius:50%;background:#2b3350;color:#f6d35b;display:grid;place-items:center;font-size:3rem;font-weight:800;border:3px dashed #55638f}
+.viva-raiox b.mini{font-family:var(--f-disp);font-weight:800;font-size:1.2rem}
+.viva-noite{touch-action:manipulation}
+@media (max-width:640px){.viva-lua-card{grid-template-columns:1fr;justify-items:center;text-align:center}.viva-raiox{grid-template-columns:1fr}}
