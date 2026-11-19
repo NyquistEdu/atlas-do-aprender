@@ -43,7 +43,7 @@ const HABS: Record<string, string> = { "dia-noite": "Dia e noite", fases: "Fases
 
 export default function OlharOCeuViva() {
   return (
-    <Shell chave="viva-olhar-o-ceu" titulo="Olhar o Céu · Ciências · 3º ano" telas={TELAS}>
+    <Shell chave="viva-olhar-o-ceu" titulo="Olhar o Céu · Ciências · 3º ano" telas={TELAS} materia="cie" nomeFase="Olhar o Céu">
       {(t) => (
         <>
           {t === 1 && <Capa telas={TELAS} />}

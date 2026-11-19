@@ -1,7 +1,8 @@
 "use client";
 /** Moldura da Fase Viva: barra com as 7 telas, modo, XP ou placar, som e tela cheia. */
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
-import { ESTADO_INICIAL, TIMES, carregar, nivelDe, salvar, som, type EstadoViva, type Modo, type Time } from "@/lib/viva";
+import { useAtlas } from "@/components/Providers";
+import { ESTADO_INICIAL, TIMES, carregar, nivelDe, quemTime, salvar, som, type EstadoViva, type Modo, type Time } from "@/lib/viva";
 
 type Api = {
   e: EstadoViva;
@@ -19,6 +20,10 @@ type Api = {
   recomecar: () => void;
   aviso: (txt: string, tipo?: "ok" | "erro" | "info") => void;
   toggleSom: () => void;
+  /** Criança que está jogando (conta do Atlas) ou "" para visitante. */
+  jogador: string;
+  /** Registra a vitória sobre o chefão no diário da criança (uma vez). */
+  venceuChefao: (acertos: number, total: number) => void;
 };
 
 const Ctx = createContext<Api | null>(null);
@@ -26,9 +31,21 @@ export const useViva = () => { const c = useContext(Ctx); if (!c) throw new Erro
 
 export type Tela = { n: number; nome: string; curto: string; icone: string };
 
-export default function Shell({ chave, titulo, telas, children, rodape }: {
-  chave: string; titulo: string; telas: Tela[]; children: (tela: number) => React.ReactNode; rodape?: React.ReactNode;
+const LS_JOGADOR = "atlas-viva-jogador";
+
+export default function Shell({ chave: chaveBase, titulo, telas, children, rodape, materia = "", nomeFase = titulo }: {
+  chave: string; titulo: string; telas: Tela[]; children: (tela: number) => React.ReactNode; rodape?: React.ReactNode; materia?: string; nomeFase?: string;
 }) {
+  const a = useAtlas();
+  const [jogador, setJogadorState] = useState("");
+  // escolhe a criança: a última que jogou neste aparelho, ou a criança marcada no topo do Atlas
+  useEffect(() => {
+    if (!a.user || !a.criancas.length) { setJogadorState(""); return; }
+    let j = ""; try { j = localStorage.getItem(LS_JOGADOR) || ""; } catch {}
+    setJogadorState(a.criancas.includes(j) ? j : a.criancas.includes(a.crianca) ? a.crianca : a.criancas[0]);
+  }, [a.user, a.criancas, a.crianca]);
+  const setJogador = (n: string) => { setJogadorState(n); try { localStorage.setItem(LS_JOGADOR, n); } catch {} };
+  const chave = jogador ? `${chaveBase}|${jogador}` : chaveBase;
   const [e, setE] = useState<EstadoViva>(ESTADO_INICIAL);
   const [pronto, setPronto] = useState(false);
   const [tela, setTela] = useState(1);
@@ -36,8 +53,13 @@ export default function Shell({ chave, titulo, telas, children, rodape }: {
   const [toast, setToast] = useState<{ txt: string; tipo: string; id: number } | null>(null);
   const palco = useRef<HTMLDivElement>(null);
 
-  useEffect(() => { setE(carregar(chave)); setPronto(true); }, [chave]);
-  useEffect(() => { if (pronto) salvar(chave, e); }, [e, pronto, chave]);
+  const ultimaChave = useRef(chave);
+  useEffect(() => { setE(carregar(chave)); setPronto(true); setVersao((x) => x + 1); }, [chave]);
+  useEffect(() => {
+    // quando troca a criança, espera o estado dela carregar antes de salvar
+    if (ultimaChave.current !== chave) { ultimaChave.current = chave; return; }
+    if (pronto) salvar(chave, e);
+  }, [e, pronto, chave]);
 
   const aviso = useCallback((txt: string, tipo: "ok" | "erro" | "info" = "info") => {
     const id = Date.now();
@@ -60,7 +82,7 @@ export default function Shell({ chave, titulo, telas, children, rodape }: {
       const acertos = { ...x.acertos, [hab]: (x.acertos[hab] || 0) + 1 };
       if (x.modo === "juntos") {
         const v = x.vez;
-        aviso(`${msg ? msg + " " : ""}Ponto para o ${TIMES[v].nome}! ${TIMES[v].icone}`, "ok");
+        aviso(`${msg ? msg + " " : ""}Ponto para ${quemTime(x, v)}! ${TIMES[v].icone}`, "ok");
         return { ...x, acertos, placar: { ...x.placar, [v]: x.placar[v] + 1 }, vez: v === "sol" ? "lua" : "sol" };
       }
       const antes = nivelDe(x.xp).i, depois = nivelDe(x.xp + xp).i;
@@ -76,7 +98,7 @@ export default function Shell({ chave, titulo, telas, children, rodape }: {
       const erros = { ...x.erros, [hab]: (x.erros[hab] || 0) + 1 };
       if (x.modo === "juntos") {
         const prox: Time = x.vez === "sol" ? "lua" : "sol";
-        aviso(msg ? `${msg} Agora é a vez do ${TIMES[prox].nome}.` : `Não foi dessa vez. Vez do ${TIMES[prox].nome}!`, "erro");
+        aviso(msg ? `${msg} Agora é a vez de ${quemTime(x, prox)}.` : `Não foi dessa vez. Vez de ${quemTime(x, prox)}!`, "erro");
         return { ...x, erros, vez: prox };
       }
       if (msg) aviso(msg, "erro");
@@ -93,6 +115,16 @@ export default function Shell({ chave, titulo, telas, children, rodape }: {
     zerarPlacar: () => setE((x) => ({ ...x, placar: { sol: 0, lua: 0 }, vez: "sol" })),
     recomecar: () => { setE({ ...ESTADO_INICIAL, modo: e.modo, som: e.som }); setVersao((x) => x + 1); },
     toggleSom: () => setE((x) => ({ ...x, som: !x.som })),
+    jogador,
+    venceuChefao: (acertos, total) => {
+      if (e.chefao || !a.user || !jogador || e.modo === "juntos") { setE((x) => ({ ...x, chefao: true })); return; }
+      setE((x) => ({ ...x, chefao: true }));
+      const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+      const nv = nivelDe(e.xp);
+      a.addEntrada({ data: d.toISOString().slice(0, 10), crianca: jogador, area: materia, tipo: "Jogo", minutos: 20,
+        titulo: `Fase Viva ${nomeFase}: venceu o chefão`, o_que: `Acertou ${acertos} de ${total} questões do desafio do chefão. Nível ${nv.nome}, ${e.xp} XP, ${Object.keys(e.missoes).length} missões cumpridas.`,
+        descobertas: "", envolvimento: 4, proximo: "" }).then((err) => { if (!err) aviso(`Vitória registrada no diário de ${jogador}! 📓`, "ok"); });
+    },
   };
 
   // setas do teclado (e passador de slides) trocam de tela
@@ -130,6 +162,16 @@ export default function Shell({ chave, titulo, telas, children, rodape }: {
             ))}
           </nav>
           <div className="viva-ctrl">
+            {a.user && a.criancas.length > 0 ? (
+              <label className="viva-quem" title="Quem está jogando">
+                <span>Quem joga</span>
+                <select value={jogador} onChange={(ev) => setJogador(ev.target.value)}>
+                  {a.criancas.map((c) => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </label>
+            ) : a.configurado && !a.carregando && !a.user ? (
+              <a className="viva-quem link" href={`/entrar?volta=${encodeURIComponent(typeof window !== "undefined" ? window.location.pathname : "/vivas")}`}>Entrar para salvar por criança</a>
+            ) : null}
             <div className="viva-modo" role="group" aria-label="Modo">
               <button type="button" aria-pressed={modo === "sozinho"} onClick={() => api.definirModo("sozinho")}>Sozinho</button>
               <button type="button" aria-pressed={modo === "juntos"} onClick={() => api.definirModo("juntos")}>Juntos</button>
@@ -143,7 +185,7 @@ export default function Shell({ chave, titulo, telas, children, rodape }: {
             ) : (
               <div className="viva-placar">
                 {(["sol", "lua"] as Time[]).map((t) => (
-                  <span key={t} className={e.vez === t ? "vez" : ""} style={{ ["--tc" as string]: TIMES[t].cor }}>{TIMES[t].icone} <b>{e.placar[t]}</b></span>
+                  <span key={t} className={e.vez === t ? "vez" : ""} style={{ ["--tc" as string]: TIMES[t].cor }} title={quemTime(e, t, false)}>{TIMES[t].icone}{e.nomes?.[t] ? <small> {e.nomes[t]}</small> : null} <b>{e.placar[t]}</b></span>
                 ))}
               </div>
             )}
@@ -157,11 +199,24 @@ export default function Shell({ chave, titulo, telas, children, rodape }: {
 
         {modo === "juntos" && tela > 1 && tela < 7 && (
           <div className="viva-vez" style={{ ["--tc" as string]: TIMES[e.vez].cor }}>
-            É a vez do <b>{TIMES[e.vez].icone} {TIMES[e.vez].nome}</b>
+            É a vez de <b>{TIMES[e.vez].icone} {quemTime(e, e.vez, false)}</b>
             <button type="button" className="link-btn" onClick={api.passarVez}>passar a vez</button>
           </div>
         )}
 
+        {modo === "juntos" && tela === 1 && (
+          <div className="viva-times">
+            <span>Quem joga em cada time?</span>
+            {(["sol", "lua"] as Time[]).map((t) => (
+              <label key={t} style={{ ["--tc" as string]: TIMES[t].cor }}>
+                {TIMES[t].icone}
+                <input list="viva-nomes" placeholder={TIMES[t].nome} value={e.nomes?.[t] || ""} maxLength={24}
+                  onChange={(ev) => { const n = ev.target.value; setE((x) => ({ ...x, nomes: { ...(x.nomes || {}), [t]: n } })); }} />
+              </label>
+            ))}
+            <datalist id="viva-nomes">{[...a.criancas, "Mamãe", "Papai", "Professora"].map((n) => <option key={n} value={n} />)}</datalist>
+          </div>
+        )}
         <div className="viva-palco" key={versao}>{children(tela)}</div>
 
         <div className="viva-nav">

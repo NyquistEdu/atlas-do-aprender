@@ -288,3 +288,12 @@
 @media (max-width:640px){.viva-lua-card{grid-template-columns:1fr;justify-items:center;text-align:center}.viva-raiox{grid-template-columns:1fr}}
 
 .viva-reset{font-size:1.15rem;font-weight:800}
+
+.viva-quem{display:flex;align-items:center;gap:6px;border:2px solid var(--v-navy);border-radius:99px;padding:2px 4px 2px 10px;background:#fff;font-size:.75rem;font-weight:800;color:#56607a}
+.viva-quem select{border:0;background:var(--v-amarelo);color:var(--v-navy);font:inherit;font-size:.85rem;font-weight:800;border-radius:99px;padding:3px 8px}
+.viva-quem.link{padding:5px 10px;text-decoration:none;color:var(--v-navy)}
+.viva-times{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px;background:#262f45;font-size:.9rem;color:#c7cfe2}
+.viva-times label{display:flex;gap:6px;align-items:center}
+.viva-times input{border:2.5px solid var(--tc);border-radius:10px;padding:5px 9px;font:inherit;width:150px;background:#fff;color:var(--v-navy)}
+.viva-placar small{font-size:.72rem;font-weight:700}
+.viva-placar span.vez small{color:#fff}

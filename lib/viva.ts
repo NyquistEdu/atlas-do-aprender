@@ -18,6 +18,8 @@ export type EstadoViva = {
   melhor: Record<string, number>; // jogo → melhor sequência
   vistas: number[]; // telas visitadas
   som: boolean;
+  nomes?: Partial<Record<Time, string>>; // quem joga em cada time (modo juntos)
+  chefao?: boolean; // já venceu o desafio do chefão
 };
 
 export const ESTADO_INICIAL: EstadoViva = {
@@ -45,6 +47,9 @@ export const TIMES: Record<Time, { nome: string; icone: string; cor: string }> =
   sol: { nome: "Time Sol", icone: "☀️", cor: "#e39b16" },
   lua: { nome: "Time Lua", icone: "🌙", cor: "#5b6fd6" },
 };
+
+/** "o Time Sol" ou o nome de quem joga nesse time. */
+export const quemTime = (e: EstadoViva, t: Time, comArtigo = true) => e.nomes?.[t] || (comArtigo ? `o ${TIMES[t].nome}` : TIMES[t].nome);
 
 export function carregar(chave: string): EstadoViva {
   try {

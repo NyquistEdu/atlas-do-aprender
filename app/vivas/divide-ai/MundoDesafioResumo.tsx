@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useViva, Cronometro } from "@/components/viva/Shell";
 import { Regua } from "./CapaLab";
-import { NIVEIS, TIMES, div, nivelDe } from "@/lib/viva";
+import { NIVEIS, TIMES, div, nivelDe, quemTime } from "@/lib/viva";
 
 const Cena3D = dynamic(() => import("@/components/viva/Cena3D"), { ssr: false, loading: () => <div className="viva-3d carregando" style={{ height: 360 }}>carregando a cena 3D…</div> });
 
@@ -97,6 +97,8 @@ export function Desafio() {
   const fim = acertos.length === QUESTOES.length;
   const q = QUESTOES[Math.min(i, QUESTOES.length - 1)];
   const juntos = v.modo === "juntos";
+  const venceu = acertos.length === QUESTOES.length && acertos.filter(Boolean).length >= 4;
+  useEffect(() => { if (venceu) v.venceuChefao(acertos.filter(Boolean).length, QUESTOES.length); }, [venceu]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const responder = (o: number) => {
     if (esc !== null) return;
@@ -213,8 +215,8 @@ export function Resumo() {
           {v.modo === "juntos" ? (
             <div className="viva-card">
               <h3 className="viva-h3">Placar da partida</h3>
-              {(["sol", "lua"] as const).map((t) => <p key={t} className="viva-placar-l"><span>{TIMES[t].icone} {TIMES[t].nome}</span><b style={{ color: TIMES[t].cor }}>{v.e.placar[t]}</b></p>)}
-              <p className="viva-vencedor">{sol === lua ? (sol === 0 ? "Ainda sem pontos. Bora jogar!" : "Empate! Rodada extra?") : `${TIMES[sol > lua ? "sol" : "lua"].icone} ${TIMES[sol > lua ? "sol" : "lua"].nome} venceu!`}</p>
+              {(["sol", "lua"] as const).map((t) => <p key={t} className="viva-placar-l"><span>{TIMES[t].icone} {quemTime(v.e, t, false)}</span><b style={{ color: TIMES[t].cor }}>{v.e.placar[t]}</b></p>)}
+              <p className="viva-vencedor">{sol === lua ? (sol === 0 ? "Ainda sem pontos. Bora jogar!" : "Empate! Rodada extra?") : `${TIMES[sol > lua ? "sol" : "lua"].icone} ${quemTime(v.e, sol > lua ? "sol" : "lua", false)} venceu!`}</p>
               <button type="button" className="viva-btn" onClick={v.zerarPlacar}>Zerar placar</button>
             </div>
           ) : (

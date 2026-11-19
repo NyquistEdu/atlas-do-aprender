@@ -16,7 +16,7 @@ export const TELAS: Tela[] = [
 
 export default function DivideAiViva() {
   return (
-    <Shell chave="viva-divide-ai" titulo="Divide Aí! · Matemática · 3º ano" telas={TELAS}>
+    <Shell chave="viva-divide-ai" titulo="Divide Aí! · Matemática · 3º ano" telas={TELAS} materia="mat" nomeFase="Divide Aí!">
       {(t) => (
         <>
           {t === 1 && <Capa telas={TELAS} />}

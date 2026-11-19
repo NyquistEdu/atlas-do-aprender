@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { useViva, Cronometro } from "@/components/viva/Shell";
-import { NIVEIS, TIMES, nivelDe } from "@/lib/viva";
+import { NIVEIS, TIMES, nivelDe, quemTime } from "@/lib/viva";
 
 export function Regua({ rotulo, cor, v, min, max, muda, mostra }: { rotulo: string; cor: string; v: number; min: number; max: number; muda: (n: number) => void; mostra?: string }) {
   return (
@@ -79,6 +79,7 @@ export function Desafio({ chefe, emoji, sub, questoes, minimo = 4, tela = 6 }: {
   const q = questoes[Math.min(i, questoes.length - 1)];
   const juntos = v.modo === "juntos";
   const total = acertos.filter(Boolean).length;
+  useEffect(() => { if (fim && total >= minimo) v.venceuChefao(total, questoes.length); }, [fim]); // eslint-disable-line react-hooks/exhaustive-deps
   const responder = (o: number) => {
     if (esc !== null) return;
     setEsc(o); setValendo(false);
@@ -170,8 +171,8 @@ export function Resumo({ titulo, itens, pegadinhas, habs, links, totalMissoes, t
           {v.modo === "juntos" ? (
             <div className="viva-card">
               <h3 className="viva-h3">Placar da partida</h3>
-              {(["sol", "lua"] as const).map((t) => <p key={t} className="viva-placar-l"><span>{TIMES[t].icone} {TIMES[t].nome}</span><b style={{ color: TIMES[t].cor }}>{v.e.placar[t]}</b></p>)}
-              <p className="viva-vencedor">{sol === lua ? (sol === 0 ? "Ainda sem pontos. Bora jogar!" : "Empate! Rodada extra?") : `${TIMES[sol > lua ? "sol" : "lua"].icone} ${TIMES[sol > lua ? "sol" : "lua"].nome} venceu!`}</p>
+              {(["sol", "lua"] as const).map((t) => <p key={t} className="viva-placar-l"><span>{TIMES[t].icone} {quemTime(v.e, t, false)}</span><b style={{ color: TIMES[t].cor }}>{v.e.placar[t]}</b></p>)}
+              <p className="viva-vencedor">{sol === lua ? (sol === 0 ? "Ainda sem pontos. Bora jogar!" : "Empate! Rodada extra?") : `${TIMES[sol > lua ? "sol" : "lua"].icone} ${quemTime(v.e, sol > lua ? "sol" : "lua", false)} venceu!`}</p>
               <button type="button" className="viva-btn" onClick={v.zerarPlacar}>Zerar placar</button>
             </div>
           ) : (
