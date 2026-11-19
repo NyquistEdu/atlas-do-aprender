@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
+import { Ouvir } from "@/components/viva/Comuns";
 import { useViva, Caixa, Cronometro } from "@/components/viva/Shell";
 
 const Rua3D = dynamic(() => import("@/components/viva/Rua3D"), { ssr: false, loading: () => <div className="viva-3d carregando" style={{ height: 420 }}>carregando a rua 3D…</div> });
@@ -26,7 +27,7 @@ const GERADORES: Record<string, () => Rodada> = {
   pratos: () => {
     const k = sorteio(2, 6), q = sorteio(2, 9), n = k * q;
     return {
-      enunciado: <><p className="viva-conta">{n} ÷ {k} = <b className="viva-q">?</b></p><p className="viva-mini">{"🍽️".repeat(k)}</p></>,
+      enunciado: <><p className="viva-conta">{n} ÷ {k} = <b className="viva-q">?</b></p><p className="viva-mini">{"🍽️".repeat(k)}</p><p className="viva-pergunta"><Ouvir texto={`${n} dividido por ${k} pratos. Quanto vai em cada prato?`} /></p></>,
       opcoes: alternativas(q, [q + 1, q - 1, n - k, k]), certa: q,
       explica: `${n} ÷ ${k} = ${q}, porque ${q} × ${k} = ${n}.`,
     };
@@ -34,7 +35,7 @@ const GERADORES: Record<string, () => Rodada> = {
   grupos: () => {
     const g = sorteio(2, 5), q = sorteio(2, Math.floor(24 / g)), n = g * q, e = EMO[sorteio(0, EMO.length - 1)];
     return {
-      enunciado: <><p className="viva-grade" style={{ gridTemplateColumns: `repeat(${Math.min(n, g * Math.max(1, Math.floor(8 / g)))}, auto)` }}>{Array.from({ length: n }, (_, i) => <span key={i}>{e}</span>)}</p><p className="viva-pergunta">{n} em grupos de <b>{g}</b>: quantos grupos?</p></>,
+      enunciado: <><p className="viva-grade" style={{ gridTemplateColumns: `repeat(${Math.min(n, g * Math.max(1, Math.floor(8 / g)))}, auto)` }}>{Array.from({ length: n }, (_, i) => <span key={i}>{e}</span>)}</p><p className="viva-pergunta">{n} em grupos de <b>{g}</b>: quantos grupos? <Ouvir texto={`${n} em grupos de ${g}: quantos grupos?`} /></p></>,
       opcoes: alternativas(q, [q + 1, g, n - g]), certa: q,
       explica: `Em ${n} cabem ${q} grupos de ${g}: ${q} × ${g} = ${n}.`,
     };
@@ -42,7 +43,7 @@ const GERADORES: Record<string, () => Rodada> = {
   familia: () => {
     const a = sorteio(2, 9), b = sorteio(3, 9), p = a * b;
     return {
-      enunciado: <><Triangulo topo={p} a={a} b="?" /><p className="viva-pergunta">{p} ÷ {a} = ?</p></>,
+      enunciado: <><Triangulo topo={p} a={a} b="?" /><p className="viva-pergunta">{p} ÷ {a} = ? <Ouvir texto={`${p} dividido por ${a} é igual a quanto?`} /></p></>,
       opcoes: alternativas(b, [a, p - a, b + 1]), certa: b,
       explica: `${a} × ${b} = ${p}, então ${p} ÷ ${a} = ${b}.`,
     };
@@ -50,7 +51,7 @@ const GERADORES: Record<string, () => Rodada> = {
   resto: () => {
     const k = sorteio(2, 6), q = sorteio(2, 8), r = sorteio(0, k - 1), n = k * q + r;
     return {
-      enunciado: <><p className="viva-conta">{n} ÷ {k}</p><p className="viva-pergunta">Quanto sobra?</p></>,
+      enunciado: <><p className="viva-conta">{n} ÷ {k}</p><p className="viva-pergunta">Quanto sobra? <Ouvir texto={`${n} dividido por ${k}. Quanto sobra?`} /></p></>,
       opcoes: Array.from({ length: k }, (_, i) => i), certa: r,
       explica: `${q} × ${k} = ${q * k} e ${n} − ${q * k} = ${r}. Sobra ${r}.`,
     };
@@ -171,7 +172,7 @@ export function Van() {
       <header className="viva-th">
         <p className="viva-kick">Tela 4 · a matemática num lugar de verdade</p>
         <h2>Jogo de contexto: a van do passeio</h2>
-        <p className="viva-sub">A turma vai ao museu. Cada van leva um número de crianças. Quantas vans a escola precisa chamar para <b>ninguém ficar na calçada</b> e <b>nenhuma van ir vazia</b>?</p>
+        <p className="viva-sub">A turma vai ao museu. Cada van leva um número de crianças. Quantas vans a escola precisa chamar para <b>ninguém ficar na calçada</b> e <b>nenhuma van ir vazia</b>? <Ouvir texto="A turma vai ao museu. Cada van leva um número de crianças. Quantas vans a escola precisa chamar para ninguém ficar na calçada e nenhuma van ir vazia?" /></p>
       </header>
       <div className="viva-van">
         <div className="viva-card escuro sem-pad" style={{ position: "relative" }}>
@@ -183,7 +184,7 @@ export function Van() {
           <div className="viva-jogo-topo"><span className="viva-jogo-ic">🚐</span><div><b>A van do passeio</b><small>Chame as vans certas e mande a turma.</small></div></div>
           <div className="viva-tracejado">
             <small>O PROBLEMA</small>
-            <p className="viva-conta" style={{ margin: "4px 0" }}><span style={{ color: "var(--v-rosa)" }}>{t.N}</span> crianças ÷ <span style={{ color: "var(--v-azul)" }}>{t.C}</span> lugares</p>
+            <p className="viva-conta" style={{ margin: "4px 0" }}><span style={{ color: "var(--v-rosa)" }}>{t.N}</span> crianças ÷ <span style={{ color: "var(--v-azul)" }}>{t.C}</span> lugares <Ouvir texto={`${t.N} crianças, vans de ${t.C} lugares.`} /></p>
           </div>
           <div className="viva-regua" style={{ ["--rc" as string]: "var(--v-azul)" }}>
             <span className="viva-regua-r">Vans</span>
@@ -195,7 +196,7 @@ export function Van() {
           {fase === "escolher"
             ? <button type="button" className="viva-btn grande" onClick={partir}>Partiu! 🚐</button>
             : <button type="button" className="viva-btn grande ghost" onClick={nova}>Nova turma</button>}
-          {msg && <p className={`viva-feed ${msg.ok ? "ok" : "erro"}`}><b>{msg.ok ? "Deu certo!" : "Quase!"}</b> {msg.txt}</p>}
+          {msg && <p className={`viva-feed ${msg.ok ? "ok" : "erro"}`}><b>{msg.ok ? "Deu certo!" : "Quase!"}</b> {msg.txt} <Ouvir texto={msg.txt} /></p>}
           <details className="viva-caderno-d" key={conta}>
             <summary>✏️ Fazer a conta: quantas vans?</summary>
             <p>{t.N} ÷ {t.C} = <Caixa certo={q} rotulo="quociente" dica={`Que número vezes ${t.C} chega perto de ${t.N} sem passar?`} /> e sobram <Caixa certo={r} rotulo="resto" dica={`Tire de ${t.N} as crianças das vans cheias.`} /></p>

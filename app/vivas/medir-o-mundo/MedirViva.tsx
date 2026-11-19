@@ -50,7 +50,7 @@ export default function MedirViva() {
           {t === 3 && <Treino />}
           {t === 4 && <Receita />}
           {t === 5 && <Estime />}
-          {t === 6 && <Desafio chefe="o Gigante Desmedido" emoji="🧌" sub="Ele bagunça todas as medidas da cidade." questoes={QUESTOES} />}
+          {t === 6 && <Desafio chefe="o Gigante Desmedido" emoji="🧌" sub="Ele bagunça todas as medidas da cidade." questoes={QUESTOES} ouvir />}
           {t === 7 && <Resumo titulo="Medir o Mundo" itens={ITENS} pegadinhas={PEGADINHAS} habs={HABS} totalMissoes={10}
             links={[["/apostilas/medir-o-mundo", "📘 Apostila Medir o Mundo (com o quadro das trocas)"], ["/trilhas/matematica/3-ano#tema-3", "🗺️ A fase 3 na trilha de Matemática do 3º ano"], ["/vivas", "✨ Outras Fases Vivas"]]} />}
         </>

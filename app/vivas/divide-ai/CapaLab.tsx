@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import { Ouvir } from "@/components/viva/Comuns";
 import { useViva, Caixa, type Tela } from "@/components/viva/Shell";
 import type { Caso, ModoDiv } from "@/components/viva/Cena3D";
 import { div } from "@/lib/viva";
@@ -132,7 +133,7 @@ export function Laboratorio() {
                 </button>
               ))}
             </div>
-            <p className="viva-missao"><b>Missão {mi + 1}/{MISSOES.length}</b> · {missao.txt}</p>
+            <p className="viva-missao"><b>Missão {mi + 1}/{MISSOES.length}</b> · {missao.txt} <Ouvir texto={missao.txt} /></p>
             {dica && <p className="viva-dica-box">💡 {missao.dica}</p>}
             <div className="viva-row">
               <button type="button" className="viva-btn" onClick={enviar}>Enviar ✓</button>

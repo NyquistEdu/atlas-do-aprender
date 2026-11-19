@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { Ouvir } from "@/components/viva/Comuns";
 import { useEffect, useState } from "react";
 import { useViva, Cronometro } from "@/components/viva/Shell";
 import { Regua } from "./CapaLab";
@@ -23,7 +24,7 @@ function Cartao({ c }: { c: (typeof CARTOES)[number] }) {
       <div className="viva-cartao-img" style={{ background: c.fundo }}><span>{c.e}</span></div>
       <div className="viva-cartao-txt">
         <b>{c.t}</b>
-        <p>{c.p}</p>
+        <p>{c.p} <Ouvir texto={c.p} /></p>
         <div className="viva-opcoes peq">
           {c.op.map((o) => (
             <button key={o} type="button" className={esc === null ? "" : o === c.certa ? "certa" : o === esc ? "errada" : "apaga"}
@@ -45,7 +46,7 @@ export function Mundo() {
       <header className="viva-th">
         <p className="viva-kick">Tela 5 · cadê isso na vida</p>
         <h2>No mundo: a fábrica de caixas de ovos</h2>
-        <p className="viva-sub">Na granja, os ovos vão para as caixinhas. Mude o tamanho da caixa e veja quantas caixas enchem e quantos ovos sobram.</p>
+        <p className="viva-sub">Na granja, os ovos vão para as caixinhas. Mude o tamanho da caixa e veja quantas caixas enchem e quantos ovos sobram. <Ouvir texto="Na granja, os ovos vão para as caixinhas. Mude o tamanho da caixa e veja quantas caixas enchem e quantos ovos sobram." /></p>
       </header>
       <div className="viva-lab">
         <div className="viva-col">
@@ -141,7 +142,7 @@ export function Desafio() {
                 : null)}
             </div>
             <div className="viva-q-cena" aria-hidden="true">{q.cena}</div>
-            <p className="viva-q-texto">{q.texto}</p>
+            <p className="viva-q-texto">{q.texto} <Ouvir texto={q.texto} /></p>
             <div className="viva-alts">
               {q.op.map((o, k) => (
                 <button key={o} type="button" onClick={() => responder(k)}

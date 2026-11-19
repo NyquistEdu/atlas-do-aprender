@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { useViva, Caixa, Cronometro, type Tela } from "@/components/viva/Shell";
-import { JogoTexto, Regua, type RodadaTexto } from "@/components/viva/Comuns";
+import { JogoTexto, Ouvir, Regua, type RodadaTexto } from "@/components/viva/Comuns";
 import { embaralhar, sorteio } from "@/lib/viva";
 import type { CasoBalanca, Objeto, Pesos } from "@/components/viva/Balanca3D";
 
@@ -173,7 +173,7 @@ export function Laboratorio() {
             <div className="viva-bolinhas">
               {MISSOES.map((x, i) => <button key={x.id} type="button" className={`${v.e.missoes[x.id] ? "feita" : ""} ${i === mi ? "atual" : ""}`} onClick={() => { setMi(i); setDica(false); }} aria-label={`Missão ${i + 1}`}>{v.e.missoes[x.id] ? "★" : i + 1}</button>)}
             </div>
-            <p className="viva-missao"><b>Missão {mi + 1}/{MISSOES.length}</b> · {missao.txt}</p>
+            <p className="viva-missao"><b>Missão {mi + 1}/{MISSOES.length}</b> · {missao.txt} <Ouvir texto={missao.txt} /></p>
             {dica && <p className="viva-dica-box">💡 {missao.dica}</p>}
             <div className="viva-row">
               <button type="button" className="viva-btn" onClick={enviar}>Enviar ✓</button>
@@ -261,7 +261,7 @@ const INSTR = [
   ["o leite de uma receita", "Copo medidor"], ["a febre de uma pessoa", "Termômetro"], ["a largura da sala", "Fita métrica"], ["a massa de uma melancia", "Balança"],
 ];
 const gerar = {
-  unidade: (): RodadaTexto => { const u = UNIDADES[sorteio(0, UNIDADES.length - 1)]; return { enunciado: <><p className="viva-conta" style={{ fontSize: "2.8rem" }}>{u.e}</p><p className="viva-pergunta">Que unidade usar para medir {u.item}?</p></>, opcoes: OPC[u.tipo], certa: u.certa, explica: `Para ${u.item}, o melhor é o ${u.certa}.` }; },
+  unidade: (): RodadaTexto => { const u = UNIDADES[sorteio(0, UNIDADES.length - 1)]; return { enunciado: <><p className="viva-conta" style={{ fontSize: "2.8rem" }}>{u.e}</p><p className="viva-pergunta">Que unidade usar para medir {u.item}? <Ouvir texto={`Que unidade usar para medir ${u.item}?`} /></p></>, opcoes: OPC[u.tipo], certa: u.certa, explica: `Para ${u.item}, o melhor é o ${u.certa}.` }; },
   converte: (): RodadaTexto => {
     const t = sorteio(0, 5);
     const casos: [string, number, string, number[]][] = [
@@ -272,7 +272,7 @@ const gerar = {
     let certa = fixo;
     if (!fixo) { if (txt.startsWith("1 m e")) certa = 100 + Number(txt.match(/e (\d+)/)![1]); else { const n = Number(txt.split(" ")[0]); certa = n * (un === "cm" ? 100 : 1000); } }
     const op = embaralhar([...new Set([certa, ...(dist.length ? dist : [certa / 10, certa * 10, certa + (un === "cm" ? 10 : 100)])])].slice(0, 4)).map((x) => `${x} ${un}`);
-    return { enunciado: <><p className="viva-conta">{txt} = <b className="viva-q">?</b> {un}</p></>, opcoes: op, certa: `${certa} ${un}`, explica: un === "cm" ? `1 metro tem 100 centímetros, como 1 real tem 100 centavos. ${txt} = ${certa} cm.` : `1 ${un === "g" ? "quilo tem 1000 gramas" : "litro tem 1000 mililitros"}. ${txt} = ${certa} ${un}.` };
+    return { enunciado: <><p className="viva-conta">{txt} = <b className="viva-q">?</b> {un}</p><p className="viva-pergunta"><Ouvir texto={`${txt} são quantos ${un === "cm" ? "centímetros" : un === "g" ? "gramas" : "mililitros"}?`} /></p></>, opcoes: op, certa: `${certa} ${un}`, explica: un === "cm" ? `1 metro tem 100 centímetros, como 1 real tem 100 centavos. ${txt} = ${certa} cm.` : `1 ${un === "g" ? "quilo tem 1000 gramas" : "litro tem 1000 mililitros"}. ${txt} = ${certa} ${un}.` };
   },
   compara: (): RodadaTexto => {
     const pares: [string, number, string, number, string][] = [
@@ -281,9 +281,9 @@ const gerar = {
     ];
     const [a, va, b, vb] = pares[sorteio(0, pares.length - 1)];
     const certa = va === vb ? "São iguais" : va > vb ? a : b;
-    return { enunciado: <><p className="viva-conta" style={{ fontSize: "1.9rem" }}>{a} <span style={{ color: "#9aa6c4" }}>ou</span> {b}</p><p className="viva-pergunta">Qual é maior?</p></>, opcoes: [a, b, "São iguais"], certa, explica: `Passe tudo para a mesma unidade: ${a} e ${b}. ${certa === "São iguais" ? "São a mesma quantidade!" : `${certa} é maior.`}` };
+    return { enunciado: <><p className="viva-conta" style={{ fontSize: "1.9rem" }}>{a} <span style={{ color: "#9aa6c4" }}>ou</span> {b}</p><p className="viva-pergunta">Qual é maior? <Ouvir texto={`Qual é maior: ${a} ou ${b}?`} /></p></>, opcoes: [a, b, "São iguais"], certa, explica: `Passe tudo para a mesma unidade: ${a} e ${b}. ${certa === "São iguais" ? "São a mesma quantidade!" : `${certa} é maior.`}` };
   },
-  instrumento: (): RodadaTexto => { const [it, c] = INSTR[sorteio(0, INSTR.length - 1)]; return { enunciado: <><p className="viva-conta" style={{ fontSize: "2.6rem" }}>🧰</p><p className="viva-pergunta">O que usar para medir {it}?</p></>, opcoes: ["Régua", "Fita métrica", "Balança", "Copo medidor", "Termômetro"], certa: c, explica: `Para ${it}, use ${c.toLowerCase()}.` }; },
+  instrumento: (): RodadaTexto => { const [it, c] = INSTR[sorteio(0, INSTR.length - 1)]; return { enunciado: <><p className="viva-conta" style={{ fontSize: "2.6rem" }}>🧰</p><p className="viva-pergunta">O que usar para medir {it}? <Ouvir texto={`O que usar para medir ${it}?`} /></p></>, opcoes: ["Régua", "Fita métrica", "Balança", "Copo medidor", "Termômetro"], certa: c, explica: `Para ${it}, use ${c.toLowerCase()}.` }; },
 };
 
 export function Treino() {
@@ -335,7 +335,7 @@ export function Receita() {
       <header className="viva-th">
         <p className="viva-kick">Tela 4 · a matemática num lugar de verdade</p>
         <h2>Jogo de contexto: a receita do bolo</h2>
-        <p className="viva-sub">A vovó deixou a receita. Meça o leite na jarra e a farinha na balança da cozinha. Errou a medida? O bolo sola!</p>
+        <p className="viva-sub">A vovó deixou a receita. Meça o leite na jarra e a farinha na balança da cozinha. Errou a medida? O bolo sola! <Ouvir texto="A vovó deixou a receita. Meça o leite na jarra e a farinha na balança da cozinha. Errou a medida? O bolo sola!" /></p>
       </header>
       <div className="viva-van">
         <div className="viva-card escuro">
@@ -358,7 +358,7 @@ export function Receita() {
           <Regua rotulo="Leite" cor="#7fc3f0" v={leite} min={0} max={14} muda={(n) => { setLeite(n); setMsg(null); }} mostra={`${L} mL`} />
           <Regua rotulo="Farinha" cor="#d9b26a" v={far} min={0} max={12} muda={(n) => { setFar(n); setMsg(null); }} mostra={`${F} g`} />
           <button type="button" className="viva-btn grande" onClick={msg?.ok ? nova : misturar}>{msg?.ok ? "Outra receita" : "Misturar e assar! 🔥"}</button>
-          {msg && <p className={`viva-feed ${msg.ok ? "ok" : "erro"}`}><b>{msg.ok ? "Que cheiro bom!" : "Ih!"}</b> {msg.txt}</p>}
+          {msg && <p className={`viva-feed ${msg.ok ? "ok" : "erro"}`}><b>{msg.ok ? "Que cheiro bom!" : "Ih!"}</b> {msg.txt} <Ouvir texto={msg.txt} /></p>}
           <div className="viva-contadores">
             <span><b>{placar.certas}</b><small>bolos perfeitos</small></span>
             <span><b>{placar.tent}</b><small>tentativas</small></span>
@@ -385,7 +385,7 @@ function Estimar({ x }: { x: (typeof ESTIMATIVAS)[number] }) {
   const [ok, setOk] = useState<number | null>(null);
   return (
     <div className="viva-card">
-      <div className="viva-jogo-topo"><span className="viva-jogo-ic">{x.e}</span><div><b>{x.p}</b><small>Arraste o seu palpite e confira.</small></div></div>
+      <div className="viva-jogo-topo"><span className="viva-jogo-ic">{x.e}</span><div><b>{x.p} <Ouvir texto={x.p} /></b><small>Arraste o seu palpite e confira.</small></div></div>
       <Regua rotulo="Palpite" cor="var(--v-rosa)" v={n} min={x.min} max={x.max} muda={(k) => { setN(k); setOk(null); }} mostra={x.fmt(n)} />
       {ok === null ? <button type="button" className="viva-btn" onClick={() => {
         const erro = Math.abs(n - x.real) / x.real; const est = erro <= 0.1 ? 3 : erro <= 0.25 ? 2 : 1;
