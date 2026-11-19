@@ -179,6 +179,7 @@ export default function Apostila({ params }: P) {
           <p>{a.resumo}</p>
           <div className="row">
             {botao}
+            {a.viva && <Link className="btn ghost" href={a.viva}>✨ Jogar a Fase Viva</Link>}
           </div>
           <p className="note">{a.arquivo ? "PDF em tamanho A4, para imprimir em casa. Gratuito por tempo limitado: pode compartilhar com outras famílias, sem alterar e sem vender." : "PDF em tamanho A4, para imprimir em casa. Pix, cartão ou boleto; o arquivo chega no seu e-mail."}</p>
         </div>

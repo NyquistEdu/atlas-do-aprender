@@ -1192,3 +1192,10 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .diag-passos p,.diag-passos ul{margin:2px 0 6px}
 .diag-passos ul{padding-left:18px}
 .diag-min{display:inline-block;min-width:56px;text-align:center;padding:3px 8px;border-radius:999px;background:var(--sc,var(--por));color:#fff;font-weight:700;font-size:.8rem}
+
+/* chamada da Fase Viva no tema da trilha */
+.viva-tema{display:flex;gap:12px;align-items:center;background:#1d2433;color:#fff;border-radius:14px;padding:12px 14px;text-decoration:none;border:2px solid #1d2433}
+.viva-tema>span:first-child{font-size:1.6rem}
+.viva-tema span{display:grid;flex:1}
+.viva-tema small{color:#c7cfe2}
+.viva-tema-btn{background:#f6d35b;color:#1d2433;border-radius:10px;padding:6px 14px}

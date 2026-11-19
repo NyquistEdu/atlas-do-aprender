@@ -14,6 +14,7 @@ const ABAS: [string, string][] = [
   ["/trilhas/portugues/1-ano", "Trilhas"],
   ["/apostilas", "Apostilas"],
   ["/comunidade", "Comunidade"],
+  ["/vivas", "Fases Vivas"],
   ["/fluencia", "Teste de fluência"],
   ["/olhar-atento", "Olhar Atento"],
   ["/livros", "Livros"],

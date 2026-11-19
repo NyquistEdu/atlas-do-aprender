@@ -9,7 +9,7 @@ import Mapa from "./Mapa";
 import { EMOJI_FASE, ENFEITES, NOME_REGIAO } from "@/lib/fases";
 import { ConviteConta } from "@/components/Acesso";
 import { AmazonLivro } from "@/components/Amazon";
-import { apostilaDoTema, treinoDoTema } from "@/lib/apostilas";
+import { APOSTILAS, apostilaDoTema, treinoDoTema } from "@/lib/apostilas";
 import { fichaDoItem, fichasDoTema } from "@/lib/maoNaMassaTemas";
 import { jogosDoTema } from "@/lib/loja";
 import { chefaoDoTema } from "@/lib/chefoes";
@@ -133,6 +133,7 @@ export default function Trilha({ params }: P) {
                 </div>
                 <Dicas tema={id} titulo={th.t} />
                 {ch && <ChefaoTema c={ch} />}
+                {(() => { const ap = APOSTILAS.find((a) => a.materia === s && a.ano === y && a.tema === i + 1 && a.viva); return ap ? <Link className="viva-tema" href={ap.viva!}><span>✨</span><span><b>Fase Viva: {ap.titulo}</b><small>Laboratório em 3D, jogos relâmpago e desafio do chefão. Grátis, no navegador.</small></span><b className="viva-tema-btn">Jogar</b></Link> : null; })()}
                 <div className="row">
                   <Marcar chave={"andamento|" + id} rotulo={["Estamos trabalhando neste tema", "Tirar de “em andamento”"]} origem="trilhas" />
                   <Marcar chave={id} rotulo={["Marcar tema como concluído", "Desmarcar tema"]} origem="trilhas" />

@@ -1,0 +1,215 @@
+"use client";
+/** Moldura da Fase Viva: barra com as 7 telas, modo, XP ou placar, som e tela cheia. */
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { ESTADO_INICIAL, TIMES, carregar, nivelDe, salvar, som, type EstadoViva, type Modo, type Time } from "@/lib/viva";
+
+type Api = {
+  e: EstadoViva;
+  modo: Modo;
+  tela: number;
+  irPara: (t: number) => void;
+  definirModo: (m: Modo) => void;
+  /** Acerto: no modo sozinho dá XP; no juntos, ponto para o time da vez (e passa a vez). */
+  acertou: (hab: string, xp?: number, msg?: string) => void;
+  errou: (hab: string, msg?: string) => void;
+  passarVez: () => void;
+  missao: (id: string, estrelas: number) => void;
+  sequencia: (jogo: string, n: number) => void;
+  zerarPlacar: () => void;
+  recomecar: () => void;
+  aviso: (txt: string, tipo?: "ok" | "erro" | "info") => void;
+  toggleSom: () => void;
+};
+
+const Ctx = createContext<Api | null>(null);
+export const useViva = () => { const c = useContext(Ctx); if (!c) throw new Error("fora da Fase Viva"); return c; };
+
+export type Tela = { n: number; nome: string; curto: string; icone: string };
+
+export default function Shell({ chave, titulo, telas, children, rodape }: {
+  chave: string; titulo: string; telas: Tela[]; children: (tela: number) => React.ReactNode; rodape?: React.ReactNode;
+}) {
+  const [e, setE] = useState<EstadoViva>(ESTADO_INICIAL);
+  const [pronto, setPronto] = useState(false);
+  const [tela, setTela] = useState(1);
+  const [toast, setToast] = useState<{ txt: string; tipo: string; id: number } | null>(null);
+  const palco = useRef<HTMLDivElement>(null);
+
+  useEffect(() => { setE(carregar(chave)); setPronto(true); }, [chave]);
+  useEffect(() => { if (pronto) salvar(chave, e); }, [e, pronto, chave]);
+
+  const aviso = useCallback((txt: string, tipo: "ok" | "erro" | "info" = "info") => {
+    const id = Date.now();
+    setToast({ txt, tipo, id });
+    setTimeout(() => setToast((t) => (t && t.id === id ? null : t)), 2200);
+  }, []);
+
+  const tocar = useCallback((t: Parameters<typeof som>[0]) => { if (e.som) som(t); }, [e.som]);
+
+  const irPara = useCallback((t: number) => {
+    const n = Math.max(1, Math.min(telas.length, t));
+    setTela(n);
+    setE((x) => (x.vistas.includes(n) ? x : { ...x, vistas: [...x.vistas, n] }));
+    palco.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [telas.length]);
+
+  const acertou = useCallback((hab: string, xp = 10, msg?: string) => {
+    tocar("certo");
+    setE((x) => {
+      const acertos = { ...x.acertos, [hab]: (x.acertos[hab] || 0) + 1 };
+      if (x.modo === "juntos") {
+        const v = x.vez;
+        aviso(`${msg ? msg + " " : ""}Ponto para o ${TIMES[v].nome}! ${TIMES[v].icone}`, "ok");
+        return { ...x, acertos, placar: { ...x.placar, [v]: x.placar[v] + 1 }, vez: v === "sol" ? "lua" : "sol" };
+      }
+      const antes = nivelDe(x.xp).i, depois = nivelDe(x.xp + xp).i;
+      if (depois > antes) { setTimeout(() => { if (x.som) som("nivel"); }, 250); aviso(`Subiu de nível: ${nivelDe(x.xp + xp).icone} ${nivelDe(x.xp + xp).nome}!`, "ok"); }
+      else aviso(msg ? `${msg} +${xp} XP` : `+${xp} XP`, "ok");
+      return { ...x, acertos, xp: x.xp + xp };
+    });
+  }, [aviso, tocar]);
+
+  const errou = useCallback((hab: string, msg?: string) => {
+    tocar("errado");
+    setE((x) => {
+      const erros = { ...x.erros, [hab]: (x.erros[hab] || 0) + 1 };
+      if (x.modo === "juntos") {
+        const prox: Time = x.vez === "sol" ? "lua" : "sol";
+        aviso(msg ? `${msg} Agora é a vez do ${TIMES[prox].nome}.` : `Não foi dessa vez. Vez do ${TIMES[prox].nome}!`, "erro");
+        return { ...x, erros, vez: prox };
+      }
+      if (msg) aviso(msg, "erro");
+      return { ...x, erros };
+    });
+  }, [aviso, tocar]);
+
+  const api: Api = {
+    e, modo: e.modo || "sozinho", tela, irPara, aviso, acertou, errou,
+    definirModo: (m) => { setE((x) => ({ ...x, modo: m })); tocar("clique"); },
+    passarVez: () => setE((x) => ({ ...x, vez: x.vez === "sol" ? "lua" : "sol" })),
+    missao: (id, estrelas) => setE((x) => ({ ...x, missoes: { ...x.missoes, [id]: Math.max(estrelas, x.missoes[id] || 0) } })),
+    sequencia: (jogo, n) => setE((x) => (n > (x.melhor[jogo] || 0) ? { ...x, melhor: { ...x.melhor, [jogo]: n } } : x)),
+    zerarPlacar: () => setE((x) => ({ ...x, placar: { sol: 0, lua: 0 }, vez: "sol" })),
+    recomecar: () => setE({ ...ESTADO_INICIAL, modo: e.modo, som: e.som }),
+    toggleSom: () => setE((x) => ({ ...x, som: !x.som })),
+  };
+
+  // setas do teclado (e passador de slides) trocam de tela
+  useEffect(() => {
+    const f = (ev: KeyboardEvent) => {
+      const alvo = ev.target as HTMLElement;
+      if (alvo && /INPUT|TEXTAREA|SELECT/.test(alvo.tagName)) return;
+      if (ev.key === "ArrowRight" || ev.key === "PageDown") irPara(tela + 1);
+      if (ev.key === "ArrowLeft" || ev.key === "PageUp") irPara(tela - 1);
+    };
+    window.addEventListener("keydown", f);
+    return () => window.removeEventListener("keydown", f);
+  }, [tela, irPara]);
+
+  const telaCheia = () => {
+    const el = palco.current;
+    if (!el) return;
+    if (document.fullscreenElement) document.exitFullscreen?.();
+    else el.requestFullscreen?.().catch(() => {});
+  };
+
+  const nv = nivelDe(e.xp);
+  const modo = e.modo || "sozinho";
+
+  return (
+    <Ctx.Provider value={api}>
+      <div className="viva" ref={palco} data-modo={modo}>
+        <div className="viva-barra">
+          <div className="viva-marca"><b>Fase Viva</b><span>{titulo}</span></div>
+          <nav className="viva-telas" aria-label="Telas da fase">
+            {telas.map((t) => (
+              <button key={t.n} type="button" aria-current={tela === t.n ? "page" : undefined} onClick={() => irPara(t.n)} title={t.nome}>
+                <i>{t.n}</i><span>{t.curto}</span>
+              </button>
+            ))}
+          </nav>
+          <div className="viva-ctrl">
+            <div className="viva-modo" role="group" aria-label="Modo">
+              <button type="button" aria-pressed={modo === "sozinho"} onClick={() => api.definirModo("sozinho")}>Sozinho</button>
+              <button type="button" aria-pressed={modo === "juntos"} onClick={() => api.definirModo("juntos")}>Juntos</button>
+            </div>
+            {modo === "sozinho" ? (
+              <div className="viva-xp" title={`${e.xp} XP`}>
+                <span className="viva-nv">{nv.icone} {nv.nome}</span>
+                <span className="viva-bar"><i style={{ width: `${nv.pct * 100}%` }} /></span>
+                <small>{e.xp} XP</small>
+              </div>
+            ) : (
+              <div className="viva-placar">
+                {(["sol", "lua"] as Time[]).map((t) => (
+                  <span key={t} className={e.vez === t ? "vez" : ""} style={{ ["--tc" as string]: TIMES[t].cor }}>{TIMES[t].icone} <b>{e.placar[t]}</b></span>
+                ))}
+              </div>
+            )}
+            <button type="button" className="viva-ico" onClick={api.toggleSom} aria-label={e.som ? "Desligar som" : "Ligar som"}>{e.som ? "🔊" : "🔇"}</button>
+            <button type="button" className="viva-ico" onClick={telaCheia} aria-label="Tela cheia">⛶</button>
+          </div>
+        </div>
+
+        {modo === "juntos" && tela > 1 && tela < 7 && (
+          <div className="viva-vez" style={{ ["--tc" as string]: TIMES[e.vez].cor }}>
+            É a vez do <b>{TIMES[e.vez].icone} {TIMES[e.vez].nome}</b>
+            <button type="button" className="link-btn" onClick={api.passarVez}>passar a vez</button>
+          </div>
+        )}
+
+        <div className="viva-palco">{children(tela)}</div>
+
+        <div className="viva-nav">
+          <button type="button" className="viva-seta" onClick={() => irPara(tela - 1)} disabled={tela === 1} aria-label="Tela anterior">‹</button>
+          <span>{telas[tela - 1]?.icone} {telas[tela - 1]?.nome} · {tela} de {telas.length}</span>
+          <button type="button" className="viva-seta" onClick={() => irPara(tela + 1)} disabled={tela === telas.length} aria-label="Próxima tela">›</button>
+        </div>
+        {rodape}
+        {toast && <div className={`viva-toast ${toast.tipo}`} role="status" key={toast.id}>{toast.txt}</div>}
+      </div>
+    </Ctx.Provider>
+  );
+}
+
+/** Caixinha de conta que confere o que a criança digitou e dá a dica daquele passo. */
+export function Caixa({ certo, onCerto, dica, largura = 3, rotulo }: { certo: number; onCerto?: () => void; dica: string; largura?: number; rotulo?: string }) {
+  const [v, setV] = useState("");
+  const [st, setSt] = useState<"" | "ok" | "erro">("");
+  const conferir = (txt: string) => {
+    if (txt.trim() === "") { setSt(""); return; }
+    const ok = Number(txt.replace(",", ".")) === certo;
+    setSt(ok ? "ok" : "erro");
+    if (ok) onCerto?.();
+  };
+  return (
+    <span className={`viva-caixa ${st}`}>
+      <input
+        inputMode="numeric" aria-label={rotulo || "resposta"} value={v} size={largura}
+        disabled={st === "ok"}
+        onChange={(ev) => { setV(ev.target.value.replace(/[^\d]/g, "")); setSt(""); }}
+        onBlur={(ev) => conferir(ev.target.value)}
+        onKeyDown={(ev) => { if (ev.key === "Enter") conferir((ev.target as HTMLInputElement).value); }}
+      />
+      {st === "erro" && <small className="viva-dica">{dica}</small>}
+    </span>
+  );
+}
+
+/** Cronômetro "Valendo!" do modo juntos. */
+export function Cronometro({ segundos, rodando, onFim, chaveReinicio }: { segundos: number; rodando: boolean; onFim?: () => void; chaveReinicio?: unknown }) {
+  const [t, setT] = useState(segundos);
+  const fim = useRef(onFim);
+  fim.current = onFim;
+  useEffect(() => { setT(segundos); }, [segundos, chaveReinicio]);
+  useEffect(() => {
+    if (!rodando) return;
+    const id = setInterval(() => setT((x) => {
+      if (x <= 1) { clearInterval(id); fim.current?.(); return 0; }
+      return x - 1;
+    }), 1000);
+    return () => clearInterval(id);
+  }, [rodando, chaveReinicio]);
+  const m = Math.floor(t / 60), s = String(t % 60).padStart(2, "0");
+  return <span className={`viva-crono ${t <= 10 && rodando ? "fim" : ""}`}>{m}:{s}</span>;
+}
