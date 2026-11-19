@@ -42,6 +42,7 @@ export default function Imprimir() {
   const [p, setP] = useState<Plano | null>(null);
   const [folha, setFolha] = useState<"semana" | "marcar" | "temas">("semana");
   const [erro, setErro] = useState(false);
+  const [gerando, setGerando] = useState(false);
 
   useEffect(() => {
     const f = new URLSearchParams(window.location.search).get("folha");
@@ -51,6 +52,8 @@ export default function Imprimir() {
   useEffect(() => {
     if (!p) return;
     document.title = `${folha === "semana" ? "A semana" : folha === "temas" ? "Os temas" : "O que fizemos"} · ${nomes(p)}`;
+    // no computador abre a impressão sozinha; no celular (que não deixa escolher paisagem) o PDF é gerado aqui
+    if (window.matchMedia("(pointer: coarse)").matches) return;
     const t = setTimeout(() => { (document as Document & { fonts?: FontFaceSet }).fonts?.ready.then(() => window.print()); }, 600);
     return () => clearTimeout(t);
   }, [p, folha]);
@@ -61,12 +64,40 @@ export default function Imprimir() {
   return (
     <div className="imp">
       <div className="imp-barra">
-        <span>Na janela de impressão, escolha <b>Salvar como PDF</b>, papel <b>A4</b> e orientação <b>paisagem</b>.</span>
-        <button className="btn small" type="button" onClick={() => window.print()}>Imprimir ou salvar PDF</button>
+        <span><b>Baixar PDF</b> já sai em A4 deitado (paisagem), pronto para imprimir. Se preferir, use a janela de impressão.</span>
+        <span className="row" style={{ gap: 8 }}>
+          <button className="btn small" type="button" disabled={gerando} onClick={() => baixarPdf(document.title, setGerando)}>{gerando ? "Gerando o PDF…" : "Baixar PDF (paisagem)"}</button>
+          <button className="btn small ghost" type="button" onClick={() => window.print()}>Imprimir</button>
+        </span>
       </div>
       {folha === "semana" ? <Semana p={p} /> : folha === "temas" ? <Temas p={p} /> : <Marcar p={p} />}
     </div>
   );
+}
+
+/** Gera o PDF no próprio navegador: cada folha vira uma página A4 deitada. Funciona no celular, que ignora a orientação da impressão. */
+async function baixarPdf(titulo: string, setGerando: (b: boolean) => void) {
+  setGerando(true);
+  try {
+    const [{ default: html2canvas }, { jsPDF }] = await Promise.all([import("html2canvas-pro"), import("jspdf")]);
+    await (document as Document & { fonts?: FontFaceSet }).fonts?.ready;
+    const folhas = [...document.querySelectorAll<HTMLElement>(".imp-folha")];
+    const pdf = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4", compress: true });
+    for (let i = 0; i < folhas.length; i++) {
+      const c = await html2canvas(folhas[i], {
+        scale: 2, logging: false, backgroundColor: "#ffffff", useCORS: true, windowWidth: 1400,
+        onclone: (doc) => { doc.querySelectorAll<HTMLElement>(".imp-folha").forEach((f) => { f.style.zoom = "1"; f.style.boxShadow = "none"; }); },
+      });
+      if (i > 0) pdf.addPage("a4", "landscape");
+      pdf.addImage(c.toDataURL("image/jpeg", 0.92), "JPEG", 0, 0, 297, 210);
+    }
+    const nome = `${titulo.replace(/[^\p{L}\p{N} ·-]/gu, "").replace(/\s+/g, " ").trim() || "planejamento"}.pdf`;
+    pdf.save(nome);
+  } catch {
+    alert("Não consegui gerar o PDF neste aparelho. Tente pelo botão Imprimir ou por um computador.");
+  } finally {
+    setGerando(false);
+  }
 }
 
 function Legenda({ p, its }: { p: Plano; its: Item[] }) {
