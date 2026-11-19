@@ -50,6 +50,7 @@ export default function Shell({ chave: chaveBase, titulo, telas, children, rodap
   const [pronto, setPronto] = useState(false);
   const [tela, setTela] = useState(1);
   const [versao, setVersao] = useState(0);
+  const [outros, setOutros] = useState<Partial<Record<Time, boolean>>>({});
   const [toast, setToast] = useState<{ txt: string; tipo: string; id: number } | null>(null);
   const palco = useRef<HTMLDivElement>(null);
 
@@ -207,14 +208,27 @@ export default function Shell({ chave: chaveBase, titulo, telas, children, rodap
         {modo === "juntos" && tela === 1 && (
           <div className="viva-times">
             <span>Quem joga em cada time?</span>
-            {(["sol", "lua"] as Time[]).map((t) => (
-              <label key={t} style={{ ["--tc" as string]: TIMES[t].cor }}>
-                {TIMES[t].icone}
-                <input list="viva-nomes" placeholder={TIMES[t].nome} value={e.nomes?.[t] || ""} maxLength={24}
-                  onChange={(ev) => { const n = ev.target.value; setE((x) => ({ ...x, nomes: { ...(x.nomes || {}), [t]: n } })); }} />
-              </label>
-            ))}
-            <datalist id="viva-nomes">{[...a.criancas, "Mamãe", "Papai", "Professora"].map((n) => <option key={n} value={n} />)}</datalist>
+            {(["sol", "lua"] as Time[]).map((t) => {
+              const opcoes = [...a.criancas, "Mamãe", "Papai", "Professora"];
+              const atual = e.nomes?.[t] || "";
+              const outro = atual !== "" && !opcoes.includes(atual) || outros[t];
+              const mudar = (n: string) => setE((x) => ({ ...x, nomes: { ...(x.nomes || {}), [t]: n } }));
+              return (
+                <label key={t} style={{ ["--tc" as string]: TIMES[t].cor }}>
+                  {TIMES[t].icone}
+                  <select value={outro ? "__outro" : atual} onChange={(ev) => {
+                    const n = ev.target.value;
+                    if (n === "__outro") { setOutros((o) => ({ ...o, [t]: true })); mudar(""); }
+                    else { setOutros((o) => ({ ...o, [t]: false })); mudar(n); }
+                  }}>
+                    <option value="">{TIMES[t].nome}</option>
+                    {opcoes.map((n) => <option key={n} value={n}>{n}</option>)}
+                    <option value="__outro">Outro nome…</option>
+                  </select>
+                  {outro && <input autoFocus placeholder="Digite o nome" value={atual} maxLength={24} onChange={(ev) => mudar(ev.target.value)} />}
+                </label>
+              );
+            })}
           </div>
         )}
         <div className="viva-palco" key={versao}>{children(tela)}</div>

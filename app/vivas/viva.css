@@ -294,6 +294,6 @@
 .viva-quem.link{padding:5px 10px;text-decoration:none;color:var(--v-navy)}
 .viva-times{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px;background:#262f45;font-size:.9rem;color:#c7cfe2}
 .viva-times label{display:flex;gap:6px;align-items:center}
-.viva-times input{border:2.5px solid var(--tc);border-radius:10px;padding:5px 9px;font:inherit;width:150px;background:#fff;color:var(--v-navy)}
+.viva-times input,.viva-times select{border:2.5px solid var(--tc);border-radius:10px;padding:5px 9px;font:inherit;font-weight:700;width:150px;background:#fff;color:var(--v-navy)}
 .viva-placar small{font-size:.72rem;font-weight:700}
 .viva-placar span.vez small{color:#fff}
