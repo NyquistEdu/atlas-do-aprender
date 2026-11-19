@@ -6,6 +6,7 @@ import { JogoTexto, Regua, type RodadaTexto } from "@/components/viva/Comuns";
 import { embaralhar, sorteio } from "@/lib/viva";
 import type { CasoBalanca, Objeto, Pesos } from "@/components/viva/Balanca3D";
 
+const Jarra3D = dynamic(() => import("@/components/viva/Jarra3D"), { ssr: false, loading: () => <div className="viva-3d carregando" style={{ height: 300 }}>carregando a jarra 3D…</div> });
 const Balanca3D = dynamic(() => import("@/components/viva/Balanca3D"), { ssr: false, loading: () => <div className="viva-3d carregando" style={{ height: 380 }}>carregando a cena 3D…</div> });
 
 export const fmtG = (g: number) => (g >= 1000 && g % 1000 === 0 ? `${g / 1000} kg` : g > 1000 ? `${Math.floor(g / 1000)} kg e ${g % 1000} g` : `${g} g`);
@@ -132,7 +133,6 @@ export function Laboratorio() {
   // capacidade
   const [copo, setCopo] = useState(250);
   const [copos, setCopos] = useState(0);
-  const feito = useRef<string | null>(null);
   const missao = MISSOES[mi];
   const feitas = MISSOES.filter((m) => v.e.missoes[m.id]).length;
   const o = OBJ_REGUA[obj], m = OBJ_MASSA[om];
@@ -150,13 +150,15 @@ export function Laboratorio() {
     d5: aba === "capacidade" && copo === 250 && ml === 1000,
     d6: aba === "capacidade" && copo === 200 && ml === 1000,
   };
-  useEffect(() => {
-    if (feito.current === missao.id || !ok[missao.id]) return;
-    feito.current = missao.id;
-    v.missao(missao.id, dica ? 2 : 3);
-    v.acertou("lab", 20, `Missão ${mi + 1} cumprida!`);
-    setTimeout(() => { setMi((x) => Math.min(MISSOES.length - 1, x + 1)); setDica(false); }, 1400);
-  });
+  // a missão só vale quando a criança aperta "Enviar": pode experimentar à vontade antes
+  const enviar = () => {
+    if (v.e.missoes[missao.id]) { v.aviso("Essa missão já está cumprida. Vamos para a próxima!", "info"); setMi((x) => Math.min(MISSOES.length - 1, x + 1)); setDica(false); return; }
+    if (ok[missao.id]) {
+      v.missao(missao.id, dica ? 2 : 3);
+      v.acertou("lab", 20, `Missão ${mi + 1} cumprida!`);
+      setTimeout(() => { setMi((x) => Math.min(MISSOES.length - 1, x + 1)); setDica(false); }, 1400);
+    } else v.errou("lab", "Ainda não é isso. Mexa mais um pouco ou peça a dica.");
+  };
   useEffect(() => { if (aba === "massa" && equilibrou) v.aviso(`Equilibrou! ${m.nome} tem ${fmtG(m.g)}.`, "ok"); }, [equilibrou]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -169,11 +171,12 @@ export function Laboratorio() {
         <div className="viva-col">
           <div className="viva-card">
             <div className="viva-bolinhas">
-              {MISSOES.map((x, i) => <button key={x.id} type="button" className={`${v.e.missoes[x.id] ? "feita" : ""} ${i === mi ? "atual" : ""}`} onClick={() => { setMi(i); setDica(false); feito.current = null; }} aria-label={`Missão ${i + 1}`}>{v.e.missoes[x.id] ? "★" : i + 1}</button>)}
+              {MISSOES.map((x, i) => <button key={x.id} type="button" className={`${v.e.missoes[x.id] ? "feita" : ""} ${i === mi ? "atual" : ""}`} onClick={() => { setMi(i); setDica(false); }} aria-label={`Missão ${i + 1}`}>{v.e.missoes[x.id] ? "★" : i + 1}</button>)}
             </div>
             <p className="viva-missao"><b>Missão {mi + 1}/{MISSOES.length}</b> · {missao.txt}</p>
             {dica && <p className="viva-dica-box">💡 {missao.dica}</p>}
             <div className="viva-row">
+              <button type="button" className="viva-btn" onClick={enviar}>Enviar ✓</button>
               <button type="button" className="viva-btn ghost" onClick={() => setDica(true)} disabled={dica}>Dica</button>
               <span className="viva-prog"><small>{feitas === MISSOES.length ? "Todas as missões cumpridas! ⭐" : `${feitas} de ${MISSOES.length} missões`}</small><i style={{ width: `${(feitas / MISSOES.length) * 100}%` }} /></span>
             </div>
@@ -227,8 +230,9 @@ export function Laboratorio() {
               </>
             ) : (
               <>
-                <span className="viva-ao-vivo">● Jarra de 1 litro · 1 L = 1000 mL</span>
-                <Jarra ml={ml} rotulo={`${ml} mL`} />
+                <span className="viva-ao-vivo">● Jarra de 1 litro em 3D · 1 L = 1000 mL</span>
+                <Jarra3D ml={ml} cor={0x7fc3f0} altura={340} />
+                <p className="viva-oculto">{ml} mL{ml > 1000 ? " · derramou na mesa!" : ""}</p>
               </>
             )}
           </div>
@@ -341,7 +345,7 @@ export function Receita() {
               <ul><li>🥛 <b>{r.leite} mL</b> de leite</li><li>🌾 <b>{r.farinha} g</b> de farinha</li><li>🥚 3 ovos</li><li>🧈 1 colher de manteiga</li></ul>
               <small>receita da vovó</small>
             </div>
-            <div className="viva-jarra-box"><Jarra ml={L} alt={220} rotulo={`leite: ${L} mL`} /></div>
+            <div className="viva-jarra-box"><Jarra3D ml={L} altura={230} /><small>leite: <b>{L} mL</b></small></div>
             <div className="viva-balanca-dig">
               <div className="viva-tigela">{far > 0 ? "🌾".repeat(Math.min(6, Math.ceil(far / 2))) : "🥣"}</div>
               <div className="viva-visor">{F} g</div>

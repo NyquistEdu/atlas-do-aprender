@@ -95,7 +95,6 @@ export function Laboratorio() {
   const [okR, setOkR] = useState(false);
   const [mi, setMi] = useState(() => Math.max(0, MISSOES.findIndex((m) => !v.e.missoes[m.id])));
   const [dica, setDica] = useState(false);
-  const feito = useRef<string | null>(null);
   const { q, r } = div(n, k);
   const missao = MISSOES[Math.min(mi, MISSOES.length - 1)];
   const todas = MISSOES.every((m) => v.e.missoes[m.id]);
@@ -105,16 +104,15 @@ export function Laboratorio() {
   useEffect(() => {
     if (okQ && okR && !revelado) { setRevelado(true); v.acertou("lab-conta", 15, "Resolveu pela conta!"); }
   }, [okQ, okR, revelado, v]);
-  useEffect(() => {
-    if (!missao || feito.current === missao.id) return;
-    if (prever && !revelado) return;
-    if (missao.ok(n, k, modo)) {
-      feito.current = missao.id;
+  // a missão só vale quando a criança aperta "Enviar": pode experimentar à vontade antes
+  const enviar = () => {
+    if (v.e.missoes[missao.id]) { v.aviso("Essa missão já está cumprida. Vamos para a próxima!", "info"); setMi((x) => Math.min(MISSOES.length - 1, x + 1)); setDica(false); return; }
+    if (missao.ok(n, k, modo) && !(prever && !revelado)) {
       v.missao(missao.id, dica ? 2 : 3);
       v.acertou("lab", 20, `Missão ${mi + 1} cumprida!`);
       setTimeout(() => { setMi((x) => Math.min(MISSOES.length - 1, x + 1)); setDica(false); }, 1400);
-    }
-  }, [n, k, modo, missao, mi, dica, prever, revelado, v]);
+    } else v.errou("lab", "Ainda não é isso. Mexa mais um pouco ou peça a dica.");
+  };
 
   const escondido = prever && !revelado;
   const rot = modo === "repartir" ? "Pratos" : "Em cada caixinha";
@@ -129,7 +127,7 @@ export function Laboratorio() {
           <div className="viva-card viva-missoes">
             <div className="viva-bolinhas">
               {MISSOES.map((m, i) => (
-                <button key={m.id} type="button" className={`${v.e.missoes[m.id] ? "feita" : ""} ${i === mi ? "atual" : ""}`} onClick={() => { setMi(i); setDica(false); feito.current = null; }} aria-label={`Missão ${i + 1}`}>
+                <button key={m.id} type="button" className={`${v.e.missoes[m.id] ? "feita" : ""} ${i === mi ? "atual" : ""}`} onClick={() => { setMi(i); setDica(false); }} aria-label={`Missão ${i + 1}`}>
                   {v.e.missoes[m.id] ? "★".repeat(v.e.missoes[m.id]).slice(0, 1) : i + 1}
                 </button>
               ))}
@@ -137,6 +135,7 @@ export function Laboratorio() {
             <p className="viva-missao"><b>Missão {mi + 1}/{MISSOES.length}</b> · {missao.txt}</p>
             {dica && <p className="viva-dica-box">💡 {missao.dica}</p>}
             <div className="viva-row">
+              <button type="button" className="viva-btn" onClick={enviar}>Enviar ✓</button>
               <button type="button" className="viva-btn ghost" onClick={() => setDica(true)} disabled={dica}>Dica</button>
               <span className="viva-prog"><small>{todas ? "Todas as missões cumpridas! ⭐" : `${feitas} de ${MISSOES.length} missões`}</small><i style={{ width: `${(feitas / MISSOES.length) * 100}%` }} /></span>
             </div>

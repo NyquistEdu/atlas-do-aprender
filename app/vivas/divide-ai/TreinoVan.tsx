@@ -1,6 +1,9 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 import { useViva, Caixa, Cronometro } from "@/components/viva/Shell";
+
+const Rua3D = dynamic(() => import("@/components/viva/Rua3D"), { ssr: false, loading: () => <div className="viva-3d carregando" style={{ height: 420 }}>carregando a rua 3D…</div> });
 import { alternativas, div, embaralhar, sorteio } from "@/lib/viva";
 
 type Rodada = { enunciado: React.ReactNode; opcoes: number[]; certa: number; explica: string };
@@ -139,12 +142,11 @@ export function Van() {
   const [valendo, setValendo] = useState(false);
   const { q, r } = div(t.N, t.C);
   const precisa = q + (r ? 1 : 0);
-  const cores = useMemo(() => embaralhar(Array.from({ length: t.N }, (_, i) => CORES_CRIANCA[i % CORES_CRIANCA.length])), [t]);
 
   const partir = () => {
     setValendo(false);
     setFase("embarque");
-    const dur = Math.min(t.N, vans * t.C) * 70 + 700;
+    const dur = Math.min(t.N, vans * t.C) * 120 + 900;
     setTimeout(() => {
       setFase("partiu");
       const ok = vans === precisa;
@@ -164,14 +166,6 @@ export function Van() {
   };
   const nova = () => { setT(novaTurma()); setVans(1); setFase("escolher"); setMsg(null); setConta((x) => x + 1); };
 
-  // posições (unidades do desenho 960 × 430)
-  const posCrianca = (i: number) => ({ x: 40 + (i % 10) * 33, y: 300 + Math.floor(i / 10) * 34 });
-  const posVan = (j: number) => ({ x: 410 + (j % 5) * 106, y: j < 5 ? 150 : 250 });
-  const assento = (i: number) => {
-    const j = Math.floor(i / t.C), s = i % t.C, p = posVan(j);
-    return { x: p.x + 18 + (s % 5) * 14, y: p.y + 20 + Math.floor(s / 5) * 13, van: j };
-  };
-
   return (
     <div className="viva-tela">
       <header className="viva-th">
@@ -180,57 +174,9 @@ export function Van() {
         <p className="viva-sub">A turma vai ao museu. Cada van leva um número de crianças. Quantas vans a escola precisa chamar para <b>ninguém ficar na calçada</b> e <b>nenhuma van ir vazia</b>?</p>
       </header>
       <div className="viva-van">
-        <div className="viva-card escuro sem-pad">
-          <svg viewBox="0 0 960 430" className="viva-cenario" role="img" aria-label={`${t.N} crianças e vans de ${t.C} lugares`}>
-            <defs>
-              <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#bfe0ff" /><stop offset="1" stopColor="#eef7ff" /></linearGradient>
-            </defs>
-            <rect width="960" height="430" fill="url(#ceu)" />
-            <circle cx="880" cy="60" r="34" fill="#ffd36b" />
-            {[[120, 70], [560, 50], [760, 95]].map(([x, y], i) => <g key={i} fill="#fff" opacity=".9"><ellipse cx={x} cy={y} rx="46" ry="16" /><ellipse cx={x + 26} cy={y - 10} rx="28" ry="14" /></g>)}
-            {/* escola */}
-            <g>
-              <rect x="30" y="120" width="330" height="160" fill="#f6d9b4" stroke="#c9a173" strokeWidth="3" rx="6" />
-              <polygon points="20,124 195,62 370,124" fill="#c4483b" />
-              <rect x="160" y="200" width="70" height="80" fill="#8a5a3b" rx="4" />
-              {[50, 105, 260, 305].map((x) => <rect key={x} x={x} y="150" width="38" height="34" fill="#9fd0f0" stroke="#fff" strokeWidth="3" />)}
-              <rect x="120" y="96" width="150" height="26" rx="5" fill="#fff" /><text x="195" y="114" textAnchor="middle" fontSize="15" fontWeight="800" fill="#1d2433">ESCOLA</text>
-            </g>
-            {/* chão */}
-            <rect y="280" width="960" height="150" fill="#cfd6df" />
-            <rect x="380" y="132" width="580" height="210" fill="#5b6273" />
-            {[0, 1, 2, 3, 4, 5].map((i) => <rect key={i} x={400 + i * 100} y="236" width="50" height="6" fill="#f2f2f2" />)}
-            {/* vans */}
-            {Array.from({ length: vans }, (_, j) => {
-              const p = posVan(j);
-              const anda = fase === "partiu" ? 700 : 0;
-              return (
-                <g key={j} style={{ transform: `translate(${anda}px, 0)`, transition: `transform 1.4s ${j * 0.08}s ease-in` }}>
-                  <rect x={p.x} y={p.y} width="94" height="62" rx="12" fill={["#f2b33d", "#6f93e0", "#5fae7b", "#e8786d", "#b48ad9"][j % 5]} stroke="#1d2433" strokeWidth="2.5" />
-                  <rect x={p.x + 8} y={p.y + 8} width="78" height="30" rx="5" fill="#dff1ff" stroke="#1d2433" strokeWidth="1.5" />
-                  <circle cx={p.x + 22} cy={p.y + 64} r="9" fill="#1d2433" /><circle cx={p.x + 74} cy={p.y + 64} r="9" fill="#1d2433" />
-                  <text x={p.x + 47} y={p.y + 54} textAnchor="middle" fontSize="11" fontWeight="800" fill="#1d2433">{t.C} lugares</text>
-                </g>
-              );
-            })}
-            {/* crianças */}
-            {Array.from({ length: t.N }, (_, i) => {
-              const de = posCrianca(i);
-              const vai = fase !== "escolher" && i < vans * t.C;
-              const a = assento(i);
-              const anda = fase === "partiu" && vai ? 700 : 0;
-              const x = vai ? a.x : de.x, y = vai ? a.y : de.y;
-              return (
-                <g key={i} style={{ transform: `translate(${x + anda}px, ${y}px) scale(${vai ? 0.55 : 1})`, transition: fase === "partiu" ? `transform 1.4s ${a.van * 0.08}s ease-in` : `transform .5s ${i * 0.07}s ease-out` }}>
-                  <circle cx="0" cy="0" r="9" fill="#f0c9a4" />
-                  <rect x="-9" y="9" width="18" height="16" rx="7" fill={cores[i]} />
-                  {!vai && fase === "partiu" && <text x="0" y="-14" textAnchor="middle" fontSize="13">😟</text>}
-                </g>
-              );
-            })}
-            <rect x="12" y="12" width="260" height="34" rx="17" fill="#1d2433" opacity=".85" />
-            <text x="142" y="35" textAnchor="middle" fontSize="16" fontWeight="800" fill="#fff">{t.N} crianças · vans de {t.C} lugares</text>
-          </svg>
+        <div className="viva-card escuro sem-pad" style={{ position: "relative" }}>
+          <span className="viva-ao-vivo" style={{ position: "absolute", margin: 10, zIndex: 2 }}>● Rua da escola em 3D · {t.N} crianças · vans de {t.C} lugares</span>
+          <Rua3D N={t.N} C={t.C} vans={vans} fase={fase} altura={420} />
         </div>
 
         <div className="viva-card">

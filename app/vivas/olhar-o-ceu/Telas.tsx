@@ -4,8 +4,11 @@ import dynamic from "next/dynamic";
 import { useViva, Cronometro, type Tela } from "@/components/viva/Shell";
 import { JogoTexto, Regua, type RodadaTexto } from "@/components/viva/Comuns";
 import { embaralhar, sorteio } from "@/lib/viva";
+import type { EstrelaCeu } from "@/components/viva/CeuNoite3D";
 import { DIA_LUA, Lua, SolPalito, TerraDN, momento, nomeFase, sombra, type NomeFase } from "./ceu";
 
+const CeuNoite3D = dynamic(() => import("@/components/viva/CeuNoite3D"), { ssr: false, loading: () => <div className="viva-3d carregando" style={{ height: 430 }}>carregando o céu 3D…</div> });
+const Quintal3D = dynamic(() => import("@/components/viva/Quintal3D"), { ssr: false, loading: () => <div className="viva-3d carregando" style={{ height: 400 }}>carregando o quintal 3D…</div> });
 const Ceu3D = dynamic(() => import("@/components/viva/Ceu3D"), { ssr: false, loading: () => <div className="viva-3d carregando" style={{ height: 380 }}>carregando a cena 3D…</div> });
 
 const DESC: Record<number, string> = {
@@ -73,22 +76,21 @@ export function Laboratorio() {
   const [palpite, setPalpite] = useState<NomeFase | null>(null);
   const [mi, setMi] = useState(() => Math.max(0, MISSOES.findIndex((m) => !v.e.missoes[m.id])));
   const [dica, setDica] = useState(false);
-  const feito = useRef<string | null>(null);
   const f = d / DIA_LUA, nome = nomeFase(f), m = momento(h);
   const missao = MISSOES[mi];
   const feitas = MISSOES.filter((x) => v.e.missoes[x.id]).length;
   const escondida = prever && palpite !== nome;
 
   useEffect(() => { setPalpite(null); }, [d]);
-  useEffect(() => {
-    if (feito.current === missao.id) return;
+  // a missão só vale quando a criança aperta "Enviar": pode experimentar à vontade antes
+  const enviar = () => {
+    if (v.e.missoes[missao.id]) { v.aviso("Essa missão já está cumprida. Vamos para a próxima!", "info"); setMi((x) => Math.min(MISSOES.length - 1, x + 1)); setDica(false); return; }
     if (missao.ok(h, d)) {
-      feito.current = missao.id;
       v.missao(missao.id, dica ? 2 : 3);
       v.acertou("lab", 20, `Missão ${mi + 1} cumprida!`);
       setTimeout(() => { setMi((x) => Math.min(MISSOES.length - 1, x + 1)); setDica(false); }, 1400);
-    }
-  }, [h, d, missao, mi, dica, v]);
+    } else v.errou("lab", "Ainda não é isso. Mexa mais um pouco ou peça a dica.");
+  };
 
   return (
     <div className="viva-tela">
@@ -101,12 +103,13 @@ export function Laboratorio() {
           <div className="viva-card">
             <div className="viva-bolinhas">
               {MISSOES.map((x, i) => (
-                <button key={x.id} type="button" className={`${v.e.missoes[x.id] ? "feita" : ""} ${i === mi ? "atual" : ""}`} onClick={() => { setMi(i); setDica(false); feito.current = null; }} aria-label={`Missão ${i + 1}`}>{v.e.missoes[x.id] ? "★" : i + 1}</button>
+                <button key={x.id} type="button" className={`${v.e.missoes[x.id] ? "feita" : ""} ${i === mi ? "atual" : ""}`} onClick={() => { setMi(i); setDica(false); }} aria-label={`Missão ${i + 1}`}>{v.e.missoes[x.id] ? "★" : i + 1}</button>
               ))}
             </div>
             <p className="viva-missao"><b>Missão {mi + 1}/{MISSOES.length}</b> · {missao.txt}</p>
             {dica && <p className="viva-dica-box">💡 {missao.dica}</p>}
             <div className="viva-row">
+              <button type="button" className="viva-btn" onClick={enviar}>Enviar ✓</button>
               <button type="button" className="viva-btn ghost" onClick={() => setDica(true)} disabled={dica}>Dica</button>
               <span className="viva-prog"><small>{feitas === MISSOES.length ? "Todas as missões cumpridas! ⭐" : `${feitas} de ${MISSOES.length} missões`}</small><i style={{ width: `${(feitas / MISSOES.length) * 100}%` }} /></span>
             </div>
@@ -212,7 +215,6 @@ export function RelogioSol() {
   const [placar, setPlacar] = useState({ certas: 0, tent: 0 });
   const [valendo, setValendo] = useState(false);
   const [rod, setRod] = useState(0);
-  const W = 720, A = 330;
   const conferir = () => {
     setValendo(false);
     setPlacar((p) => ({ certas: p.certas + (h === alvo ? 1 : 0), tent: p.tent + 1 }));
@@ -227,36 +229,18 @@ export function RelogioSol() {
     v.errou("sombras");
   };
   const nova = () => { setAlvo((a) => { let n = a; while (n === a) n = HORAS[sorteio(0, HORAS.length - 1)]; return n; }); setH(12); setMsg(null); setRod((x) => x + 1); };
-  const s = sombra(h, W / 2, A - 60, 225, 70);
   return (
     <div className="viva-tela">
       <header className="viva-th">
         <p className="viva-kick">Tela 4 · a ciência num lugar de verdade</p>
         <h2>Jogo de contexto: o relógio de sol do quintal</h2>
-        <p className="viva-sub">A Nina fincou um cabo de vassoura no quintal. Quando o bolo saiu do forno, ela pôs uma <b>pedrinha</b> na ponta da sombra. Mexa no Sol e descubra que horas eram.</p>
+        <p className="viva-sub">A Nina fincou um cabo de vassoura no quintal. Quando o bolo saiu do forno, ela pôs uma <b>pedrinha</b> na ponta da sombra. Mexa a hora, veja o Sol andar e descubra que horas eram. Arraste a cena para olhar de outro lado.</p>
       </header>
       <div className="viva-van">
-        <div className="viva-card escuro sem-pad">
-          <svg viewBox={`0 0 ${W} ${A}`} className="viva-cenario" role="img" aria-label="Quintal com um cabo de vassoura e a sombra">
-            <rect width={W} height={A - 60} fill={h > 6 && h < 18 ? "#bfe0ff" : "#1b2340"} />
-            {[[110, 60], [420, 40], [600, 80]].map(([x, y], i) => <g key={i} fill="#fff" opacity=".85"><ellipse cx={x} cy={y} rx="40" ry="13" /><ellipse cx={x + 22} cy={y - 8} rx="24" ry="12" /></g>)}
-            <path d={`M ${W / 2 - 225} ${A - 60} A 225 225 0 0 1 ${W / 2 + 225} ${A - 60}`} fill="none" stroke="#8fb6e0" strokeDasharray="6 7" />
-            {s.visivel && <circle cx={s.sx} cy={s.sy} r="22" fill="#ffc94a" stroke="#f0a92e" strokeWidth="4" />}
-            {/* casa e cerca */}
-            <rect x="24" y={A - 150} width="120" height="90" fill="#f6d9b4" stroke="#c9a173" strokeWidth="3" />
-            <polygon points={`16,${A - 148} 84,${A - 196} 152,${A - 148}`} fill="#c4483b" />
-            <rect x="70" y={A - 110} width="28" height="50" fill="#8a5a3b" />
-            {Array.from({ length: 14 }, (_, i) => <rect key={i} x={430 + i * 20} y={A - 100} width="12" height="40" fill="#fff" stroke="#d8d2c2" />)}
-            <rect y={A - 60} width={W} height="60" fill="#8cc56b" />
-            <rect y={A - 60} width={W} height="6" fill="#77b157" />
-            <text x="14" y={A - 14} fontSize="16" fontWeight="800" fill="#2c4a1f">OESTE · onde o Sol se põe</text>
-            <text x={W - 14} y={A - 14} fontSize="16" fontWeight="800" fill="#2c4a1f" textAnchor="end">LESTE · onde o Sol nasce</text>
-            {(() => { const p = sombra(alvo, W / 2, A - 60, 225, 70).ponta; return <g><ellipse cx={p} cy={A - 54} rx="14" ry="7" fill="#7d828c" stroke="#5b6070" /><text x={p} y={A - 32} fontSize="13" fontWeight="800" textAnchor="middle" fill="#1d2433">pedrinha</text></g>; })()}
-            {s.visivel && <line x1={W / 2} y1={A - 55} x2={s.ponta} y2={A - 55} stroke="#2a3050" strokeWidth="9" strokeLinecap="round" opacity=".5" />}
-            <rect x={W / 2 - 4} y={A - 130} width="8" height="72" rx="3" fill="#8a5a3b" />
-            <rect x="12" y="12" width="150" height="36" rx="18" fill="#1d2433" opacity=".85" />
-            <text x="87" y="36" textAnchor="middle" fontSize="18" fontWeight="800" fill="#fff">{h}h no relógio</text>
-          </svg>
+        <div className="viva-card escuro sem-pad" style={{ position: "relative" }}>
+          <span className="viva-ao-vivo" style={{ position: "absolute", margin: 10 }}>● Quintal em 3D · a sombra é feita pela luz do Sol</span>
+          <span className="viva-hora-tag">{h}h no relógio</span>
+          <Quintal3D hora={h} alvo={alvo} altura={400} />
         </div>
         <div className="viva-card">
           <div className="viva-jogo-topo"><span className="viva-jogo-ic">🕰️</span><div><b>Relógio de sol</b><small>Mexa a hora até a sombra tocar a pedrinha.</small></div></div>
@@ -281,24 +265,26 @@ export function RelogioSol() {
 }
 
 /* ---------------------------------------------------------------- 5. O céu da noite */
-type Estrela = { id: string; x: number; y: number; r: number; grupo?: "cruz" | "marias" };
-const CRUZ: Estrela[] = [
-  { id: "gacrux", x: 700, y: 120, r: 6, grupo: "cruz" }, { id: "acrux", x: 708, y: 280, r: 7.5, grupo: "cruz" },
-  { id: "mimosa", x: 640, y: 195, r: 6.5, grupo: "cruz" }, { id: "delta", x: 768, y: 208, r: 5, grupo: "cruz" },
+// azimute: 0 norte, 90 leste, 180 sul. O Cruzeiro fica alto no sul; prolongando o braço maior 4 vezes e meia, chega ao polo sul do céu.
+const CRUZ: EstrelaCeu[] = [
+  { id: "gacrux", az: 172, alt: 60.5, mag: 1.2, grupo: "cruz" }, { id: "acrux", az: 172, alt: 51.5, mag: 0.5, grupo: "cruz" },
+  { id: "mimosa", az: 166.5, alt: 56.5, mag: 0.9, grupo: "cruz" }, { id: "delta", az: 177.5, alt: 56, mag: 2.2, grupo: "cruz" },
 ];
-const MARIAS: Estrela[] = [
-  { id: "m1", x: 230, y: 170, r: 6, grupo: "marias" }, { id: "m2", x: 266, y: 186, r: 6, grupo: "marias" }, { id: "m3", x: 302, y: 202, r: 6, grupo: "marias" },
+const MARIAS: EstrelaCeu[] = [
+  { id: "mintaka", az: 112, alt: 44, mag: 1.9, grupo: "marias" }, { id: "alnilam", az: 115, alt: 42, mag: 1.6, grupo: "marias" }, { id: "alnitak", az: 118, alt: 40, mag: 1.7, grupo: "marias" },
 ];
-function fundoEstrelas(): Estrela[] {
-  let s = 11; const r = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
-  const l: Estrela[] = [];
-  while (l.length < 120) {
-    const e = { id: `f${l.length}`, x: r() * 940 + 10, y: r() * 380 + 10, r: 0.8 + r() * 2.2 };
-    if ([...CRUZ, ...MARIAS].every((c) => Math.hypot(c.x - e.x, c.y - e.y) > 34)) l.push(e);
+function estrelasDoCeu(): EstrelaCeu[] {
+  let s = 17; const r = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+  const outras: EstrelaCeu[] = [
+    { id: "intrometida", az: 174.5, alt: 53.5, mag: 3.4 }, { id: "betelgeuse", az: 108, alt: 52, mag: 0.6 }, { id: "rigel", az: 121, alt: 33, mag: 0.3 },
+    { id: "bellatrix", az: 116, alt: 51, mag: 1.6 }, { id: "saiph", az: 109, alt: 33, mag: 2.1 }, { id: "sirius", az: 135, alt: 28, mag: -1.2 },
+    { id: "canopus", az: 150, alt: 42, mag: -0.5 }, { id: "alfa-centauro", az: 186, alt: 46, mag: 0 }, { id: "hadar", az: 182, alt: 46, mag: 0.6 },
+  ];
+  while (outras.length < 60) {
+    const e = { id: `e${outras.length}`, az: 60 + r() * 180, alt: 12 + r() * 60, mag: 2 + r() * 2 };
+    if ([...CRUZ, ...MARIAS].every((c) => Math.hypot(c.az - e.az, c.alt - e.alt) > 9)) outras.push(e);
   }
-  // Intrometida e as outras estrelas de Órion, mais fracas
-  l.push({ id: "intrometida", x: 738, y: 250, r: 3 }, { id: "betelgeuse", x: 196, y: 70, r: 4 }, { id: "rigel", x: 330, y: 300, r: 4.5 }, { id: "bellatrix", x: 310, y: 90, r: 3.5 }, { id: "saiph", x: 200, y: 290, r: 3.5 });
-  return l;
+  return [...CRUZ, ...MARIAS, ...outras];
 }
 const CARTOES_CEU = [
   { e: "🌕", fundo: "linear-gradient(160deg,#3a4a82,#1d2433)", t: "O calendário da Lua", p: "De uma Lua Cheia até a próxima passam mais ou menos…", op: ["7 dias", "15 dias", "29 dias"], certa: "29 dias", ex: "O ciclo da Lua dura cerca de 29 dias e meio: quase um mês. A palavra “mês” vem dessa conta antiga com a Lua." },
@@ -325,14 +311,13 @@ function CartaoCeu({ c }: { c: (typeof CARTOES_CEU)[number] }) {
 
 export function CeuNoite() {
   const v = useViva();
-  const fundo = useMemo(fundoEstrelas, []);
+  const todas = useMemo(estrelasDoCeu, []);
   const [tocadas, setTocadas] = useState<string[]>([]);
   const [erros, setErros] = useState(0);
   const [flash, setFlash] = useState<string | null>(null);
   const cruzOk = CRUZ.every((e) => tocadas.includes(e.id));
   const mariasOk = MARIAS.every((e) => tocadas.includes(e.id));
-  const ordem = useMemo(() => embaralhar([...CRUZ, ...MARIAS, ...fundo]), [fundo]);
-  const tocar = (e: Estrela) => {
+  const tocar = (e: EstrelaCeu) => {
     if (tocadas.includes(e.id)) return;
     if (!e.grupo) { setErros((x) => x + 1); setFlash(e.id); setTimeout(() => setFlash(null), 500); return; }
     const novas = [...tocadas, e.id];
@@ -340,40 +325,18 @@ export function CeuNoite() {
     const grupo = e.grupo === "cruz" ? CRUZ : MARIAS;
     if (grupo.every((x) => novas.includes(x.id))) v.acertou("constelacoes", 25, e.grupo === "cruz" ? "Achou o Cruzeiro do Sul!" : "Achou as Três Marias!");
   };
-  const [g, a, mi, de] = CRUZ;
-  const sulY = a.y + (a.y - g.y) * 0.95;
   return (
     <div className="viva-tela">
       <header className="viva-th">
         <p className="viva-kick">Tela 5 · cadê isso na vida</p>
         <h2>No mundo: o céu da noite</h2>
-        <p className="viva-sub">Saia no quintal numa noite sem nuvens. Toque nas estrelas para achar o <b>Cruzeiro do Sul</b> (4 estrelas em cruz) e as <b>Três Marias</b> (3 estrelas em fila).</p>
+        <p className="viva-sub">Saia no quintal numa noite sem nuvens. Arraste para olhar o céu em volta e toque nas estrelas para achar o <b>Cruzeiro do Sul</b> (4 estrelas em cruz, olhando para o sul) e as <b>Três Marias</b> (3 estrelas em fila, para o leste).</p>
       </header>
       <div className="viva-lab">
         <div className="viva-col">
-          <div className="viva-card escuro sem-pad">
-            <svg viewBox="0 0 960 480" className="viva-cenario viva-noite" role="img" aria-label="Céu noturno com estrelas para tocar">
-              <defs>
-                <radialGradient id="ceuN" cx="50%" cy="100%" r="100%"><stop offset="0" stopColor="#24305a" /><stop offset="1" stopColor="#0c1124" /></radialGradient>
-                <filter id="brilhoE"><feGaussianBlur stdDeviation="2.5" /></filter>
-              </defs>
-              <rect width="960" height="480" fill="url(#ceuN)" />
-              {cruzOk && <g stroke="#f6d35b" strokeWidth="3" opacity=".9"><line x1={g.x} y1={g.y} x2={a.x} y2={a.y} /><line x1={mi.x} y1={mi.y} x2={de.x} y2={de.y} /></g>}
-              {cruzOk && <g><line x1={a.x} y1={a.y} x2={a.x + (a.x - g.x) * 0.95} y2={sulY} stroke="#f6d35b" strokeWidth="2.5" strokeDasharray="8 8" /><text x={a.x + 14} y={sulY - 6} fontSize="16" fontWeight="800" fill="#f6d35b">para o SUL ↓</text></g>}
-              {mariasOk && <polyline points={MARIAS.map((e) => `${e.x},${e.y}`).join(" ")} fill="none" stroke="#9fd3ff" strokeWidth="3" />}
-              {ordem.map((e) => {
-                const ok = tocadas.includes(e.id);
-                return (
-                  <g key={e.id} onClick={() => tocar(e)} style={{ cursor: "pointer" }}>
-                    <circle cx={e.x} cy={e.y} r={Math.max(14, e.r * 3)} fill="transparent" />
-                    {e.r > 3 && <circle cx={e.x} cy={e.y} r={e.r * 1.8} fill="#fff" opacity=".25" filter="url(#brilhoE)" />}
-                    <circle cx={e.x} cy={e.y} r={e.r} fill={ok ? (e.grupo === "cruz" ? "#f6d35b" : "#9fd3ff") : flash === e.id ? "#e2574c" : "#f4f6ff"} />
-                  </g>
-                );
-              })}
-              <path d="M0 455 Q 120 430 240 448 T 480 444 T 720 450 T 960 440 V 480 H 0 Z" fill="#0a0e1c" />
-              <text x="480" y="472" textAnchor="middle" fontSize="13" fill="#7d89b3" fontWeight="700">horizonte</text>
-            </svg>
+          <div className="viva-card escuro sem-pad" style={{ position: "relative" }}>
+            <span className="viva-ao-vivo" style={{ position: "absolute", margin: 10, zIndex: 2 }}>● Céu em 3D · arraste para olhar em volta</span>
+            <CeuNoite3D estrelas={todas} tocadas={tocadas} erradas={flash} cruzOk={cruzOk} mariasOk={mariasOk} onTocar={(id) => { const e = todas.find((x) => x.id === id); if (e) tocar(e); }} altura={430} />
           </div>
           <div className="viva-card">
             <div className="viva-row" style={{ justifyContent: "space-between" }}>
@@ -382,7 +345,7 @@ export function CeuNoite() {
               <small className="viva-sub">toques errados: {erros}</small>
               <button type="button" className="link-btn" onClick={() => { setTocadas([]); setErros(0); }}>recomeçar</button>
             </div>
-            <p className="viva-sub" style={{ margin: 0 }}>{cruzOk ? "Prolongue o braço maior da cruz para baixo, umas quatro vezes e meia o tamanho dele: ali fica o polo sul do céu. O desenho aqui está encurtado." : "Dica: a cruz tem uma estrela fraquinha no meio, a Intrometida, que não conta. Procure as 4 mais brilhantes."}</p>
+            <p className="viva-sub" style={{ margin: 0 }}>{cruzOk ? "Prolongue o braço maior da cruz para baixo, umas quatro vezes e meia o tamanho dele: ali fica o polo sul do céu. A linha amarela mostra o caminho." : "Dica: a cruz tem uma estrela fraquinha no meio, a Intrometida, que não conta. Procure as 4 mais brilhantes."}</p>
           </div>
         </div>
         <div className="viva-col">

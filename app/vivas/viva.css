@@ -334,3 +334,8 @@
 }
 .viva-quem span{white-space:nowrap}
 @media (max-width:640px){.viva-xp{grid-template-columns:auto 1fr;flex:1}.viva-ctrl{gap:6px}}
+
+.viva-hora-tag{position:absolute;z-index:2;right:10px;top:10px;background:#1d2433;color:#fff;font-weight:800;border-radius:99px;padding:6px 14px;font-size:1.05rem}
+
+.viva-jarra-box{width:100%;border-radius:12px;overflow:hidden;color:#c7cfe2;text-align:center}
+.viva-jarra-box small{display:block;padding:4px}
