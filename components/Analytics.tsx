@@ -47,6 +47,14 @@ function Medicao() {
       }
     } catch {}
   }, []);
+  // Acessos por página: +1 a cada página aberta (o painel não conta a si mesmo).
+  const ultima = useRef("");
+  useEffect(() => {
+    const p = (path || "/").replace(/\/+$/, "") || "/";
+    if (p === ultima.current || p.startsWith("/painel")) return;
+    ultima.current = p;
+    contar("Pagina", p);
+  }, [path]);
   useEffect(() => {
     const m = path?.match(/^\/apostilas\/([^/]+)/);
     if (m) rastrear("ViewContent", { content_ids: [m[1]], content_type: "product" });

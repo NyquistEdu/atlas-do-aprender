@@ -1,5 +1,6 @@
 "use client";
 /** Moldura da Fase Viva: barra com as 7 telas, modo, XP ou placar, som e tela cheia. */
+import { contar } from "@/lib/contagem";
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useAtlas } from "@/components/Providers";
 import { FormAcesso, SELO_CONTA } from "@/components/Acesso";
@@ -63,6 +64,14 @@ export default function Shell({ chave: chaveBase, titulo, telas, children, rodap
     if (pronto) salvar(chave, e);
   }, [e, pronto, chave]);
 
+  // Contagem anônima para o painel: começou a jogar (passou da capa) e chegou ao treino, 1 vez por sessão.
+  const slug = chaveBase.replace(/^viva-/, "");
+  useEffect(() => {
+    const uma = (ev: string) => { try { const k = `atlas-${ev}-${slug}`; if (sessionStorage.getItem(k)) return; sessionStorage.setItem(k, "1"); } catch {} contar(ev, slug); };
+    if (tela >= 2) uma("VivaJogou");
+    if (tela >= 3 && !(a.configurado && !a.carregando && !a.user) && !a.carregando) uma("VivaTreino");
+  }, [tela, slug, a.configurado, a.carregando, a.user]);
+
   const aviso = useCallback((txt: string, tipo: "ok" | "erro" | "info" = "info") => {
     const id = Date.now();
     setToast({ txt, tipo, id });
@@ -119,6 +128,7 @@ export default function Shell({ chave: chaveBase, titulo, telas, children, rodap
     toggleSom: () => setE((x) => ({ ...x, som: !x.som })),
     jogador,
     venceuChefao: (acertos, total) => {
+      if (!e.chefao) contar("VivaChefao", slug);
       if (e.chefao || !a.user || !jogador || e.modo === "juntos") { setE((x) => ({ ...x, chefao: true })); return; }
       setE((x) => ({ ...x, chefao: true }));
       const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset());

@@ -1199,3 +1199,6 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .viva-tema span{display:grid;flex:1}
 .viva-tema small{color:#c7cfe2}
 .viva-tema-btn{background:#f6d35b;color:#1d2433;border-radius:10px;padding:6px 14px}
+.pn-hist{margin:4px 0 0;background:#fff6d6;border-radius:10px;padding:8px 12px;font-size:.92rem}
+.pn-busca{width:100%;margin:8px 0 10px;padding:8px 12px;border:1.5px solid var(--linha,#d9cfb8);border-radius:10px;font:inherit;background:var(--card,#fff);color:inherit}
+.pn-total td{font-weight:800;border-top:2px solid currentColor}

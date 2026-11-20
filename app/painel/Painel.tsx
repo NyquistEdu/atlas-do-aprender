@@ -10,6 +10,8 @@ import { useAtlas } from "@/components/Providers";
 import { APOSTILAS, GRATUITOS, KITS } from "@/lib/apostilas";
 import { LOJA } from "@/lib/loja";
 import { ADMIN_EMAIL } from "@/lib/admin";
+import { VIVAS } from "@/lib/vivasLista";
+import { FICHAS } from "@/lib/olharAtento";
 
 type Linha = { d: string; e: string; n: number };
 type Dados = {
@@ -18,11 +20,13 @@ type Dados = {
   contas: { total: number; entraram: number; com_crianca: number; ativas7: number; ativas30: number; por_dia: { d: string; n: number }[] };
   uso: { criancas: number; temas: number; temas_periodo: number; andamento: number; livros: number; registros: number; registros_periodo: number; minutos_periodo: number; planos_ativos: number };
   pedidos: { planejamento: Record<string, number>; apostila: Record<string, number> };
+  historico?: { fluencia_testes: number; fluencia_criancas: number; chefao: Record<string, number> };
 };
 
 const PERIODOS: [number, string][] = [[7, "7 dias"], [30, "30 dias"], [90, "90 dias"], [365, "1 ano"]];
 const METRICAS = [
   { k: "visita", nome: "Visitas", ajuda: "1 por sessão de navegação" },
+  { k: "pagina", nome: "Páginas vistas", ajuda: "cada página aberta conta 1" },
   { k: "cadastros", nome: "Novos cadastros", ajuda: "contas criadas no site" },
   { k: "baixou", nome: "Downloads", ajuda: "cliques para baixar PDF" },
   { k: "comprar", nome: "Cliques em Comprar", ajuda: "cliques que levam à Kiwify" },
@@ -46,6 +50,19 @@ const nomeDetalhe = (e: string, k: string) => {
   if (NOMES[k]) return NOMES[k];
   if (k.endsWith(".pdf")) { const s = k.split("/").pop()!.replace(".pdf", ""); return NOMES[s] || s.replace(/-/g, " "); }
   if (e === "visita") return k === "/" ? "Página inicial" : k;
+  return k;
+};
+const PAGINAS_FIXAS: Record<string, string> = {
+  "/": "Página inicial", "/fluencia": "Teste de fluência", "/olhar-atento": "Olhar Atento", "/vivas": "Fases Vivas (lista)", "/diagnostico": "Diagnóstico",
+  "/apostilas": "Apostilas (lista)", "/trilhas": "Trilhas (lista)", "/planejamento": "Planejamento", "/diario": "Diário", "/entrar": "Entrar",
+  "/comunidade": "Comunidade", "/loja": "Loja", "/jogos": "Jogos", "/livros": "Livros", "/olimpiadas": "Olimpíadas", "/meu-plano": "Meu plano",
+  "/mao-na-massa": "Mão na massa", "/guia": "Guia", "/duvidas": "Dúvidas", "/comece": "Comece aqui", "/privacidade": "Privacidade", "/mural": "Mural", "/tematicas": "Temáticas",
+};
+const nomePagina = (k: string) => {
+  if (PAGINAS_FIXAS[k]) return PAGINAS_FIXAS[k];
+  const v = k.match(/^\/vivas\/([^/]+)/); if (v) return `Fase Viva · ${VIVAS.find((x) => x.slug === v[1])?.titulo || v[1]}`;
+  const ap = k.match(/^\/apostilas\/([^/]+)/); if (ap) return `Apostila · ${NOMES[ap[1]] || ap[1]}`;
+  const tr = k.match(/^\/trilhas\/([^/]+)\/([^/]+)/); if (tr) return `Trilha · ${({ portugues: "Português", matematica: "Matemática", ciencias: "Ciências" } as Record<string, string>)[tr[1]] || tr[1]} · ${tr[2].replace("-ano", "º ano").replace("1º ano", "Alfabetização")}`;
   return k;
 };
 const nomeOrigem = (o: string) => ({ direto: "Direto / sem origem", "meta-organico": "Instagram/Facebook (orgânico)", meta: "Anúncios Meta", google: "Google (busca)", "google-ads": "Google Ads", whatsapp: "WhatsApp", instagram: "Instagram (link com UTM)" } as Record<string, string>)[o] || o;
@@ -143,6 +160,29 @@ function Funil({ etapas }: { etapas: [string, number][] }) {
   );
 }
 
+function Acessos({ paginas, total }: { paginas: [string, number][]; total: number }) {
+  const [todas, setTodas] = useState(false);
+  const [busca, setBusca] = useState("");
+  const q = busca.trim().toLowerCase();
+  const lista = paginas.filter(([k]) => !q || k.includes(q) || nomePagina(k).toLowerCase().includes(q));
+  const vis = todas || q ? lista : lista.slice(0, 15);
+  return (
+    <section className="card">
+      <div className="row" style={{ justifyContent: "space-between", alignItems: "baseline" }}>
+        <h3 style={{ margin: 0 }}>Acessos por página</h3>
+        <span className="meta">{fmt(total)} páginas vistas · {fmt(paginas.length)} páginas diferentes</span>
+      </div>
+      {paginas.length ? (
+        <>
+          <input className="pn-busca" type="search" placeholder="Buscar página (ex.: vivas, fluencia, apostila)" value={busca} onChange={(e) => setBusca(e.target.value)} aria-label="Buscar página" />
+          <Ranking itens={vis.map(([k, n]) => [nomePagina(k), n] as [string, number])} total={total} vazio="Nenhuma página com esse nome." />
+          {!q && lista.length > 15 && <button type="button" className="link-btn" onClick={() => setTodas(!todas)}>{todas ? "Mostrar menos" : `Ver todas as ${lista.length} páginas`}</button>}
+        </>
+      ) : <p className="meta" style={{ margin: 0 }}>A contagem por página começa a aparecer depois que o arquivo <code>supabase/acessos.sql</code> for rodado no Supabase.</p>}
+    </section>
+  );
+}
+
 export default function Painel() {
   const { user, carregando } = useAtlas();
   const [dias, setDias] = useState(30);
@@ -188,7 +228,13 @@ export default function Painel() {
     const slugs = [...new Set([...vistas.keys(), ...compras.keys()])].filter((s) => APOSTILAS.some((a) => a.slug === s) || KITS.some((k) => k.slug === s));
     const apostilas = slugs.map((s) => ({ s, nome: NOMES[s] || s, v: vistas.get(s) || 0, c: compras.get(s) || 0 })).sort((a, b) => b.c - a.c || b.v - a.v);
     const gratisVistos = [...vistas.entries()].filter(([s]) => GRATUITOS.some((g) => g.slug === s)).map(([s, n]) => [NOMES[s] || s, n] as [string, number]).sort((a, b) => b[1] - a[1]);
-    return { N, datas, atual, antes, tot, det, juntar, origens, apostilas, gratisVistos };
+    const detMap = (e: string) => { const m = new Map<string, number>(); dados.detalhes.filter((x) => x.e === e).forEach((x) => m.set(x.k, (m.get(x.k) || 0) + x.n)); return m; };
+    const paginas = [...detMap("pagina").entries()].sort((a, b) => b[1] - a[1]);
+    const pg = detMap("pagina"), jog = detMap("viva_jogou"), tre = detMap("viva_treino"), che = detMap("viva_chefao");
+    const vivas = VIVAS.filter((x) => x.slug).map((x) => ({ slug: x.slug, nome: x.titulo, e: x.e, tema: x.tema, ac: pg.get(`/vivas/${x.slug}`) || 0, jog: jog.get(x.slug) || 0, tre: tre.get(x.slug) || 0, che: che.get(x.slug) || 0, hist: dados.historico?.chefao?.[x.titulo] || 0 }))
+      .sort((a, b) => b.ac - a.ac || b.jog - a.jog);
+    const fichas = [...detMap("olhar_ficha").entries()].map(([k, n]) => [FICHAS.find((f) => f.id === k)?.titulo || k, n] as [string, number]).sort((a, b) => b[1] - a[1]);
+    return { N, datas, atual, antes, tot, det, juntar, origens, apostilas, gratisVistos, paginas, vivas, fichas, pg };
   }, [dados]);
 
   if (carregando) return <div className="wrap pn"><p className="status">Carregando…</p></div>;
@@ -232,7 +278,7 @@ export default function Painel() {
         <>
           <section className="pn-hoje" aria-label="Hoje">
             <span className="pn-hoje-t">Hoje</span>
-            {([["visita", "visitas"], ["cadastros", "cadastros"], ["baixou", "downloads"], ["comprar", "cliques em Comprar"], ["diag_fim", "diagnósticos"]] as [string, string][]).map(([k, nome]) => {
+            {([["visita", "visitas"], ["pagina", "páginas vistas"], ["cadastros", "cadastros"], ["baixou", "downloads"], ["comprar", "cliques em Comprar"], ["diag_fim", "diagnósticos"]] as [string, string][]).map(([k, nome]) => {
               const v = calc.atual(k), h = v[v.length - 1] || 0, o = v[v.length - 2] || 0;
               return <span key={k} className="pn-hoje-i"><b>{fmt(h)}</b> {nome}<small>{o ? ` · ontem ${fmt(o)}` : ""}</small></span>;
             })}
@@ -293,6 +339,38 @@ export default function Painel() {
               </div>
             ) : <p className="meta" style={{ margin: 0 }}>Ainda sem visitas no período.</p>}
             <p className="meta" style={{ margin: 0 }}>Links com <code>?utm_source=instagram</code> aparecem separados. A origem é lembrada por 30 dias, então o cadastro feito depois ainda conta para quem trouxe a pessoa.</p>
+          </section>
+
+          <Acessos paginas={calc.paginas} total={calc.tot("pagina")} />
+
+          <section className="pn-grid2">
+            <div className="card">
+              <h3 style={{ margin: 0 }}>🎙️ Teste de fluência</h3>
+              <Funil etapas={[["Abriram a página", calc.pg.get("/fluencia") || 0], ["Começaram o teste", calc.tot("fluencia_inicio")], ["Terminaram o teste", calc.tot("fluencia_fim")]]} />
+              {dados.historico && <p className="pn-hist">Desde o início: <b>{fmt(dados.historico.fluencia_testes)}</b> testes salvos no histórico, de <b>{fmt(dados.historico.fluencia_criancas)}</b> crianças (só famílias com conta salvam).</p>}
+            </div>
+            <div className="card">
+              <h3 style={{ margin: 0 }}>👁️ Olhar Atento</h3>
+              <Funil etapas={[["Abriram a página", calc.pg.get("/olhar-atento") || 0], ["Crianças com respostas", calc.tot("olhar_inicio")], ["Fichas terminadas", calc.tot("olhar_ficha")], ["Abriram o relatório", calc.tot("olhar_relatorio")]]} />
+              {calc.fichas.length > 0 && <><p className="meta" style={{ margin: "6px 0 0" }}>Fichas mais terminadas</p><Ranking itens={calc.fichas.slice(0, 6)} vazio="" /></>}
+              <p className="meta" style={{ margin: 0 }}>As respostas ficam só no navegador da família; aqui chega apenas a contagem.</p>
+            </div>
+          </section>
+
+          <section className="card">
+            <h3 style={{ margin: 0 }}>✨ Fases Vivas</h3>
+            <div className="pn-table-wrap">
+              <table className="pn-table">
+                <thead><tr><th>Fase</th><th>Acessos</th><th>Começaram a jogar</th><th>Chegaram ao treino</th><th>Venceram o chefão</th><th>Chefão desde o início*</th></tr></thead>
+                <tbody>
+                  {calc.vivas.map((x) => (
+                    <tr key={x.slug}><td><b>{x.e} {x.nome}</b><br /><small className="meta">{x.tema}</small></td><td>{fmt(x.ac)}</td><td>{fmt(x.jog)}</td><td>{fmt(x.tre)}</td><td>{fmt(x.che)}</td><td>{fmt(x.hist)}</td></tr>
+                  ))}
+                  <tr className="pn-total"><td>Total</td><td>{fmt(soma(calc.vivas.map((x) => x.ac)))}</td><td>{fmt(soma(calc.vivas.map((x) => x.jog)))}</td><td>{fmt(soma(calc.vivas.map((x) => x.tre)))}</td><td>{fmt(soma(calc.vivas.map((x) => x.che)))}</td><td>{fmt(soma(calc.vivas.map((x) => x.hist)))}</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="meta" style={{ margin: 0 }}>Começaram a jogar = passaram da capa; treino = entraram na tela 3 já com conta (1 vez por visita). *Vitórias registradas no diário por famílias com conta, contando antes de o painel medir.</p>
           </section>
 
           <section className="pn-grid2">

@@ -34,6 +34,15 @@ const MAPA: Record<string, string> = {
   PrimeiraAtividade: "primeira_atividade",
   PlanoPedido: "plano_pedido",
   PlanoCriado: "plano_criado",
+  Pagina: "pagina",
+  FluenciaIniciada: "fluencia_inicio",
+  FluenciaConcluida: "fluencia_fim",
+  OlharIniciado: "olhar_inicio",
+  OlharFicha: "olhar_ficha",
+  OlharRelatorio: "olhar_relatorio",
+  VivaJogou: "viva_jogou",
+  VivaTreino: "viva_treino",
+  VivaChefao: "viva_chefao",
 };
 
 function limpar(s: string | null | undefined, max = 40) {

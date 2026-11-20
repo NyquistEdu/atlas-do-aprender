@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { COMANDOS, CORES, ESCALA, FICHAS, itemText, type Ficha } from "@/lib/olharAtento";
 import { useAtlas } from "@/components/Providers";
+import { contar } from "@/lib/contagem";
 
 type Stroop = { t1?: number; e1?: number; t2?: number; e2?: number };
 type Jogos = { digDireta?: number; digInversa?: number; stroop?: Stroop; comandos?: Record<string, boolean> };
@@ -103,6 +104,29 @@ export default function OlharAtento() {
       return { ...st, lista, ativa: lista.some((c) => c.id === st.ativa) ? st.ativa : lista[0].id, importou: true };
     });
   }, [store, criancas]);
+
+  // Contagem anônima para o painel: criança que começou, ficha terminada (1 vez por criança neste aparelho) e relatório aberto.
+  useEffect(() => {
+    if (!store) return;
+    try {
+      const K = "atlas-olhar-contado";
+      const reg = JSON.parse(localStorage.getItem(K) || "{}") as Record<string, { i?: 1; f?: string[] }>;
+      let mudou = false;
+      store.lista.forEach((c) => {
+        const r = reg[c.id] || {};
+        const avs = FICHAS.map((f) => ({ f, a: avaliar(f, c) }));
+        if (!r.i && avs.some(({ a }) => a.r > 0)) { r.i = 1; contar("OlharIniciado", c.serie || ""); mudou = true; }
+        avs.filter(({ a }) => a.r > 0 && !a.parcial).forEach(({ f }) => { if (!(r.f || []).includes(f.id)) { r.f = [...(r.f || []), f.id]; contar("OlharFicha", f.id); mudou = true; } });
+        reg[c.id] = r;
+      });
+      if (mudou) localStorage.setItem(K, JSON.stringify(reg));
+    } catch {}
+  }, [store]);
+  useEffect(() => {
+    if (aba !== "relatorio") return;
+    try { if (sessionStorage.getItem("atlas-olhar-relatorio")) return; sessionStorage.setItem("atlas-olhar-relatorio", "1"); } catch {}
+    contar("OlharRelatorio", "");
+  }, [aba]);
 
   if (!store) return <div className="kit"><p className="meta">Carregando…</p></div>;
   const S = store.lista.find((c) => c.id === store.ativa) || store.lista[0];
