@@ -9,7 +9,7 @@ export type Palco = {
   destruir: () => void;
 };
 
-export function criarPalco(el: HTMLElement, op: { fundo?: number; az?: number; el?: number; dist?: number; distRetrato?: number; alvo?: [number, number, number]; fov?: number; auto?: number; elMin?: number; elMax?: number; sombras?: boolean; dentro?: boolean }): Palco {
+export function criarPalco(el: HTMLElement, op: { fundo?: number; az?: number; el?: number; dist?: number; distRetrato?: number; alvo?: [number, number, number]; fov?: number; auto?: number; elMin?: number; elMax?: number; sombras?: boolean; dentro?: boolean; distFn?: (aspecto: number) => number }): Palco {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
   if (op.sombras) { renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap; }
@@ -63,7 +63,7 @@ export function criarPalco(el: HTMLElement, op: { fundo?: number; az?: number; e
       cam.position.copy(orbita.alvo);
       cam.lookAt(orbita.alvo.x + Math.sin(orbita.az) * Math.cos(orbita.el), orbita.alvo.y + Math.sin(orbita.el), orbita.alvo.z - Math.cos(orbita.az) * Math.cos(orbita.el));
     } else {
-      const d = distBase;
+      const d = op.distFn ? op.distFn(cam.aspect) : distBase;
       cam.position.set(orbita.alvo.x + Math.sin(orbita.az) * d * Math.cos(orbita.el), orbita.alvo.y + d * Math.sin(orbita.el), orbita.alvo.z + Math.cos(orbita.az) * d * Math.cos(orbita.el));
       cam.lookAt(orbita.alvo);
     }

@@ -430,3 +430,34 @@
 .g2-capa{display:grid;gap:10px;padding:10px;background:#263049;align-content:start}
 .g2-capa-leg{margin:0;background:#fff;border:2.5px solid #1d2433;border-radius:14px;padding:10px 14px;font-weight:800;font-size:clamp(.95rem,2.4vw,1.1rem);color:#1d2433;box-shadow:0 4px 0 #1d2433;min-height:1.5em}
 .g2-nomes span{overflow-wrap:normal;hyphens:auto;font-size:clamp(.64rem,2.1vw,.78rem)}
+
+/* ===== Nomear e Descrever ===== */
+.nd-frase{margin:0;font-weight:800;font-size:1.15rem;line-height:1.6;color:#1d2433}
+.nd-frase.grande{font-size:clamp(1.2rem,3vw,1.6rem)}
+.nd-frase .subst{background:#dbe7ff;color:#2350b5;border-bottom:3px solid #5b8def;border-radius:6px;padding:0 6px}
+.nd-frase .adj{background:#ffe7c9;color:#b25c00;border-bottom:3px solid #f29a38;border-radius:6px;padding:0 6px}
+.nd-frase .art,.nd-frase .liga{color:#56607a}
+.nd-tag{display:inline-block;border-radius:99px;padding:1px 10px;font-size:.78rem;font-weight:800;vertical-align:middle}
+.nd-tag.subst{background:#dbe7ff;color:#2350b5;border:2px solid #5b8def}
+.nd-tag.adj{background:#ffe7c9;color:#b25c00;border:2px solid #f29a38}
+.nd-h{margin:4px 0 8px;font-size:1rem;display:flex;gap:8px;align-items:center}
+.nd-fichas{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.nd-ficha{border:2.5px solid #1d2433;border-radius:12px;background:#fff;padding:6px 12px;font-weight:800;font-size:1rem;box-shadow:0 3px 0 #1d2433;display:inline-flex;gap:6px;align-items:center;transition:transform .1s}
+.nd-ficha em{font-style:normal;font-size:1.3rem}
+.nd-ficha:active{transform:translateY(2px);box-shadow:0 1px 0 #1d2433}
+.nd-ficha.subst[aria-pressed=true]{background:#5b8def;color:#fff}
+.nd-ficha.adj[aria-pressed=true]{background:#f29a38;color:#fff}
+.nd-ficha.art[aria-pressed=true]{background:#1d2433;color:#fff}
+.nd-grupo small{display:block;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#56607a;margin-bottom:4px}
+.nd-legenda{display:flex;gap:6px}
+.nd-capa{display:grid;background:#263049}
+.nd-capa .viva-ao-vivo{position:absolute;z-index:2;margin:10px}
+.nd-capa-leg{background:#fff;padding:10px 14px 12px;border-top:3px solid #1d2433;display:grid;gap:2px;min-height:86px;align-content:center}
+.nd-capa-leg small{font-weight:700;color:#56607a}
+.nd-cartaz{background:#fff6d6;border:3px dashed #c4483b;border-radius:14px;padding:12px 14px;display:grid;gap:6px;justify-items:start}
+.nd-cartaz>small{font-weight:900;letter-spacing:.12em;color:#c4483b}
+.nd-frase-treino{font-family:Georgia,serif;font-size:1.3rem;text-align:center;margin:6px 0;line-height:1.4}
+.nd-papel{background:#fffdf6;border:2px solid #1d2433;border-radius:10px;padding:12px 14px;box-shadow:4px 4px 0 #1d2433;transform:rotate(-1deg);margin:6px 0 10px}
+.nd-papel b{font-size:1.1rem;letter-spacing:.06em}
+.nd-papel p{margin:6px 0 0;font-size:1.05rem;line-height:1.45}
+.nd-papel.placa{background:#3f8f4a;color:#fff;border-color:#1d2433;text-align:center;transform:none}

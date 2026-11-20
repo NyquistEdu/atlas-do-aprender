@@ -192,6 +192,7 @@ export const APOSTILAS: Apostila[] = [
     resumo: "Tudo tem um nome, e cada coisa tem um jeito. A criança descobre o substantivo (comum, próprio, singular, plural, masculino e feminino), o adjetivo e a concordância entre os dois, e termina usando tudo para descrever um personagem. Com leitura original, jogo de adivinhação e caixa misteriosa.",
     dentro: ["6 partes com explicação e exercícios", "Erros comuns e exercícios guiados", "Treino diário de 5 dias", "Jogo “Quem sou eu?”, fichas para classificar e mão na massa", "Certificado e gabarito"],
     amostras: ["Tudo tem um nome", "O adjetivo", "Treino diário", "Jogo Quem sou eu?"],
+    viva: "/vivas/nomear-e-descrever",
   },
   {
     slug: "textos-do-dia-a-dia",
