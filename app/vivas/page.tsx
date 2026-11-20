@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 const VIVAS = [
   { slug: "divide-ai", titulo: "Divide Aí!", tema: "Matemática · 3º ano · Fase 2", desc: "Repartir, agrupar e o que sobra", e: "🍪", livre: true },
+  { slug: "textos-do-dia-a-dia", titulo: "Textos do Dia a Dia", tema: "Português · 4º ano · Fase 1", desc: "Notícia, carta e receita", e: "📰", livre: true },
   { slug: "nomear-e-descrever", titulo: "Nomear e Descrever", tema: "Português · 3º ano · Fase 5", desc: "Substantivos e adjetivos", e: "👾", livre: true },
   { slug: "olhar-o-ceu", titulo: "Olhar o Céu", tema: "Ciências · 3º ano · Fase 4", desc: "Sol, Lua, sombras e estrelas", e: "🌙", livre: true },
   { slug: "detetives-de-dados", titulo: "Detetives de Dados", tema: "Matemática · 3º ano · Fase 4", desc: "Pesquisa, tabelas e gráficos", e: "📊", livre: true },

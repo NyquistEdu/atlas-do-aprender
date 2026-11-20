@@ -204,6 +204,7 @@ export const APOSTILAS: Apostila[] = [
     resumo: "Cada texto nasce para resolver uma necessidade e, por isso, tem um formato. A criança descobre o que é gênero textual e conhece de perto três textos da vida real: a notícia (manchete, lide, fato e opinião), a carta (partes, linguagem formal e informal, envelope) e a receita (ingredientes, passos numerados e verbos que dão ordem). Compara os três e termina escrevendo uma notícia, uma carta e uma receita da própria família.",
     dentro: ["5 partes com explicação, exemplos comentados e exercícios", "Notícia, carta e receita anotadas parte por parte", "Produção de texto: minha notícia, minha carta e minha receita", "Treino diário de 5 dias, leitura do jornal da família e jogo Que gênero é?", "Mão na massa, certificado e gabarito"],
     amostras: ["Cada texto tem um jeito", "Uma notícia por dentro", "Uma receita por dentro", "Treino diário"],
+    viva: "/vivas/textos-do-dia-a-dia",
   },
   {
     slug: "divide-ai",
