@@ -196,6 +196,17 @@ export const APOSTILAS: Apostila[] = [
     viva: "/vivas/nomear-e-descrever",
   },
   {
+    slug: "versos-de-bolso",
+    titulo: "Versos de Bolso",
+    subtitulo: "Ler e criar poemas, percebendo rima, ritmo e imagem",
+    materia: "por", ano: "3", tema: 4, nomeTema: "Poesia e jogo com as palavras",
+    paginas: 32, preco: "Grátis", checkout: "",
+    arquivo: "/apostilas-pdf/versos-de-bolso.pdf", nomeArquivo: "Versos-de-Bolso-Atlas-do-Aprender.pdf",
+    resumo: "Poesia é para ler em voz alta, muitas vezes, juntos. A criança descobre o que é verso e estrofe, aprende a ouvir a rima (de ouvido, não de olho), a sentir o ritmo batendo palmas, a brincar com aliterações e onomatopeias e a perceber as imagens: comparação, metáfora e coisas que ganham vida. Depois conhece quadrinha, acróstico, poema visual e classificado poético, declama e escreve os próprios poemas. Todos os poemas foram escritos para a apostila.",
+    dentro: ["7 partes com explicação, poemas e exercícios: o poema, rima, ritmo, sons que brincam, imagem, formas de poema e declamar", "Erros comuns, exercícios guiados e 5 treinos diários com leitura em voz alta", "Leitura A caixa de palavras do Téo e Oficina do poeta (escrever e revisar um poema)", "Jogo Memória das rimas para recortar, Rimas em roda e Poema de dado", "Mão na massa (varal de poesia, sarau, poema no bolso), certificado e gabarito"],
+    amostras: ["A rima: sons que voltam", "Palavras que viram desenho", "Poemas que brincam com a forma", "Jogo: Memória das rimas"],
+  },
+  {
     slug: "textos-do-dia-a-dia",
     titulo: "Textos do Dia a Dia",
     subtitulo: "Notícia, carta e receita: para que serve e como se organiza cada gênero",
