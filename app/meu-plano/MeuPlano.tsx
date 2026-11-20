@@ -1,5 +1,6 @@
 "use client";
 
+import BaixarComLogin from "@/components/BaixarComLogin";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
@@ -154,7 +155,7 @@ export default function MeuPlano() {
   };
 
   const Texto = ({ i }: { i: Item }) =>
-    i.link ? (i.link.endsWith(".pdf") ? <a href={i.link} download>{i.texto}</a> : i.link.startsWith("http") ? <a href={i.link} target="_blank" rel="noopener noreferrer">{i.texto}</a> : <Link href={i.link}>{i.texto}</Link>) : <span>{i.texto}</span>;
+    i.link ? (i.link.endsWith(".pdf") ? <BaixarComLogin className="" href={i.link} titulo={i.texto}>{i.texto}</BaixarComLogin> : i.link.startsWith("http") ? <a href={i.link} target="_blank" rel="noopener noreferrer">{i.texto}</a> : <Link href={i.link}>{i.texto}</Link>) : <span>{i.texto}</span>;
 
   const Caixa = ({ i, crianca, rotulo }: { i: Item; crianca: string; rotulo?: string }) => {
     const ok = a.feito(chaveTarefa(dia, i), crianca);

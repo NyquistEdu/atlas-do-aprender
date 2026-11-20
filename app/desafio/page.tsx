@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BaixarComLogin from "@/components/BaixarComLogin";
 import Link from "next/link";
 import { DESAFIOS, desafioAtual } from "@/lib/desafios";
 import { todasFases } from "@/lib/fasesInfo";
@@ -30,7 +31,7 @@ export default function Pagina() {
         <div className="desafio-fatos">
           <span>⏱️ {d.duracao}</span><span>📅 Mostre o resultado {d.prazo}</span><Participantes desafio={d.id} />
         </div>
-        {d.pdf && <div className="row"><a className="btn" href={d.pdf.href} download={d.pdf.nome}>{d.pdf.rotulo}</a><a className="btn ghost" href="#participar">Mostrar o resultado</a></div>}
+        {d.pdf && <div className="row"><BaixarComLogin href={d.pdf.href} nome={d.pdf.nome} titulo={d.titulo}>{d.pdf.rotulo}</BaixarComLogin><a className="btn ghost" href="#participar">Mostrar o resultado</a></div>}
       </section>
 
       <div className="desafio-grid">

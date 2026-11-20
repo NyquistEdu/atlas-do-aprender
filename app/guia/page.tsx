@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import BaixarComLogin from "@/components/BaixarComLogin";
 import { APOSTILAS, GRATUITOS, KITS } from "@/lib/apostilas";
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export default function Guia() {
         <h1>Como usar o Atlas do Aprender</h1>
         <p className="lead">Tudo o que o Atlas oferece e como aproveitar cada parte, do primeiro acesso à rotina da semana. Leva uns 10 minutos para ler.</p>
         <div className="row no-print">
-          <a className="btn small" href="/guia.pdf" download="Atlas-do-Aprender-guia.pdf">Baixar em PDF</a>
+          <BaixarComLogin className="btn small" href="/guia.pdf" nome="Atlas-do-Aprender-guia.pdf" titulo="Guia do Atlas">Baixar em PDF</BaixarComLogin>
           <Link className="btn small ghost" href="/diagnostico">Começar pelo diagnóstico</Link>
         </div>
       </header>
