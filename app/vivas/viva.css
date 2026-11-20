@@ -476,3 +476,17 @@
 .tx-destinos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}
 .tx-email small{display:block;color:#56607a;font-weight:700;border-bottom:1px solid #d9cfb8;padding-bottom:6px}
 .nd-capa-leg{color:#1d2433}
+
+/* ===== Brincar com as Palavras ===== */
+.bp-palavra{display:flex;gap:14px;align-items:center;background:#fff6d6;border-radius:16px;padding:10px 14px;margin:6px 0 10px}
+.bp-fig{font-size:clamp(3rem,9vw,4.2rem);line-height:1}
+.bp-nome{display:block;font-size:clamp(1.8rem,5vw,2.4rem);font-weight:900;letter-spacing:.02em;color:#1d2433;margin-bottom:4px}
+.bp-palmas{display:flex;gap:14px;align-items:center;margin:4px 0 10px}
+.bp-palma{border:3px solid #1d2433;border-radius:22px;background:#f6d35b;font-size:2.6rem;padding:8px 18px;box-shadow:0 5px 0 #1d2433;display:grid;justify-items:center;line-height:1;transition:transform .08s}
+.bp-palma small{font-size:.8rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.bp-palma:active{transform:translateY(4px);box-shadow:0 1px 0 #1d2433}
+.bp-palma:disabled{opacity:.5}
+.bp-contas{font-size:1.8rem;display:grid;gap:2px;font-weight:800}
+.bp-contas small{font-size:.85rem;color:#56607a}
+.bp-grande{font-size:clamp(3rem,8vw,4rem);text-align:center;margin:4px 0;line-height:1.1}
+.bp-grande small{font-size:1rem;color:#9aa6c4;vertical-align:middle}

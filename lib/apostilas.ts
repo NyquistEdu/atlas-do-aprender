@@ -37,6 +37,7 @@ export const APOSTILAS: Apostila[] = [
     resumo: "Antes de aprender as letras, a criança precisa perceber que as palavras são feitas de sons. Aqui ela escuta, bate palmas nas sílabas, acha rimas, recita parlendas e brinca de trocar sons. Quase tudo é falado: ainda não precisa ler nem escrever.",
     dentro: ["6 partes com explicação para a família e exercícios ilustrados", "Parlendas e trava-línguas da tradição oral", "5 revisões diárias em que a ajuda vai diminuindo", "Trilha das palmas (jogo de tabuleiro), bingo e memória das rimas", "Atividades mão na massa, certificado e gabarito"],
     amostras: ["Sílabas: uma palma para cada pedaço", "Rimas: o fim que soa igual", "Revisão diária", "Trilha das palmas"],
+    viva: "/vivas/brincar-com-as-palavras",
   },
   {
     slug: "ouvir-as-letras",
