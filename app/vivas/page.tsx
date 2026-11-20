@@ -4,7 +4,7 @@ import Link from "next/link";
 import "./viva.css";
 
 export const metadata: Metadata = {
-  title: "Fases Vivas · a fase da trilha para mexer, jogar e resolver",
+  title: "Jogos educativos online grátis · Fases Vivas da alfabetização ao 4º ano",
   description: "Cada Fase Viva transforma um tema da trilha em 7 telas interativas: cena 3D, laboratório, jogos relâmpago, jogo de contexto, mundo real, desafio do chefão e resumo. Modo sozinho e modo juntos.",
   alternates: { canonical: "/vivas" },
 };
