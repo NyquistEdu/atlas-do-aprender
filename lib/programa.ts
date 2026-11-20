@@ -13,6 +13,11 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "Nível B · Números até 100 (folhas 11 a 20)", itens: ["Escrever os números de 31 a 100", "O quadro dos 100", "Antes, depois e entre dois números", "Virar a dezena (29, 30, 31…)", "Dezenas e unidades"] },
     { titulo: "Nível C · Contar em saltos e comparar (folhas 21 a 30)", itens: ["Contar de 10 em 10, de 5 em 5 e de 2 em 2", "Descobrir a regra de uma sequência", "Maior e menor, do menor para o maior", "Separar dezena e unidade", "Andar no quadro dos 100", "Desafio final: escrever de 1 a 100"] },
   ] },
+  "treino-versos-de-bolso": { blocos: [
+    { titulo: "Nível A · Reconhecer (folhas 1 a 10)", itens: ["Poema ou prosa? Versos e estrofes", "Rima ou não rima? Ache o par e feche a rima", "Esquema de rimas (AABB, ABAB, ABCB)", "Caça-onomatopeia e qual som se repete", "Comparação, metáfora ou coisa que ganha vida"] },
+    { titulo: "Nível B · Ler e analisar (folhas 11 a 20)", itens: ["Lendo um poema e bater o ritmo", "Refrão e o que o poeta quis dizer", "Versos em ordem e que palavra se esconde (acróstico)", "Lendo classificados poéticos", "O mapa da leitura: pausas e voz para declamar", "Que formato é?"] },
+    { titulo: "Nível C · Escrever (folhas 21 a 30)", itens: ["Três rimas e complete com uma rima", "Comparações e coisas que ganham vida", "De comparação para metáfora", "Meus acrósticos e minha quadrinha", "Classificados poéticos e poema de lista", "Desafio final: meu poema"] },
+  ] },
   "treino-textos-do-dia-a-dia": { blocos: [
     { titulo: "Nível A · Reconhecer (folhas 1 a 10)", itens: ["Que gênero é? Para que serve? Onde aparece?", "As partes da notícia, da carta e da receita", "Fato ou opinião?", "O jeito de receita: verbos que dão ordem", "Formal ou informal?"] },
     { titulo: "Nível B · Ler e analisar (folhas 11 a 20)", itens: ["Lendo uma notícia: o lide", "A melhor manchete", "Lendo uma carta e cartas em ordem", "O envelope: remetente e destinatário", "Lendo uma receita, passos em ordem e medidas", "Gênero e pista"] },

@@ -453,6 +453,23 @@ const TODOS_GRATUITOS: Gratuito[] = [
     materia: "mat", ano: "1", tema: 1, apostila: "contar-ate-cem",
   },
   {
+    slug: "treino-versos-de-bolso",
+    titulo: "Treino Diário · Versos de Bolso",
+    subtitulo: "30 folhas de rima, ritmo, imagem e poemas, uma por dia",
+    paginas: 35,
+    arquivo: "/treinos/treino-versos-de-bolso.pdf",
+    nomeArquivo: "Treino-Diario-Versos-de-Bolso-Atlas-do-Aprender.pdf",
+    resumo: "Folhas curtas para fazer um pouco por dia, com correção até acertar tudo. Começa reconhecendo poema e prosa, versos e estrofes, rimas e esquemas de rima, onomatopeias, aliterações, comparações e metáforas; passa por ler poemas, bater o ritmo, achar o refrão, entender o que o poeta quis dizer, pôr versos em ordem e preparar uma declamação; e termina escrevendo rimas, comparações, metáforas, acrósticos, quadrinhas, classificados poéticos e um poema inteiro.",
+    dentro: ["30 folhas em 3 níveis, de 3 a 12 minutos cada", "Reconhecer: poema ou prosa, versos, estrofes, rimas, onomatopeia, aliteração, comparação e metáfora", "Ler e analisar: ritmo, refrão, imagens, versos em ordem, acrósticos, classificados e o mapa da leitura", "Escrever: rimas, comparações, metáforas, acróstico, quadrinha, classificado e um poema inteiro", "Registro de progresso, certificado e gabarito"],
+    amostras: ["Rima ou não rima?", "Comparação, metáfora ou vida?", "O que o poeta quis dizer?", "Complete com uma rima"],
+    publico: "3º ano",
+    comoUsar: [
+      "Uma folha por dia, de 3 a 12 minutos, de preferência no mesmo horário. A criança já lê sozinha; nas folhas de rima e de ritmo, ela fala as palavras em voz alta antes de marcar. O adulto acompanha e corrige junto, com o gabarito.",
+      "Passe para a próxima folha quando ela fizer com no máximo 1 erro. No nível C (escrever), há muitas respostas certas: confira se ela usou o recurso pedido (rima, comparação, acróstico) e leia o poema em voz alta junto com ela.",
+    ],
+    materia: "por", ano: "3", tema: 4, apostila: "versos-de-bolso",
+  },
+  {
     slug: "treino-textos-do-dia-a-dia",
     titulo: "Treino Diário · Textos do Dia a Dia",
     subtitulo: "30 folhas de notícia, carta e receita, uma por dia",
