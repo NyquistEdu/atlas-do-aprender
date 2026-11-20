@@ -205,6 +205,11 @@ export const PROGRAMA: Record<string, Programa> = {
     { titulo: "O livro", itens: ["Ficha do livro e mapa das quatro visitas", "Uma página para cada visita de Ana à Grande Árvore", "Ana e Eliseu, o fruto e o caminho", "Ordem da história e palavras do livro"] },
     { titulo: "Para a prova", itens: ["Jeito de contar, reflexão e jogos", "3 simulados de 10 questões, com relógio", "Véspera e dia da prova", "Gabarito"] },
   ] },
+  "a-caminho-do-presepio": { blocos: [
+    { titulo: "Textos e tradições", itens: ["A história do primeiro Natal", "Por que chamamos de presépio? (São Francisco em Greccio, 1223)", "O que o presépio nos ensina", "O Advento e a coroa de quatro velas", "A estrela de Belém e os Magos com seus presentes", "A árvore, a guirlanda e as cores do Natal", "São Nicolau, de bispo a Papai Noel", "O Natal no Brasil: presépio de barro, Pastoril, Folia de Reis e Missa do Galo", "Oração e bênção do presépio em família"] },
+    { titulo: "Poemas, histórias e arte", itens: ["Soneto de Natal, de Machado de Assis, e quatro poemas para dizer em família", "Histórias: O burrinho de Belém e O presente do pastorzinho", "Como olhar uma obra de arte e fichas de Giotto, La Tour, Gentile da Fabriano e Botticelli"] },
+    { titulo: "Oficinas", itens: ["Vitrais para colorir", "Presépio de desenhar e dobrar", "Estrela de papel", "Caminho dos Magos, do Natal ao Dia de Reis", "Meu vitral e o registro do Natal da família"] },
+  ] },
   "bruxa-matilda": { blocos: [
     { titulo: "O que as crianças trabalham na caça ao tesouro", itens: ["Leitura: pistas com 1 ou 2 palavras e desenho, e uma palavra no espelho", "Números: achar os morcegos e montar o código do cadeado", "Lógica: decifrar uma mensagem em símbolos", "Ciência: mensagem invisível e poção que espuma", "Corpo e sentidos: atravessar a teia sem tocar os sinos e a caixa de tato", "Cooperação: cada criança tem um papel, e ninguém é eliminado"] },
   ] },

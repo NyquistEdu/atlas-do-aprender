@@ -11,6 +11,7 @@ export type Tematica = {
   blocos: Bloco[];
   cuidado?: string;
   material?: { href: string; titulo: string; texto: string; pago?: boolean };
+  material2?: { href: string; titulo: string; texto: string; pago?: boolean };
   foraDoAr?: boolean; // fica guardada para o ano que vem, mas não aparece no site // material do Atlas em destaque (gratuito, ou pago se pago=true)
 };
 
@@ -100,6 +101,7 @@ const TODAS_TEMATICAS: Tematica[] = [
     titulo: "Natal",
     quando: "25 de dezembro",
     emoji: "🎄",
+    material2: { href: "/apostilas/a-caminho-do-presepio", titulo: "A Caminho do Presépio", texto: "Livro de 40 páginas para preparar o Natal em família: a história do primeiro Natal e suas tradições, poemas, duas histórias, pinturas famosas, vitrais para colorir e oficinas, do Advento ao Dia de Reis. Gratuito." },
     material: { href: "/apostilas/duende-tico", titulo: "A Grande Missão do Duende Tico", texto: "Calendário do Advento com 24 atividades curtas, de 1º a 24 de dezembro, que termina numa caça ao presente na noite de Natal. Pronto para imprimir.", pago: true },
     resumo: "O nascimento de Jesus, o presépio, a Folia de Reis e o Papai Noel: livros, filmes, música, receitas e atividades para o mês de dezembro.",
     intro: [

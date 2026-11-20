@@ -737,6 +737,22 @@ const TODOS_GRATUITOS: Gratuito[] = [
     ],
   },
   {
+    slug: "a-caminho-do-presepio",
+    titulo: "A Caminho do Presépio",
+    subtitulo: "Textos, tradições, poemas, histórias, arte e oficinas para preparar o Natal em família",
+    paginas: 40,
+    arquivo: "/a-caminho-do-presepio.pdf",
+    nomeArquivo: "A-Caminho-do-Presepio-Atlas-do-Aprender.pdf",
+    resumo: "Um livro para viver o Natal devagar, do fim de novembro ao Dia de Reis. A história do primeiro Natal, o presépio de São Francisco, o Advento e a coroa de quatro velas, a estrela de Belém, os Magos e a Folia de Reis, a árvore, São Nicolau e o Natal no Brasil. Com o Soneto de Natal de Machado de Assis, poemas e duas histórias escritas para o livro, quatro pinturas famosas para olhar com calma, oração e bênção do presépio em família.",
+    dentro: ["11 textos sobre o Natal e suas tradições, cada um com perguntas para conversar", "Vitrais para colorir: presépio, coroa do Advento, coroas dos Magos, árvore, sapatinho e guirlanda", "Oficinas: presépio de desenhar e dobrar, estrela de papel, caminho dos Magos e meu vitral", "Poemas para dizer em família e duas histórias: O burrinho de Belém e O presente do pastorzinho", "Quatro obras de arte para olhar, oração, bênção do presépio e o registro do Natal da família"],
+    amostras: ["A história do primeiro Natal", "O presépio para colorir", "O caminho dos Magos", "O burrinho de Belém"],
+    publico: "Família, de 4 a 10 anos",
+    comoUsar: [
+      "Escolha uma oficina por semana: leia o texto em voz alta, converse com as perguntas do quadro e termine colorindo ou fazendo a atividade. Não é preciso seguir a ordem nem fazer tudo.",
+      "Monte o presépio no fim de novembro, acenda uma vela da coroa a cada domingo do Advento, coloque o Menino na noite de 24 e faça os Magos andarem um passo por dia até 6 de janeiro.",
+    ],
+  },
+  {
     slug: "bruxa-matilda",
     foraDoAr: true, // Halloween: volta em outubro
     titulo: "O Feitiço da Bruxa Matilda",
