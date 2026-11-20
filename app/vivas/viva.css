@@ -490,3 +490,15 @@
 .bp-contas small{font-size:.85rem;color:#56607a}
 .bp-grande{font-size:clamp(3rem,8vw,4rem);text-align:center;margin:4px 0;line-height:1.1}
 .bp-grande small{font-size:1rem;color:#9aa6c4;vertical-align:middle}
+
+/* rodadas de 10 no treino */
+.viva-meta{position:relative;height:22px;border-radius:99px;background:#efe6d2;overflow:hidden;margin:2px 0 4px}
+.viva-meta i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,#f6d35b,#f2b33d);border-radius:99px;transition:width .4s ease}
+.viva-meta span{position:relative;display:block;text-align:right;padding:0 10px;font-size:.8rem;font-weight:900;line-height:22px;color:#1d2433}
+.viva-meta-fim{display:grid;justify-items:center;gap:6px;text-align:center;padding:18px 10px;animation:viva-meta-pop .45s cubic-bezier(.3,1.5,.5,1)}
+.viva-meta-fim b{font-size:1.8rem}
+.viva-meta-fim p{margin:0;font-weight:700;color:#56607a}
+.viva-meta-est{font-size:2rem;letter-spacing:4px}
+.viva-meta-est i{font-style:normal;color:#c9bfa8}
+@keyframes viva-meta-pop{from{transform:scale(.7);opacity:0}to{transform:none;opacity:1}}
+.viva-meta em{position:absolute;left:10px;top:0;line-height:22px;font-style:normal;font-size:.8rem;font-weight:900;color:#1d2433}

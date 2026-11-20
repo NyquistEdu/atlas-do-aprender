@@ -36,6 +36,44 @@ export function Ouvir({ texto, claro = false }: { texto: string; claro?: boolean
 export type RodadaTexto = { enunciado: React.ReactNode; opcoes: string[]; certa: string; explica: string };
 
 /** Jogo relâmpago de alternativas, com rodadas infinitas, sequência, ampliar e "Valendo!". */
+/* ---------- rodadas de 10 no treino: contador "3/10", barrinha e comemoração no fim ---------- */
+export const META_TREINO = 10;
+export function useMeta(hab: string) {
+  const v = useViva();
+  const [feitas, setFeitas] = useState(0);
+  const [acertos, setAcertos] = useState(0);
+  const [fim, setFim] = useState(false);
+  const conta = (ok: boolean) => { const f = feitas + 1; setFeitas(f); if (ok) setAcertos((a) => a + 1); return f >= META_TREINO; };
+  const terminar = (acertosFinais: number) => {
+    setFim(true);
+    const est = acertosFinais >= META_TREINO ? 3 : acertosFinais >= 7 ? 2 : 1;
+    v.acertou(hab, est * 5, `Rodada de ${META_TREINO} completa! ${"⭐".repeat(est)}`);
+  };
+  const reiniciar = () => { setFeitas(0); setAcertos(0); setFim(false); };
+  return { feitas, acertos, fim, conta, terminar, reiniciar, ultima: feitas >= META_TREINO };
+}
+export function MetaTopo({ feitas, acertos }: { feitas: number; acertos: number }) {
+  return (
+    <div className="viva-meta" aria-label={`Pergunta ${Math.min(feitas + 1, META_TREINO)} de ${META_TREINO}, ${acertos} acertos`}>
+      <i style={{ width: `${(feitas / META_TREINO) * 100}%` }} />
+      <em>✓ {acertos}</em>
+      <span>{Math.min(feitas + 1, META_TREINO)}/{META_TREINO}</span>
+    </div>
+  );
+}
+export function MetaFim({ acertos, onMais }: { acertos: number; onMais: () => void }) {
+  const est = acertos >= META_TREINO ? 3 : acertos >= 7 ? 2 : 1;
+  const frase = acertos === META_TREINO ? "Gabaritou! Todas certas!" : acertos >= 7 ? "Mandou muito bem!" : acertos >= 4 ? "Bom treino! Vamos de novo?" : "Treinar faz crescer. Bora mais uma?";
+  return (
+    <div className="viva-meta-fim" role="status">
+      <span className="viva-meta-est">{"⭐".repeat(est)}<i>{"☆".repeat(3 - est)}</i></span>
+      <b>{acertos} de {META_TREINO}</b>
+      <p>{frase}</p>
+      <button type="button" className="viva-btn" onClick={onMais}>Jogar mais {META_TREINO} ↻</button>
+    </div>
+  );
+}
+
 export function JogoTexto({ id, titulo, sub, icone, hab, gerar }: { id: string; titulo: string; sub: string; icone: string; hab: string; gerar: () => RodadaTexto }) {
   const v = useViva();
   const [r, setR] = useState<RodadaTexto | null>(null);
@@ -44,6 +82,7 @@ export function JogoTexto({ id, titulo, sub, icone, hab, gerar }: { id: string; 
   const [grande, setGrande] = useState(false);
   const [valendo, setValendo] = useState(false);
   const [rod, setRod] = useState(0);
+  const meta = useMeta(hab);
   const nova = useCallback(() => {
     setR((antes) => { let x = gerar(); for (let i = 0; i < 4 && antes && x.explica === antes.explica; i++) x = gerar(); return x; });
     setEsc(null); setRod((n) => n + 1);
@@ -53,9 +92,11 @@ export function JogoTexto({ id, titulo, sub, icone, hab, gerar }: { id: string; 
   const responder = (o: string) => {
     if (esc !== null) return;
     setEsc(o); setValendo(false);
-    if (o === r.certa) { const s = seq + 1; setSeq(s); v.sequencia(id, s); v.acertou(hab, 10); setTimeout(nova, 1000); }
+    const ok = o === r.certa, acabou = meta.conta(ok);
+    if (ok) { const s = seq + 1; setSeq(s); v.sequencia(id, s); v.acertou(hab, 10); setTimeout(acabou ? () => meta.terminar(meta.acertos + 1) : nova, 1000); }
     else { setSeq(0); v.errou(hab, r.explica); }
   };
+  const maisDez = () => { meta.reiniciar(); setSeq(0); nova(); };
   const corpo = (
     <div className={`viva-jogo ${grande ? "grande" : ""}`}>
       <div className="viva-jogo-topo">
@@ -63,6 +104,8 @@ export function JogoTexto({ id, titulo, sub, icone, hab, gerar }: { id: string; 
         <div><b>{titulo}</b><small>{sub}</small></div>
         <button type="button" className="viva-ico" onClick={() => setGrande(!grande)} aria-label={grande ? "Fechar" : "Ampliar"}>{grande ? "✕" : "⤢"}</button>
       </div>
+      <MetaTopo feitas={meta.feitas} acertos={meta.acertos} />
+      {meta.fim ? <MetaFim acertos={meta.acertos} onMais={maisDez} /> : <>
       <div className="viva-jogo-corpo">{r.enunciado}</div>
       <div className="viva-opcoes txt">
         {r.opcoes.map((o) => (
@@ -72,10 +115,13 @@ export function JogoTexto({ id, titulo, sub, icone, hab, gerar }: { id: string; 
       <div className="viva-jogo-pe">
         {esc !== null && esc !== r.certa ? <span className="viva-explica">{r.explica}</span> : <span className="viva-seq">🔥 {seq} seguidos · melhor {v.e.melhor[id] || 0}</span>}
         {v.modo === "juntos" && esc === null && (valendo
-          ? <Cronometro segundos={20} rodando={valendo} chaveReinicio={rod} onFim={() => { setValendo(false); setEsc("__tempo"); setSeq(0); v.errou(hab, "Acabou o tempo!"); }} />
+          ? <Cronometro segundos={20} rodando={valendo} chaveReinicio={rod} onFim={() => { setValendo(false); setEsc("__tempo"); setSeq(0); meta.conta(false); v.errou(hab, "Acabou o tempo!"); }} />
           : <button type="button" className="viva-btn mini" onClick={() => setValendo(true)}>Valendo! (20 s)</button>)}
-        {esc !== null && esc !== r.certa && <button type="button" className="viva-btn mini" onClick={nova}>Nova rodada</button>}
+        {esc !== null && esc !== r.certa && (meta.ultima
+          ? <button type="button" className="viva-btn mini" onClick={() => meta.terminar(meta.acertos)}>Ver resultado 🏁</button>
+          : <button type="button" className="viva-btn mini" onClick={nova}>Próxima pergunta</button>)}
       </div>
+      </>}
     </div>
   );
   return grande ? <div className="viva-overlay" onClick={(e) => { if (e.target === e.currentTarget) setGrande(false); }}>{corpo}</div> : corpo;

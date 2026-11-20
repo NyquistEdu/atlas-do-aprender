@@ -1,7 +1,7 @@
 "use client";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
-import { Ouvir } from "@/components/viva/Comuns";
+import { MetaFim, MetaTopo, Ouvir, useMeta } from "@/components/viva/Comuns";
 import { useViva, Caixa, Cronometro } from "@/components/viva/Shell";
 
 const Rua3D = dynamic(() => import("@/components/viva/Rua3D"), { ssr: false, loading: () => <div className="viva-3d carregando" style={{ height: 420 }}>carregando a rua 3D…</div> });
@@ -66,18 +66,21 @@ function Jogo({ id, titulo, sub, icone, hab }: { id: keyof typeof GERADORES; tit
   const [grande, setGrande] = useState(false);
   const [valendo, setValendo] = useState(false);
   const [rod, setRod] = useState(0);
+  const meta = useMeta(hab);
   const nova = useCallback(() => { setR(GERADORES[id]()); setEsc(null); setRod((x) => x + 1); }, [id]);
   useEffect(() => { nova(); }, [nova]);
   if (!r) return null;
   const responder = (o: number) => {
     if (esc !== null) return;
     setEsc(o); setValendo(false);
-    if (o === r.certa) {
+    const ok = o === r.certa, acabou = meta.conta(ok);
+    if (ok) {
       const s = seq + 1; setSeq(s); v.sequencia(id, s);
       v.acertou(hab, 10);
-      setTimeout(nova, 900);
+      setTimeout(acabou ? () => meta.terminar(meta.acertos + 1) : nova, 900);
     } else { setSeq(0); v.errou(hab, r.explica); }
   };
+  const maisDez = () => { meta.reiniciar(); setSeq(0); nova(); };
   const corpo = (
     <div className={`viva-jogo ${grande ? "grande" : ""}`}>
       <div className="viva-jogo-topo">
@@ -85,6 +88,8 @@ function Jogo({ id, titulo, sub, icone, hab }: { id: keyof typeof GERADORES; tit
         <div><b>{titulo}</b><small>{sub}</small></div>
         <button type="button" className="viva-ico" onClick={() => setGrande(!grande)} aria-label={grande ? "Fechar" : "Ampliar"}>{grande ? "✕" : "⤢"}</button>
       </div>
+      <MetaTopo feitas={meta.feitas} acertos={meta.acertos} />
+      {meta.fim ? <MetaFim acertos={meta.acertos} onMais={maisDez} /> : <>
       <div className="viva-jogo-corpo">{r.enunciado}</div>
       <div className="viva-opcoes">
         {r.opcoes.map((o) => (
@@ -95,10 +100,13 @@ function Jogo({ id, titulo, sub, icone, hab }: { id: keyof typeof GERADORES; tit
       <div className="viva-jogo-pe">
         {esc !== null && esc !== r.certa ? <span className="viva-explica">{r.explica}</span> : <span className="viva-seq">🔥 {seq} seguidos · melhor {v.e.melhor[id] || 0}</span>}
         {v.modo === "juntos" && esc === null && (valendo
-          ? <Cronometro segundos={20} rodando={valendo} chaveReinicio={rod} onFim={() => { setValendo(false); setEsc(-1); setSeq(0); v.errou(hab, "Acabou o tempo!"); }} />
+          ? <Cronometro segundos={20} rodando={valendo} chaveReinicio={rod} onFim={() => { setValendo(false); setEsc(-1); setSeq(0); meta.conta(false); v.errou(hab, "Acabou o tempo!"); }} />
           : <button type="button" className="viva-btn mini" onClick={() => setValendo(true)}>Valendo! (20 s)</button>)}
-        {esc !== null && esc !== r.certa && <button type="button" className="viva-btn mini" onClick={nova}>Nova rodada</button>}
+        {esc !== null && esc !== r.certa && (meta.ultima
+          ? <button type="button" className="viva-btn mini" onClick={() => meta.terminar(meta.acertos)}>Ver resultado 🏁</button>
+          : <button type="button" className="viva-btn mini" onClick={nova}>Próxima pergunta</button>)}
       </div>
+      </>}
     </div>
   );
   return grande ? <div className="viva-overlay" onClick={(e) => { if (e.target === e.currentTarget) setGrande(false); }}>{corpo}</div> : corpo;
