@@ -57,13 +57,13 @@ export function Capa({ telas }: { telas: Tela[] }) {
   const [leg, setLeg] = useState("");
   const casos = useMemo<CasoGrafico[]>(() => {
     const d = (a: number, b: number, c: number, e: number): Barra[] => [{ rot: "Banana", v: a }, { rot: "Manga", v: b }, { rot: "Uva", v: c }, { rot: "Melancia", v: e }];
+    const T = "Qual é a sua fruta preferida?";
     return [
-      { dados: d(0, 0, 0, 0), legenda: "Pergunta da pesquisa: qual é a sua fruta preferida?" },
-      { dados: d(2, 1, 0, 1), legenda: "Cada resposta vira um cubinho na barra…" },
-      { dados: d(4, 3, 1, 3), legenda: "…e as barras vão crescendo." },
-      { dados: d(6, 4, 2, 5), legenda: "Quem está ganhando? A barra mais alta!" },
-      { dados: d(8, 5, 3, 6), legenda: "Banana venceu com 8 votos. Uva teve só 3." },
-      { dados: d(8, 5, 3, 6), escala: 2, legenda: "Agora cada cubinho vale 2. Meio cubinho vale 1!" },
+      { dados: d(1, 1, 0, 1), titulo: T, legenda: "Cada criança joga um bloquinho na torre da fruta que escolheu." },
+      { dados: d(3, 2, 1, 2), titulo: T, legenda: "Cada bloquinho é um voto…" },
+      { dados: d(5, 3, 2, 4), titulo: T, legenda: "…e as torres viram um gráfico de barras!" },
+      { dados: d(8, 5, 3, 6), titulo: T, legenda: "Banana venceu com 8 votos. Uva teve só 3." },
+      { dados: d(8, 5, 3, 6), escala: 2, titulo: T, legenda: "Agora cada bloquinho vale 2. Meio bloquinho vale 1!" },
     ];
   }, []);
   return (
@@ -84,7 +84,7 @@ export function Capa({ telas }: { telas: Tela[] }) {
         </div>
       </div>
       <div className="viva-capa-3d">
-        <span className="viva-ao-vivo">● Ao vivo em 3D · cada voto é um cubinho</span>
+        <span className="viva-ao-vivo">● Ao vivo em 3D · cada voto é um bloquinho</span>
         <span className="viva-post">8 &gt; 6 &gt; 5 &gt; 3</span>
         <Grafico3D dados={[]} casos={casos} onCaso={(c) => setLeg(c.legenda || "")} altura={420} />
         {leg && <span className="viva-legenda">{leg}</span>}
@@ -106,7 +106,7 @@ const MISSOES: Missao[] = [
   { id: "d2", txt: "Faça uma opção ganhar sozinha com 8 votos.", dica: "Uma opção com 8 e todas as outras com menos de 8." },
   { id: "d3", txt: "Faça um empate no primeiro lugar: duas opções com o mesmo número de votos, as duas na frente.", dica: "As duas barras mais altas precisam ter a mesma altura." },
   { id: "d4", txt: "Faça a pesquisa ter 20 votos no total.", dica: "Some os votos de todas as opções: a tabela mostra o total embaixo." },
-  { id: "d5", txt: "Troque para 1 cubinho = 2 votos e deixe uma barra com 7 votos. Quanto vale o meio cubinho?", dica: "7 = 2 + 2 + 2 + 1: três cubinhos inteiros e meio cubinho." },
+  { id: "d5", txt: "Troque para 1 bloquinho = 2 votos e deixe uma barra com 7 votos. Quanto vale o meio bloquinho?", dica: "7 = 2 + 2 + 2 + 1: três bloquinhos inteiros e meio bloquinho." },
   { id: "d6", txt: "Deixe a mais votada com 10 votos e a menos votada com 1.", dica: "Ajuste as quatro opções: uma com 10, uma com 1 e as outras no meio." },
 ];
 
@@ -188,13 +188,13 @@ export function Laboratorio() {
         <div className="viva-col">
           <div className="viva-card escuro">
             <div className="viva-row" style={{ justifyContent: "space-between" }}>
-              <span className="viva-ao-vivo">● Gráfico em 3D · cada cubinho = {esc === 1 ? "1 voto" : "2 votos"}</span>
+              <span className="viva-ao-vivo">● Gráfico em 3D · cada bloquinho = {esc === 1 ? "1 voto" : "2 votos"}</span>
               <div className="viva-seg" role="group" aria-label="Escala">
-                <button type="button" aria-pressed={esc === 1} onClick={() => trocarEsc(1)}>1 cubinho = 1</button>
-                <button type="button" aria-pressed={esc === 2} onClick={() => trocarEsc(2)}>1 cubinho = 2</button>
+                <button type="button" aria-pressed={esc === 1} onClick={() => trocarEsc(1)}>1 bloquinho = 1</button>
+                <button type="button" aria-pressed={esc === 2} onClick={() => trocarEsc(2)}>1 bloquinho = 2</button>
               </div>
             </div>
-            <Grafico3D dados={dados} escala={esc} titulo={pesq.curto} altura={400} />
+            <Grafico3D dados={dados} escala={esc} titulo={pesq.p} altura={400} />
           </div>
           <div className="viva-raiox">
             <div><small>TOTAL</small><b>{total}</b></div>
@@ -299,7 +299,7 @@ export function Cantina() {
     else { v.errou("cantina", `Olhe a barra mais alta do gráfico.`); }
   };
   const nova = () => { const r = rod + 1; setRod(r); setPq(novaPesquisa(r)); setAlt([0, 0, 0, 0]); setErradas([]); setFase("montar"); setMsg(null); };
-  const txtPesq = `Os alunos votaram no lanche preferido. Monte o gráfico de barras para o mural da cantina, igual à tabela.${pq.esc === 2 ? " Atenção: neste gráfico cada cubinho vale 2 votos." : ""}`;
+  const txtPesq = `Os alunos votaram no lanche preferido. Monte o gráfico de barras para o mural da cantina, igual à tabela.${pq.esc === 2 ? " Atenção: neste gráfico cada bloquinho vale 2 votos." : ""}`;
   return (
     <div className="viva-tela">
       <header className="viva-th">
@@ -309,11 +309,11 @@ export function Cantina() {
       </header>
       <div className="viva-van">
         <div className="viva-card escuro">
-          <span className="viva-ao-vivo">● Mural em 3D · cada cubinho = {pq.esc === 1 ? "1 voto" : "2 votos"}</span>
-          <Grafico3D dados={pq.dados.map((d, i) => ({ rot: d.rot, v: alt[i] }))} escala={pq.esc} erradas={erradas} titulo="Lanche preferido" altura={400} />
+          <span className="viva-ao-vivo">● Mural em 3D · cada bloquinho = {pq.esc === 1 ? "1 voto" : "2 votos"}</span>
+          <Grafico3D dados={pq.dados.map((d, i) => ({ rot: d.rot, v: alt[i] }))} escala={pq.esc} erradas={erradas} titulo="Qual é o seu lanche preferido?" altura={400} />
         </div>
         <div className="viva-card">
-          <div className="viva-jogo-topo"><span className="viva-jogo-ic">🥪</span><div><b>Pesquisa da cantina</b><small>{pq.esc === 2 ? "cada cubinho vale 2 votos" : "cada cubinho vale 1 voto"}</small></div></div>
+          <div className="viva-jogo-topo"><span className="viva-jogo-ic">🥪</span><div><b>Pesquisa da cantina</b><small>{pq.esc === 2 ? "cada bloquinho vale 2 votos" : "cada bloquinho vale 1 voto"}</small></div></div>
           <p className="viva-pedido">📋 {txtPesq} <Ouvir texto={txtPesq} /></p>
           <table className="viva-tabela">
             <thead><tr><th>Lanche</th><th>Votos</th><th>No gráfico</th></tr></thead>
