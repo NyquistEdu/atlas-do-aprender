@@ -1,5 +1,6 @@
 "use client";
 
+import BaixarComLogin from "@/components/BaixarComLogin";
 import Link from "next/link";
 import { chefaoDoTema } from "@/lib/chefoes";
 import ChefaoTema from "@/components/ChefaoTema";
@@ -106,7 +107,7 @@ export default function Vitrine() {
               <h3><Link href={`/apostilas/${g.slug}`}>{g.titulo}</Link></h3>
               <p className="meta">{g.subtitulo} · {g.paginas} páginas</p>
               <div className="row">
-                <a className="btn small" href={g.arquivo} download={g.nomeArquivo}>Baixar grátis</a>
+                <BaixarComLogin className="btn small" href={g.arquivo} nome={g.nomeArquivo} titulo={g.titulo} />
                 <Link className="btn small ghost" href={`/apostilas/${g.slug}`}>Ver páginas</Link>
               </div>
             </div>
@@ -143,7 +144,7 @@ function CartaoTreino({ t }: { t: Gratuito }) {
         <h3><Link href={`/apostilas/${t.slug}`}>{t.titulo}</Link></h3>
         <p className="meta">{t.subtitulo} · {t.paginas} páginas</p>
         <div className="row">
-          <a className="btn small" href={t.arquivo} download={t.nomeArquivo}>Baixar grátis</a>
+          <BaixarComLogin className="btn small" href={t.arquivo} nome={t.nomeArquivo} titulo={t.titulo} />
           <Link className="btn small ghost" href={`/apostilas/${t.slug}`}>Ver páginas</Link>
         </div>
       </div>
@@ -163,7 +164,7 @@ function CartaoApostila({ a }: { a: Apostila }) {
         <h3><Link href={`/apostilas/${a.slug}`}>{a.titulo}</Link></h3>
         <p className="meta">{a.subtitulo} · {a.paginas} páginas</p>
         <div className="row">
-          {a.arquivo ? <a className="btn small" href={a.arquivo} download={a.nomeArquivo}>Baixar grátis</a> : <Comprar slug={a.slug} titulo={a.titulo} checkout={a.checkout} preco={a.preco} />}
+          {a.arquivo ? <BaixarComLogin className="btn small" href={a.arquivo} nome={a.nomeArquivo} titulo={a.titulo} /> : <Comprar slug={a.slug} titulo={a.titulo} checkout={a.checkout} preco={a.preco} />}
           <Link className="btn small ghost" href={`/apostilas/${a.slug}`}>Ver páginas</Link>
         </div>
       </div>

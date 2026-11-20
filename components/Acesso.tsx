@@ -9,6 +9,8 @@ import { useAtlas } from "./Providers";
 
 /** Selo curto repetido em todo convite de conta. */
 export const SELO_CONTA = "Conta gratuita · acesso por e-mail, sem senha";
+/** Liga o botão "Entrar com Google" (depois de ativar o provedor Google no Supabase). */
+export const LOGIN_GOOGLE = false;
 
 /** Endereço da tela de acesso, voltando para a página atual (com o que a pessoa ia fazer). */
 export function linkAcesso(volta: string, origem: string) {
@@ -83,6 +85,13 @@ export function FormAcesso({ volta, origem, botao = "Receber link de acesso" }: 
     }
   };
 
+  const google = async () => {
+    try { localStorage.setItem("atlas-quer-emails", querEmails ? "sim" : "nao"); } catch {}
+    rastrear("LinkSolicitado", { origem: `${origem}-google` });
+    const { error } = await supabase!.auth.signInWithOAuth({ provider: "google", options: { redirectTo: `${window.location.origin}${volta}` } });
+    if (error) { setEstado("erro"); setMsgErro(error.message); }
+  };
+
   if (estado === "enviado")
     return (
       <div className="card">
@@ -97,6 +106,10 @@ export function FormAcesso({ volta, origem, botao = "Receber link de acesso" }: 
 
   return (
     <form className="diary" onSubmit={enviar}>
+      {LOGIN_GOOGLE && <>
+        <button type="button" className="btn ghost btn-google" onClick={google}>Entrar com Google</button>
+        <p className="meta ou-email" style={{ margin: 0 }}>ou receba um link no seu e-mail:</p>
+      </>}
       <label className="f">Seu e-mail<input type="email" maxLength={100} required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="voce@exemplo.com" autoComplete="email" /></label>
       <label className="consent-email"><input type="checkbox" checked={querEmails} onChange={(e) => setQuerEmails(e.target.checked)} /> <span>Quero receber por e-mail dicas, o desafio do mês e as novidades do Atlas. Dá para cancelar quando quiser.</span></label>
       <div className="row">

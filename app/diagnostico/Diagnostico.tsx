@@ -1,5 +1,6 @@
 "use client";
 
+import BaixarComLogin from "@/components/BaixarComLogin";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -186,7 +187,7 @@ function PrimeiraAtividade({ rs, quem }: { rs: Record<Area, Resultado>; quem: st
             {treino ? (
               <>
                 <p>Imprima (ou abra no celular) o treino diário gratuito e faça só a <b>primeira folha</b>. Se não acabar, termina amanhã.</p>
-                <a className="btn small" href={treino.arquivo} download={treino.nomeArquivo} onClick={() => aoClicar("treino")}>Baixar o treino grátis</a>
+                <BaixarComLogin className="btn small" href={treino.arquivo} nome={treino.nomeArquivo} titulo={treino.titulo} onClick={() => aoClicar("treino")}>Baixar o treino grátis</BaixarComLogin>
               </>
             ) : exercicios.length ? (
               <ul>{exercicios.map((e) => <li key={e}>{e}</li>)}</ul>

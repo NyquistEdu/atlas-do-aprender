@@ -6,6 +6,7 @@ import { MATERIAS, SLUG, anoSlug } from "@/lib/data";
 import { CONTATO } from "@/lib/contato";
 import Comprar from "@/components/Comprar";
 import Programa from "@/components/Programa";
+import BaixarComLogin from "@/components/BaixarComLogin";
 import { url, jsonLd } from "@/lib/seo";
 
 type P = { params: { slug: string } };
@@ -30,7 +31,7 @@ export function generateMetadata({ params }: P): Metadata {
 }
 
 function PaginaGratuito({ g }: { g: Gratuito }) {
-  const baixar = <a className="btn" href={g.arquivo} download={g.nomeArquivo}>Baixar grátis</a>;
+  const baixar = <BaixarComLogin href={g.arquivo} nome={g.nomeArquivo} titulo={g.titulo} />;
   return (
     <div className="wrap">
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd({
@@ -159,7 +160,7 @@ export default function Apostila({ params }: P) {
   const a = APOSTILAS.find((x) => x.slug === params.slug);
   if (!a) notFound();
   const trilha = `/trilhas/${SLUG[a.materia]}/${anoSlug(a.ano)}#tema-${a.tema}`;
-  const botao = a.arquivo ? <a className="btn" href={a.arquivo} download={a.nomeArquivo}>Baixar grátis</a> : <Comprar slug={a.slug} titulo={a.titulo} checkout={a.checkout} preco={a.preco} grande />;
+  const botao = a.arquivo ? <BaixarComLogin href={a.arquivo} nome={a.nomeArquivo} titulo={a.titulo} /> : <Comprar slug={a.slug} titulo={a.titulo} checkout={a.checkout} preco={a.preco} grande />;
   return (
     <div className="wrap">
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd({
@@ -207,7 +208,7 @@ export default function Apostila({ params }: P) {
         <h3>Perguntas frequentes</h3>
         <dl>
           <dt>Como recebo a apostila?</dt>
-          <dd>{a.arquivo ? "É só tocar em “Baixar grátis”: o PDF é salvo no seu celular ou computador na hora, sem cadastro." : "Depois que o pagamento é confirmado, a plataforma envia o link do PDF para o seu e-mail. No Pix, costuma ser em poucos minutos."}</dd>
+          <dd>{a.arquivo ? "Toque em “Baixar grátis” e entre com sua conta gratuita (só o e-mail). O download começa sozinho e o PDF fica salvo no seu celular ou computador." : "Depois que o pagamento é confirmado, a plataforma envia o link do PDF para o seu e-mail. No Pix, costuma ser em poucos minutos."}</dd>
           <dt>Posso imprimir mais de uma vez?</dt>
           <dd>Pode. A licença permite imprimir quantas cópias precisar para as crianças da sua casa, inclusive para refazer os exercícios.</dd>
           <dt>Preciso de algum material especial?</dt>

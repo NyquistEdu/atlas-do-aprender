@@ -13,7 +13,7 @@ export default function Privacidade() {
       <p className="lead">Como o Atlas do Aprender trata as informações de quem usa o site.</p>
 
       <h3 className="ini-h">O que é aberto, sem cadastro</h3>
-      <p>Trilhas, livros, jogos, experimentos e o guia podem ser consultados sem criar conta e sem informar nenhum dado.</p>
+      <p>Trilhas, livros, jogos, experimentos e o guia podem ser consultados sem criar conta e sem informar nenhum dado. Para <b>baixar apostilas, treinos e chefões em PDF</b>, é preciso uma conta gratuita, que pede só o e-mail.</p>
 
       <h3 className="ini-h">Contagem básica de visitas (Vercel Analytics)</h3>
       <p>

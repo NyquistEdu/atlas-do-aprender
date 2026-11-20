@@ -42,7 +42,7 @@ export default async function Inicio() {
   return (
     <div className="wrap largo">
       <section className="ini-hero">
-        <span className="selo" aria-hidden="true">grátis e sem cadastro</span>
+        <span className="selo" aria-hidden="true">grátis para famílias</span>
         <p className="eyebrow-i">feito por uma professora e mãe de&nbsp;3</p>
         <h1 className="hero-t">Atlas do Aprender</h1>
         <p className="lema">{LEMA}</p>

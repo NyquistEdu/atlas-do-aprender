@@ -6,6 +6,8 @@ const nextConfig = {
   },
   async headers() {
     return [
+      // PDFs ficam fora da busca: quem procura cai na página da apostila (que pede a conta grátis)
+      { source: "/(.*\\.pdf)", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] },
       {
         source: "/(.*)",
         headers: [

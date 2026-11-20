@@ -37,7 +37,7 @@ export default function Guia() {
       <section id="comece" className="guia-s">
         <h2>1. Comece em 5 minutos</h2>
         <ol className="guia-passos">
-          <li><b>Abra o site</b> no celular ou no computador. Não precisa instalar nada, e todo o conteúdo é aberto, sem cadastro.</li>
+          <li><b>Abra o site</b> no celular ou no computador. Não precisa instalar nada. Navegar é livre; para baixar as apostilas em PDF, crie sua conta grátis (só o e-mail).</li>
           <li><b>Faça o diagnóstico grátis</b> para saber por qual tema começar em cada matéria.</li>
           <li><b>Crie sua conta</b> tocando em Entrar e informando seu e-mail. Chega um link de acesso, sem senha. Abra o link no mesmo aparelho.</li>
           <li><b>Cadastre as crianças</b> no Diário, em Gerenciar crianças, e escolha no topo da página com quem vai estudar.</li>
