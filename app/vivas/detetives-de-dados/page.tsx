@@ -5,7 +5,7 @@ import DetetivesViva from "./DetetivesViva";
 
 export const metadata: Metadata = {
   title: "Detetives de Dados · Fase Viva de tabelas e gráficos (3º ano)",
-  description: "Tabelas e gráficos para mexer: faça uma pesquisa, marque os votos com risquinhos e veja as torres de bloquinhos virarem um gráfico de barras em 3D. Monte o mural da cantina, leia pictogramas e tabelas de dupla entrada e enfrente o chefão.",
+  description: "Tabelas e gráficos para mexer: faça uma pesquisa, marque os votos com risquinhos e veja o gráfico de barras crescer quadradinho por quadradinho. Monte o mural da cantina, leia pictogramas e tabelas de dupla entrada e enfrente o chefão.",
   alternates: { canonical: "/vivas/detetives-de-dados" },
   openGraph: { images: ["/apostilas/detetives-de-dados/capa.webp"] },
 };

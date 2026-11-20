@@ -30,7 +30,7 @@ const ITENS = [
   { t: "Risquinhos", f: "feixes de 5", ex: "4 risquinhos em pé e o 5º atravessado: depois é só contar de 5 em 5." },
   { t: "Tabela", f: "organiza os dados", ex: "Uma coluna com as opções e outra com os votos. Somando tudo, sai o total." },
   { t: "Gráfico de barras", f: "a barra mais alta ganha", ex: "Uma barra para cada opção, todas começando do zero, com números no eixo." },
-  { t: "Escala e legenda", f: "cada figura pode valer 2, 5, 10…", ex: "Se cada bloquinho vale 2, meio bloquinho vale 1. Leia a legenda antes de contar!" },
+  { t: "Escala e legenda", f: "cada figura pode valer 2, 5, 10…", ex: "Se cada quadradinho vale 2, meio quadradinho vale 1. Leia a legenda antes de contar!" },
   { t: "Dupla entrada", f: "linha × coluna", ex: "Ache a linha e a coluna: a resposta está no cruzamento." },
 ];
 const PEGADINHAS = [
