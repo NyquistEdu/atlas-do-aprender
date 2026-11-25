@@ -1,0 +1,69 @@
+/* Página de vendas do Duende Tico */
+.tico{--tr:#b3302a;--tv:#2c6a47;--to:#c99415;--tr-bg:#fbe9e6;--tv-bg:#e5f1ea;--to-bg:#fbf2dc}
+:root[data-theme="dark"] .tico{--tr:#f08a7d;--tv:#7fcf9c;--to:#e8c25a;--tr-bg:#3a2224;--tv-bg:#1b3326;--to-bg:#3a2e17}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tico{--tr:#f08a7d;--tv:#7fcf9c;--to:#e8c25a;--tr-bg:#3a2224;--tv-bg:#1b3326;--to-bg:#3a2e17}}
+
+.tico-hero{background:linear-gradient(180deg,var(--tr-bg),transparent);border-bottom:1.5px dashed var(--line);padding:28px 0 32px}
+.tico-hero-in{display:grid;grid-template-columns:1.35fr 1fr;gap:28px;align-items:center}
+.tico-hero .hero-t{font-size:clamp(2rem,5.4vw,3.1rem)}
+.tico-hero .lead{margin:12px 0 16px}
+.tico-capa{width:100%;max-width:320px;justify-self:center;height:auto;border:1.5px solid var(--ink);border-radius:6px;transform:rotate(2.5deg);box-shadow:6px 6px 0 var(--tv)}
+.tico-faltam{margin:14px 0 0;background:var(--to-bg);border:1.5px solid var(--to);border-radius:10px;padding:9px 12px;font-weight:700;font-size:.94rem}
+@media (max-width:720px){.tico-hero-in{grid-template-columns:1fr}.tico-capa{max-width:230px;grid-row:1}}
+
+.tico-corpo{display:grid;gap:30px;padding-top:28px;padding-bottom:48px}
+.tico-h{font-size:clamp(1.4rem,3.6vw,1.85rem);margin-bottom:12px}
+
+.tico-tres{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tico-tres div{background:var(--card);border:1.5px solid var(--ink);border-radius:14px;padding:14px;display:grid;gap:4px;align-content:start}
+.tico-tres span{font-size:1.7rem}
+.tico-tres p{margin:0;color:var(--soft);font-size:.93rem}
+@media (max-width:720px){.tico-tres{grid-template-columns:1fr}}
+
+.tico-carta{background:var(--card);border:1.5px solid var(--ink);border-left:6px solid var(--tr);border-radius:14px;padding:18px 20px;font-size:1.02rem}
+.tico-carta p{margin:0 0 10px}
+.tico-ass{font-family:var(--f-disp);font-size:1.1rem;margin:4px 0 0!important}
+.tico-ass span{font-family:var(--f-body);font-size:.84rem;color:var(--soft)}
+
+.tico-passos{counter-reset:p;list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.tico-passos li{counter-increment:p;position:relative;padding:12px 14px 12px 58px;background:var(--card);border:1.5px solid var(--line);border-radius:12px}
+.tico-passos li::before{content:counter(p);position:absolute;left:14px;top:11px;width:32px;height:32px;border-radius:50%;background:var(--tr);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+
+.tico-dias{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:8px}
+.tico-dia{position:relative;background:var(--card);border:1.5px solid var(--line);border-top:5px solid var(--c,var(--ink));border-radius:10px;padding:8px 9px 9px;display:grid;gap:2px;min-height:104px;align-content:start}
+.tico-dia .n{font-family:var(--f-disp);font-size:1.35rem;line-height:1;color:var(--c)}
+.tico-dia .e{position:absolute;right:8px;top:8px;font-size:1.25rem}
+.tico-dia b{font-size:.88rem;line-height:1.25}
+.tico-dia small{font-size:.72rem;color:var(--soft);text-transform:uppercase;letter-spacing:.06em}
+.tico-dia.mis{background:var(--tr-bg);border-color:var(--tr)}
+.tico .mat{--c:var(--mat)}.tico .por{--c:var(--por)}.tico .cie{--c:var(--cie)}.tico .gen{--c:#a8456e}.tico .fam{--c:var(--to)}.tico .jog{--c:#c4672a}.tico .art{--c:#6a4fb0}.tico .mis{--c:var(--tr)}
+.tico-areas{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tico-areas span{border:1.5px solid var(--c);color:var(--c);border-radius:999px;padding:3px 10px;font-size:.82rem;font-weight:700;background:var(--card)}
+
+.tico-caca{background:var(--tv-bg);border:1.5px solid var(--tv);border-radius:16px;padding:20px}
+.tico-caca>p{margin:0 0 12px}
+.tico-estacoes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.tico-estacoes div{background:var(--card);border:1.5px solid var(--ink);border-radius:12px;padding:10px 12px;display:grid;gap:2px;align-content:start}
+.tico-estacoes .e{font-size:1.5rem}
+.tico-estacoes small{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tv);font-weight:800}
+.tico-estacoes p{margin:0;font-size:.88rem;color:var(--soft)}
+@media (max-width:720px){.tico-estacoes{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.tico-estacoes{grid-template-columns:1fr}}
+
+.tico-ganha ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.tico-ganha li{padding:10px 14px;background:var(--card);border:1.5px solid var(--line);border-radius:12px}
+
+.tico-preco{display:flex;justify-content:center}
+.tico-preco>div{max-width:520px;width:100%;text-align:center;background:var(--card);border:2px solid var(--ink);border-radius:18px;padding:22px 20px;box-shadow:6px 6px 0 var(--tr)}
+.tico-valor{font-family:var(--f-disp);font-size:3rem;line-height:1;margin:6px 0 8px;color:var(--tr)}
+.tico-preco ul{list-style:none;padding:0;margin:12px 0 16px;display:grid;gap:4px;font-size:.93rem}
+.tico-preco li::before{content:"✓ ";color:var(--tv);font-weight:800}
+.tico-preco .row{justify-content:center}
+
+.tico-faq{display:grid;gap:6px}
+.tico-faq details{border:1.5px solid var(--line);border-radius:10px;padding:9px 12px;background:var(--paper)}
+.tico-faq summary{cursor:pointer;font-weight:700}
+.tico-faq p{margin:8px 0 2px}
+
+.tico-fim{text-align:center;display:grid;gap:14px;padding:10px 0}
+.tico-fim h2{font-size:clamp(1.4rem,3.6vw,1.9rem)}

@@ -108,7 +108,7 @@ function PaginaKit({ k }: { k: Kit }) {
           <h1 className="hero-t">{k.titulo}</h1>
           <p className="lead">{k.subtitulo}</p>
           <p>{k.resumo}</p>
-          <div className="row">{comprar}</div>
+          <div className="row">{comprar}{k.slug === "duende-tico" && <Link className="btn ghost" href="/duende-tico">Ver os 24 dias e a caça</Link>}</div>
           <p className="note">PDF em tamanho A4, para imprimir em casa. Pix, cartão ou boleto; o arquivo chega no seu e-mail.</p>
         </div>
       </div>

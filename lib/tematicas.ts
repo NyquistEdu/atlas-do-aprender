@@ -102,7 +102,7 @@ const TODAS_TEMATICAS: Tematica[] = [
     quando: "25 de dezembro",
     emoji: "🎄",
     material2: { href: "/apostilas/a-caminho-do-presepio", titulo: "A Caminho do Presépio", texto: "Livro de 40 páginas para preparar o Natal em família: a história do primeiro Natal e suas tradições, poemas, duas histórias, pinturas famosas, vitrais para colorir e oficinas, do Advento ao Dia de Reis. Gratuito." },
-    material: { href: "/apostilas/duende-tico", titulo: "A Grande Missão do Duende Tico", texto: "Calendário do Advento com 24 atividades curtas, de 1º a 24 de dezembro, que termina numa caça ao presente na noite de Natal. Pronto para imprimir.", pago: true },
+    material: { href: "/duende-tico", titulo: "A Grande Missão do Duende Tico", texto: "Calendário do Advento com 24 atividades curtas, de 1º a 24 de dezembro, que termina numa caça ao presente na noite de Natal. Pronto para imprimir.", pago: true },
     resumo: "O nascimento de Jesus, o presépio, a Folia de Reis e o Papai Noel: livros, filmes, música, receitas e atividades para o mês de dezembro.",
     intro: [
       "O Natal celebra o nascimento de Jesus, contado na Bíblia nos evangelhos de Lucas e de Mateus: a viagem de Maria e José a Belém, a manjedoura, os pastores e os magos que seguiram a estrela.",
