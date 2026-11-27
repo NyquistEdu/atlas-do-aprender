@@ -287,6 +287,29 @@ export type Kit = {
 
 export const KITS: Kit[] = [
   {
+    slug: "leitor-30-dias",
+    titulo: "Leitor em 30 Dias · Leitor iniciante",
+    subtitulo: "Programa de fluência leitora: um texto novo por dia, lido três vezes, com medição semanal",
+    paginas: 37,
+    preco: "R$ 24,90",
+    checkout: "",
+    resumo: "Para a criança que já lê sozinha, mas ainda devagar: o perfil Leitor iniciante do teste de fluência do Atlas. Em 15 minutos por dia, ela lê um texto curto três vezes (ouvindo, junto com o adulto e sozinha), o método de leitura repetida com modelo. Os 24 textos inéditos crescem aos poucos, com contos, poemas, bilhetes, notícias e instruções. A cada 7 dias, uma leitura cronometrada de 1 minuto vai para um gráfico que a criança pinta, e no dia 30 ela refaz o teste no site para comparar.",
+    dentro: [
+      "Guia para o adulto: o método, como corrigir sem desanimar, o que fazer com trocas de letras e leitura apressada",
+      "24 textos inéditos em 4 semanas, de 30 a mais de 90 palavras, com aquecimento, as três leituras e perguntas de conversa",
+      "4 medições de palavras corretas por minuto (dias 7, 14, 21 e 28), com contagem de palavras pronta em cada linha",
+      "Gráfico de leitura para pintar e quadro da meta do mês",
+      "Sarau em família no dia 29, reteste no site no dia 30 e certificado",
+    ],
+    amostras: ["Um dia de leitura", "A medição de 1 minuto", "Meu gráfico de leitura", "Como ajudar sem desanimar"],
+    publico: "Leitor iniciante (em geral do 1º ao 3º ano)",
+    selo: "Fluência",
+    comoUsar: [
+      "Faça antes o teste de fluência gratuito do Atlas e anote as palavras corretas por minuto. Depois, uma página por dia, no mesmo horário: aquecimento, três leituras do texto e uma conversa rápida. São 15 minutos.",
+      "Nos dias 7, 14, 21 e 28, a criança lê um texto novo por 1 minuto, e o resultado vai para o gráfico. No dia 30, refaça o teste no site, com a outra versão do texto, e compare.",
+    ],
+  },
+  {
     slug: "duende-tico",
     titulo: "A Grande Missão do Duende Tico",
     subtitulo: "Calendário do Advento e caça ao presente de Natal",

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { KITS } from "@/lib/apostilas";
 import { useEffect, useRef, useState } from "react";
 import { useAtlas } from "@/components/Providers";
 import { supabase } from "@/lib/supabase";
@@ -9,6 +10,8 @@ import {
   NIVEL_DO_ANO, PROSODIA, TIPOS_ERRO, corretas, nivelPorId, perfil, porMinuto, precisao, recomendacoes, tokens,
   type Etapa, type Nivel, type Resultado,
 } from "@/lib/fluencia";
+
+const LEITOR30 = KITS.find((k) => k.slug === "leitor-30-dias");
 
 type ParteId = "palavras" | "pseudo" | "texto";
 const PARTES: { id: ParteId; nome: string; prep: string }[] = [
@@ -368,6 +371,18 @@ export default function Fluencia() {
         )}
         <p className="meta" style={{ margin: 0 }}>Referência: no 2º ano, o leitor fluente lê mais de 65 palavras corretas por minuto, com pelo menos 90% de precisão. Nos anos seguintes, a velocidade continua crescendo; o mais importante é comparar a criança com ela mesma.</p>
       </section>
+
+      {pf.id === "iniciante" && LEITOR30?.checkout && (
+        <section className="card flu-oferta">
+          <p className="eyebrow-i" style={{ margin: 0 }}>Feito para este momento</p>
+          <h2 style={{ margin: 0 }}>Leitor em 30 Dias</h2>
+          <p style={{ margin: 0 }}>{r.crianca === "Criança" ? "A criança" : r.crianca} já lê sozinha e agora precisa ganhar ritmo e segurança. Hoje foram <b>{porMinuto(r.texto)} palavras corretas por minuto</b>. O programa traz um texto novo por dia, lido três vezes com você, em 15 minutos, e uma medição por semana num gráfico para pintar. No dia 30, você refaz este teste e compara.</p>
+          <div className="row" style={{ gap: 10 }}>
+            <Link className="btn" href="/apostilas/leitor-30-dias">Conhecer o programa · {LEITOR30.preco}</Link>
+          </div>
+          <p className="meta" style={{ margin: 0 }}>PDF de 37 páginas para imprimir, com 24 textos inéditos e guia para o adulto. Os treinos gratuitos continuam aqui embaixo.</p>
+        </section>
+      )}
 
       <section className="card diag">
         <h2 style={{ margin: 0 }}>O que fazer agora</h2>

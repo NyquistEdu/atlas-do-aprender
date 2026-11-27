@@ -823,6 +823,7 @@ nav.tabs .mais-lista a[aria-current="page"]{background:var(--sun);color:#1d2433}
 .flu-num.d{background:var(--por-bg);border-color:transparent}
 .flu-num.d b{color:var(--por);font-size:2rem}
 .flu-recs{display:grid;gap:10px}
+.flu-oferta{border:2px solid var(--ink);border-top:6px solid #2a5db0;display:grid;gap:10px}
 .flu-rec{border-left:4px solid var(--por);padding:4px 0 4px 12px;display:grid;gap:6px;justify-items:start}
 .flu-rec p{margin:0}
 .flu-graf{display:block;width:100%;max-width:100%;height:auto}
