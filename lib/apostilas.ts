@@ -292,7 +292,7 @@ export const KITS: Kit[] = [
     subtitulo: "Programa de fluência leitora: um texto novo por dia, lido três vezes, com medição semanal",
     paginas: 37,
     preco: "R$ 24,90",
-    checkout: "",
+    checkout: "https://pay.kiwify.com.br/OjdtsKS",
     resumo: "Para a criança que já lê sozinha, mas ainda devagar: o perfil Leitor iniciante do teste de fluência do Atlas. Em 15 minutos por dia, ela lê um texto curto três vezes (ouvindo, junto com o adulto e sozinha), o método de leitura repetida com modelo. Os 24 textos inéditos crescem aos poucos, com contos, poemas, bilhetes, notícias e instruções. A cada 7 dias, uma leitura cronometrada de 1 minuto vai para um gráfico que a criança pinta, e no dia 30 ela refaz o teste no site para comparar.",
     dentro: [
       "Guia para o adulto: o método, como corrigir sem desanimar, o que fazer com trocas de letras e leitura apressada",
