@@ -6,13 +6,14 @@ import { url } from "@/lib/seo";
 import { DUVIDAS } from "@/lib/duvidas";
 import { ATIVIDADES } from "@/lib/maoNaMassa";
 import { LOJA } from "@/lib/loja";
+import { VIVAS } from "@/lib/vivasLista";
 import { PEDIR_CONSENTIMENTO } from "@/lib/consentimento";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const agora = new Date();
   const fixo: [string, number, MetadataRoute.Sitemap[number]["changeFrequency"]][] = [
     ["/", 1, "weekly"], ["/livros", 0.9, "monthly"], ["/jogos", 0.8, "monthly"], ["/mao-na-massa", 0.8, "monthly"],
-    ["/apostilas", 0.9, "weekly"], ["/vivas", 0.8, "monthly"], ["/vivas/divide-ai", 0.8, "monthly"], ["/vivas/olhar-o-ceu", 0.8, "monthly"], ["/vivas/medir-o-mundo", 0.8, "monthly"], ["/vivas/contar-ate-cem", 0.8, "monthly"], ["/vivas/pedaco-por-pedaco", 0.8, "monthly"], ["/vivas/detetives-de-dados", 0.8, "monthly"], ["/vivas/nomear-e-descrever", 0.8, "monthly"], ["/vivas/textos-do-dia-a-dia", 0.8, "monthly"], ["/vivas/brincar-com-as-palavras", 0.8, "monthly"], ["/loja", 0.8, "monthly"], ["/duende-tico", 0.9, "weekly"], ["/olimpiadas", 0.8, "monthly"], ["/tematicas", 0.8, "monthly"], ["/duvidas", 0.8, "monthly"], ["/planejamento", 0.9, "monthly"], ["/diagnostico", 0.9, "monthly"], ["/fluencia", 0.9, "monthly"], ["/olhar-atento", 0.8, "monthly"], ["/guia", 0.5, "yearly"], ...(PEDIR_CONSENTIMENTO ? [["/privacidade", 0.2, "yearly"] as [string, number, "yearly"]] : []),
+    ["/apostilas", 0.9, "weekly"], ["/vivas", 0.8, "monthly"], ...VIVAS.filter((v) => v.slug).map((v) => [`/vivas/${v.slug}`, 0.8, "monthly"] as [string, number, "monthly"]), ["/loja", 0.8, "monthly"], ["/duende-tico", 0.9, "weekly"], ["/olimpiadas", 0.8, "monthly"], ["/tematicas", 0.8, "monthly"], ["/duvidas", 0.8, "monthly"], ["/planejamento", 0.9, "monthly"], ["/diagnostico", 0.9, "monthly"], ["/fluencia", 0.9, "monthly"], ["/olhar-atento", 0.8, "monthly"], ["/guia", 0.5, "yearly"], ...(PEDIR_CONSENTIMENTO ? [["/privacidade", 0.2, "yearly"] as [string, number, "yearly"]] : []),
   ];
   const trilhas = (Object.keys(SLUG) as Materia[]).flatMap((s) => ANOS.map(([y]) => `/trilhas/${SLUG[s]}/${anoSlug(y)}`));
   return [
