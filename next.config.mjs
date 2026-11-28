@@ -7,6 +7,8 @@ const nextConfig = {
   async headers() {
     return [
       // PDFs ficam fora da busca: quem procura cai na página da apostila (que pede a conta grátis)
+      // TEMP upload Kiwify
+      { source: "/k262e17c11e90deb8/:f*", headers: [{ key: "Access-Control-Allow-Origin", value: "https://dashboard.kiwify.com.br" }] },
       { source: "/(.*\\.pdf)", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] },
       {
         source: "/(.*)",
