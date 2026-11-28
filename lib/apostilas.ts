@@ -315,7 +315,7 @@ export const KITS: Kit[] = [
     subtitulo: "30 dias de som das letras, sílabas e primeiras palavras, só com palavras que a criança consegue ler",
     paginas: 37,
     preco: "R$ 24,90",
-    checkout: "",
+    checkout: "https://pay.kiwify.com.br/TbQIdd8",
     resumo: "Para a criança que ainda está aprendendo a juntar letras e sons: o perfil Pré-leitor do teste de fluência do Atlas. Em 15 minutos por dia, ela aprende um som novo, lê a família silábica, sílabas misturadas, palavras e uma frase feitas só com as letras que já conhece, o ensino fônico sistemático. São 20 sons e dígrafos em 4 semanas, com jogos de revisão e uma primeira história inteira. A cada 7 dias, uma lista de 40 palavras lida em 1 minuto vira uma conquista no gráfico, e no dia 30 ela refaz o teste no site para comparar.",
     dentro: [
       "Guia para o adulto: o método fônico, como dizer o som (e não o nome) da letra, como ajudar a juntar sons e o que fazer com trocas",
@@ -338,7 +338,7 @@ export const KITS: Kit[] = [
     subtitulo: "Para a criança que já lê rápido: ler com expressão e entender textos de vários gêneros",
     paginas: 37,
     preco: "R$ 24,90",
-    checkout: "",
+    checkout: "https://pay.kiwify.com.br/NPvb0GR",
     resumo: "Para a criança que já lê com velocidade e precisão: o perfil Leitor fluente do teste de fluência do Atlas. O próximo passo é ler com expressão e entender melhor o que lê. Em 15 a 20 minutos por dia, ela lê um texto inédito três vezes (em silêncio, com expressão e para alguém) e conversa sobre ele em três níveis: o que está no texto, o que dá para concluir e o que ela pensa. São contos, ciência, teatro de leitura em dupla, poemas, notícia, carta, crônica, receita, biografia e fábula.",
     dentro: [
       "Guia para o adulto: leitura em eco, os sinais de pontuação na voz e como conduzir as perguntas de compreensão",
