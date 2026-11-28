@@ -11,7 +11,27 @@ import {
   type Etapa, type Nivel, type Resultado,
 } from "@/lib/fluencia";
 
-const LEITOR30 = KITS.find((k) => k.slug === "leitor-30-dias");
+/** Produto pago indicado para cada perfil do teste. Só aparece quando o kit tem checkout. */
+const OFERTAS: Record<string, { slug: string; titulo: string; texto: (nome: string, ppm: number) => string; meta: string }> = {
+  pre: {
+    slug: "primeiras-leituras",
+    titulo: "Primeiras Leituras",
+    texto: (nome, ppm) => `${nome} está aprendendo a juntar letras e sons. Hoje leu ${ppm} palavras por minuto na lista de palavras. O programa traz 30 dias de 15 minutos: som das letras, sílabas, palavras e as primeiras frases, com jogos e uma conquista por semana. No dia 30, você refaz este teste e compara.`,
+    meta: "PDF para imprimir, com guia para o adulto, jogos de sílabas e cartela de conquistas.",
+  },
+  iniciante: {
+    slug: "leitor-30-dias",
+    titulo: "Leitor em 30 Dias",
+    texto: (nome, ppm) => `${nome} já lê sozinha e agora precisa ganhar ritmo e segurança. Hoje foram ${ppm} palavras corretas por minuto. O programa traz um texto novo por dia, lido três vezes com você, em 15 minutos, e uma medição por semana num gráfico para pintar. No dia 30, você refaz este teste e compara.`,
+    meta: "PDF de 37 páginas para imprimir, com 24 textos inéditos e guia para o adulto.",
+  },
+  fluente: {
+    slug: "leitor-fluente",
+    titulo: "Leitor Fluente",
+    texto: (nome, ppm) => `${nome} já lê com velocidade: ${ppm} palavras corretas por minuto. O próximo passo é ler com expressão e entender melhor o que lê. O programa traz 30 dias de 15 minutos com textos mais longos, teatro de leitura, poemas e perguntas de compreensão.`,
+    meta: "PDF para imprimir, com guia para o adulto e textos inéditos.",
+  },
+};
 
 type ParteId = "palavras" | "pseudo" | "texto";
 const PARTES: { id: ParteId; nome: string; prep: string }[] = [
@@ -372,15 +392,32 @@ export default function Fluencia() {
         <p className="meta" style={{ margin: 0 }}>Referência: no 2º ano, o leitor fluente lê mais de 65 palavras corretas por minuto, com pelo menos 90% de precisão. Nos anos seguintes, a velocidade continua crescendo; o mais importante é comparar a criança com ela mesma.</p>
       </section>
 
+      {(() => {
+        const o = OFERTAS[pf.id];
+        const kit = o && KITS.find((k) => k.slug === o.slug);
+        if (!o || !kit?.checkout) return null;
+        const nome = r.crianca === "Criança" ? "A criança" : r.crianca;
+        const ppm = pf.id === "pre" ? porMinuto(r.palavras) : porMinuto(r.texto);
+        return (
+          <section className="card flu-oferta">
+            <p className="eyebrow-i" style={{ margin: 0 }}>Indicado para este resultado</p>
+            <h2 style={{ margin: 0 }}>{o.titulo}</h2>
+            <p style={{ margin: 0 }}>{o.texto(nome, ppm)}</p>
+            <div className="row" style={{ gap: 10 }}>
+              <Link className="btn" href={`/apostilas/${kit.slug}`}>Conhecer o programa · {kit.preco}</Link>
+            </div>
+            <p className="meta" style={{ margin: 0 }}>{o.meta}</p>
+          </section>
+        );
+      })()}
+
       <section className="card diag">
         <h2 style={{ margin: 0 }}>O que fazer agora</h2>
-        <p style={{ margin: 0 }}>Comece pelos treinos gratuitos do Atlas: é só fazer a conta grátis para baixar.</p>
         <div className="flu-recs">
           {recomendacoes(r).map((d) => (
             <div key={d.t} className="flu-rec">
               <b>{d.t}</b>
               <p>{d.d}</p>
-              {d.link && <Link className="btn small" href={d.link[0]}>{d.link[1]} →</Link>}
             </div>
           ))}
         </div>
@@ -391,17 +428,6 @@ export default function Fluencia() {
         </div>
       </section>
 
-      {pf.id === "iniciante" && LEITOR30?.checkout && (
-        <section className="card flu-oferta">
-          <p className="eyebrow-i" style={{ margin: 0 }}>Quer um plano pronto? (opcional)</p>
-          <h2 style={{ margin: 0 }}>Leitor em 30 Dias</h2>
-          <p style={{ margin: 0 }}>{r.crianca === "Criança" ? "A criança" : r.crianca} já lê sozinha e agora precisa ganhar ritmo e segurança. Hoje foram <b>{porMinuto(r.texto)} palavras corretas por minuto</b>. O programa traz um texto novo por dia, lido três vezes com você, em 15 minutos, e uma medição por semana num gráfico para pintar. No dia 30, você refaz este teste e compara.</p>
-          <div className="row" style={{ gap: 10 }}>
-            <Link className="btn" href="/apostilas/leitor-30-dias">Conhecer o programa · {LEITOR30.preco}</Link>
-          </div>
-          <p className="meta" style={{ margin: 0 }}>PDF de 37 páginas para imprimir, com 24 textos inéditos e guia para o adulto.</p>
-        </section>
-      )}
 
       {doNome.length > 0 && <Historico lista={doNome} nome={r.crianca} apagar={apagar} />}
     </div>
