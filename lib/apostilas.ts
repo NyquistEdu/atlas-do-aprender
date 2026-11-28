@@ -361,7 +361,7 @@ export const KITS: Kit[] = [
     subtitulo: "Caderno de férias: 30 dias de Português e Matemática, 15 minutos por dia, para revisar o 1º ano",
     paginas: 37,
     preco: "R$ 19,90",
-    checkout: "",
+    checkout: "https://pay.kiwify.com.br/7I8vrth",
     resumo: "Para a criança que acabou de terminar o 1º ano não esquecer o que aprendeu nas férias e chegar pronta ao 2º ano. Cada página leva 15 minutos: uma atividade de Português, uma de Matemática, um problema do dia a dia e um desafio de férias para fazer fora do papel. São 8 textos inéditos com perguntas de compreensão, atividades de sílabas, leitura de palavras e frases, ordem alfabética, frases embaralhadas e escrita de nomes e, em Matemática, adição e subtração até 20, sequências, dezenas e unidades, comparação de números e dinheiro. No fim, gabarito completo para o adulto corrigir junto.",
     dentro: [
       "Guia para o adulto: como usar nas férias, como ajudar sem fazer pela criança e o calendário com prêmio",
@@ -384,7 +384,7 @@ export const KITS: Kit[] = [
     subtitulo: "Caderno de férias: 30 dias de Português e Matemática, 15 minutos por dia, para revisar o 2º ano",
     paginas: 37,
     preco: "R$ 19,90",
-    checkout: "",
+    checkout: "https://pay.kiwify.com.br/vS1gPR0",
     resumo: "Para a criança que acabou de terminar o 2º ano não esquecer o que aprendeu nas férias e chegar pronta ao 3º ano. Cada página leva 15 minutos: uma atividade de Português, uma de Matemática, um problema do dia a dia e um desafio de férias para fazer fora do papel. São 8 textos inéditos com perguntas de compreensão, atividades de R ou RR, S ou SS, pontuação, singular e plural, ordem alfabética e frases embaralhadas e, em Matemática, adição e subtração com contas armadas, tabuada do 2 ao 5, dobro e metade, horas e centenas. No fim, gabarito completo para o adulto corrigir junto.",
     dentro: [
       "Guia para o adulto: como usar nas férias, como ajudar sem fazer pela criança e o calendário com prêmio",
@@ -407,7 +407,7 @@ export const KITS: Kit[] = [
     subtitulo: "Caderno de férias: 30 dias de Português e Matemática, 15 minutos por dia, para revisar o 3º ano",
     paginas: 37,
     preco: "R$ 19,90",
-    checkout: "",
+    checkout: "https://pay.kiwify.com.br/5DdjSI5",
     resumo: "Para a criança que acabou de terminar o 3º ano não esquecer o que aprendeu nas férias e chegar pronta ao 4º ano. Cada página leva 15 minutos: uma atividade de Português, uma de Matemática, um problema do dia a dia e um desafio de férias para fazer fora do papel. São 8 textos inéditos com perguntas de compreensão, atividades de substantivo e adjetivo, sinônimos e antônimos, Ç ou SS, X ou CH, masculino e feminino e, em Matemática, contas armadas até 1.000, tabuada completa, divisão, frações de quantidades e medidas. No fim, gabarito completo para o adulto corrigir junto.",
     dentro: [
       "Guia para o adulto: como usar nas férias, como ajudar sem fazer pela criança e o calendário com prêmio",
@@ -430,7 +430,7 @@ export const KITS: Kit[] = [
     subtitulo: "Caderno de férias: 30 dias de Português e Matemática, 15 minutos por dia, para revisar o 4º ano",
     paginas: 37,
     preco: "R$ 19,90",
-    checkout: "",
+    checkout: "https://pay.kiwify.com.br/P0yR0RU",
     resumo: "Para a criança que acabou de terminar o 4º ano não esquecer o que aprendeu nas férias e chegar pronta ao 5º ano. Cada página leva 15 minutos: uma atividade de Português, uma de Matemática, um problema do dia a dia e um desafio de férias para fazer fora do papel. São 8 textos inéditos com perguntas de compreensão, atividades de tempos verbais, acentuação, diminutivo e aumentativo, G ou J e sinônimos e, em Matemática, multiplicação e divisão com resto, frações equivalentes, dinheiro com centavos, perímetro e tabuada do 6 ao 9. No fim, gabarito completo para o adulto corrigir junto.",
     dentro: [
       "Guia para o adulto: como usar nas férias, como ajudar sem fazer pela criança e o calendário com prêmio",
@@ -453,7 +453,7 @@ export const KITS: Kit[] = [
     subtitulo: "Caderno de férias: 30 dias de Português e Matemática, 15 minutos por dia, para revisar o 5º ano",
     paginas: 37,
     preco: "R$ 19,90",
-    checkout: "",
+    checkout: "https://pay.kiwify.com.br/7bQ3YeD",
     resumo: "Para a criança que acabou de terminar o 5º ano não esquecer o que aprendeu nas férias e chegar pronta ao 6º ano. Cada página leva 15 minutos: uma atividade de Português, uma de Matemática, um problema do dia a dia e um desafio de férias para fazer fora do papel. São 8 textos inéditos com perguntas de compreensão, atividades de mas e mais, mal e mau, por que e porque, pronomes, concordância e coletivos e, em Matemática, multiplicação e divisão maiores, números decimais, porcentagem, frações, área e média. No fim, gabarito completo para o adulto corrigir junto.",
     dentro: [
       "Guia para o adulto: como usar nas férias, como ajudar sem fazer pela criança e o calendário com prêmio",
