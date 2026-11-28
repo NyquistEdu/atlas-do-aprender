@@ -372,20 +372,212 @@ export default function Fluencia() {
         <p className="meta" style={{ margin: 0 }}>Referência: no 2º ano, o leitor fluente lê mais de 65 palavras corretas por minuto, com pelo menos 90% de precisão. Nos anos seguintes, a velocidade continua crescendo; o mais importante é comparar a criança com ela mesma.</p>
       </section>
 
+      <section className="card diag">
+          <h2 style={{ margin: 0 }}>Antes de começar</h2>
+          <ul className="flu-lista">
+            <li>Escolha um lugar calmo. A criança fica com o celular ou tablet na frente dela; você fica ao lado, vendo a mesma tela.</li>
+            <li>São <b>3 leituras de 1 minuto</b>: palavras, palavras inventadas e um texto curto. No final, você faz algumas perguntas sobre o texto. Tudo leva uns 10 minutos.</li>
+            <li>Você só toca nas palavras que ela errar. O site cronometra e faz as contas.</li>
+            <li>Diga que não é prova: “quero ver como você está lendo, leia do seu jeito”.</li>
+          </ul>
+          {user && criancas.length > 0 ? (
+            <div className="f" role="group" aria-label="Criança">
+              <span>Quem vai ler?</span>
+              <div className="seg">{criancas.map((c) => <button key={c} type="button" aria-pressed={nome === c} onClick={() => setNome(c)}>{c}</button>)}</div>
+            </div>
+          ) : (
+            <label className="f">Nome ou apelido da criança<input maxLength={30} value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Ex.: Lia" /></label>
+          )}
+          <div className="f" role="group" aria-label="Ano escolar">
+            <span>Em que ano escolar ela está?</span>
+            <div className="seg">{ANOS.map(([k, l]) => <button key={k} type="button" aria-pressed={ano === k} onClick={() => setAno(k)}>{l}</button>)}</div>
+          </div>
+          {ano && (
+            <div className="f" role="group" aria-label="Versão do teste">
+              <span>Versão do texto ({nivel.nome}, {nivel.anos})</span>
+              <div className="seg">{(["A", "B"] as const).map((v) => <button key={v} type="button" aria-pressed={forma === v} onClick={() => setForma(v)}>Versão {v}: {nivel.formas[v].titulo}</button>)}</div>
+              <span className="meta" style={{ fontWeight: 400 }}>Para acompanhar a evolução, alterne as versões a cada 2 ou 3 meses. Já deixamos marcada a que ela não fez por último.</span>
+            </div>
+          )}
+          <div className="row">
+            <button className="btn" type="button" disabled={!ano || !nome.trim()} onClick={() => { rastrear("FluenciaIniciada", { tipo: `${nivel.id}${forma}` }); setFase({ f: "prep", p: 0 }); topo(); }}>Começar o teste</button>
+          </div>
+          <p className="note" style={{ margin: 0 }}>{user ? "O resultado fica salvo na sua conta, no histórico desta criança." : "O resultado fica guardado neste navegador. Com a conta gratuita, o histórico fica salvo em qualquer aparelho."}</p>
+        </section>
+        {doNome.length > 0 && <Historico lista={doNome} nome={nome.trim()} apagar={apagar} />}
+      </div>
+    );
+  }
+
+  // ------------------------------------------------------------- PREPARO DE CADA ETAPA
+  if (fase.f === "prep") {
+    const P = PARTES[fase.p];
+    return (
+      <section className="card diag">
+        <Barra p={fase.p} />
+        <p className="eyebrow-i" style={{ margin: 0 }}>Etapa {fase.p + 1} de 3 · {P.nome}</p>
+        <h2 style={{ margin: 0 }}>Para o adulto</h2>
+        <p style={{ margin: 0 }}>{P.prep}</p>
+        <p className="meta" style={{ margin: 0 }}>O cronômetro de 1 minuto começa quando você tocar no botão. Se ela ler tudo antes, toque em “Ela terminou”.</p>
+        <div className="row" style={{ gap: 10 }}>
+          <button className="btn" type="button" onClick={() => { setFase({ f: "lendo", p: fase.p }); topo(); }}>Começar: 1 minuto</button>
+          {fase.p > 0 && <button className="btn ghost" type="button" onClick={() => pular(fase.p)}>Ela ainda não consegue: pular etapa</button>}
+        </div>
+      </section>
+    );
+  }
+
+  // ------------------------------------------------------------- LEITURA / ONDE PAROU
+  if (fase.f === "lendo" || fase.f === "parou") {
+    const P = PARTES[fase.p];
+    const e = et[P.id];
+    const parou = fase.f === "parou";
+    const marca = (i: number) => `flu-w${e.erros[i] !== undefined ? " err" : ""}${parou && i < e.lidas ? " lida" : ""}${parou && i === e.lidas - 1 ? " fim" : ""}`;
+    let k = -1;
+    return (
+      <section className="card diag flu-tela">
+        <div className="flu-topo">
+          <span className="eyebrow-i" style={{ margin: 0 }}>{P.nome}</span>
+          {parou ? <b className="flu-aviso">Toque na última palavra que ela leu</b> : <span className={`flu-relogio${resta <= 10 ? " fim" : ""}`} aria-live="off">{resta}s</span>}
+        </div>
+        {P.id === "texto" ? (
+          <div className="flu-texto">
+            <h3>{dados.titulo}</h3>
+            {dados.texto.split("\n").map((par, pi) => (
+              <p key={pi}>{tokens(par).map((tk, ti) => {
+                if (!tk.w) return <span key={ti}>{tk.t}</span>;
+                k += 1; const i = k;
+                return <button key={ti} type="button" className={marca(i)} onClick={() => tocar(i)}>{tk.t}</button>;
+              })}</p>
+            ))}
+          </div>
+        ) : (
+          <div className={`flu-grade${P.id === "pseudo" ? " ps" : ""}${nivel.id === "3" ? " longas" : ""}`}>
+            {itens(P.id).map((w, i) => <button key={i} type="button" className={marca(i)} onClick={() => tocar(i)}>{w}</button>)}
+          </div>
+        )}
+        <div className="flu-rodape">
+          {parou ? (
+            <>
+              <span className="meta">{e.lidas ? `${e.lidas} lidas · ${Object.keys(e.erros).length} erros` : "Toque na última palavra lida"}</span>
+              <button className="btn" type="button" disabled={!e.lidas && Object.keys(e.erros).length > 0} onClick={confirmarParada}>{e.lidas ? "Confirmar" : "Ela não leu nenhuma"}</button>
+            </>
+          ) : (
+            <>
+              <span className="meta">Toque nas palavras que ela errar. Tocou sem querer? Toque de novo.</span>
+              <button className="btn ghost" type="button" onClick={terminouAntes}>Ela terminou</button>
+            </>
+          )}
+        </div>
+      </section>
+    );
+  }
+
+  // ------------------------------------------------------------- TIPO DOS ERROS
+  if (fase.f === "classificar") {
+    const P = PARTES[fase.p];
+    const e = et[P.id];
+    const lista = itens(P.id);
+    const setTipo = (i: number, t: string) => setEt((x) => ({ ...x, [P.id]: { ...x[P.id], erros: { ...x[P.id].erros, [i]: t } } }));
+    return (
+      <section className="card diag">
+        <Barra p={fase.p} />
+        <p className="eyebrow-i" style={{ margin: 0 }}>{P.nome} · {corretas(e)} corretas de {e.lidas} lidas</p>
+        <h2 style={{ margin: 0 }}>Que tipo de erro foi?</h2>
+        <p className="meta" style={{ margin: 0 }}>Opcional, mas é o que mostra onde está a lacuna. Se não lembrar, deixe em branco.</p>
+        <div className="flu-erros">
+          {Object.keys(e.erros).map(Number).sort((a, b) => a - b).map((i) => (
+            <div key={i} className="flu-erro">
+              <b>{lista[i]}</b>
+              <div className="seg">{TIPOS_ERRO.map(([t, l]) => <button key={t} type="button" aria-pressed={e.erros[i] === t} onClick={() => setTipo(i, e.erros[i] === t ? "erro" : t)}>{l}</button>)}</div>
+            </div>
+          ))}
+        </div>
+        <div className="row"><button className="btn" type="button" onClick={() => avancar(fase.p)}>Continuar</button></div>
+      </section>
+    );
+  }
+
+  // ------------------------------------------------------------- PROSÓDIA
+  if (fase.f === "prosodia") {
+    return (
+      <section className="card diag">
+        <p className="eyebrow-i" style={{ margin: 0 }}>Depois do texto</p>
+        <h2 style={{ margin: 0 }}>Como foi o jeito de ler?</h2>
+        <p className="meta" style={{ margin: 0 }}>Pense no minuto de leitura do texto e escolha a frase mais parecida.</p>
+        <div className="flu-opcoes">
+          {PROSODIA.map(([n, l]) => <button key={n} type="button" aria-pressed={prosodia === n} onClick={() => setProsodia(n)}><b>{n}</b>{l}</button>)}
+        </div>
+        <div className="row"><button className="btn" type="button" disabled={!prosodia} onClick={() => { setComp(dados.perguntas.map(() => null)); setFase({ f: "comp" }); topo(); }}>Continuar</button></div>
+      </section>
+    );
+  }
+
+  // ------------------------------------------------------------- COMPREENSÃO
+  if (fase.f === "comp") {
+    return (
+      <section className="card diag">
+        <p className="eyebrow-i" style={{ margin: 0 }}>Compreensão</p>
+        <h2 style={{ margin: 0 }}>Perguntas sobre o texto</h2>
+        <p className="meta" style={{ margin: 0 }}>Leia cada pergunta em voz alta. A criança responde falando, sem olhar o texto. Marque se ela acertou: vale a ideia, não precisa ser com as mesmas palavras.</p>
+        <div className="flu-erros">
+          {dados.perguntas.map((q, i) => (
+            <div key={i} className="flu-erro">
+              <b>{i + 1}. {q.p}</b>
+              <span className="meta">Resposta esperada: {q.r}</span>
+              <div className="seg">
+                <button type="button" aria-pressed={comp[i] === true} onClick={() => setComp((c) => c.map((x, j) => (j === i ? true : x)))}>✓ Acertou</button>
+                <button type="button" aria-pressed={comp[i] === false} onClick={() => setComp((c) => c.map((x, j) => (j === i ? false : x)))}>✗ Não acertou</button>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="row"><button className="btn" type="button" disabled={comp.some((x) => x === null)} onClick={() => finalizar(prosodia, comp)}>Ver o resultado</button></div>
+      </section>
+    );
+  }
+
+  // ------------------------------------------------------------- RESULTADO
+  const r = fase.r;
+  const pf = perfil(r);
+  const todos = [r.palavras, r.pseudo, r.texto].flatMap((e) => Object.values(e.erros));
+  const doNome = hist.filter((x) => x.crianca === r.crianca);
+  const nv = nivelPorId(r.nivel);
+  return (
+    <div style={{ display: "grid", gap: 16 }}>
+      <section className={`card diag flu-res ${pf.id}`}>
+        <p className="eyebrow-i" style={{ margin: 0 }}>Resultado · {r.crianca} · {dataBR(r.data)} · {nv.nome} ({nv.anos}), versão {r.forma}</p>
+        <h2 style={{ margin: 0 }}>{pf.nome}</h2>
+        <p style={{ margin: 0 }}>{pf.desc}</p>
+        <div className="flu-nums">
+          <Num v={porMinuto(r.texto)} l="palavras corretas por minuto no texto" destaque />
+          <Num v={`${precisao(r.texto)}%`} l="de precisão no texto" />
+          <Num v={porMinuto(r.palavras)} l="palavras por minuto" />
+          <Num v={porMinuto(r.pseudo)} l="palavras inventadas por minuto" />
+          {r.prosodia > 0 && <Num v={`${r.prosodia}/4`} l="ritmo e expressão" />}
+          {r.comp.length > 0 && <Num v={`${r.comp.filter(Boolean).length}/${r.comp.length}`} l="perguntas de compreensão" />}
+        </div>
+        {todos.length > 0 && (
+          <p className="meta" style={{ margin: 0 }}>Erros: {TIPOS_ERRO.map(([t, l]) => [l.split(" (")[0], todos.filter((x) => x === t).length] as [string, number]).filter(([, n]) => n).map(([l, n]) => `${l.toLowerCase()} (${n})`).join(" · ") || `${todos.length} sem tipo marcado`}</p>
+        )}
+        <p className="meta" style={{ margin: 0 }}>Referência: no 2º ano, o leitor fluente lê mais de 65 palavras corretas por minuto, com pelo menos 90% de precisão. Nos anos seguintes, a velocidade continua crescendo; o mais importante é comparar a criança com ela mesma.</p>
+      </section>
+
       {pf.id === "iniciante" && LEITOR30?.checkout && (
         <section className="card flu-oferta">
-          <p className="eyebrow-i" style={{ margin: 0 }}>Feito para este momento</p>
+          <p className="eyebrow-i" style={{ margin: 0 }}>Quer um plano pronto? (opcional)</p>
           <h2 style={{ margin: 0 }}>Leitor em 30 Dias</h2>
           <p style={{ margin: 0 }}>{r.crianca === "Criança" ? "A criança" : r.crianca} já lê sozinha e agora precisa ganhar ritmo e segurança. Hoje foram <b>{porMinuto(r.texto)} palavras corretas por minuto</b>. O programa traz um texto novo por dia, lido três vezes com você, em 15 minutos, e uma medição por semana num gráfico para pintar. No dia 30, você refaz este teste e compara.</p>
           <div className="row" style={{ gap: 10 }}>
             <Link className="btn" href="/apostilas/leitor-30-dias">Conhecer o programa · {LEITOR30.preco}</Link>
           </div>
-          <p className="meta" style={{ margin: 0 }}>PDF de 37 páginas para imprimir, com 24 textos inéditos e guia para o adulto. Os treinos gratuitos continuam aqui embaixo.</p>
+          <p className="meta" style={{ margin: 0 }}>PDF de 37 páginas para imprimir, com 24 textos inéditos e guia para o adulto.</p>
         </section>
       )}
 
       <section className="card diag">
         <h2 style={{ margin: 0 }}>O que fazer agora</h2>
+        <p style={{ margin: 0 }}>Comece pelos treinos gratuitos do Atlas: é só fazer a conta grátis para baixar.</p>
         <div className="flu-recs">
           {recomendacoes(r).map((d) => (
             <div key={d.t} className="flu-rec">

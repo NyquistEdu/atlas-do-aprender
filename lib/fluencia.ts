@@ -196,7 +196,8 @@ export function recomendacoes(r: Resultado): Dica[] {
   if (r.prosodia > 0 && r.prosodia <= 2 && p.id !== "pre") out.push({ t: "Ler com expressão", d: "Faça leitura em eco: você lê uma frase com expressão e ela repete do mesmo jeito. Diálogos, gibis e poemas são ótimos para isso." });
   if (r.comp.length && acertos <= 2 && p.id !== "pre") out.push({ t: "Entender o que leu", d: "Ela lê, mas guarda pouco da história. Faça pausas a cada parágrafo e pergunte: quem? onde? o que aconteceu? Depois, peça que conte a história com as próprias palavras.", link: ["/trilhas/portugues/2-ano", "Trilha de Português"] });
   if (p.id === "fluente" && acertos >= 4) out.push({ t: "Ampliar a leitura", d: "Leitura fluente e com compreensão. Agora é variar os textos (contos, notícias, textos de ciências) e conversar sobre o que leu.", link: ["/livros", "Sugestões de livros"] });
-  if (!out.length) out.push({ t: "Manter o ritmo", d: "Continue com 15 minutos de leitura por dia e refaça o teste daqui a 2 ou 3 meses, com a outra versão do texto." });
+  if (p.id === "fluente" && acertos < 4) out.push({ t: "Ler poemas em voz alta", d: "Ela já lê com velocidade. Poemas, rimas e jogos de palavras treinam ritmo, expressão e atenção ao sentido.", link: ["/apostilas/treino-versos-de-bolso", "Treino Diário · Versos de Bolso"] });
+  if (!out.length) out.push({ t: "Manter o ritmo", d: "Continue com 15 minutos de leitura por dia e refaça o teste daqui a 2 ou 3 meses, com a outra versão do texto.", link: ["/livros", "Sugestões de livros"] });
   return out;
 }
 
